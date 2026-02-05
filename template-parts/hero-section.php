@@ -11,9 +11,8 @@ if ( ! $hero_enabled ) {
     return;
 }
 
-// Display hero section on front page (static page set as homepage) or blog homepage
-// This matches Inspiro theme behavior - works with both frontpage template and blog homepage
-if ( ! is_front_page() && ! is_home() ) {
+// Display hero section only on the front page (static page or "Your latest posts").
+if ( ! is_front_page() ) {
     return;
 }
 

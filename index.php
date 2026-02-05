@@ -16,7 +16,7 @@
 get_header();
 
 // Include hero section on homepage
-if ( is_front_page() || is_home() ) {
+if ( is_front_page() ) {
 	get_template_part( 'template-parts/hero-section' );
 }
 

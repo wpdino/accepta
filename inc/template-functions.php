@@ -22,6 +22,11 @@ function accepta_body_classes( $classes ) {
 		$classes[] = 'no-sidebar';
 	}
 
+	// Overlay header should only apply on pages that have the hero (e.g. front page with hero enabled).
+	if ( is_front_page() && get_theme_mod( 'accepta_hero_enabled', false ) ) {
+		$classes[] = 'accepta-has-hero';
+	}
+
 	return $classes;
 }
 add_filter( 'body_class', 'accepta_body_classes' );

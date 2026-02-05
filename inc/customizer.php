@@ -2752,59 +2752,70 @@ function accepta_sticky_header_css() {
 		$css .= '.site-header.scrolled .menu-toggle .icon-bar { background-color: ' . esc_attr( $scrolled_text_color ) . '; }';
 	}
 	
-	// Overlay header styles
+	// Overlay header styles (only on pages that have the hero, e.g. front page with hero enabled)
 	if ( $transparent_header ) {
 		$transparent_text_color = get_theme_mod( 'accepta_transparent_header_text_color', '#ffffff' );
 		$scrolled_text_color = get_theme_mod( 'accepta_scrolled_header_text_color', '#2c3e50' );
 		// Convert text color to rgba with 0.3 opacity for borders
 		$transparent_border_color = accepta_hex_to_rgba( $transparent_text_color, 0.3 );
-		
-		// Make header absolute to overlay hero section
-		$css .= '.site-header { position: absolute; top: 0; left: 0; right: 0; background-color: transparent; box-shadow: none; }';
-		$css .= '.admin-bar .site-header { top: var(--wp-admin--admin-bar--height, 32px); }';
-		$css .= '@media screen and (max-width: 782px) { .admin-bar .site-header { top: var(--wp-admin--admin-bar--height, 46px); } }';
-		
-		// When scrolled, make it fixed with background (only if sticky is also enabled)
+		$overlay_prefix = 'body.accepta-has-hero ';
+
+		// On hero pages: make header absolute to overlay hero section
+		$css .= $overlay_prefix . '.site-header { position: absolute; top: 0; left: 0; right: 0; background-color: transparent; box-shadow: none; z-index: 1001; }';
+		$css .= $overlay_prefix . '.admin-bar .site-header { top: var(--wp-admin--admin-bar--height, 32px); }';
+		$css .= '@media screen and (max-width: 782px) { ' . $overlay_prefix . '.admin-bar .site-header { top: var(--wp-admin--admin-bar--height, 46px); } }';
+
+		// When scrolled on hero page, make it fixed with background (only if sticky is also enabled)
 		if ( $sticky_header ) {
 			$scrolled_bg_opacity = get_theme_mod( 'accepta_scrolled_header_bg_opacity', '1' );
 			$scrolled_bg_opacity = floatval( $scrolled_bg_opacity );
 			$scrolled_bg_opacity = min( max( 0, $scrolled_bg_opacity ), 1 ); // Clamp between 0 and 1
 			$scrolled_bg_rgba = accepta_hex_to_rgba( $scrolled_bg, $scrolled_bg_opacity );
-			
-			$css .= '.site-header.scrolled { position: fixed; background-color: ' . esc_attr( $scrolled_bg_rgba ) . '; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); }';
-			$css .= '.admin-bar .site-header.scrolled { top: var(--wp-admin--admin-bar--height, 32px); }';
-			$css .= '@media screen and (max-width: 782px) { .admin-bar .site-header.scrolled { top: var(--wp-admin--admin-bar--height, 46px); } }';
+
+			$css .= $overlay_prefix . '.site-header.scrolled { position: fixed; background-color: ' . esc_attr( $scrolled_bg_rgba ) . '; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); }';
+			$css .= $overlay_prefix . '.admin-bar .site-header.scrolled { top: var(--wp-admin--admin-bar--height, 32px); }';
+			$css .= '@media screen and (max-width: 782px) { ' . $overlay_prefix . '.admin-bar .site-header.scrolled { top: var(--wp-admin--admin-bar--height, 46px); } }';
 		}
-		
-		// Ensure header is above hero section
-		$css .= '.site-header { z-index: 1001; }';
-		
-		// Overlay header text colors (when not scrolled)
-		$css .= '.site-header:not(.scrolled) .site-title a { color: ' . esc_attr( $transparent_text_color ) . '; }';
-		$css .= '.site-header:not(.scrolled) .site-description { color: ' . esc_attr( $transparent_text_color ) . '; opacity: 0.8; }';
-		$css .= '.site-header:not(.scrolled) .main-navigation a { color: ' . esc_attr( $transparent_text_color ) . '; }';
-		$css .= '.site-header:not(.scrolled) .menu-toggle { color: ' . esc_attr( $transparent_text_color ) . '; }';
-		$css .= '.site-header:not(.scrolled) .menu-toggle .icon-bar { background-color: ' . esc_attr( $transparent_text_color ) . '; }';
-		$css .= '.site-header:not(.scrolled) .header-social-icons .social-icon { color: ' . esc_attr( $transparent_text_color ) . '; }';
-		$css .= '.site-header:not(.scrolled) .header-search-toggle { color: ' . esc_attr( $transparent_text_color ) . '; }';
-		$css .= '.site-header:not(.scrolled) .header-search-toggle svg { color: ' . esc_attr( $transparent_text_color ) . '; stroke: ' . esc_attr( $transparent_text_color ) . '; }';
-		$css .= '.site-header:not(.scrolled) .header-search-close { color: ' . esc_attr( $transparent_text_color ) . '; }';
-		
-		// Overlay header social icons and search button border colors (when not scrolled) - use text color with 0.3 opacity
-		$css .= '.site-header:not(.scrolled) .header-social-icons .social-icon { border-color: ' . esc_attr( $transparent_border_color ) . '; }';
-		$css .= '.site-header:not(.scrolled) .header-social-icons .social-icon .social-icon-svg { filter: brightness(0) invert(1); }';
-		$css .= '.site-header:not(.scrolled) .header-search-toggle { border-color: ' . esc_attr( $transparent_border_color ) . '; }';
-		
-		// Logo filter for overlay header (make logo lighter/visible)
-		$css .= '.site-header:not(.scrolled) .custom-logo-link img { filter: brightness(0) invert(1); }';
-		$css .= '.site-header.scrolled .custom-logo-link img { filter: none; }';
-		
-		// Remove body padding when overlay is enabled (header overlays content)
-		$css .= 'body:not(.has-sticky-header) { padding-top: 0; }';
-		
-		// Ensure hero section starts at top when overlay is enabled
-		$css .= '.accepta-hero-section { margin-top: 0; padding-top: 0; }';
-		$css .= '.site-content { margin-top: 0; }';
+
+		// Overlay header text colors (when not scrolled, on hero page only)
+		// Parent menu items: white (transparent color). Children (dropdown): black as original.
+		$css .= $overlay_prefix . '.site-header:not(.scrolled) .site-title a { color: ' . esc_attr( $transparent_text_color ) . '; }';
+		$css .= $overlay_prefix . '.site-header:not(.scrolled) .site-description { color: ' . esc_attr( $transparent_text_color ) . '; opacity: 0.8; }';
+		$css .= $overlay_prefix . '.site-header:not(.scrolled) .main-navigation > ul > li > a, ';
+		$css .= $overlay_prefix . '.site-header:not(.scrolled) .main-navigation .nav-menu > li > a { color: ' . esc_attr( $transparent_text_color ) . ' !important; }';
+		$css .= $overlay_prefix . '.site-header:not(.scrolled) .main-navigation ul ul a { color: #000 !important; }';
+		$css .= $overlay_prefix . '.site-header:not(.scrolled) .main-navigation ul ul a:hover { color: #6F9C50; }';
+		$css .= $overlay_prefix . '.site-header:not(.scrolled) .menu-toggle { color: ' . esc_attr( $transparent_text_color ) . '; }';
+		$css .= $overlay_prefix . '.site-header:not(.scrolled) .menu-toggle .icon-bar { background-color: ' . esc_attr( $transparent_text_color ) . '; }';
+		$css .= $overlay_prefix . '.site-header:not(.scrolled) .header-social-icons .social-icon { color: ' . esc_attr( $transparent_text_color ) . '; }';
+		$css .= $overlay_prefix . '.site-header:not(.scrolled) .header-search-toggle { color: ' . esc_attr( $transparent_text_color ) . '; }';
+		$css .= $overlay_prefix . '.site-header:not(.scrolled) .header-search-toggle svg { color: ' . esc_attr( $transparent_text_color ) . '; stroke: ' . esc_attr( $transparent_text_color ) . '; }';
+		$css .= $overlay_prefix . '.site-header:not(.scrolled) .header-search-close { color: ' . esc_attr( $transparent_text_color ) . '; }';
+		$css .= $overlay_prefix . '.site-header:not(.scrolled) .header-social-icons .social-icon { border-color: ' . esc_attr( $transparent_border_color ) . '; }';
+		$css .= $overlay_prefix . '.site-header:not(.scrolled) .header-social-icons .social-icon .social-icon-svg { filter: brightness(0) invert(1); }';
+		$css .= $overlay_prefix . '.site-header:not(.scrolled) .header-search-toggle { border-color: ' . esc_attr( $transparent_border_color ) . '; }';
+		$css .= $overlay_prefix . '.site-header:not(.scrolled) .custom-logo-link img { filter: brightness(0) invert(1); }';
+		$css .= $overlay_prefix . '.site-header.scrolled .custom-logo-link img { filter: none; }';
+
+		// On hero page only: remove top padding and let hero sit under header
+		$css .= 'body.accepta-has-hero:not(.has-sticky-header) { padding-top: 0; }';
+		$css .= 'body.accepta-has-hero .accepta-hero-section { margin-top: 0; padding-top: 0; }';
+		$css .= 'body.accepta-has-hero .site-content { margin-top: 0; }';
+
+		// When overlay is enabled but we're NOT on a hero page: use normal header (sticky or relative) so content isn't under the header
+		if ( $sticky_header ) {
+			$css .= 'body:not(.accepta-has-hero) .site-header { position: sticky; top: 0; z-index: 1000; }';
+			// On non-hero pages, scrolled header should still be fixed with background
+			$scrolled_bg_opacity = get_theme_mod( 'accepta_scrolled_header_bg_opacity', '1' );
+			$scrolled_bg_opacity = floatval( $scrolled_bg_opacity );
+			$scrolled_bg_opacity = min( max( 0, $scrolled_bg_opacity ), 1 );
+			$scrolled_bg_rgba = accepta_hex_to_rgba( $scrolled_bg, $scrolled_bg_opacity );
+			$css .= 'body:not(.accepta-has-hero) .site-header.scrolled { position: fixed; top: 0; left: 0; right: 0; background-color: ' . esc_attr( $scrolled_bg_rgba ) . '; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); }';
+			$css .= 'body:not(.accepta-has-hero).admin-bar .site-header.scrolled { top: var(--wp-admin--admin-bar--height, 32px); }';
+			$css .= '@media screen and (max-width: 782px) { body:not(.accepta-has-hero).admin-bar .site-header.scrolled { top: var(--wp-admin--admin-bar--height, 46px); } }';
+		} else {
+			$css .= 'body:not(.accepta-has-hero) .site-header { position: relative; top: auto; }';
+		}
 	} else {
 		// When overlay is disabled, ensure dark colors for social icons and search button
 		$css .= '.site-header:not(.transparent-header) .header-social-icons .social-icon { color: #2c3e50; border-color: rgba(44, 62, 80, 0.2); }';
