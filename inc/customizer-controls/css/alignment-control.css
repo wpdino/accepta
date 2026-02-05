@@ -1,0 +1,130 @@
+/**
+ * Alignment Control Styles
+ */
+
+.accepta-alignment-control-wrapper {
+	margin-bottom: 15px;
+}
+
+.accepta-alignment-control-wrapper .customize-control-title {
+	margin-bottom: 10px;
+}
+
+.accepta-alignment-control {
+	background: #fff;
+	border: 1px solid #ddd;
+	border-radius: 6px;
+	padding: 16px;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+	position: relative;
+}
+
+/* Responsive Tabs */
+.accepta-alignment-header {
+	margin-bottom: 12px;
+}
+
+.accepta-responsive-tabs {
+	display: flex;
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	overflow: hidden;
+}
+
+.accepta-responsive-tab {
+	flex: 1;
+	background: #f7f7f7;
+	border: none;
+	padding: 8px 12px;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	border-right: 1px solid #ddd;
+}
+
+.accepta-responsive-tab:last-child {
+	border-right: none;
+}
+
+.accepta-responsive-tab:hover {
+	background: #e7e7e7;
+}
+
+.accepta-responsive-tab.active {
+	background: #0073aa;
+	color: #fff;
+}
+
+.accepta-responsive-tab.active.synced {
+	background: #6f9c50; /* WPDino brand green when synced */
+	box-shadow: 0 0 0 2px rgba(111, 156, 80, 0.3);
+}
+
+.accepta-responsive-tab .dashicons {
+	font-size: 16px;
+	width: 16px;
+	height: 16px;
+}
+
+.accepta-alignment-options {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	margin-top: 10px;
+}
+
+.accepta-alignment-option {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	cursor: pointer;
+	padding: 8px;
+	border: 2px solid #ddd;
+	border-radius: 4px;
+	background: #fff;
+	transition: all 0.2s ease;
+	min-width: 80px;
+	position: relative;
+}
+
+.accepta-alignment-option:hover {
+	border-color: #0073aa;
+	background: #f0f8ff;
+}
+
+.accepta-alignment-option.selected {
+	border-color: #0073aa;
+	background: #e6f3ff;
+	box-shadow: 0 0 0 1px #0073aa;
+}
+
+.accepta-alignment-option input[type="radio"] {
+	position: absolute;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.accepta-alignment-icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 5px;
+}
+
+.accepta-alignment-icon svg {
+	display: block;
+	width: 60px;
+	height: 60px;
+}
+
+.accepta-alignment-label {
+	font-size: 11px;
+	text-align: center;
+	color: #555;
+	margin-top: 4px;
+}
+
+.accepta-alignment-option.selected .accepta-alignment-label {
+	color: #0073aa;
+	font-weight: 600;
+}
+

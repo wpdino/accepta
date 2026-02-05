@@ -1,0 +1,1564 @@
+/**
+ * Accepta Admin Styles
+ * Modern design with improved spacing and padding
+ */
+
+/* Custom Admin Menu Icon - Override dashicon */
+#toplevel_page_accepta .wp-menu-image,
+#toplevel_page_accepta.wp-has-current-submenu .wp-menu-image,
+#toplevel_page_accepta.wp-menu-open .wp-menu-image,
+#toplevel_page_accepta:hover .wp-menu-image,
+#toplevel_page_accepta a .wp-menu-image {
+    width: 36px !important;
+    height: 34px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background-size: 20px 20px !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    /* Use SVG file directly - more reliable than data URI */
+    background-image: url("../../images/accepta-icon.svg") !important;
+    font-size: 0 !important;
+    line-height: 0 !important;
+    text-indent: 0 !important;
+    position: relative !important;
+}
+
+/* Completely hide the dashicon :before pseudo-element */
+#toplevel_page_accepta .wp-menu-image.dashicons-before:before,
+#toplevel_page_accepta .wp-menu-image:before,
+#toplevel_page_accepta.wp-has-current-submenu .wp-menu-image:before,
+#toplevel_page_accepta.wp-menu-open .wp-menu-image:before,
+#toplevel_page_accepta:hover .wp-menu-image:before {
+    display: none !important;
+    content: '' !important;
+    width: 0 !important;
+    height: 0 !important;
+    font-size: 0 !important;
+    line-height: 0 !important;
+    visibility: hidden !important;
+}
+
+/* Hide any img tags, br tags, or other content */
+#toplevel_page_accepta .wp-menu-image img,
+#toplevel_page_accepta .wp-menu-image br,
+#toplevel_page_accepta .wp-menu-image * {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+}
+
+/* Admin Common Styles */
+:root {
+	--primary-color: #6F9C50;
+	/* --primary-color: #F8E71D; */
+
+    --primary-dark: #5a7d3f;
+    --primary-light: #f0f7ed;
+    --secondary-color: #2980b9;
+    --text-color: #23282d;
+    --text-light: #666666;
+    --light-bg: #f1f1f1;
+    --white: #ffffff;
+    --border-radius: 0px;
+    --box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px 0px;
+    --transition: all 0.3s ease;
+    --spacing-xs: 8px;
+    --spacing-sm: 15px;
+    --spacing-md: 20px;
+    --spacing-lg: 35px;
+    --spacing-xl: 50px;
+}
+
+.accepta-admin-wrap {
+    background: #f1f1f1;
+    margin: 20px -20px 0 -2px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    color: var(--text-color);
+    min-height: 100vh;
+    width: auto;
+    margin-right: 20px;
+}
+
+.accepta-admin-wrap * {
+    box-sizing: border-box;
+}
+
+.accepta-admin-wrap h1, 
+.accepta-admin-wrap h2, 
+.accepta-admin-wrap h3, 
+.accepta-admin-wrap h4 {
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.accepta-admin-wrap p {
+    line-height: 1.7;
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+/* Buttons Styling */
+.accepta-admin-wrap .button {
+    padding: 8px 16px;
+    height: auto;
+    line-height: 1.5;
+    transition: var(--transition);
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 13px;
+}
+
+.accepta-admin-wrap .button-primary {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white !important;
+    box-shadow: 0 2px 5px rgba(111, 156, 80, 0.2);
+}
+
+.accepta-admin-wrap .button-primary:hover,
+.accepta-admin-wrap .button-primary:focus {
+    background: var(--primary-dark);
+    border-color: var(--primary-dark);
+    box-shadow: 0 4px 8px rgba(111, 156, 80, 0.3);
+    transform: translateY(-2px);
+}
+
+.accepta-admin-wrap .button-secondary {
+    background: #f1f1f1;
+    border-color: #ccc;
+    color: #555;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.accepta-admin-wrap .button-secondary:hover,
+.accepta-admin-wrap .button-secondary:focus {
+    background: #e9e9e9;
+    border-color: #bbb;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.accepta-admin-wrap .button-hero {
+    padding: 14px 36px;
+    font-size: 16px;
+    font-weight: 600;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.accepta-admin-wrap .button-hero:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Header Styling */
+.accepta-header {
+    color: var(--text-color);
+    padding: 30px;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px 0px;
+    position: relative;
+    overflow: hidden;
+    background: white;
+    margin-bottom: 20px;
+}
+
+.accepta-header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.accepta-header-content h1 {
+    font-size: 32px;
+    font-weight: 500;
+    margin: 0;
+    gap: 12px;
+    color: var(--text-color);
+}
+
+.accepta-header-content h1 small {
+    font-size: inherit;
+    font-weight: inherit;
+    color: var(--primary-color);
+}
+
+.accepta-header p {
+    font-size: 16px;
+    margin: 0;
+    opacity: 0.9;
+    font-weight: 400;
+    position: relative;
+    z-index: 1;
+}
+
+.accepta-theme-version {
+    background: var(--primary-color);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #fff;
+    position: relative;
+    z-index: 1;
+}
+
+h1 .accepta-theme-version {
+    margin-top: 0;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 10px;
+    vertical-align: middle;
+}
+
+/* Welcome Page Styles */
+.accepta-welcome-section {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: var(--spacing-lg);
+    background: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+}
+
+.accepta-welcome-column {
+    flex: 1;
+    padding: var(--spacing-lg);
+    min-width: 320px;
+}
+
+.accepta-welcome-screenshot {
+    max-width: 100%;
+    height: auto;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+    transition: var(--transition);
+}
+
+.accepta-welcome-screenshot:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.accepta-feature-section {
+    background: var(--light-bg);
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+    border-left: 4px solid var(--primary-color);
+    transition: var(--transition);
+}
+
+.accepta-feature-section:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transform: translateY(-3px);
+}
+
+.accepta-feature-section h3 {
+    margin-top: 0;
+    margin-bottom: var(--spacing-xs);
+    color: var(--text-color);
+    font-size: 18px;
+}
+
+.accepta-feature-section p {
+    margin-top: 0;
+    margin-bottom: var(--spacing-sm);
+}
+
+.accepta-welcome-features {
+    background: var(--white);
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+.accepta-welcome-features h2 {
+    font-size: 24px;
+    margin-top: 0;
+    margin-bottom: var(--spacing-md);
+    color: var(--text-color);
+    position: relative;
+    padding-bottom: var(--spacing-xs);
+}
+
+.accepta-welcome-features h2:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: var(--primary-color);
+    border-radius: 3px;
+}
+
+.accepta-features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+}
+
+.accepta-feature-item {
+    background: var(--white);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius);
+    text-align: center;
+    transition: var(--transition);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.accepta-feature-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--box-shadow);
+    border-color: transparent;
+    background: var(--white);
+}
+
+.accepta-feature-item .dashicons {
+    color: var(--primary-color);
+    font-size: 36px;
+    width: 36px;
+    height: 36px;
+    margin-bottom: var(--spacing-sm);
+    transition: var(--transition);
+}
+
+.accepta-feature-item:hover .dashicons {
+    transform: scale(1.1);
+}
+
+.accepta-feature-item h3 {
+    margin-top: 0;
+    margin-bottom: var(--spacing-xs);
+    font-size: 17px;
+    color: var(--text-color);
+}
+
+.accepta-feature-item p {
+    margin: 0;
+    color: var(--text-light);
+    font-size: 13px;
+}
+
+.accepta-welcome-actions {
+    text-align: center;
+    margin: var(--spacing-lg) 0;
+    background: var(--light-bg);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius);
+}
+
+.accepta-welcome-actions .button {
+    margin: 0 var(--spacing-xs);
+}
+
+.accepta-welcome-actions .button-hero {
+    margin-top: var(--spacing-sm);
+}
+
+/* Next Steps Section Styles */
+.accepta-next-steps {
+    background: #fff;
+    padding: 30px;
+    border-radius: 3px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+    margin-bottom: 30px;
+}
+
+.accepta-steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 40px 25px;
+    margin-top: 40px;
+    position: relative;
+}
+
+.accepta-step-item {
+    background: #f9f9f9;
+    padding: 25px;
+    position: relative;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+}
+
+.accepta-step-item:hover {
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    transform: translateY(-3px);
+}
+
+.accepta-step-item .step-number {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 40px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    color: #fff;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 3px 10px rgba(111, 156, 80, 0.3);
+    font-size: 18px;
+    z-index: 1;
+}
+
+.accepta-step-item h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.accepta-step-item p {
+    margin-bottom: 20px;
+    color: #666;
+    min-height: 3em;
+}
+
+.accepta-step-item .button {
+    margin-top: auto;
+}
+
+/* Plugins Page Styles */
+.accepta-plugins-toolbar {
+    margin-bottom: var(--spacing-lg);
+    padding: var(--spacing-md);
+    background: rgba(0, 0, 0, 0.02);
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.accepta-plugins-toolbar-primary {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+}
+
+.accepta-plugins-toolbar .js-accepta-install-selected {
+    flex-shrink: 0;
+}
+
+.accepta-plugins-toolbar-desc {
+    margin: 0;
+    max-width: 420px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--text-light);
+}
+
+.accepta-plugins-toolbar .js-accepta-install-selected:disabled,
+.accepta-plugins-toolbar .js-accepta-install-selected.button-disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Professional checkbox */
+.accepta-plugin-checkbox-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--text-color);
+    margin: 0;
+    user-select: none;
+}
+
+.accepta-plugin-checkbox {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.accepta-plugin-checkbox-box {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    border: 2px solid #8c8f94;
+    border-radius: 4px;
+    background: #fff;
+    transition: border-color 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.accepta-plugin-checkbox-box::after {
+    content: '';
+    width: 6px;
+    height: 10px;
+    margin-top: -2px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg) scale(0);
+    transition: transform 0.15s ease;
+}
+
+.accepta-plugin-checkbox:checked + .accepta-plugin-checkbox-box {
+    border-color: #2271b1;
+    background: #2271b1;
+}
+
+.accepta-plugin-checkbox:checked + .accepta-plugin-checkbox-box::after {
+    transform: rotate(45deg) scale(1);
+}
+
+.accepta-plugin-checkbox-label:hover .accepta-plugin-checkbox-box {
+    border-color: #2271b1;
+}
+
+.accepta-plugin-checkbox:focus + .accepta-plugin-checkbox-box {
+    box-shadow: 0 0 0 2px rgba(34, 113, 177, 0.3);
+}
+
+.accepta-plugin-checkbox-text {
+    font-weight: 500;
+}
+
+/* Loading state: preloader + action text */
+.accepta-plugin-loading-state {
+    display: none;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--text-light);
+}
+
+.accepta-plugin-item--loading .accepta-plugin-loading-state {
+    display: inline-flex;
+}
+
+.accepta-plugin-item--loading .accepta-plugin-actions .js-accepta-plugin-btn {
+    display: none !important;
+}
+
+.accepta-plugin-spinner {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    border-top-color: #2271b1;
+    border-radius: 50%;
+    animation: accepta-plugin-spin 0.7s linear infinite;
+}
+
+@keyframes accepta-plugin-spin {
+    to { transform: rotate(360deg); }
+}
+
+.accepta-plugins-wrap {
+    margin-bottom: var(--spacing-lg);
+}
+
+.accepta-plugins-wrap h2 {
+    font-size: 24px;
+    margin-top: 0;
+    margin-bottom: var(--spacing-md);
+    color: var(--text-color);
+    position: relative;
+    padding-bottom: var(--spacing-xs);
+}
+
+.accepta-plugins-wrap h2:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: var(--primary-color);
+    border-radius: 3px;
+}
+
+.accepta-plugins-wrap p {
+    margin-top: 0;
+    margin-bottom: var(--spacing-md);
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+.accepta-plugins-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+}
+
+.accepta-plugin-item {
+    background: var(--white);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    transition: var(--transition);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-align: center;
+}
+
+.accepta-plugin-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin: var(--spacing-md) auto var(--spacing-sm);
+    transition: var(--transition);
+}
+
+.accepta-plugin-icon img {
+    max-width: 70%;
+    height: auto;
+}
+
+.accepta-plugin-icon .dashicons {
+    color: var(--primary-color);
+    font-size: 30px;
+    width: 30px;
+    height: 30px;
+}
+
+.accepta-plugin-info {
+    padding: 0 var(--spacing-md) var(--spacing-md);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.accepta-plugin-info h3 {
+    margin: 0 0 var(--spacing-xs);
+    font-size: 18px;
+    color: var(--text-color);
+    text-align: center;
+}
+
+.accepta-plugin-item-error {
+    margin-top: var(--spacing-xs);
+    min-height: 0;
+}
+
+.accepta-plugin-error {
+    font-size: 12px;
+    color: #c0392b;
+    margin: 0;
+}
+
+.accepta-plugin-item--loading .js-accepta-plugin-btn {
+    opacity: 0.8;
+    cursor: wait;
+}
+
+.accepta-plugin-info p {
+    margin: 0 0 var(--spacing-md);
+    font-size: 13px;
+    color: var(--text-light);
+    line-height: 1.6;
+    text-align: center;
+    flex-grow: 1;
+}
+
+.accepta-plugin-badge {
+    display: inline-block;
+    background: rgba(111, 156, 80, 0.1);
+    color: var(--primary-color);
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-left: auto;
+}
+
+.accepta-plugin-actions {
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: rgba(0, 0, 0, 0.02);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.accepta-plugin-status {
+    font-size: 12px;
+    color: var(--text-light);
+    background: rgba(0, 0, 0, 0.05);
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.accepta-plugin-status.active {
+    background: rgba(111, 156, 80, 0.1);
+    color: var(--primary-color);
+}
+
+.accepta-plugin-status.installed {
+    background: rgba(41, 128, 185, 0.1);
+    color: var(--secondary-color);
+}
+
+/* Active state: success pill (green) - distinct from default grey */
+.accepta-plugin-item--active .js-accepta-plugin-btn,
+.js-accepta-plugin-btn.accepta-plugin-btn--active {
+    background: rgba(46, 125, 50, 0.12) !important;
+    color: #2e7d32 !important;
+    border: none !important;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: default;
+    box-shadow: none;
+}
+
+.accepta-plugin-item--active .js-accepta-plugin-btn:hover,
+.js-accepta-plugin-btn.accepta-plugin-btn--active:hover {
+    background: rgba(46, 125, 50, 0.12) !important;
+    color: #2e7d32 !important;
+}
+
+.accepta-plugin-status.required {
+    background: rgba(220, 50, 50, 0.12);
+    color: #dc3232;
+    font-weight: 600;
+    border-radius: 20px;
+}
+
+.accepta-plugin-status .dashicons {
+    font-size: 14px;
+    width: 14px;
+    height: 14px;
+}
+
+/* Common Notice Styling */
+.accepta-notice, 
+.accepta-plugins-note {
+    background: var(--white);
+    border-left: 4px solid var(--primary-color);
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+.accepta-notice.notice-warning {
+    border-left-color: #ffba00;
+    background-color: rgba(255, 186, 0, 0.05);
+}
+
+.accepta-notice.notice-warning h3 {
+    color: #d79400;
+}
+
+.accepta-plugins-note {
+    border-left-color: #3498db;
+    margin-top: var(--spacing-lg);
+}
+
+.accepta-demos-warning,
+.accepta-plugins-warning {
+    margin-top: var(--spacing-lg);
+    background-color: rgba(255, 186, 0, 0.05);
+}
+
+.accepta-notice h3,
+.accepta-plugins-note h3 {
+    margin-top: 0;
+    margin-bottom: var(--spacing-xs);
+    color: var(--text-color);
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+}
+
+.accepta-notice.notice-warning h3 .dashicons,
+.accepta-demos-warning h3 .dashicons,
+.accepta-plugins-warning h3 .dashicons {
+    color: #ffba00;
+}
+
+.accepta-notice h3 .dashicons,
+.accepta-plugins-note h3 .dashicons {
+    margin-right: 8px;
+    color: var(--primary-color);
+    font-size: 22px;
+    width: 22px;
+    height: 22px;
+}
+
+.accepta-plugins-note h3 .dashicons {
+    color: #3498db;
+}
+
+.accepta-notice p,
+.accepta-plugins-note p {
+    margin-top: 0;
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-light);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.accepta-notice ul,
+.accepta-plugins-note ul {
+    margin-left: var(--spacing-md);
+    color: var(--text-light);
+}
+
+.accepta-notice ul li,
+.accepta-plugins-note ul li {
+    margin-bottom: var(--spacing-xs);
+}
+
+/* Demos Page Styles */
+.accepta-demos-wrap {
+    background: var(--white);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    margin-bottom: var(--spacing-lg);
+}
+
+.accepta-demos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-md);
+}
+
+.accepta-demo-item {
+    background: var(--light-bg);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    transition: var(--transition);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.accepta-demo-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--box-shadow);
+    border-color: transparent;
+}
+
+.accepta-demo-image {
+    position: relative;
+    padding-top: 65%; /* 16:10 Aspect Ratio */
+    overflow: hidden;
+}
+
+.accepta-demo-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.accepta-demo-item:hover .accepta-demo-image img {
+    transform: scale(1.05);
+}
+
+.accepta-demo-image img[src*="placeholder-demo"] {
+    object-fit: contain;
+    background: rgba(111, 156, 80, 0.05);
+    padding: 25px;
+}
+
+.accepta-premium-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: var(--primary-color);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 30px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.accepta-demo-content {
+    padding: var(--spacing-md);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.accepta-demo-title {
+    margin: 0 0 var(--spacing-xs);
+    font-size: 18px;
+    color: var(--text-color);
+}
+
+.accepta-demo-desc {
+    margin: 0 0 var(--spacing-md);
+    font-size: 13px;
+    color: var(--text-light);
+    line-height: 1.6;
+    flex-grow: 1;
+}
+
+.accepta-demo-actions {
+    padding-top: var(--spacing-sm);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+/* Premium Page Styles */
+.accepta-premium-wrap {
+    background: var(--white);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    margin-bottom: var(--spacing-md);
+}
+
+.accepta-premium-banner {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius);
+    color: var(--white);
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+    box-shadow: 0 10px 30px rgba(111, 156, 80, 0.2);
+}
+
+.accepta-premium-content h2 {
+    font-size: 28px;
+    margin-top: 0;
+    margin-bottom: var(--spacing-sm);
+    color: var(--white);
+}
+
+.accepta-premium-content p {
+    font-size: 16px;
+    max-width: 700px;
+    margin: 0 auto var(--spacing-md);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.accepta-comparison-table-wrap {
+    overflow-x: auto;
+    margin-bottom: var(--spacing-lg);
+}
+
+.accepta-comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.accepta-comparison-table thead th {
+    background: var(--primary-color);
+    padding: var(--spacing-md);
+    text-align: left;
+    font-weight: 600;
+    color: white;
+    border-bottom: none;
+}
+
+.accepta-comparison-table th.accepta-feature-column {
+    width: 50%;
+}
+
+.accepta-comparison-table th.accepta-lite-column,
+.accepta-comparison-table th.accepta-premium-column {
+    width: 25%;
+    text-align: center;
+}
+
+.accepta-comparison-table th.accepta-premium-column {
+    background: var(--primary-dark);
+}
+
+.accepta-feature-row:nth-child(even) {
+    background: var(--light-bg);
+}
+
+.accepta-feature-row:hover {
+    background: var(--primary-light);
+}
+
+.accepta-feature-row td {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.accepta-feature-name {
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.accepta-feature-lite,
+.accepta-feature-premium {
+    text-align: center;
+}
+
+.accepta-feature-premium {
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.accepta-price-row {
+    background: var(--primary-light);
+    border-top: 2px solid rgba(111, 156, 80, 0.1);
+}
+
+.accepta-price-row td {
+    padding: var(--spacing-md);
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--text-color);
+}
+
+.accepta-price-row .accepta-feature-premium {
+    color: var(--primary-dark);
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.accepta-feature-premium .dashicons-yes-alt {
+    color: var(--primary-color);
+    font-size: 22px;
+    width: 22px;
+    height: 22px;
+}
+
+.accepta-feature-lite .dashicons-yes {
+    color: #555;
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+}
+
+.accepta-feature-lite .dashicons-no-alt,
+.accepta-feature-premium .dashicons-no-alt {
+    color: #e74c3c;
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+    opacity: 0.5;
+}
+
+.accepta-premium-cta {
+    background: var(--light-bg);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius);
+    text-align: center;
+    border-left: 5px solid var(--primary-color);
+}
+
+.accepta-premium-cta h2 {
+    font-size: 24px;
+    margin-top: 0;
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-color);
+}
+
+.accepta-premium-cta p {
+    font-size: 16px;
+    max-width: 700px;
+    margin: 0 auto var(--spacing-md);
+    color: var(--text-light);
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 782px) {
+    .accepta-admin-wrap {
+        margin: 20px 10px;
+    }
+    
+    .accepta-header {
+        padding: var(--spacing-md);
+    }
+    
+    .accepta-header h1 {
+        font-size: 24px;
+    }
+    
+    .accepta-header p {
+        font-size: 14px;
+    }
+    
+    .accepta-theme-version {
+        font-size: 11px;
+        padding: 3px 8px;
+    }
+    
+    .accepta-welcome-column,
+    .accepta-plugins-wrap,
+    .accepta-demos-wrap,
+    .accepta-premium-wrap {
+        padding: var(--spacing-md);
+    }
+    
+    .accepta-plugins-grid,
+    .accepta-demos-grid,
+    .accepta-premium-features,
+    .accepta-features-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-sm);
+    }
+    
+    .accepta-welcome-actions .button {
+        display: block;
+        width: 100%;
+        margin: var(--spacing-xs) 0;
+        text-align: center;
+    }
+    
+    .accepta-plugin-icon {
+        margin: var(--spacing-sm) auto;
+    }
+    
+    .accepta-plugin-info h3 {
+        font-size: 16px;
+    }
+    
+    .accepta-plugin-info p {
+        font-size: 12px;
+    }
+    
+    .accepta-demos-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+    
+    .accepta-demo-title {
+        font-size: 16px;
+    }
+    
+    .accepta-demo-desc {
+        font-size: 12px;
+    }
+    
+    .accepta-demo-actions {
+        flex-direction: column;
+    }
+    
+    .accepta-demo-actions .button {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .accepta-comparison-table th,
+    .accepta-comparison-table td {
+        padding: var(--spacing-xs);
+    }
+    
+    .accepta-feature-name {
+        font-size: 13px;
+    }
+    
+    .accepta-feature-lite,
+    .accepta-feature-premium {
+        font-size: 12px;
+    }
+    
+    .accepta-admin-footer {
+        flex-direction: column;
+        padding: var(--spacing-md);
+        text-align: center;
+    }
+    
+    .accepta-admin-footer-logo {
+        margin: 0 auto var(--spacing-sm);
+    }
+    
+    .accepta-admin-footer-links {
+        flex-direction: column;
+        gap: var(--spacing-xs);
+        margin-bottom: var(--spacing-sm);
+        align-items: center;
+    }
+    
+    .accepta-admin-footer-social {
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .accepta-admin-wrap {
+        margin: 15px 5px;
+    }
+    
+    .accepta-admin-footer-standalone {
+        margin: var(--spacing-md) 5px 15px;
+        width: calc(100% - 10px);
+    }
+    
+    .accepta-plugin-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .accepta-plugin-badge {
+        margin-left: 0;
+        margin-top: var(--spacing-xs);
+    }
+    
+    .accepta-premium-cta {
+        padding: var(--spacing-lg) var(--spacing-md);
+    }
+    
+    .accepta-plugin-icon {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .accepta-plugin-icon .dashicons {
+        font-size: 24px;
+        width: 24px;
+        height: 24px;
+    }
+    
+    .accepta-premium-badge {
+        top: 10px;
+        right: 10px;
+        padding: 3px 8px;
+        font-size: 10px;
+    }
+    
+    .accepta-premium-banner {
+        padding: var(--spacing-md);
+    }
+    
+    .accepta-premium-content h2 {
+        font-size: 22px;
+    }
+    
+    .accepta-premium-content p {
+        font-size: 14px;
+    }
+    
+    .accepta-premium-cta h2 {
+        font-size: 20px;
+    }
+    
+    .accepta-premium-cta p {
+        font-size: 14px;
+    }
+    
+    .accepta-header h1 {
+        font-size: 22px;
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+    
+    .accepta-header-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-xs);
+    }
+    
+    .accepta-theme-version {
+        font-size: 10px;
+        padding: 2px 8px;
+        margin-top: 5px;
+    }
+}
+
+.accepta-welcome-actions .button-hero {
+    margin-top: 15px;
+    padding: 12px 36px;
+    height: auto;
+    line-height: 1.5;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.accepta-welcome-actions .button-hero:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Admin Footer Styling */
+.accepta-admin-footer {
+    background: #23282d;
+    color: #fff;
+    padding: 30px 40px;
+    font-size: 14px;
+    margin-top: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.accepta-admin-footer-content {
+    max-width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+/* Standalone Footer - Used when not inside .accepta-admin-wrap */
+.accepta-admin-footer-standalone {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    color: #fff;
+    line-height: 1.6;
+    clear: both;
+    float: none;
+    display: block;
+    width: 100%;
+}
+
+.accepta-admin-footer-standalone * {
+    box-sizing: border-box;
+}
+
+/* Admin footer inside admin wrap (for welcome page) */
+.accepta-admin-wrap .accepta-admin-footer {
+    margin-bottom: 0;
+}
+
+.accepta-admin-footer-logo {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    position: relative;
+    z-index: 1;
+}
+
+.accepta-admin-footer-logo img {
+    max-height: 34px;
+    width: auto;
+    transition: var(--transition);
+}
+
+.accepta-admin-footer-logo:hover img {
+    transform: scale(1.05);
+}
+
+.accepta-admin-footer-logo div {
+    display: flex;
+    flex-direction: column;
+}
+
+.accepta-admin-footer-logo span {
+    font-weight: 600;
+    font-size: 16px;
+    color: #fff;
+    position: relative;
+    line-height: 1.2;
+}
+
+.accepta-admin-footer-version {
+    margin: 3px 0 0 0;
+    font-size: 12px;
+    color: var(--text-light);
+    font-style: italic;
+}
+
+.accepta-admin-footer-logo span::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: var(--transition);
+}
+
+.accepta-admin-footer-logo:hover span::after {
+    width: 100%;
+}
+
+.accepta-admin-footer-links {
+    display: flex;
+    gap: var(--spacing-md);
+    position: relative;
+    z-index: 1;
+}
+
+.accepta-admin-footer-links a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: var(--transition);
+    position: relative;
+    padding-bottom: 3px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.accepta-admin-footer-links a .dashicons {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    transition: var(--transition);
+}
+
+.accepta-admin-footer-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: var(--transition);
+}
+
+.accepta-admin-footer-links a:hover {
+    color: var(--primary-color);
+}
+
+.accepta-admin-footer-links a:hover .dashicons {
+    transform: translateY(-2px);
+}
+
+.accepta-admin-footer-links a:hover::after {
+    width: 100%;
+}
+
+.accepta-admin-footer-social {
+    display: flex;
+    gap: var(--spacing-sm);
+    position: relative;
+    z-index: 1;
+}
+
+.accepta-admin-footer-social a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--light-bg);
+    color: var(--text-light);
+    transition: var(--transition);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    text-decoration: none;
+    border: none;
+    outline: none;
+}
+
+.accepta-admin-footer-social a:hover {
+    background: var(--primary-color);
+    color: var(--white);
+    transform: translateY(-4px);
+    box-shadow: 0 4px 10px rgba(111, 156, 80, 0.3);
+    text-decoration: none;
+}
+
+.accepta-admin-footer-social a:focus {
+    box-shadow: 0 0 0 1px var(--white), 0 0 0 3px var(--primary-color);
+    outline: none;
+}
+
+.accepta-admin-footer-social .dashicons {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+}
+
+.accepta-admin-footer-left p {
+    color: #fff;
+    font-size: 14px;
+    margin: 0;
+}
+
+.accepta-admin-footer-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.accepta-admin-footer-right span {
+    color: #fff;
+    font-size: 14px;
+    opacity: 0.6;
+}
+
+.accepta-admin-footer-right a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.accepta-admin-footer-right a:hover {
+    color: var(--primary-color);
+}
+
+/* RTL Styles */
+html[dir="rtl"] .accepta-header-content {
+    flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .accepta-theme-version {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+html[dir="rtl"] .accepta-header h1 {
+    margin-right: 0;
+    margin-left: var(--spacing-xs);
+}
+
+@media screen and (max-width: 600px) {
+    html[dir="rtl"] .accepta-header-content {
+        flex-direction: column;
+        align-items: flex-end;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .accepta-admin-footer {
+        flex-direction: column;
+        padding: var(--spacing-md);
+        gap: var(--spacing-sm);
+    }
+    
+    .accepta-admin-footer-standalone {
+        margin: var(--spacing-md) 10px 20px;
+        width: calc(100% - 20px);
+    }
+    
+    .accepta-admin-footer-links {
+        flex-direction: column;
+        gap: var(--spacing-xs);
+        margin-bottom: var(--spacing-sm);
+        align-items: center;
+    }
+    
+    .accepta-admin-footer-social {
+        justify-content: center;
+    }
+} 

@@ -1,0 +1,93 @@
+/**
+ * Accepta Layout Control CSS
+ * Styles for the visual layout selector control
+ */
+
+.accepta-layout-control-wrapper {
+    margin-bottom: 20px;
+}
+
+.accepta-layout-options {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+}
+
+.accepta-layout-option {
+    flex: 1;
+    min-width: 80px;
+    cursor: pointer;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    padding: 8px;
+    background: #fff;
+    transition: all 0.2s ease;
+    text-align: center;
+    position: relative;
+}
+
+.accepta-layout-option:hover {
+    border-color: #0073aa;
+    box-shadow: 0 2px 8px rgba(0, 115, 170, 0.1);
+}
+
+.accepta-layout-option.selected {
+    border-color: #0073aa;
+    background: #f0f8ff;
+    box-shadow: 0 0 0 1px rgba(0, 115, 170, 0.3);
+}
+
+.accepta-layout-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.accepta-layout-image {
+    margin-bottom: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.accepta-layout-image svg {
+    width: 80px;
+    height: 60px;
+    display: block;
+}
+
+.accepta-layout-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 500;
+    color: #555;
+    line-height: 1.2;
+}
+
+.accepta-layout-option.selected .accepta-layout-label {
+    color: #0073aa;
+    font-weight: 600;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .accepta-layout-options {
+        gap: 8px;
+    }
+    
+    .accepta-layout-option {
+        min-width: 70px;
+        padding: 6px;
+    }
+    
+    .accepta-layout-image svg {
+        width: 70px;
+        height: 52px;
+    }
+    
+    .accepta-layout-label {
+        font-size: 10px;
+    }
+}

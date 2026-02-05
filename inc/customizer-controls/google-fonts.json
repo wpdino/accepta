@@ -1,0 +1,298 @@
+{
+  "items": [
+    {
+      "family": "Open Sans",
+      "variants": ["300", "400", "500", "600", "700", "800", "300italic", "400italic", "500italic", "600italic", "700italic", "800italic"],
+      "subsets": ["latin", "latin-ext", "cyrillic", "cyrillic-ext", "greek", "greek-ext", "vietnamese"],
+      "category": "sans-serif"
+    },
+    {
+      "family": "Roboto",
+      "variants": ["100", "300", "400", "500", "700", "900", "100italic", "300italic", "400italic", "500italic", "700italic", "900italic"],
+      "subsets": ["latin", "latin-ext", "cyrillic", "cyrillic-ext", "greek", "greek-ext", "vietnamese"],
+      "category": "sans-serif"
+    },
+    {
+      "family": "Lato",
+      "variants": ["100", "300", "400", "700", "900", "100italic", "300italic", "400italic", "700italic", "900italic"],
+      "subsets": ["latin", "latin-ext"],
+      "category": "sans-serif"
+    },
+    {
+      "family": "Montserrat",
+      "variants": ["100", "200", "300", "400", "500", "600", "700", "800", "900", "100italic", "200italic", "300italic", "400italic", "500italic", "600italic", "700italic", "800italic", "900italic"],
+      "subsets": ["latin", "latin-ext", "cyrillic", "cyrillic-ext", "vietnamese"],
+      "category": "sans-serif"
+    },
+    {
+      "family": "Poppins",
+      "variants": ["100", "200", "300", "400", "500", "600", "700", "800", "900", "100italic", "200italic", "300italic", "400italic", "500italic", "600italic", "700italic", "800italic", "900italic"],
+      "subsets": ["latin", "latin-ext", "devanagari"],
+      "category": "sans-serif"
+    },
+    {
+      "family": "Source Sans Pro",
+      "variants": ["200", "300", "400", "600", "700", "900", "200italic", "300italic", "400italic", "600italic", "700italic", "900italic"],
+      "subsets": ["latin", "latin-ext", "cyrillic", "cyrillic-ext", "greek", "greek-ext", "vietnamese"],
+      "category": "sans-serif"
+    },
+    {
+      "family": "Raleway",
+      "variants": ["100", "200", "300", "400", "500", "600", "700", "800", "900", "100italic", "200italic", "300italic", "400italic", "500italic", "600italic", "700italic", "800italic", "900italic"],
+      "subsets": ["latin", "latin-ext"],
+      "category": "sans-serif"
+    },
+    {
+      "family": "Ubuntu",
+      "variants": ["300", "400", "500", "700", "300italic", "400italic", "500italic", "700italic"],
+      "subsets": ["latin", "latin-ext", "cyrillic", "cyrillic-ext", "greek", "greek-ext"],
+      "category": "sans-serif"
+    },
+    {
+      "family": "Nunito",
+      "variants": ["200", "300", "400", "500", "600", "700", "800", "900", "200italic", "300italic", "400italic", "500italic", "600italic", "700italic", "800italic", "900italic"],
+      "subsets": ["latin", "latin-ext", "cyrillic", "cyrillic-ext", "vietnamese"],
+      "category": "sans-serif"
+    },
+    {
+      "family": "Inter",
+      "variants": ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+      "subsets": ["latin", "latin-ext", "cyrillic", "cyrillic-ext", "greek", "greek-ext", "vietnamese"],
+      "category": "sans-serif"
+    },
+    {
+      "family": "Work Sans",
+      "variants": ["100", "200", "300", "400", "500", "600", "700", "800", "900", "100italic", "200italic", "300italic", "400italic", "500italic", "600italic", "700italic", "800italic", "900italic"],
+      "subsets": ["latin", "latin-ext", "vietnamese"],
+      "category": "sans-serif"
+    },
+    {
+      "family": "Rubik",
+      "variants": ["300", "400", "500", "600", "700", "800", "900", "300italic", "400italic", "500italic", "600italic", "700italic", "800italic", "900italic"],
+      "subsets": ["latin", "latin-ext", "cyrillic", "cyrillic-ext", "hebrew", "arabic"],
+      "category": "sans-serif"
+    },
+    {
+      "family": "DM Sans",
+      "variants": ["400", "500", "700", "400italic", "500italic", "700italic"],
+      "subsets": ["latin", "latin-ext"],
+      "category": "sans-serif"
+    },
+    {
+      "family": "Manrope",
+      "variants": ["200", "300", "400", "500", "600", "700", "800"],
+      "subsets": ["latin", "latin-ext", "cyrillic", "cyrillic-ext", "greek", "vietnamese"],
+      "category": "sans-serif"
+    },
+    {
+      "family": "Fira Sans",
+      "variants": ["100", "200", "300", "400", "500", "600", "700", "800", "900", "100italic", "200italic", "300italic", "400italic", "500italic", "600italic", "700italic", "800italic", "900italic"],
+      "subsets": ["latin", "latin-ext", "cyrillic", "cyrillic-ext", "greek", "greek-ext"],
+      "category": "sans-serif"
+    },
+    {
+      "family": "Noto Sans",
+      "variants": ["400", "700", "400italic", "700italic"],
+      "subsets": ["latin", "latin-ext", "cyrillic", "cyrillic-ext", "devanagari", "greek", "greek-ext", "vietnamese"],
+      "category": "sans-serif"
+    },
+    {
+      "family": "PT Sans",
+      "variants": ["400", "700", "400italic", "700italic"],
+      "subsets": ["latin", "latin-ext", "cyrillic", "cyrillic-ext"],
+      "category": "sans-serif"
+    },
+    {
+      "family": "Roboto Condensed",
+      "variants": ["300", "400", "700", "300italic", "400italic", "700italic"],
+      "subsets": ["latin", "latin-ext", "cyrillic", "cyrillic-ext", "greek", "greek-ext", "vietnamese"],
+      "category": "sans-serif"
+    },
+    {
+      "family": "Oxygen",
+      "variants": ["300", "400", "700"],
+      "subsets": ["latin", "latin-ext"],
+      "category": "sans-serif"
+    },
+    {
+      "family": "Quicksand",
+      "variants": ["300", "400", "500", "600", "700"],
+      "subsets": ["latin", "latin-ext", "vietnamese"],
+      "category": "sans-serif"
+    },
+    {
+      "family": "Playfair Display",
+      "variants": ["400", "500", "600", "700", "800", "900", "400italic", "500italic", "600italic", "700italic", "800italic", "900italic"],
+      "subsets": ["latin", "latin-ext", "cyrillic"],
+      "category": "serif"
+    },
+    {
+      "family": "Merriweather",
+      "variants": ["300", "400", "700", "900", "300italic", "400italic", "700italic", "900italic"],
+      "subsets": ["latin", "latin-ext", "cyrillic", "cyrillic-ext"],
+      "category": "serif"
+    },
+    {
+      "family": "PT Serif",
+      "variants": ["400", "700", "400italic", "700italic"],
+      "subsets": ["latin", "latin-ext", "cyrillic", "cyrillic-ext"],
+      "category": "serif"
+    },
+    {
+      "family": "Roboto Slab",
+      "variants": ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+      "subsets": ["latin", "latin-ext", "cyrillic", "cyrillic-ext", "greek", "greek-ext", "vietnamese"],
+      "category": "serif"
+    },
+    {
+      "family": "Crimson Text",
+      "variants": ["400", "600", "700", "400italic", "600italic", "700italic"],
+      "subsets": ["latin", "latin-ext"],
+      "category": "serif"
+    },
+    {
+      "family": "Libre Baskerville",
+      "variants": ["400", "700", "400italic"],
+      "subsets": ["latin", "latin-ext"],
+      "category": "serif"
+    },
+    {
+      "family": "EB Garamond",
+      "variants": ["400", "500", "600", "700", "800", "400italic", "500italic", "600italic", "700italic", "800italic"],
+      "subsets": ["latin", "latin-ext", "cyrillic", "cyrillic-ext", "greek", "greek-ext", "vietnamese"],
+      "category": "serif"
+    },
+    {
+      "family": "Cormorant Garamond",
+      "variants": ["300", "400", "500", "600", "700", "300italic", "400italic", "500italic", "600italic", "700italic"],
+      "subsets": ["latin", "latin-ext", "cyrillic", "cyrillic-ext", "vietnamese"],
+      "category": "serif"
+    },
+    {
+      "family": "Domine",
+      "variants": ["400", "500", "600", "700"],
+      "subsets": ["latin", "latin-ext"],
+      "category": "serif"
+    },
+    {
+      "family": "Libre Caslon Text",
+      "variants": ["400", "700", "400italic"],
+      "subsets": ["latin", "latin-ext"],
+      "category": "serif"
+    },
+    {
+      "family": "Old Standard TT",
+      "variants": ["400", "700", "400italic"],
+      "subsets": ["latin", "latin-ext", "cyrillic", "cyrillic-ext"],
+      "category": "serif"
+    },
+    {
+      "family": "Gentium Plus",
+      "variants": ["400", "700", "400italic", "700italic"],
+      "subsets": ["latin", "latin-ext", "cyrillic", "cyrillic-ext", "greek", "greek-ext"],
+      "category": "serif"
+    },
+    {
+      "family": "Spectral",
+      "variants": ["200", "300", "400", "500", "600", "700", "800", "200italic", "300italic", "400italic", "500italic", "600italic", "700italic", "800italic"],
+      "subsets": ["latin", "latin-ext", "cyrillic", "vietnamese"],
+      "category": "serif"
+    },
+    {
+      "family": "Vollkorn",
+      "variants": ["400", "500", "600", "700", "800", "900", "400italic", "500italic", "600italic", "700italic", "800italic", "900italic"],
+      "subsets": ["latin", "latin-ext", "cyrillic", "cyrillic-ext", "greek"],
+      "category": "serif"
+    },
+    {
+      "family": "Zilla Slab",
+      "variants": ["300", "400", "500", "600", "700", "300italic", "400italic", "500italic", "600italic", "700italic"],
+      "subsets": ["latin", "latin-ext"],
+      "category": "serif"
+    },
+    {
+      "family": "Source Code Pro",
+      "variants": ["200", "300", "400", "500", "600", "700", "800", "900", "200italic", "300italic", "400italic", "500italic", "600italic", "700italic", "800italic", "900italic"],
+      "subsets": ["latin", "latin-ext", "cyrillic", "cyrillic-ext", "greek", "greek-ext", "vietnamese"],
+      "category": "monospace"
+    },
+    {
+      "family": "Inconsolata",
+      "variants": ["200", "300", "400", "500", "600", "700", "800", "900"],
+      "subsets": ["latin", "latin-ext", "vietnamese"],
+      "category": "monospace"
+    },
+    {
+      "family": "Roboto Mono",
+      "variants": ["100", "200", "300", "400", "500", "600", "700", "100italic", "200italic", "300italic", "400italic", "500italic", "600italic", "700italic"],
+      "subsets": ["latin", "latin-ext", "cyrillic", "cyrillic-ext", "greek", "vietnamese"],
+      "category": "monospace"
+    },
+    {
+      "family": "JetBrains Mono",
+      "variants": ["100", "200", "300", "400", "500", "600", "700", "800", "100italic", "200italic", "300italic", "400italic", "500italic", "600italic", "700italic", "800italic"],
+      "subsets": ["latin", "latin-ext", "cyrillic", "cyrillic-ext", "greek", "vietnamese"],
+      "category": "monospace"
+    },
+    {
+      "family": "Fira Code",
+      "variants": ["300", "400", "500", "600", "700"],
+      "subsets": ["latin", "latin-ext", "cyrillic", "cyrillic-ext", "greek", "greek-ext"],
+      "category": "monospace"
+    },
+    {
+      "family": "Space Mono",
+      "variants": ["400", "700", "400italic", "700italic"],
+      "subsets": ["latin", "latin-ext", "vietnamese"],
+      "category": "monospace"
+    },
+    {
+      "family": "Lobster",
+      "variants": ["400"],
+      "subsets": ["latin", "latin-ext", "cyrillic", "cyrillic-ext", "vietnamese"],
+      "category": "display"
+    },
+    {
+      "family": "Pacifico",
+      "variants": ["400"],
+      "subsets": ["latin", "latin-ext", "cyrillic", "cyrillic-ext", "vietnamese"],
+      "category": "display"
+    },
+    {
+      "family": "Dancing Script",
+      "variants": ["400", "500", "600", "700"],
+      "subsets": ["latin", "latin-ext", "vietnamese"],
+      "category": "handwriting"
+    },
+    {
+      "family": "Great Vibes",
+      "variants": ["400"],
+      "subsets": ["latin", "latin-ext"],
+      "category": "handwriting"
+    },
+    {
+      "family": "Satisfy",
+      "variants": ["400"],
+      "subsets": ["latin"],
+      "category": "handwriting"
+    },
+    {
+      "family": "Kaushan Script",
+      "variants": ["400"],
+      "subsets": ["latin", "latin-ext"],
+      "category": "handwriting"
+    },
+    {
+      "family": "Amatic SC",
+      "variants": ["400", "700"],
+      "subsets": ["latin", "latin-ext", "cyrillic", "hebrew", "vietnamese"],
+      "category": "handwriting"
+    },
+    {
+      "family": "Caveat",
+      "variants": ["400", "500", "600", "700"],
+      "subsets": ["latin", "latin-ext", "cyrillic", "cyrillic-ext"],
+      "category": "handwriting"
+    }
+  ]
+}

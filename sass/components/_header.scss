@@ -1,0 +1,636 @@
+/* Header Styling */
+.site-header {
+  background-color: #ffffff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  position: sticky; /* Changed from relative to sticky */
+  top: 0; /* Stick to the top of the viewport */
+  z-index: 1000; /* Higher z-index to ensure it stays above other elements */
+  padding: 1.5rem 0;
+  width: 100%;
+  transition: all 0.3s ease; /* Smooth transition for scroll effects */
+  
+  // Transparent header styles (applied via CSS from customizer)
+  &.transparent-header {
+    background-color: transparent;
+    box-shadow: none;
+    z-index: 1001; // Above hero section
+    
+    // White text when transparent
+    .site-title a {
+      color: #ffffff;
+    }
+    
+    .site-description {
+      color: rgba(255, 255, 255, 0.8);
+    }
+    
+    .main-navigation a {
+      color: #ffffff;
+    }
+    
+    // Overlay header styles (when not scrolled) - white social icons and search
+    &:not(.scrolled) {
+      .header-social-icons {
+        .social-icon {
+          color: #ffffff;
+          border-color: rgba(255, 255, 255, 0.3);
+          
+          .social-icon-svg {
+            filter: brightness(0) invert(1); // Make SVG white
+          }
+        }
+      }
+      
+      .header-search-toggle {
+        color: #ffffff;
+        border-color: rgba(255, 255, 255, 0.3);
+        
+        svg {
+          color: #ffffff;
+          stroke: #ffffff;
+        }
+      }
+    }
+  }
+  
+  // Default dark colors when NOT in overlay mode
+  &:not(.transparent-header) {
+    .header-social-icons {
+      .social-icon {
+        color: #2c3e50;
+        border-color: rgba(44, 62, 80, 0.2);
+        
+        .social-icon-svg {
+          filter: none; // Keep SVG dark
+        }
+      }
+    }
+    
+    .header-search-toggle {
+      color: #2c3e50;
+      border-color: rgba(44, 62, 80, 0.2);
+      
+      svg {
+        color: #2c3e50;
+        stroke: #2c3e50;
+      }
+    }
+  }
+}
+
+/* Add padding to body when header becomes sticky */
+body.has-sticky-header {
+  padding-top: var(--header-height, 0px);
+}
+
+.site-header.scrolled {
+  padding: 0.5rem 0; /* Smaller padding when scrolled */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Enhanced shadow when scrolled */
+}
+
+.site-header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+}
+
+/* Added for better header content alignment */
+.header-content {
+  display: flex;
+  align-items: center; /* Center items vertically */
+  justify-content: space-between;
+  width: 100%;
+  position: relative; /* For absolute positioning in center layout */
+  min-width: 0; /* Prevent flex items from overflowing */
+  box-sizing: border-box; /* Include padding in width calculation */
+  
+  /* Ensure all children are vertically aligned */
+  > * {
+    display: flex;
+    align-items: center;
+    min-width: 0; /* Prevent flex items from overflowing */
+  }
+}
+
+/* Header Layout 1: Default - LOGO | Menu | Social | Search (space-between) */
+.header-content.header-layout-1 {
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  min-width: 0;
+  
+  .site-branding {
+    order: 1;
+    flex: 0 0 auto;
+    min-width: 0;
+  }
+  
+  .main-navigation {
+    order: 2;
+    margin-left: 0;
+    margin-right: 20px;
+    justify-content: flex-end; /* Menu on right side */
+    flex: 1 1 auto; /* Allow to shrink if needed */
+    min-width: 0; /* Allow flex item to shrink below content size */
+    max-width: 100%; /* Prevent overflow */
+
+    ul {
+      justify-content: flex-end; /* Menu items on right */
+      margin-left: 0; /* Override media query */
+      flex-wrap: wrap; /* Allow menu items to wrap if needed */
+      min-width: 0;
+    }
+  }
+  
+  .header-social-icons {
+    order: 3;
+    flex: 0 0 auto;
+    min-width: 0;
+    flex-shrink: 0; /* Prevent social icons from shrinking */
+  }
+  
+  .header-search-toggle {
+    order: 4;
+    margin-left: 10px;
+    flex: 0 0 auto;
+    flex-shrink: 0; /* Prevent search button from shrinking */
+  }
+}
+
+/* Header Layout 2: Menu near logo - LOGO Menu | Social | Search */
+.header-content.header-layout-2 {
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box; /* Include padding in width calculation */
+  
+  .site-branding {
+    order: 1;
+    margin-right: 0;
+    flex: 0 0 auto;
+    min-width: 0;
+    flex-shrink: 0; /* Prevent logo from shrinking */
+  }
+  
+  .main-navigation {
+    order: 1;
+    margin-left: 20px;
+    margin-right: 0;
+    justify-content: flex-start; /* Override media query */
+    flex: 1 1 auto; /* Allow to grow and shrink */
+    min-width: 0; /* Allow flex item to shrink below content size */
+    max-width: none; /* Remove max-width constraint */
+    position: relative; /* Ensure proper stacking */
+    z-index: 1; /* Below search button */
+
+    ul {
+      justify-content: flex-start; /* Override media query */
+      margin-left: 0; /* Override media query */
+      flex-wrap: wrap; /* Allow menu items to wrap if needed */
+      min-width: 0;
+    }
+  }
+  
+  .header-social-icons {
+    order: 2;
+    margin-left: auto;
+    flex: 0 0 auto;
+    min-width: 0;
+    flex-shrink: 0; /* Prevent social icons from shrinking */
+    position: relative;
+    z-index: 2;
+    max-width: 100%; /* Prevent overflow */
+  }
+  
+  .header-search-toggle {
+    order: 3;
+    margin-left: 10px;
+    flex: 0 0 auto;
+    flex-shrink: 0; /* Prevent search button from shrinking */
+    position: relative;
+    z-index: 3; /* Above menu and socials */
+    max-width: 100%; /* Prevent overflow */
+  }
+}
+
+/* Header Layout 3: Menu centered - LOGO | Menu (center) | Social | Search */
+.header-content.header-layout-3 {
+  justify-content: space-between;
+  position: relative;
+  align-items: center;
+  min-height: 60px; /* Ensure container maintains minimum height to match other layouts */
+  
+  .site-branding {
+    order: 1;
+  }
+  
+  .main-navigation {
+    order: 2;
+    position: absolute;
+    left: 50%;
+    top: 50%; /* Center vertically */
+    transform: translate(-50%, -50%); /* Center both horizontally and vertically */
+    margin-left: 0;
+    margin-right: 0;
+    justify-content: center; /* Override media query */
+    flex: 0 0 auto; /* Override flex: 1 from media query */
+    width: auto;
+
+    @media screen and (min-width: 768px) {
+      display: flex;
+      align-items: center;
+      justify-content: center; /* Override media query */
+      margin-left: 0; /* Override media query */
+      flex: 0 0 auto; /* Override flex: 1 from media query */
+    }
+
+    ul {
+      justify-content: center; /* Override media query */
+      margin-left: 0; /* Override media query */
+
+      @media screen and (min-width: 768px) {
+        display: flex;
+        justify-content: center; /* Override media query */
+        margin-left: 0; /* Override media query */
+      }
+    }
+  }
+  
+  .header-social-icons {
+    order: 3;
+    margin-left: auto;
+  }
+  
+  .header-search-toggle {
+    order: 4;
+    margin-left: 10px;
+  }
+}
+
+.site-branding {
+  display: flex;
+  align-items: center; /* Changed from column to align horizontally */
+  flex-wrap: nowrap; /* Keep all items on one line */
+}
+
+/* Add a wrapper for the site title and description */
+.branding-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.site-title {
+  margin: 0;
+  font-size: 1.6em;
+  font-weight: 600;
+  line-height: 1.2;
+  font-family: 'Outfit', sans-serif;
+  text-transform: capitalize;
+  letter-spacing: 0.5px;
+  
+  a {
+    color: #2c3e50;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    
+    &:hover {
+      color: #69B40F; /* Use primary green color on hover */
+    }
+  }
+}
+
+.site-description {
+  margin: 0.2rem 0 0;
+  font-size: 0.9em;
+  color: #777;
+  line-height: 1.4;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+.custom-logo-link {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 0;
+  max-width: 250px; /* Control maximum width of logo container */
+  
+  img {
+    max-height: 60px;
+    width: auto;
+    vertical-align: middle;
+    object-fit: contain; /* Ensures logo maintains proportions */
+  }
+}
+
+/* Navigation adjustments */
+.main-navigation {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin-right: 20px; /* Space between menu and social icons */
+}
+
+/* Make sure the menu is aligned */
+.main-navigation .nav-menu {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+@media screen and (max-width: 599px) {
+  .header-content {
+    flex-wrap: wrap;
+  }
+  
+  .site-branding {
+    max-width: 70%;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+  }
+  
+  .branding-text {
+    margin-top: 5px;
+    margin-left: 0;
+  }
+  
+  .site-header-container {
+    padding: 10px 15px;
+  }
+  
+  .site-title {
+    font-size: 1.2em;
+  }
+  
+  .site-description {
+    font-size: 0.8em;
+  }
+  
+  .custom-logo-link {
+    max-width: 180px; /* Smaller logo container on mobile */
+    
+    img {
+      max-height: 45px;
+    }
+  }
+  
+  .main-navigation {
+    width: 100%;
+    margin-top: 10px;
+  }
+  
+  .header-social-icons {
+    width: 100%;
+    margin-top: 10px;
+    justify-content: center;
+  }
+}
+
+/* Header Social Icons Styling */
+.header-social-icons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  
+  .social-icons {
+    display: flex;
+    gap: 10px;
+    margin: 0;
+  }
+  
+  .social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background-color: transparent;
+    color: #2c3e50;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(44, 62, 80, 0.2);
+    
+    &::before,
+    &::after {
+      display: none;
+    }
+    
+    i {
+      font-size: 16px;
+    }
+    
+    // Custom SVG icons
+    .social-icon-svg {
+      width: 18px;
+      height: 18px;
+      filter: none;
+      transition: filter 0.3s ease;
+    }
+    
+    // Text fallback
+    .social-icon-text {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    
+    &:hover {
+      background-color: $color__primary;
+      color: #ffffff;
+      border-color: $color__primary;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+      text-decoration: none;
+      
+      .social-icon-svg {
+        filter: brightness(0) invert(1); // Make SVG white on hover
+      }
+    }
+  }
+}
+
+/* Header Search Button */
+.header-search-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background-color: transparent;
+  color: #2c3e50;
+  border-radius: 50%;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(44, 62, 80, 0.2);
+  cursor: pointer;
+  box-shadow: none;
+  padding: 0;
+  margin-left: 10px;
+  flex-shrink: 0; /* Prevent distortion */
+  
+  svg {
+    width: 18px;
+    height: 18px;
+    transition: all 0.3s ease;
+    display: block; /* Prevent inline spacing issues */
+  }
+  
+  &:hover {
+    background-color: $color__primary;
+    color: #ffffff;
+    border-color: $color__primary;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+  }
+  
+  &:focus {
+    outline: 2px solid $color__primary;
+    outline-offset: 2px;
+  }
+}
+
+/* Header Search Overlay */
+.header-search-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  
+  &.active {
+    display: flex;
+    opacity: 1;
+  }
+  
+  .header-search-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    padding: 0;
+    z-index: 10000;
+    
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+    
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+      border-color: rgba(255, 255, 255, 0.4);
+      transform: rotate(90deg);
+    }
+    
+    &:focus {
+      outline: 2px solid #ffffff;
+      outline-offset: 2px;
+    }
+  }
+  
+  .header-search-overlay-content {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    padding: 40px 20px;
+    
+    .header-search-form-wrapper {
+      .search-form {
+        display: flex;
+        gap: 0;
+        align-items: stretch;
+        max-width: 100%;
+        margin: 0;
+        
+        label {
+          flex: 1;
+          margin: 0;
+          display: flex;
+        }
+        
+        .search-field {
+          flex: 1;
+          background-color: rgba(255, 255, 255, 0.15);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          border-radius: 6px 0 0 6px;
+          color: #ffffff;
+          padding: 12px 15px;
+          font-size: 14px;
+          width: 100%;
+          margin: 0;
+          transition: all 0.3s ease;
+          
+          &::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+          }
+          
+          &:focus {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-color: $color__primary;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba($color__primary, 0.2);
+          }
+        }
+        
+        .search-submit {
+          background-color: $color__primary;
+          border: none;
+          border-radius: 0 6px 6px 0;
+          color: #ffffff;
+          padding: 12px 24px;
+          font-size: 13px;
+          font-weight: 500;
+          text-transform: capitalize;
+          letter-spacing: 0.5px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          margin: 0;
+          min-width: 100px;
+          
+          &:hover {
+            background-color: darken($color__primary, 8%);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+          }
+          
+          &:active {
+            transform: none;
+          }
+          
+          &:focus {
+            outline: 2px solid rgba(255, 255, 255, 0.5);
+            outline-offset: 2px;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Adjust header content when search button is present */
+.header-content {
+  .header-search-toggle {
+    order: 4;
+  }
+  
+  .header-social-icons {
+    margin-right: 0; /* Remove margin since search button has its own margin-left */
+  }
+} 

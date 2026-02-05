@@ -1,0 +1,154 @@
+.main-navigation {
+	display: block;
+	width: 100%;
+
+	ul {
+		display: none;
+		list-style: none;
+		margin: 0;
+		padding-left: 0;
+
+		ul {
+			box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+			float: left;
+			position: absolute;
+			top: 100%;
+			left: -999em;
+			z-index: 99999;
+
+			ul {
+				left: -999em;
+				top: 0;
+			}
+
+			li {
+
+				&:hover > ul,
+				&.focus > ul {
+					display: block;
+					left: auto;
+				}
+			}
+
+			a {
+				width: 200px;
+			}
+
+			:hover > a,
+			.focus > a {
+			}
+
+			a:hover,
+			a.focus {
+			}
+		}
+
+		li:hover > ul,
+		li.focus > ul {
+			left: auto;
+		}
+	}
+
+	li {
+		position: relative;
+
+		&:hover > a,
+		&.focus > a {
+		}
+	}
+
+	a {
+		display: block;
+		text-decoration: none;
+	}
+
+	.current_page_item > a,
+	.current-menu-item > a,
+	.current_page_ancestor > a,
+	.current-menu-ancestor > a {
+	}
+}
+
+/* Small menu. */
+.menu-toggle,
+.main-navigation.toggled ul {
+	display: block;
+}
+
+@media screen and (min-width: 37.5em) {
+
+	.menu-toggle {
+		display: none;
+	}
+
+	.main-navigation ul {
+		display: flex;
+	}
+}
+
+@media (max-width: 599px) {
+	.main-navigation ul {
+		display: none;
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 100%;
+		z-index: 999;
+		background-color: #ffffff;
+		padding: 10px 20px;
+		box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+	}
+
+	.main-navigation ul.toggled {
+		display: block;
+	}
+}
+
+@media (max-width: 599px) {
+	.main-navigation li {
+		margin: 0;
+		padding: 8px 0;
+		border-bottom: 1px solid #f0f0f0;
+	}
+
+	.main-navigation li:last-child {
+		border-bottom: none;
+	}
+}
+
+.main-navigation .sub-menu {
+	display: none;
+	position: absolute;
+	background-color: #ffffff;
+	width: 250px;
+	min-width: 250px;
+	box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+	padding: 10px 0;
+	z-index: 999;
+}
+
+.comment-navigation,
+.posts-navigation,
+.post-navigation {
+
+	.site-main & {
+		margin: 0 0 1.5em;
+	}
+
+	.nav-links {
+		display: flex;
+	}
+
+	.nav-previous {
+		flex: 1 0 50%;
+	}
+
+	.nav-next {
+		text-align: end;
+		flex: 1 0 50%;
+	}
+	.nav-title {
+		-ms-word-wrap: break-word;
+		word-break: break-word;
+	}
+}

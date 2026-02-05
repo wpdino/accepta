@@ -1,0 +1,23 @@
+/*!
+Theme Name: Accepta
+Theme URI: https://wpdino.com/themes/accepta
+Author: WPDINO
+Author URI: https://wpdino.com
+Description: A beautiful and flexible WordPress theme that works perfectly with Elementor page builder for creating stunning websites
+Version: 1.0.0
+Requires at least: 5.0
+Tested up to: 6.8
+Requires PHP: 7.4
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: accepta
+Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready, flexible-header, elementor, page-builder, blog, business, portfolio, responsive-layout, custom-colors, custom-header, custom-menu, editor-style, featured-images, footer-widgets, full-width-template, sticky-post, theme-options, threaded-comments
+
+Accepta is a modern, clean, and highly customizable WordPress theme designed to work seamlessly with the Elementor page builder. Built by WPDINO, this theme provides a solid foundation for creating professional websites with ease.
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned.
+*/
+
+/* Import main theme styles */
+@import 'assets/css/accepta.css';

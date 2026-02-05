@@ -1,0 +1,322 @@
+/* Enhanced Navigation Styles - Based on WPDino Theme Approach */
+
+/* Main navigation styling */
+.main-navigation {
+	display: block;
+	position: relative;
+	text-align: right;
+	margin-left: auto; /* Push navigation to the right */
+	
+	@media (max-width: 767px) {
+		width: 100%;
+		
+		// Ensure menu is hidden by default on mobile
+		ul.nav-menu {
+			display: none;
+		}
+	}
+
+	ul {
+		display: none;
+		list-style: none;
+		margin: 0;
+		padding-left: 0;
+
+		ul {
+			box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+			float: left;
+			position: absolute;
+			top: 100%;
+			left: -999em;
+			z-index: 99999;
+			background-color: #fff;
+			border-radius: 8px;
+			padding: 12px 0;
+			width: 250px;
+			min-width: 250px;
+			display: block;
+			flex-direction: column;
+			text-align: left; /* Align dropdown items to the left */
+			
+			// Add colored accent line at the top of dropdown
+			&::after {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				height: 4px;
+				background: $color__primary;
+				background: linear-gradient(90deg, $color__primary, $color__green-dark);
+			}
+
+			ul {
+				left: -999em;
+				top: 0;
+				border-radius: 8px;
+			}
+
+			li {
+				padding: 0;
+				width: 100%;
+				display: block;
+				margin: 0;
+
+				&:hover > ul,
+				&.focus > ul {
+					display: block;
+					left: 100%;
+				}
+				
+				// Add separator between dropdown items
+				&:not(:last-child)::after {
+					content: "";
+					display: block;
+					height: 1px;
+					background: #f5f5f5;
+					margin: 3px 0;
+					opacity: 0.7;
+				}
+			}
+
+			a {
+				width: 100%;
+				padding: 0.6rem 1.2rem;
+				font-size: 0.95em;
+				border-bottom: none;
+				transition: color 0.2s ease, background 0.2s ease;
+				display: block;
+				white-space: normal; /* Allow text to wrap */
+				line-height: 1.4; /* Better line spacing for wrapped text */
+				word-wrap: break-word; /* Ensure long words don't overflow */
+				position: relative; /* For full-width hover effect */
+				text-align: left; /* Ensure dropdown text aligns left */
+
+				&:hover {
+					color: $color__primary;
+				}
+				
+				// Add hover background
+				&:hover::after {
+					content: '';
+					position: absolute;
+					top: 0;
+					left: 0;
+					right: 0;
+					bottom: 0;
+					background-color: $color__green-light;
+					z-index: -1;
+				}
+			}
+		}
+
+		li:hover > ul,
+		li.focus > ul {
+			left: auto;
+		}
+	}
+
+	li {
+		position: relative;
+		margin-right: 25px;
+
+		&:hover > a,
+		&.focus > a {
+			color: $color__primary;
+		}
+		
+		&:last-child {
+			margin-right: 0;
+		}
+	}
+
+	a {
+		display: block;
+		text-decoration: none;
+		color: #555;
+		padding: 15px 0;
+		font-weight: 500;
+		font-size: 1em;
+		position: relative;
+		transition: color 0.3s ease;
+		
+		&:hover {
+			color: $color__primary;
+		}
+	}
+
+	.current_page_item > a,
+	.current-menu-item > a,
+	.current_page_ancestor > a,
+	.current-menu-ancestor > a {
+		color: $color__primary;
+		font-weight: 600;
+	}
+	
+	// Remove all arrow elements from dropdowns
+	.sub-menu::before,
+	.children::before {
+		display: none;
+	}
+	
+	// Remove arrows from all menu items
+	.menu-item-has-children > a::after,
+	.page_item_has_children > a::after,
+	.sub-menu .menu-item-has-children > a::after,
+	.children .page_item_has_children > a::after,
+	.sub-menu .menu-item-has-children > a::before,
+	.children .page_item_has_children > a::before {
+		content: '';
+		display: none;
+	}
+}
+
+/* Hamburger menu icon styling */
+.menu-toggle {
+	display: inline-block;
+	background-color: transparent;
+	border: none;
+	padding: 0.75rem;
+	cursor: pointer;
+	margin-left: auto;
+	flex-direction: column;
+	justify-content: space-between;
+	
+	&:hover, &:focus {
+		background-color: transparent;
+		box-shadow: none;
+	}
+	
+	span {
+		display: block;
+		height: 3px;
+		width: 24px;
+		background-color: #333;
+		border-radius: 3px;
+		transition: all 0.3s ease;
+		margin: 5px 0;
+	}
+	
+	&:hover span {
+		background-color: $color__primary;
+	}
+	
+	&.toggled {
+		span:nth-child(1) {
+			transform: rotate(-45deg) translate(-5px, 6px);
+		}
+		
+		span:nth-child(2) {
+			opacity: 0;
+		}
+		
+		span:nth-child(3) {
+			transform: rotate(45deg) translate(-5px, -6px);
+		}
+	}
+}
+
+/* Mobile navigation */
+.main-navigation.toggled ul {
+	display: block;
+	background: #fff;
+	width: 100%;
+	position: absolute;
+	left: 0;
+	top: 100%;
+	z-index: 999;
+	padding: 1rem;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+	text-align: left;
+	
+	li {
+		width: 100%;
+		margin-right: 0;
+		padding: 0;
+	}
+	
+	a {
+		padding: 0.7rem 0;
+		transition: color 0.3s ease;
+		
+		&:hover {
+			color: $color__primary;
+		}
+	}
+	
+	ul {
+		position: static;
+		box-shadow: none;
+		padding: 0 0 0 1.5rem;
+		border-radius: 0;
+		
+		&::before, &::after {
+			display: none; /* Hide arrow and accent line in mobile */
+		}
+		
+		a {
+			width: auto;
+			padding: 0.5rem 0;
+		}
+	}
+}
+
+/* Desktop navigation */
+@media screen and (min-width: 768px) {
+	.menu-toggle {
+		display: none;
+	}
+
+	.main-navigation {
+		display: flex;
+		align-items: center;
+		
+		/* Default styles - only apply when parent header-content doesn't have layout class */
+		.header-content:not(.header-layout-1):not(.header-layout-2):not(.header-layout-3) & {
+			justify-content: flex-end; /* Align navigation to the right */
+			margin-left: auto; /* Push navigation to the right edge */
+			flex: 1; /* Allow navigation to take up available space */
+		}
+		
+		ul {
+			display: flex;
+			flex-wrap: wrap;
+			
+			/* Default styles - only apply when parent header-content doesn't have layout class */
+			.header-content:not(.header-layout-1):not(.header-layout-2):not(.header-layout-3) .main-navigation & {
+				justify-content: flex-end; /* Align menu items to the right */
+				margin-left: auto; /* Push menu items to the right */
+			}
+			
+			ul {
+				display: none; /* Hidden by default, shown on hover */
+				animation: fadeIn 0.3s ease;
+			}
+		}
+		
+		/* Show dropdowns on hover */
+		li:hover > ul,
+		li.focus > ul {
+			display: block;
+		}
+	}
+	
+	/* Ensure layout-specific styles override default media query styles */
+	.header-content.header-layout-1 .main-navigation,
+	.header-content.header-layout-2 .main-navigation,
+	.header-content.header-layout-3 .main-navigation {
+		/* Layout-specific styles are defined in _header.scss with higher specificity */
+	}
+}
+
+/* Animation for dropdown */
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(15px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}

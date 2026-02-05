@@ -1,0 +1,320 @@
+/**
+ * Accepta Background Control Styles
+ * Applies to both accepta-background and accepta-hero-background control types
+ */
+
+.customize-control-accepta-background .accepta-background-control-wrapper,
+.customize-control-accepta-hero-background .accepta-background-control-wrapper {
+	margin: 15px 0;
+}
+
+.customize-control-accepta-background .accepta-background-control-header,
+.customize-control-accepta-hero-background .accepta-background-control-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 10px;
+}
+
+.customize-control-accepta-background .accepta-background-reset,
+.customize-control-accepta-hero-background .accepta-background-reset {
+	color: #a7aaad;
+	text-decoration: none;
+	font-size: 12px;
+	padding: 0;
+	height: auto;
+	line-height: 1.5;
+}
+
+.customize-control-accepta-background .accepta-background-reset:hover,
+.customize-control-accepta-hero-background .accepta-background-reset:hover {
+	color: #d63638;
+}
+
+.customize-control-accepta-background .accepta-background-type-selector,
+.customize-control-accepta-hero-background .accepta-background-type-selector {
+	display: flex !important;
+	gap: 0;
+	margin-bottom: 15px;
+	border-bottom: 2px solid #ddd;
+	background: #f0f0f1;
+	border-radius: 4px 4px 0 0;
+	overflow: hidden;
+	width: 100%;
+}
+
+.customize-control-accepta-background .accepta-background-type-selector label,
+.customize-control-accepta-hero-background .accepta-background-type-selector label {
+	display: flex !important;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	padding: 10px 16px;
+	border: none;
+	border-right: 1px solid #ddd;
+	border-radius: 0;
+	background: transparent;
+	transition: all 0.2s;
+	flex: 1;
+	text-align: center;
+	position: relative;
+	margin: 0;
+	width: auto;
+}
+
+.customize-control-accepta-background .accepta-background-type-selector label:last-child,
+.customize-control-accepta-hero-background .accepta-background-type-selector label:last-child {
+	border-right: none;
+}
+
+.customize-control-accepta-background .accepta-background-type-selector label:hover,
+.customize-control-accepta-hero-background .accepta-background-type-selector label:hover {
+	background: #e5e5e5;
+}
+
+.customize-control-accepta-background .accepta-background-type-selector label.active,
+.customize-control-accepta-hero-background .accepta-background-type-selector label.active {
+	background: #fff;
+	color: #0073aa;
+	font-weight: 600;
+	margin-bottom: -2px;
+	z-index: 1;
+}
+
+.customize-control-accepta-background .accepta-background-type-selector label.active::after,
+.customize-control-accepta-hero-background .accepta-background-type-selector label.active::after {
+	content: '';
+	position: absolute;
+	bottom: -2px;
+	left: 0;
+	right: 0;
+	height: 2px;
+	background: #0073aa;
+	z-index: 2;
+}
+
+.customize-control-accepta-background .accepta-background-type-selector input[type="radio"],
+.customize-control-accepta-hero-background .accepta-background-type-selector input[type="radio"] {
+	position: absolute;
+	opacity: 0;
+	width: 0;
+	height: 0;
+	margin: 0;
+	padding: 0;
+}
+
+.customize-control-accepta-background .accepta-background-type-selector label span,
+.customize-control-accepta-hero-background .accepta-background-type-selector label span {
+	display: block;
+	width: 100%;
+	pointer-events: none;
+}
+
+.customize-control-accepta-background .accepta-background-option,
+.customize-control-accepta-hero-background .accepta-background-option {
+	margin-top: 0;
+	padding: 15px;
+	background: #fff;
+	border: 1px solid #ddd;
+	border-top: none;
+	border-radius: 0 0 4px 4px;
+}
+
+.customize-control-accepta-background .accepta-background-option label,
+.customize-control-accepta-hero-background .accepta-background-option label {
+	display: block;
+	margin-bottom: 10px;
+}
+.accepta-video-checkbox {
+	display: flex !important;
+	align-items: center;
+	gap: 8px;
+	margin-bottom: 10px;
+	cursor: pointer;
+}
+
+.customize-control-accepta-background .accepta-background-option .customize-control-title,
+.customize-control-accepta-hero-background .accepta-background-option .customize-control-title {
+	display: block;
+	margin-bottom: 5px;
+	font-weight: 600;
+}
+
+.customize-control-accepta-background .accepta-background-color,
+.customize-control-accepta-hero-background .accepta-background-color,
+.customize-control-accepta-background .accepta-background-gradient-start,
+.customize-control-accepta-hero-background .accepta-background-gradient-start,
+.customize-control-accepta-background .accepta-background-gradient-end,
+.customize-control-accepta-hero-background .accepta-background-gradient-end {
+	width: 100%;
+}
+
+.customize-control-accepta-background .accepta-background-gradient-angle,
+.customize-control-accepta-hero-background .accepta-background-gradient-angle {
+	width: 80px;
+	margin-right: 10px;
+}
+
+.customize-control-accepta-background .accepta-gradient-angle,
+.customize-control-accepta-hero-background .accepta-gradient-angle {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.customize-control-accepta-background .accepta-background-image-upload,
+.customize-control-accepta-hero-background .accepta-background-image-upload {
+	margin-bottom: 15px;
+}
+
+.customize-control-accepta-background .accepta-background-image-upload .button,
+.customize-control-accepta-hero-background .accepta-background-image-upload .button {
+	margin-right: 10px;
+}
+
+.customize-control-accepta-background .accepta-background-image-preview,
+.customize-control-accepta-hero-background .accepta-background-image-preview {
+	margin: 15px 0;
+	padding: 10px;
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	background: #f9f9f9;
+}
+
+.customize-control-accepta-background .accepta-background-image-preview img,
+.customize-control-accepta-hero-background .accepta-background-image-preview img {
+	max-width: 100%;
+	height: auto;
+	display: block;
+}
+
+.customize-control-accepta-background .accepta-background-option select,
+.customize-control-accepta-hero-background .accepta-background-option select {
+	width: 100%;
+}
+
+.customize-control-accepta-background .accepta-background-overlay,
+.customize-control-accepta-hero-background .accepta-background-overlay {
+	margin-top: 20px;
+	padding-top: 20px;
+	border-top: 1px solid #ddd;
+}
+
+.customize-control-accepta-background .accepta-overlay-toggle,
+.customize-control-accepta-hero-background .accepta-overlay-toggle {
+	display: flex !important;
+	align-items: center;
+	gap: 8px;
+	margin-bottom: 15px;
+	cursor: pointer;
+	width: auto;
+}
+
+.customize-control-accepta-background .accepta-overlay-toggle input[type="checkbox"],
+.customize-control-accepta-hero-background .accepta-overlay-toggle input[type="checkbox"] {
+	margin: 0;
+}
+
+.customize-control-accepta-background .accepta-overlay-toggle .customize-control-title,
+.customize-control-accepta-hero-background .accepta-overlay-toggle .customize-control-title {
+	margin: 0;
+}
+
+.customize-control-accepta-background .accepta-overlay-options,
+.customize-control-accepta-hero-background .accepta-overlay-options {
+	margin-top: 15px;
+}
+
+.customize-control-accepta-background .accepta-opacity-control,
+.customize-control-accepta-hero-background .accepta-opacity-control {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.customize-control-accepta-background .accepta-background-overlay-opacity,
+.customize-control-accepta-hero-background .accepta-background-overlay-opacity {
+	flex: 1;
+	height: 6px;
+	margin: 0;
+	-webkit-appearance: none;
+	appearance: none;
+	background: #ddd;
+	border-radius: 3px;
+	outline: none;
+}
+
+.customize-control-accepta-background .accepta-background-overlay-opacity::-webkit-slider-thumb,
+.customize-control-accepta-hero-background .accepta-background-overlay-opacity::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 18px;
+	height: 18px;
+	border-radius: 50%;
+	background: #0073aa;
+	cursor: pointer;
+	border: 2px solid #fff;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.customize-control-accepta-background .accepta-background-overlay-opacity::-moz-range-thumb,
+.customize-control-accepta-hero-background .accepta-background-overlay-opacity::-moz-range-thumb {
+	width: 18px;
+	height: 18px;
+	border-radius: 50%;
+	background: #0073aa;
+	cursor: pointer;
+	border: 2px solid #fff;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.customize-control-accepta-background .accepta-opacity-value,
+.customize-control-accepta-hero-background .accepta-opacity-value {
+	display: inline-block;
+	min-width: 50px;
+	text-align: center;
+	font-weight: 600;
+	color: #0073aa;
+	background: #f0f0f1;
+	padding: 4px 8px;
+	border-radius: 3px;
+	font-size: 13px;
+}
+
+/* Video-specific styles for hero background control */
+.customize-control-accepta-hero-background .accepta-background-video-upload {
+	margin-bottom: 15px;
+}
+
+.customize-control-accepta-hero-background .accepta-background-video-upload .button {
+	margin-right: 10px;
+}
+
+.customize-control-accepta-hero-background .accepta-video-url-option,
+.customize-control-accepta-hero-background .accepta-video-mp4-option {
+	margin-bottom: 15px;
+}
+
+.customize-control-accepta-hero-background .accepta-background-video-url {
+	width: 100%;
+}
+
+.customize-control-accepta-hero-background .accepta-video-checkbox {
+	display: flex !important;
+	align-items: center;
+	gap: 8px;
+	margin-bottom: 10px;
+	cursor: pointer;
+}
+
+.customize-control-accepta-hero-background .accepta-video-checkbox input[type="checkbox"] {
+	margin: 0 !important;
+	flex-shrink: 0;
+	vertical-align: middle;
+}
+
+.customize-control-accepta-hero-background .accepta-video-checkbox .customize-control-title {
+	margin: 0 !important;
+	flex: 1;
+	line-height: 1.5;
+}

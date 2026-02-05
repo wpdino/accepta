@@ -1,0 +1,218 @@
+/* WordPress Form Styling */
+
+/* Search Form */
+.search-form {
+    display: flex;
+    gap: 0;
+    align-items: stretch;
+    max-width: 500px;
+    margin: 0 auto;
+    
+    label {
+        flex: 1;
+        margin: 0;
+        display: flex;
+    }
+    
+    .search-field {
+        flex: 1;
+        background-color: rgba(0, 0, 0, 0.05);
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        border-radius: 6px 0 0 6px;
+        color: $color__text-main;
+        padding: 12px 15px;
+        font-size: 14px;
+        width: 100%;
+        margin: 0;
+        
+        &::placeholder {
+            color: rgba(0, 0, 0, 0.5);
+        }
+        
+        &:focus {
+            background-color: rgba(0, 0, 0, 0.08);
+            border-color: $color__primary;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba($color__primary, 0.2);
+        }
+    }
+    
+    .search-submit {
+        background-color: $color__primary;
+        border: none;
+        border-radius: 0 6px 6px 0;
+        color: #ffffff;
+        padding: 12px 24px;
+        font-size: 13px;
+        font-weight: 500;
+        text-transform: capitalize;
+        letter-spacing: 0.5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin: 0;
+        min-width: 100px;
+        
+        &:hover {
+            background-color: darken($color__primary, 8%);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        &:active {
+            transform: translateY(0);
+        }
+    }
+}
+
+/* Contact Form 7 (if used) */
+.wpcf7 {
+    max-width: 700px;
+    margin: 0 auto;
+    
+    .wpcf7-form {
+        margin-top: 30px;
+    }
+    
+    .wpcf7-form-control-wrap {
+        margin-bottom: 20px;
+        display: block;
+    }
+    
+    label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+    }
+    
+    .wpcf7-submit {
+        min-width: 150px;
+    }
+    
+    .wpcf7-not-valid-tip {
+        color: #e74c3c;
+        font-size: 0.85em;
+        margin-top: 5px;
+        display: block;
+    }
+    
+    .wpcf7-response-output {
+        margin: 20px 0;
+        padding: 15px;
+        border-radius: 4px;
+        font-size: 0.9em;
+    }
+    
+    .wpcf7-validation-errors,
+    .wpcf7-acceptance-missing {
+        border: 1px solid #e74c3c;
+        background-color: rgba(231, 76, 60, 0.1);
+    }
+    
+    .wpcf7-mail-sent-ok {
+        border: 1px solid #2ecc71;
+        background-color: rgba(46, 204, 113, 0.1);
+    }
+}
+
+/* Newsletter Form (for popular plugins) */
+.newsletter-form {
+    max-width: 500px;
+    margin: 0 auto;
+    
+    .form-group {
+        margin-bottom: 20px;
+    }
+    
+    input[type="email"] {
+        width: 100%;
+    }
+    
+    .btn-subscribe {
+        width: 100%;
+        padding: 12px;
+        margin-top: 10px;
+    }
+}
+
+/* Login/Register Forms */
+.login-form,
+.register-form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 30px;
+    border-radius: 6px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    
+    .form-group {
+        margin-bottom: 20px;
+    }
+    
+    .form-footer {
+        margin-top: 25px;
+        text-align: center;
+        
+        a {
+            color: $color__primary;
+            text-decoration: none;
+            
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+    
+    .login-remember {
+        display: flex;
+        align-items: center;
+        margin: 15px 0;
+        
+        label {
+            margin-bottom: 0;
+            margin-left: 10px;
+        }
+    }
+    
+    .login-submit,
+    .register-submit {
+        margin-top: 25px;
+        
+        .button {
+            width: 100%;
+        }
+    }
+}
+
+/* Password Strength Meter */
+.password-strength-meter {
+    height: 4px;
+    margin-top: 8px;
+    border-radius: 2px;
+    background-color: $color__light-gray;
+    
+    &-progress {
+        height: 100%;
+        border-radius: 2px;
+        transition: width 0.3s ease;
+        
+        &.weak {
+            background-color: #e74c3c;
+            width: 25%;
+        }
+        
+        &.medium {
+            background-color: #f39c12;
+            width: 50%;
+        }
+        
+        &.strong {
+            background-color: #f1c40f;
+            width: 75%;
+        }
+        
+        &.very-strong {
+            background-color: #2ecc71;
+            width: 100%;
+        }
+    }
+} 

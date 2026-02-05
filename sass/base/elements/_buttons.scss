@@ -1,0 +1,154 @@
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+	border: none;
+	border-radius: 4px;
+	background: $color__primary;
+	color: #ffffff;
+	font-size: 0.95em;
+	font-weight: 500;
+	line-height: 1.4;
+	padding: 10px 20px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	text-transform: capitalize;
+	letter-spacing: 0.5px;
+
+	&:hover {
+		background: darken($color__primary, 8%);
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+		transform: translateY(-1px);
+	}
+
+	&:active,
+	&:focus {
+		background: darken($color__primary, 12%);
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+		transform: translateY(0);
+		outline: none;
+	}
+
+	&:disabled {
+		opacity: 0.7;
+		cursor: not-allowed;
+		box-shadow: none;
+		transform: none;
+	}
+}
+
+/* Alternate button styles */
+.button-secondary {
+	background: $color__secondary;
+	font-weight: 500;
+	text-transform: capitalize;
+	
+	&:hover {
+		background: darken($color__secondary, 8%);
+		transform: translateY(-1px);
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	}
+	
+	&:active,
+	&:focus {
+		background: darken($color__secondary, 12%);
+		transform: translateY(0);
+	}
+}
+
+.button-accent {
+	background: $color__accent;
+	font-weight: 500;
+	text-transform: capitalize;
+	
+	&:hover {
+		background: darken($color__accent, 8%);
+		transform: translateY(-1px);
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	}
+	
+	&:active,
+	&:focus {
+		background: darken($color__accent, 12%);
+		transform: translateY(0);
+	}
+}
+
+.button-outline {
+	background: transparent;
+	border: 2px solid $color__primary;
+	color: $color__primary;
+	box-shadow: none;
+	
+	&:hover {
+		background: rgba($color__primary, 0.1);
+		color: darken($color__primary, 10%);
+		border-color: darken($color__primary, 10%);
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+	}
+	
+	&:active,
+	&:focus {
+		background: rgba($color__primary, 0.2);
+		color: darken($color__primary, 15%);
+		border-color: darken($color__primary, 15%);
+		box-shadow: none;
+	}
+}
+
+/* General .button class (WordPress default) */
+.button,
+a.button {
+	border: none;
+	border-radius: 4px;
+	background: $color__primary;
+	color: #ffffff;
+	font-size: 0.95em;
+	font-weight: 500;
+	line-height: 1.4;
+	padding: 10px 20px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	text-transform: capitalize;
+	letter-spacing: 0.5px;
+	text-decoration: none;
+	display: inline-block;
+
+	&:hover {
+		background: darken($color__primary, 8%);
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+		transform: translateY(-1px);
+		color: #ffffff;
+		text-decoration: none;
+	}
+
+	&:active,
+	&:focus {
+		background: darken($color__primary, 12%);
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+		transform: translateY(0);
+		outline: none;
+		color: #ffffff;
+		text-decoration: none;
+	}
+
+	&:disabled {
+		opacity: 0.7;
+		cursor: not-allowed;
+		box-shadow: none;
+		transform: none;
+	}
+}
+
+/* Button sizes */
+.button-small {
+	font-size: 0.85em;
+	padding: 6px 14px;
+}
+
+.button-large {
+	font-size: 1.1em;
+	padding: 12px 24px;
+}

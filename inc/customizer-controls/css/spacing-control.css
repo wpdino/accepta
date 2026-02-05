@@ -1,0 +1,372 @@
+/**
+ * Accepta Spacing Control CSS
+ * Elementor-style spacing controls for WordPress Customizer
+ */
+
+.accepta-spacing-control-wrapper {
+    margin-bottom: 20px;
+}
+
+.accepta-spacing-control {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+	position: relative;
+}
+
+/* Responsive Tabs */
+.accepta-responsive-tabs {
+    display: flex;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.accepta-responsive-tab {
+    flex: 1;
+    background: #f7f7f7;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-right: 1px solid #ddd;
+}
+
+.accepta-responsive-tab:last-child {
+    border-right: none;
+}
+
+.accepta-responsive-tab:hover {
+    background: #e7e7e7;
+}
+
+.accepta-responsive-tab.active {
+    background: #0073aa;
+    color: #fff;
+}
+
+.accepta-responsive-tab.active.synced {
+    background: #6f9c50; /* WPDino brand green when synced */
+    box-shadow: 0 0 0 2px rgba(111, 156, 80, 0.3);
+}
+
+.accepta-responsive-tab .dashicons {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+}
+
+/* Spacing Header */
+.accepta-spacing-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+/* When no responsive tabs, center the reset button */
+.accepta-spacing-header:not(:has(.accepta-responsive-tabs)) {
+    justify-content: flex-end;
+}
+
+/* Fallback for browsers that don't support :has() */
+.accepta-spacing-header .accepta-spacing-actions:only-child {
+    margin-left: auto;
+}
+
+.accepta-spacing-actions {
+    display: flex;
+    gap: 4px;
+}
+
+.accepta-spacing-reset-btn {
+    background: #f1f1f1;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 4px 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 28px;
+    height: 28px;
+}
+
+.accepta-spacing-reset-btn:hover {
+    background: #e7e7e7;
+    border-color: #999;
+}
+
+.accepta-spacing-reset-btn:active {
+    background: #ddd;
+    transform: translateY(1px);
+}
+
+.accepta-spacing-reset-btn .dashicons {
+    font-size: 14px;
+    width: 14px;
+    height: 14px;
+    color: #666;
+}
+
+.accepta-spacing-reset-btn:hover .dashicons {
+    color: #333;
+}
+
+/* Spacing Visual Layout */
+.accepta-spacing-inputs {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: nowrap;
+}
+
+.accepta-spacing-visual {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex: 1;
+    min-width: 180px;
+    position: relative;
+    padding: 35px 0 0;
+}
+
+.accepta-spacing-input-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    flex: 1;
+}
+
+.accepta-spacing-input-wrapper.accepta-spacing-top,
+.accepta-spacing-input-wrapper.accepta-spacing-right,
+.accepta-spacing-input-wrapper.accepta-spacing-bottom,
+.accepta-spacing-input-wrapper.accepta-spacing-left {
+    position: static;
+    transform: none;
+}
+
+.accepta-spacing-input {
+    width: 100%;
+    height: 28px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    font-size: 10px;
+    background: #fff;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    transition: all 0.2s ease;
+}
+
+.accepta-spacing-input::placeholder {
+    color: #999;
+    opacity: 0.6;
+}
+
+.accepta-spacing-input::-webkit-input-placeholder {
+    color: #999;
+    opacity: 0.6;
+}
+
+.accepta-spacing-input::-moz-placeholder {
+    color: #999;
+    opacity: 0.6;
+}
+
+.accepta-spacing-input:-ms-input-placeholder {
+    color: #999;
+    opacity: 0.6;
+}
+
+.accepta-spacing-input:focus {
+    border-color: #0073aa;
+    box-shadow: 0 0 0 2px rgba(0, 115, 170, 0.2);
+    outline: none;
+}
+
+.accepta-spacing-input-label {
+    font-size: 9px;
+    color: #666;
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+}
+
+.accepta-spacing-center {
+    display: none; /* Hide the center icon for row layout */
+}
+
+/* Units Control */
+.accepta-spacing-units {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    position: absolute;
+    top: 55px;
+    right: 20px;
+}
+
+.accepta-spacing-unit {
+    padding: 4px 6px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    background: #fff;
+    font-size: 10px;
+    min-width: 35px;
+    height: 28px;
+    width: 40px;
+}
+
+.accepta-spacing-unit:focus {
+    border-color: #0073aa;
+    box-shadow: 0 0 0 1px rgba(0, 115, 170, 0.3);
+    outline: none;
+}
+
+.accepta-spacing-unit-label {
+    font-size: 9px;
+    color: #666;
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    text-align: center;
+}
+
+/* Device Visibility */
+.accepta-spacing-device {
+    animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Removed sync animation - no longer needed */
+
+/* Responsive Design for Control */
+@media (max-width: 1200px) {
+    .accepta-spacing-inputs {
+        gap: 4px;
+    }
+    
+    .accepta-spacing-visual {
+        min-width: auto;
+        gap: 3px;
+        padding: 22px 50px 8px 0;
+    }
+    
+    .accepta-spacing-input {
+        font-size: 9px;
+    }
+    
+    .accepta-spacing-unit {
+        width: 35px;
+        font-size: 9px;
+    }
+    
+    .accepta-spacing-input-label,
+    .accepta-spacing-unit-label {
+        font-size: 8px;
+    }
+}
+
+@media (max-width: 600px) {
+    .accepta-spacing-inputs {
+        gap: 3px;
+    }
+    
+    .accepta-spacing-visual {
+        gap: 2px;
+        padding: 20px 45px 6px 0;
+    }
+    
+    .accepta-spacing-input {
+        font-size: 8px;
+    }
+    
+    .accepta-spacing-unit {
+        width: 32px;
+        font-size: 8px;
+    }
+    
+    .accepta-spacing-input-label,
+    .accepta-spacing-unit-label {
+        font-size: 7px;
+    }
+}
+
+/* Hover Effects */
+.accepta-spacing-input-wrapper:hover .accepta-spacing-input {
+    border-color: #0073aa;
+}
+
+.accepta-spacing-visual:hover {
+    border-color: #0073aa;
+}
+
+/* Focus States */
+.accepta-spacing-control:focus-within {
+    box-shadow: 0 0 0 2px rgba(0, 115, 170, 0.2);
+    border-radius: 4px;
+}
+
+/* Error States */
+.accepta-spacing-input.error {
+    border-color: #dc3232;
+    box-shadow: 0 0 0 1px #dc3232;
+}
+
+/* Removed linked state styles - no longer needed */
+
+/* Value Display */
+.accepta-spacing-values-display {
+    margin-top: 10px;
+    padding: 8px;
+    background: #f9f9f9;
+    border-radius: 3px;
+    font-size: 11px;
+    color: #666;
+    text-align: center;
+}
+
+.accepta-spacing-values-display.has-values {
+    background: rgba(0, 115, 170, 0.1);
+    color: #0073aa;
+}
+
+/* Control Header */
+.accepta-spacing-control-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.accepta-spacing-reset-btn {
+    background: #f7f7f7;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    padding: 4px 8px;
+    font-size: 11px;
+    cursor: pointer;
+    color: #666;
+}
+
+.accepta-spacing-reset-btn:hover {
+    background: #e7e7e7;
+    color: #333;
+}
+
+.customize-control select.accepta-spacing-unit {
+	width: 40px;
+	font-size: 10px;
+	border: none;
+	padding: 0;
+}

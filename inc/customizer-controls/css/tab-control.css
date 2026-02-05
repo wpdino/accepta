@@ -1,0 +1,60 @@
+/**
+ * Accepta Tab Control CSS
+ * Styles for tab-based controls in the customizer
+ */
+
+.accepta-tab-control {
+	margin-bottom: 20px;
+}
+
+.accepta-tab-buttons {
+	display: flex;
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	overflow: hidden;
+	background: #fff;
+}
+
+.accepta-tab-button {
+	flex: 1;
+	padding: 10px 15px;
+	background: #f7f7f7;
+	border: none;
+	border-right: 1px solid #ddd;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	font-size: 13px;
+	color: #555;
+	text-align: center;
+}
+
+.accepta-tab-button:last-child {
+	border-right: none;
+}
+
+.accepta-tab-button:hover {
+	background: #e7e7e7;
+}
+
+.accepta-tab-button.active {
+	background: #6F9C50;
+	color: #fff;
+	font-weight: 500;
+}
+
+.accepta-tab-button.active:hover {
+	background: #568F0C;
+}
+
+/* Tab content wrapper for grouping related controls */
+.accepta-tab-content {
+	display: none;
+	margin-top: 15px;
+	padding-top: 15px;
+	border-top: 1px solid #ddd;
+}
+
+.accepta-tab-content.active {
+	display: block;
+}
+

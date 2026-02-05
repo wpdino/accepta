@@ -1,0 +1,346 @@
+/* Spacing and card-style background for posts (archive, blog index) */
+.site-main > article {
+	margin-bottom: 2em;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+
+	/* Subtle box shadow for regular posts; sticky has its own styling */
+	&:not(.sticky) {
+		padding: 1.75em 2em;
+		border-radius: 8px;
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+	}
+}
+
+/* Meta line under post title – subtle background */
+.entry-header .entry-meta {
+	margin-top: 0.5em;
+	padding: 0.5em 0.75em;
+	background-color: rgba(0, 0, 0, 0.04);
+	border-radius: 4px;
+	display: inline-block;
+}
+
+/* No underline on post titles and meta links */
+.entry-header .entry-title {
+	-ms-word-wrap: break-word;
+	word-break: break-word;
+}
+.entry-header .entry-title a,
+.entry-meta a {
+	text-decoration: none;
+	word-break: break-word;
+
+	&:hover,
+	&:focus {
+		text-decoration: none;
+	}
+}
+
+/* Sticky post: distinctive container styling */
+.sticky {
+	display: block;
+	position: relative;
+	margin-top: 2em;
+	padding: 1.75em 1.75em 1.75em calc(1.75em + 4px);
+	background-color: rgba($color__primary, 0.06);
+	border: 1px solid rgba($color__primary, 0.2);
+	border-left: 4px solid $color__primary;
+	border-radius: 0 8px 8px 0;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+
+	.entry-header .entry-title a {
+		color: $color__primary;
+		font-weight: 600;
+		text-decoration: none;
+
+		&:hover {
+			color: $color__green-dark;
+			text-decoration: none;
+		}
+	}
+
+	.entry-footer {
+		border-top-color: rgba($color__primary, 0.2);
+	}
+}
+
+.updated:not(.published) {
+	display: none;
+}
+
+.page-content,
+.entry-content,
+.entry-summary {
+	margin: 1.5em 0 0;
+	font-weight: 300;
+}
+
+/* Article (post): padding-top */
+.site-main > article.post {
+	margin-top: 2em;
+}
+
+
+/* Article (page): padding top and bottom */
+
+.site-main > article.page {
+		margin-top: 2em;
+		margin-bottom: 2em;
+	}
+
+
+/* Continue reading link on archive/blog listing */
+.entry-content .read-more-link {
+	margin-top: 1em;
+	margin-bottom: 0;
+
+	.more-link {
+		color: $color__primary;
+		font-weight: 500;
+		text-decoration: none;
+		transition: color 0.2s ease;
+
+		&:hover {
+			color: $color__green-dark;
+		}
+	}
+}
+
+/* Numbered pagination (posts listing) */
+.site-main .pagination {
+	margin: 3em 0 2em;
+	padding-top: 2em;
+	border-top: 1px solid #eee;
+}
+
+.site-main .pagination .nav-links {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5em;
+}
+
+.site-main .pagination .page-numbers {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 2.5em;
+	padding: 0.5em 0.75em;
+	background-color: #f5f5f5;
+	color: $color__text-main;
+	text-decoration: none;
+	border-radius: 4px;
+	font-weight: 500;
+	transition: background-color 0.2s ease, color 0.2s ease;
+
+	&:hover:not(.current) {
+		background-color: $color__green-light;
+		color: $color__primary;
+	}
+
+	&.current {
+		background-color: $color__primary;
+		color: #fff;
+	}
+
+	&.prev,
+	&.next {
+		padding: 0.5em 1em;
+	}
+}
+
+/* Contain floats so .entry-footer and following content clear floated images */
+.entry-content {
+	&::after {
+		content: '';
+		display: table;
+		clear: both;
+	}
+}
+
+.page-links {
+	clear: both;
+	margin: 1.5em 0;
+	padding: 1em 0;
+	text-align: center;
+	font-size: 0.95em;
+	font-weight: 500;
+	
+	span, a {
+		display: inline-flex;
+		justify-content: center;
+		align-items: center;
+		min-width: 2.2em;
+		height: 2.2em;
+		margin: 0 0.3em;
+		padding: 0 0.5em;
+		border-radius: 4px;
+		text-decoration: none;
+		transition: all 0.3s ease;
+	}
+	
+	span.page-links-title {
+		background: none;
+		border: none;
+		padding-left: 0;
+		margin-right: 0.5em;
+		font-weight: 600;
+		color: $color__text-main;
+	}
+	
+	a {
+		background-color: #f5f5f5;
+		color: $color__text-main;
+		border: 1px solid #eee;
+		
+		&:hover {
+			background-color: $color__green-light;
+			color: $color__primary;
+			border-color: $color__green-light;
+		}
+	}
+	
+	> span:not(.page-links-title) {
+		background-color: $color__primary;
+		color: white;
+		border: 1px solid $color__primary;
+	}
+}
+
+/* Entry footer styling */
+.entry-footer {
+	margin-top: 2em;
+	padding-top: 1.5em;
+	border-top: 1px solid #eee;
+	font-size: 0.9em;
+	color: #666;
+	clear: both;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0 1.5em;
+
+	/* Common styling for all meta items – keep as block for flex alignment */
+	> span {
+		display: block;
+		margin-bottom: 0.75em;
+		line-height: 1.5;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+
+		@media (min-width: 768px) {
+			margin-bottom: 0;
+			margin-right: 0;
+		}
+	}
+
+	/* Push Edit link to the right */
+	.edit-link {
+		margin-left: auto;
+	}
+	
+	/* Category links styling */
+	.cat-links {
+		a {
+			display: inline;
+			margin: 0;
+			padding: 0;
+			color: $color__primary;
+			font-weight: 500;
+			text-decoration: none;
+			transition: color 0.2s ease;
+
+			&:hover {
+				color: darken($color__primary, 10%);
+				text-decoration: none;
+			}
+		}
+	}
+	
+	/* Tag links styling */
+	.tags-links {
+		display: inline-flex;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 0 0.3em;
+
+		a {
+			display: inline-block;
+			vertical-align: middle;
+			margin: 0;
+			padding: 0.2em 0.7em;
+			background-color: #f5f5f5;
+			color: #555;
+			font-size: 0.85em;
+			line-height: 1.4;
+			border-radius: 3px;
+			text-decoration: none;
+			border: 1px solid #eee;
+			transition: all 0.2s ease;
+			
+			&:hover {
+				background-color: $color__green-light;
+				color: $color__primary;
+				border-color: $color__green-light;
+				text-decoration: none;
+			}
+			
+			&::before {
+				content: '#';
+				opacity: 0.5;
+				margin-right: 2px;
+			}
+		}
+	}
+	
+	/* Comments link styling */
+	.comments-link {
+		a {
+			color: #666;
+			text-decoration: none;
+			transition: color 0.2s ease;
+			
+			&:hover {
+				color: $color__primary;
+			}
+			
+			&::before {
+				content: '\f075'; /* Comment icon */
+				font-family: 'Font Awesome 6 Free';
+				font-weight: 900;
+				margin-right: 5px;
+				font-size: 0.9em;
+				opacity: 0.7;
+			}
+		}
+	}
+	
+	/* Edit link styling */
+	.edit-link {
+		a {
+			color: #999;
+			text-decoration: none;
+			transition: color 0.2s ease;
+			
+			&:hover {
+				color: $color__primary;
+			}
+			
+			&::before {
+				content: '\f304'; /* Edit icon */
+				font-family: 'Font Awesome 6 Free';
+				font-weight: 900;
+				margin-right: 5px;
+				font-size: 0.9em;
+				opacity: 0.7;
+			}
+		}
+	}
+}
+

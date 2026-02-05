@@ -1,0 +1,50 @@
+{
+  "name": "accepta",
+  "version": "1.0.0",
+  "description": "A beautiful and flexible WordPress theme that works perfectly with Elementor page builder for creating stunning websites.",
+  "author": "WPDINO",
+  "license": "GPL-2.0-or-later",
+  "keywords": [
+    "WordPress",
+    "Theme"
+  ],
+  "homepage": "https://github.com/wpdino/accepta#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wpdino/accepta.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wpdino/accepta/issues"
+  },
+  "devDependencies": {
+    "@wordpress/scripts": "^19.2.2",
+    "dir-archiver": "^1.1.1",
+    "node-sass": "^7.0.1",
+    "rtlcss": "^3.5.0",
+    "sass": "^1.94.0",
+    "terser": "^5.36.0"
+  },
+  "rtlcssConfig": {
+    "options": {
+      "autoRename": false,
+      "autoRenameStrict": false,
+      "blacklist": {},
+      "clean": true,
+      "greedy": false,
+      "processUrls": false,
+      "stringMap": []
+    },
+    "plugins": [],
+    "map": false
+  },
+  "scripts": {
+    "watch": "sass sass/accepta.scss:assets/css/accepta.css --style=expanded --source-map --watch",
+    "compile:css": "sass sass/accepta.scss assets/css/accepta.css --style=expanded --source-map && sass sass/accepta.scss assets/css/accepta.min.css --style=compressed --no-source-map && sass sass/woocommerce.scss assets/css/woocommerce.css --style=expanded --source-map && sass sass/woocommerce.scss assets/css/woocommerce.min.css --style=compressed --no-source-map && (stylelint './assets/css/*.css' --fix || true)",
+    "compile:js": "terser assets/js/customizer.js -o assets/js/customizer.min.js --compress --mangle && terser assets/js/header-search.js -o assets/js/header-search.min.js --compress --mangle && terser assets/js/hero-section.js -o assets/js/hero-section.min.js --compress --mangle && terser assets/js/mobile-menu.js -o assets/js/mobile-menu.min.js --compress --mangle && terser assets/js/navigation.js -o assets/js/navigation.min.js --compress --mangle && terser assets/js/sticky-header.js -o assets/js/sticky-header.min.js --compress --mangle",
+    "compile:rtl": "rtlcss ./assets/css/accepta.css ./assets/css/accepta-rtl.css && rtlcss ./assets/css/accepta.min.css ./assets/css/accepta-rtl.min.css",
+    "compile": "npm run compile:css && npm run compile:js && npm run compile:rtl",
+    "lint:scss": "wp-scripts lint-style 'sass/**/*.scss'",
+    "lint:js": "wp-scripts lint-js 'assets/js/*.js'",
+    "bundle": "dir-archiver --src . --dest ../accepta.zip --exclude .DS_Store .stylelintrc.json .eslintrc .git .gitattributes .github .gitignore README.md composer.json composer.lock node_modules vendor package-lock.json package.json .travis.yml phpcs.xml.dist sass style.css.map"
+  }
+}

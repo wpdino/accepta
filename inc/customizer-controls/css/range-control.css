@@ -1,0 +1,170 @@
+/**
+ * Accepta Range Control CSS
+ * Styles for the range slider with number input control
+ */
+
+.accepta-range-control-wrapper {
+    margin-bottom: 20px;
+}
+
+.accepta-range-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.accepta-range-slider-wrapper {
+    flex: 1;
+    position: relative;
+}
+
+.accepta-range-slider {
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background: #ddd;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+}
+
+.accepta-range-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #0073aa;
+    cursor: pointer;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease;
+}
+
+.accepta-range-slider::-webkit-slider-thumb:hover {
+    background: #005a87;
+    transform: scale(1.1);
+}
+
+.accepta-range-slider::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #0073aa;
+    cursor: pointer;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease;
+}
+
+.accepta-range-slider::-moz-range-thumb:hover {
+    background: #005a87;
+    transform: scale(1.1);
+}
+
+.accepta-range-slider::-moz-range-track {
+    width: 100%;
+    height: 6px;
+    cursor: pointer;
+    background: #ddd;
+    border-radius: 3px;
+    border: none;
+}
+
+.accepta-range-slider:focus {
+    outline: none;
+}
+
+.accepta-range-slider:focus::-webkit-slider-thumb {
+    box-shadow: 0 0 0 2px rgba(0, 115, 170, 0.3);
+}
+
+.accepta-range-slider:focus::-moz-range-thumb {
+    box-shadow: 0 0 0 2px rgba(0, 115, 170, 0.3);
+}
+
+.accepta-range-number-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    min-width: 80px;
+}
+
+.accepta-range-number {
+    width: 60px;
+    padding: 4px 8px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    background: #fff;
+    font-size: 13px;
+    text-align: center;
+    transition: border-color 0.2s ease;
+}
+
+.accepta-range-number:focus {
+    border-color: #0073aa;
+    box-shadow: 0 0 0 1px rgba(0, 115, 170, 0.3);
+    outline: none;
+}
+
+.accepta-range-unit {
+    font-size: 12px;
+    color: #666;
+    font-weight: 500;
+    min-width: 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .accepta-range-input-wrapper {
+        gap: 8px;
+    }
+    
+    .accepta-range-number-wrapper {
+        min-width: 70px;
+    }
+    
+    .accepta-range-number {
+        width: 50px;
+        padding: 3px 6px;
+        font-size: 12px;
+    }
+    
+    .accepta-range-unit {
+        font-size: 11px;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .accepta-range-slider {
+        background: #000;
+    }
+    
+    .accepta-range-slider::-webkit-slider-thumb {
+        background: #0073aa;
+        border-color: #000;
+    }
+    
+    .accepta-range-slider::-moz-range-thumb {
+        background: #0073aa;
+        border-color: #000;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .accepta-range-slider::-webkit-slider-thumb {
+        transition: none;
+    }
+    
+    .accepta-range-slider::-moz-range-thumb {
+        transition: none;
+    }
+    
+    .accepta-range-number {
+        transition: none;
+    }
+}

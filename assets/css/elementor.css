@@ -1,0 +1,78 @@
+/**
+ * Accepta Theme - Elementor Integration Styles
+ * This file contains styles to enhance Elementor integration with the Accepta theme
+ */
+
+/* Fix for Full Width Sections */
+.elementor-section.elementor-section-boxed > .elementor-container {
+    max-width: var(--container-width, 1200px);
+}
+
+/* Typography Adjustments */
+.elementor-widget-heading h1.elementor-heading-title,
+.elementor-widget-heading h2.elementor-heading-title,
+.elementor-widget-heading h3.elementor-heading-title,
+.elementor-widget-heading h4.elementor-heading-title,
+.elementor-widget-heading h5.elementor-heading-title,
+.elementor-widget-heading h6.elementor-heading-title {
+    font-family: var(--heading-font-family, inherit);
+    font-weight: var(--heading-font-weight, 700);
+    line-height: var(--heading-line-height, 1.2);
+}
+
+/* Button Styling */
+.elementor-button {
+    font-weight: 600;
+    border-radius: var(--button-border-radius, 4px);
+    padding: 12px 24px;
+    transition: all 0.3s ease;
+}
+
+/* Widget Spacing */
+.elementor-widget:not(:last-child) {
+    margin-bottom: 20px;
+}
+
+/* Color Integration */
+.elementor-widget-heading .elementor-heading-title {
+    color: var(--heading-color, inherit);
+}
+
+/* Ensure theme container works with Elementor */
+.elementor-page .site-content .container {
+    max-width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/* Card Style Elements */
+.elementor-widget-image-box .elementor-image-box-wrapper,
+.elementor-widget-icon-box .elementor-icon-box-wrapper {
+    padding: 30px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: var(--border-radius, 8px);
+}
+
+.elementor-widget-image-box .elementor-image-box-wrapper:hover,
+.elementor-widget-icon-box .elementor-icon-box-wrapper:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Icon Colors */
+.elementor-widget-icon-box .elementor-icon {
+    color: var(--primary-color, #1abc9c);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .elementor-section.elementor-section-boxed > .elementor-container {
+        max-width: 100%;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    
+    .elementor-column-gap-default > .elementor-row > .elementor-column > .elementor-element-populated {
+        padding: 15px;
+    }
+} 

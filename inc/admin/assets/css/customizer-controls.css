@@ -1,0 +1,240 @@
+/**
+ * Accepta Theme Customizer Controls CSS
+ */
+
+/* Footer Spacing Controls */
+.customize-control[id*="accepta_footer_"] {
+    margin-bottom: 15px;
+}
+
+.customize-control[id*="accepta_footer_"] .customize-control-title {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.customize-control[id*="accepta_footer_"] input[type="range"] {
+    width: 100%;
+    margin: 5px 0;
+    background: transparent;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 6px;
+    border-radius: 3px;
+    background: #ddd;
+    outline: none;
+}
+
+.customize-control[id*="accepta_footer_"] input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #0073aa;
+    cursor: pointer;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.customize-control[id*="accepta_footer_"] input[type="range"]::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #0073aa;
+    cursor: pointer;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.customize-control[id*="accepta_footer_"] input[type="range"]:focus::-webkit-slider-thumb {
+    background: #005a87;
+}
+
+.customize-control[id*="accepta_footer_"] input[type="range"]:focus::-moz-range-thumb {
+    background: #005a87;
+}
+
+/* Section styling */
+#customize-theme-controls #accordion-section-accepta_footer_spacing {
+    border-left: 4px solid #0073aa;
+}
+
+#customize-theme-controls #accordion-section-accepta_footer_spacing .accordion-section-title {
+    background: #f8f9fa;
+    border-bottom: 1px solid #ddd;
+}
+
+#customize-theme-controls #accordion-section-accepta_footer_spacing .accordion-section-title:hover {
+    background: #f0f0f1;
+}
+
+/* Premium control styles */
+.customize-control-accepta-premium {
+    position: relative;
+    padding-top: 25px;
+}
+
+.accepta-premium-badge {
+    background: #1abc9c;
+    color: #fff;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 10px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+/* Section title enhancements */
+#customize-controls .control-section .customize-section-title h3 {
+    font-weight: 600;
+    color: #23282d;
+}
+
+/* Improve range control styling */
+.customize-control-range input[type=range] {
+    width: 100%;
+}
+
+.customize-control-range .accepta-range-value {
+    display: inline-block;
+    padding: 0 5px;
+    background: #f7f7f7;
+    border-radius: 2px;
+    font-size: 12px;
+    color: #555;
+    margin-left: 10px;
+    min-width: 28px;
+    text-align: center;
+}
+
+/* Improve color picker button */
+.wp-color-result {
+    height: 24px;
+}
+
+/* Improve select control */
+.customize-control select {
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Improve radio button controls */
+.customize-control-radio .customize-inside-control-row {
+    margin-bottom: 5px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+/* Improve checkbox controls */
+.customize-control-checkbox .customize-inside-control-row {
+    margin-bottom: 8px;
+}
+
+.customize-control-checkbox .customize-control-title {
+    margin: 0;
+}
+
+/* Improve heading control */
+.customize-control-heading h4 {
+    margin: 16px 0 4px;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+    color: #1abc9c;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+/* Info control styling */
+.customize-control-info {
+    background: #f7f7f7;
+    padding: 10px;
+    border-radius: 3px;
+    border-left: 3px solid #1abc9c;
+    margin-bottom: 12px;
+}
+
+.customize-control-info p {
+    margin: 0;
+    color: #555;
+}
+
+/* Scrolled Header Background Opacity Control (nested in color control) */
+.customize-control-color .accepta-scrolled-header-opacity-control {
+	margin-top: 15px;
+	padding-top: 15px;
+	border-top: 1px solid #ddd;
+}
+
+.customize-control-color .accepta-scrolled-header-opacity-control .accepta-opacity-control {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin-top: 8px;
+}
+
+.customize-control-color .accepta-scrolled-header-opacity-control .accepta-scrolled-header-opacity-slider {
+	flex: 1;
+	height: 6px;
+	margin: 0;
+	-webkit-appearance: none;
+	appearance: none;
+	background: #ddd;
+	border-radius: 3px;
+	outline: none;
+	cursor: pointer;
+}
+
+.customize-control-color .accepta-scrolled-header-opacity-control .accepta-scrolled-header-opacity-slider::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 18px;
+	height: 18px;
+	border-radius: 50%;
+	background: #0073aa;
+	cursor: pointer;
+	border: 2px solid #fff;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+	transition: all 0.2s ease;
+}
+
+.customize-control-color .accepta-scrolled-header-opacity-control .accepta-scrolled-header-opacity-slider::-webkit-slider-thumb:hover {
+	background: #005a87;
+	transform: scale(1.1);
+}
+
+.customize-control-color .accepta-scrolled-header-opacity-control .accepta-scrolled-header-opacity-slider::-moz-range-thumb {
+	width: 18px;
+	height: 18px;
+	border-radius: 50%;
+	background: #0073aa;
+	cursor: pointer;
+	border: 2px solid #fff;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+	transition: all 0.2s ease;
+}
+
+.customize-control-color .accepta-scrolled-header-opacity-control .accepta-scrolled-header-opacity-slider::-moz-range-thumb:hover {
+	background: #005a87;
+	transform: scale(1.1);
+}
+
+.customize-control-color .accepta-scrolled-header-opacity-control .accepta-scrolled-header-opacity-slider::-moz-range-track {
+	width: 100%;
+	height: 6px;
+	cursor: pointer;
+	background: #ddd;
+	border-radius: 3px;
+	border: none;
+}
+
+.customize-control-color .accepta-scrolled-header-opacity-control .accepta-opacity-value {
+	min-width: 40px;
+	text-align: right;
+	font-size: 13px;
+	color: #555;
+} 
