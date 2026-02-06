@@ -1448,34 +1448,29 @@
 				css += '.accepta-hero-section { margin-top: 0; padding-top: 0; }';
 				css += '.site-content { margin-top: 0; }';
 			} else {
-				// Reset overlay styles
+				// Reset overlay styles. Use body.accepta-has-hero prefix when on hero page so we override PHP-generated overlay CSS (same specificity, our style comes later).
+				var prefix = $( 'body' ).hasClass( 'accepta-has-hero' ) ? 'body.accepta-has-hero ' : '';
+				var scrolledTextColor = wp.customize( 'accepta_scrolled_header_text_color' ) && wp.customize( 'accepta_scrolled_header_text_color' ).get() ? wp.customize( 'accepta_scrolled_header_text_color' ).get() : '#2c3e50';
 				if ( stickyEnabled ) {
-					// If sticky is enabled, restore sticky positioning
-					css += '.site-header { position: sticky; top: 0; z-index: 1000; }';
+					css += prefix + '.site-header { position: sticky; top: 0; z-index: 1000; }';
 					if ( isAdminBar ) {
-						css += '.admin-bar .site-header { top: var(--wp-admin--admin-bar--height, 32px); }';
-						css += '@media screen and (max-width: 782px) { .admin-bar .site-header { top: var(--wp-admin--admin-bar--height, 46px); } }';
+						css += prefix + '.admin-bar .site-header { top: var(--wp-admin--admin-bar--height, 32px); }';
+						css += '@media screen and (max-width: 782px) { ' + prefix + '.admin-bar .site-header { top: var(--wp-admin--admin-bar--height, 46px); } }';
 					}
 				} else {
-					// If sticky is disabled, use relative
-					css += '.site-header { position: relative; top: auto; z-index: 1000; }';
+					css += prefix + '.site-header { position: relative; top: auto; z-index: 1000; }';
 				}
-				
-				// Reset text colors only if not scrolled
-				css += '.site-header:not(.scrolled) .site-title a { color: inherit; }';
-				css += '.site-header:not(.scrolled) .site-description { color: inherit; opacity: 1; }';
-				css += '.site-header:not(.scrolled) .main-navigation a { color: inherit; }';
-				css += '.site-header:not(.scrolled) .menu-toggle { color: inherit; }';
-				css += '.site-header:not(.scrolled) .menu-toggle .icon-bar { background-color: inherit; }';
-				
-				// Reset logo filter
-				css += '.site-header:not(.scrolled) .custom-logo-link img { filter: none; }';
-				
-				// Reset social icons and search button to dark colors
-				css += '.site-header:not(.scrolled) .header-social-icons .social-icon { color: #2c3e50; border-color: rgba(44, 62, 80, 0.2); }';
-				css += '.site-header:not(.scrolled) .header-social-icons .social-icon .social-icon-svg { filter: none; }';
-				css += '.site-header:not(.scrolled) .header-search-toggle { color: #2c3e50; border-color: rgba(44, 62, 80, 0.2); }';
-				css += '.site-header:not(.scrolled) .header-search-toggle svg { color: #2c3e50; stroke: #2c3e50; }';
+				css += prefix + '.site-header:not(.scrolled) .site-title a { color: ' + scrolledTextColor + '; }';
+				css += prefix + '.site-header:not(.scrolled) .site-description { color: ' + scrolledTextColor + '; opacity: 0.7; }';
+				// Parent menu: use same selectors as PHP overlay + dark color with !important to override PHP's white !important
+				css += prefix + '.site-header:not(.scrolled) .main-navigation > ul > li > a, ' + prefix + '.site-header:not(.scrolled) .main-navigation .nav-menu > li > a { color: ' + scrolledTextColor + ' !important; }';
+				css += prefix + '.site-header:not(.scrolled) .menu-toggle { color: ' + scrolledTextColor + '; }';
+				css += prefix + '.site-header:not(.scrolled) .menu-toggle .icon-bar { background-color: ' + scrolledTextColor + '; }';
+				css += prefix + '.site-header:not(.scrolled) .custom-logo-link img { filter: none; }';
+				css += prefix + '.site-header:not(.scrolled) .header-social-icons .social-icon { color: #2c3e50; border-color: rgba(44, 62, 80, 0.2); }';
+				css += prefix + '.site-header:not(.scrolled) .header-social-icons .social-icon .social-icon-svg { filter: none; }';
+				css += prefix + '.site-header:not(.scrolled) .header-search-toggle { color: #2c3e50; border-color: rgba(44, 62, 80, 0.2); }';
+				css += prefix + '.site-header:not(.scrolled) .header-search-toggle svg { color: #2c3e50; stroke: #2c3e50; }';
 			}
 			
 			// Apply CSS via updateDynamicCSS for better preview compatibility

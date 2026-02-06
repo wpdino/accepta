@@ -92,6 +92,15 @@ function accepta_setup() {
 			'flex-height' => true,
 		)
 	);
+
+	/*
+	 * Starter content: sample pages, menu, and widgets shown in the Customizer
+	 * preview before the theme is activated. Only loaded in customize preview.
+	 */
+	if ( is_customize_preview() ) {
+		require_once get_template_directory() . '/inc/starter-content.php';
+		add_theme_support( 'starter-content', accepta_get_starter_content() );
+	}
 }
 add_action( 'after_setup_theme', 'accepta_setup' );
 

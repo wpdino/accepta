@@ -14,7 +14,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 require_once get_template_directory() . '/inc/admin/class-accepta-admin-customizer.php';
 require_once get_template_directory() . '/inc/admin/class-accepta-admin-menus.php';
 require_once get_template_directory() . '/inc/admin/class-accepta-admin-plugins.php';
-require_once get_template_directory() . '/inc/admin/class-accepta-admin-welcome-notice.php';
 
 /**
  * Main Admin Class
@@ -100,9 +99,6 @@ class Accepta_Admin {
         
         // Initialize the plugins module
         $this->modules['plugins'] = Accepta_Admin_Plugins::instance( $this );
-        
-        // Initialize the welcome notice module
-        $this->modules['welcome_notice'] = Accepta_Admin_Welcome_Notice::instance();
     }
 
     /**

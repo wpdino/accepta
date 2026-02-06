@@ -327,11 +327,11 @@
 			color: #999;
 			text-decoration: none;
 			transition: color 0.2s ease;
-			
+
 			&:hover {
 				color: $color__primary;
 			}
-			
+
 			&::before {
 				content: '\f304'; /* Edit icon */
 				font-family: 'Font Awesome 6 Free';
@@ -341,6 +341,18 @@
 				opacity: 0.7;
 			}
 		}
+	}
+}
+
+/* Front page icon boxes (starter content) */
+.accepta-icon-box-icon {
+	margin-bottom: 1rem;
+	font-size: 2rem;
+	line-height: 1;
+	color: $color__primary;
+
+	i {
+		display: inline-block;
 	}
 }
 

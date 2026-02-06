@@ -108,10 +108,10 @@ function accepta_customize_register( $wp_customize ) {
 	$wp_customize->add_setting(
 		'accepta_header_layout',
 		array(
-			'default'           => 'layout-1',
+			'default'           => 'layout-3',
 			'sanitize_callback' => function( $input ) {
 				$valid_layouts = array( 'layout-1', 'layout-2', 'layout-3' );
-				return in_array( $input, $valid_layouts, true ) ? $input : 'layout-1';
+				return in_array( $input, $valid_layouts, true ) ? $input : 'layout-3';
 			},
 			'transport'         => 'postMessage',
 		)
@@ -162,7 +162,7 @@ function accepta_customize_register( $wp_customize ) {
 		)
 	);
 
-	// Overlay Header Setting
+	// Overlay Header Setting (default off; starter preview shows it on)
 	$wp_customize->add_setting(
 		'accepta_transparent_header',
 		array(
@@ -459,7 +459,7 @@ function accepta_customize_register( $wp_customize ) {
 		)
 	);
 
-	// Hero Enabled
+	// Hero Enabled (default off; starter content preview shows it on)
 	$wp_customize->add_setting(
 		'accepta_hero_enabled',
 		array(
@@ -480,7 +480,7 @@ function accepta_customize_register( $wp_customize ) {
 		)
 	);
 
-	// Hero Height Type
+	// Hero Height Type (default min-height; starter preview uses fullscreen)
 	$wp_customize->add_setting(
 		'accepta_hero_height',
 		array(
@@ -536,7 +536,7 @@ function accepta_customize_register( $wp_customize ) {
 		)
 	);
 
-	// Hero Width Setting
+	// Hero Width Setting (default boxed; starter preview uses fullwidth)
 	$wp_customize->add_setting(
 		'accepta_hero_width',
 		array(
@@ -569,33 +569,34 @@ function accepta_customize_register( $wp_customize ) {
 		)
 	);
 
-	// Hero Background Setting (moved to General Settings)
+	// Hero Background Setting (default: image with overlay)
+	$default_hero_bg = array(
+		'type'              => 'image',
+		'color'             => '#6F9C50',
+		'gradient_type'     => 'linear',
+		'gradient_angle'     => '90',
+		'gradient_start'     => '#6F9C50',
+		'gradient_end'       => '#568F0C',
+		'image'             => get_template_directory_uri() . '/assets/images/accepta-hero-bg.jpg',
+		'size'              => 'cover',
+		'repeat'            => 'no-repeat',
+		'position'          => 'center',
+		'attachment'        => 'scroll',
+		'overlay_enabled'   => true,
+		'overlay_color'     => '#6F9C50',
+		'overlay_opacity'    => '0.2',
+		'video_type'        => 'youtube',
+		'video_url'         => '',
+		'video_mp4'         => '',
+		'video_autoplay'    => true,
+		'video_loop'        => true,
+		'video_muted'       => true,
+		'video_controls'    => false,
+	);
 	$wp_customize->add_setting(
 		'accepta_hero_background',
 		array(
-		'default'           => json_encode( array(
-			'type' => 'solid',
-			'color' => '#6F9C50',
-			'gradient_type' => 'linear',
-			'gradient_angle' => '90',
-			'gradient_start' => '#6F9C50',
-			'gradient_end' => '#568F0C',
-			'image' => '',
-			'size' => 'cover',
-			'repeat' => 'no-repeat',
-			'position' => 'center',
-			'attachment' => 'scroll',
-			'overlay_enabled' => false,
-			'overlay_color' => '#6F9C50',
-			'overlay_opacity' => '0.5',
-				'video_type' => 'youtube',
-				'video_url' => '',
-				'video_mp4' => '',
-				'video_autoplay' => true,
-				'video_loop' => true,
-				'video_muted' => true,
-				'video_controls' => false,
-			) ),
+			'default'           => json_encode( $default_hero_bg ),
 			'sanitize_callback' => 'accepta_sanitize_background',
 			'transport'         => 'postMessage',
 		)
@@ -710,11 +711,11 @@ function accepta_customize_register( $wp_customize ) {
 		)
 	);
 
-	// Hero Button Style
+	// Hero Button Style (outline by default)
 	$wp_customize->add_setting(
 		'accepta_hero_button_style',
 		array(
-			'default'           => 'primary',
+			'default'           => 'outline',
 			'sanitize_callback' => 'accepta_sanitize_button_style',
 			'transport'         => 'postMessage',
 		)
@@ -2661,7 +2662,7 @@ function accepta_sticky_header_css() {
 	$sticky_header = get_theme_mod( 'accepta_sticky_header', true );
 	$transparent_header = get_theme_mod( 'accepta_transparent_header', false );
 	$scrolled_bg = get_theme_mod( 'accepta_scrolled_header_bg', '#ffffff' );
-	$header_layout = get_theme_mod( 'accepta_header_layout', 'layout-1' );
+	$header_layout = get_theme_mod( 'accepta_header_layout', 'layout-3' );
 	$header_width = get_theme_mod( 'accepta_header_width', 'boxed' );
 	$css = '';
 	
@@ -2918,20 +2919,20 @@ function accepta_hero_section_css() {
 	$hero_background_json = get_theme_mod( 'accepta_hero_background', '' );
 	$hero_background = json_decode( $hero_background_json, true );
 	
-	// Default values
+	// Default values (image with overlay when nothing saved)
 	if ( ! is_array( $hero_background ) ) {
 		$hero_background = array(
-			'type' => 'solid',
-			'color' => '#6F9C50',
-			'gradient_type' => 'linear',
+			'type'           => 'image',
+			'color'          => '#6F9C50',
+			'gradient_type'  => 'linear',
 			'gradient_angle' => '90',
 			'gradient_start' => '#6F9C50',
-			'gradient_end' => '#568F0C',
-			'image' => '',
-			'size' => 'cover',
-			'repeat' => 'no-repeat',
-			'position' => 'center',
-			'attachment' => 'scroll',
+			'gradient_end'   => '#568F0C',
+			'image'          => get_template_directory_uri() . '/assets/images/accepta-hero-bg.jpg',
+			'size'           => 'cover',
+			'repeat'         => 'no-repeat',
+			'position'       => 'center',
+			'attachment'     => 'scroll',
 		);
 	}
 	
@@ -3108,7 +3109,21 @@ function accepta_layout_css() {
 	
 	// Sidebar layout
 	$sidebar_layout = get_theme_mod( 'accepta_sidebar_layout', 'right' );
-	
+
+	// Front page (and customizer preview when showing homepage): always full width, no sidebar.
+	$css .= 'body.accepta-front-page-full-width .content-sidebar-wrap,';
+	$css .= 'body.accepta-front-page-full-width .content-sidebar-wrap--no-sidebar { display: block; }';
+	$css .= 'body.accepta-front-page-full-width .content-sidebar-wrap .site-main,';
+	$css .= 'body.accepta-front-page-full-width .content-sidebar-wrap--no-sidebar .site-main { width: 100%; max-width: 100%; }';
+	$css .= 'body.accepta-front-page-full-width .content-sidebar-wrap .widget-area { display: none; }';
+
+	// Full-width page template (no sidebar).
+	$css .= 'body.accepta-page-template-full-width .content-sidebar-wrap,';
+	$css .= 'body.accepta-page-template-full-width .content-sidebar-wrap--no-sidebar { display: block; }';
+	$css .= 'body.accepta-page-template-full-width .content-sidebar-wrap .site-main,';
+	$css .= 'body.accepta-page-template-full-width .content-sidebar-wrap--no-sidebar .site-main { width: 100%; max-width: 100%; }';
+	$css .= 'body.accepta-page-template-full-width .content-sidebar-wrap .widget-area { display: none; }';
+
 	switch ( $sidebar_layout ) {
 		case 'none':
 			$css .= '.content-sidebar-wrap { display: block; }';
@@ -3431,3 +3446,33 @@ function accepta_typography_css() {
 	
 	return $css;
 }
+
+/**
+ * Theme mod values used for starter content preview (Customizer preview when viewing front page).
+ * When user saves starter content, these are applied via customize_save_after.
+ *
+ * @return array Key => value for theme_mod.
+ */
+/**
+ * When Customizer is saved: if the front page has starter content, set full-width option only.
+ * Hero, header overlay, and other Customizer options are controlled by the user.
+ */
+function accepta_starter_content_on_customize_save() {
+	$front_page_id = (int) get_option( 'page_on_front', 0 );
+	if ( ! $front_page_id ) {
+		delete_option( 'accepta_front_page_full_width' );
+		return;
+	}
+	$post = get_post( $front_page_id );
+	if ( ! $post || $post->post_type !== 'page' ) {
+		delete_option( 'accepta_front_page_full_width' );
+		return;
+	}
+	$has_starter = ( strpos( $post->post_content, 'accepta-icon-box-icon' ) !== false );
+	if ( $has_starter ) {
+		update_option( 'accepta_front_page_full_width', '1' );
+	} else {
+		delete_option( 'accepta_front_page_full_width' );
+	}
+}
+add_action( 'customize_save_after', 'accepta_starter_content_on_customize_save' );

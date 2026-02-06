@@ -343,17 +343,19 @@ body.has-sticky-header {
 }
 
 @media screen and (max-width: 599px) {
+  /* Keep logo, menu toggle, social, and search on one line */
   .header-content {
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
   }
   
   .site-branding {
     max-width: 70%;
-    flex-wrap: wrap; /* Allow wrapping on small screens */
+    min-width: 0;
+    flex-shrink: 1;
   }
   
   .branding-text {
-    margin-top: 5px;
+    margin-top: 0;
     margin-left: 0;
   }
   
@@ -377,15 +379,23 @@ body.has-sticky-header {
     }
   }
   
+  /* Menu toggle and search stay on same row as logo */
   .main-navigation {
-    width: 100%;
-    margin-top: 10px;
+    width: auto;
+    margin-top: 0;
+    margin-left: auto;
+    flex-shrink: 0;
   }
   
   .header-social-icons {
-    width: 100%;
-    margin-top: 10px;
-    justify-content: center;
+    width: auto;
+    margin-top: 0;
+    flex-shrink: 0;
+  }
+  
+  .header-content .header-search-toggle {
+    flex-shrink: 0;
+    margin-left: 8px;
   }
 }
 

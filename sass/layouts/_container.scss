@@ -192,4 +192,21 @@ img {
     width: auto;
     position: relative;
   }
+}
+
+// Force content + sidebar into one column on mobile/tablet (overrides customizer grid)
+@media screen and (max-width: 767px) {
+  .content-sidebar-wrap {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 30px;
+  }
+  
+  .content-sidebar-wrap .site-main,
+  .content-sidebar-wrap .widget-area {
+    width: 100% !important;
+    max-width: 100% !important;
+    grid-column: unset !important;
+    order: unset !important;
+  }
 } 

@@ -28,7 +28,7 @@
 	<header id="masthead" class="site-header">
 		<div class="container">
 			<?php
-			$header_layout = get_theme_mod( 'accepta_header_layout', 'layout-1' );
+			$header_layout = get_theme_mod( 'accepta_header_layout', 'layout-3' );
 			// Remove 'layout-' prefix if present to avoid double prefix
 			$layout_suffix = str_replace( 'layout-', '', $header_layout );
 			$header_layout_class = 'header-layout-' . esc_attr( $layout_suffix );

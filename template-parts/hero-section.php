@@ -23,30 +23,30 @@ $hero_min_height = get_theme_mod( 'accepta_hero_min_height', 500 );
 $hero_bg_json = get_theme_mod( 'accepta_hero_background', '' );
 $hero_bg = json_decode( $hero_bg_json, true );
 
-// Default values
+// Default values (image with overlay when nothing saved)
 if ( ! is_array( $hero_bg ) ) {
 	$hero_bg = array(
-		'type' => 'solid',
-		'color' => '#6F9C50',
-		'gradient_type' => 'linear',
-		'gradient_angle' => '90',
-		'gradient_start' => '#6F9C50',
-		'gradient_end' => '#568F0C',
-		'image' => '',
-		'size' => 'cover',
-		'repeat' => 'no-repeat',
-		'position' => 'center',
-		'attachment' => 'scroll',
-		'overlay_enabled' => false,
-		'overlay_color' => '#6F9C50',
-		'overlay_opacity' => '0.5',
-		'video_type' => 'youtube',
-		'video_url' => '',
-		'video_mp4' => '',
-		'video_autoplay' => true,
-		'video_loop' => true,
-		'video_muted' => true,
-		'video_controls' => false,
+		'type'              => 'image',
+		'color'             => '#6F9C50',
+		'gradient_type'     => 'linear',
+		'gradient_angle'    => '90',
+		'gradient_start'    => '#6F9C50',
+		'gradient_end'      => '#568F0C',
+		'image'             => get_template_directory_uri() . '/assets/images/accepta-hero-bg.jpg',
+		'size'              => 'cover',
+		'repeat'            => 'no-repeat',
+		'position'          => 'center',
+		'attachment'        => 'scroll',
+		'overlay_enabled'   => true,
+		'overlay_color'     => '#6F9C50',
+		'overlay_opacity'   => '0.2',
+		'video_type'        => 'youtube',
+		'video_url'         => '',
+		'video_mp4'         => '',
+		'video_autoplay'    => true,
+		'video_loop'        => true,
+		'video_muted'       => true,
+		'video_controls'    => false,
 	);
 }
 
@@ -63,14 +63,14 @@ $bg_video_loop = isset( $hero_bg['video_loop'] ) ? (bool) $hero_bg['video_loop']
 $bg_video_muted = isset( $hero_bg['video_muted'] ) ? (bool) $hero_bg['video_muted'] : true;
 $bg_video_controls = isset( $hero_bg['video_controls'] ) ? (bool) $hero_bg['video_controls'] : false;
 $bg_overlay_enabled = isset( $hero_bg['overlay_enabled'] ) ? (bool) $hero_bg['overlay_enabled'] : false;
-$bg_overlay_color = isset( $hero_bg['overlay_color'] ) ? $hero_bg['overlay_color'] : '#000000';
-$bg_overlay_opacity = isset( $hero_bg['overlay_opacity'] ) ? floatval( $hero_bg['overlay_opacity'] ) : 0.5;
+$bg_overlay_color = isset( $hero_bg['overlay_color'] ) ? $hero_bg['overlay_color'] : '#6F9C50';
+$bg_overlay_opacity = isset( $hero_bg['overlay_opacity'] ) ? floatval( $hero_bg['overlay_opacity'] ) : 0.2;
 
 $hero_heading = get_theme_mod( 'accepta_hero_heading', 'Build Bold! Build Beautiful!' );
 $hero_text = get_theme_mod( 'accepta_hero_text', 'Accepta is a flexible, modern WordPress theme engineered for Elementor.' );
 $hero_button_text = get_theme_mod( 'accepta_hero_button_text', 'Check Now' );
 $hero_button_url = get_theme_mod( 'accepta_hero_button_url', 'https://wpdino.com' );
-$hero_button_style = get_theme_mod( 'accepta_hero_button_style', 'primary' );
+$hero_button_style = get_theme_mod( 'accepta_hero_button_style', 'outline' );
 
 $hero_heading_color = get_theme_mod( 'accepta_hero_heading_color', '#ffffff' );
 $hero_heading_size = get_theme_mod( 'accepta_hero_heading_size', 48 );
