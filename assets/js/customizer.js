@@ -636,10 +636,18 @@
 			
 			var css = '';
 			var bgCss = [];
+			var isParallaxImage = false;
 			
 			// Always check and remove video if type is not 'video'
 			if ( bgData.type !== 'video' ) {
 				updateHeroVideoPreview( bgData );
+			}
+			
+			// Remove parallax structure when not using image+parallax
+			var $heroSection = $( '.accepta-hero-section' );
+			if ( bgData.type !== 'image' || ( bgData.attachment || 'scroll' ) !== 'parallax' ) {
+				$heroSection.find( '.accepta-hero-parallax-bg' ).remove();
+				$heroSection.removeClass( 'accepta-hero-has-parallax' );
 			}
 			
 			if ( bgData.type === 'solid' && bgData.color ) {
@@ -658,11 +666,41 @@
 				}
 				bgCss.push('background-color: transparent');
 			} else if ( bgData.type === 'image' && bgData.image ) {
-				bgCss.push('background-image: url(' + bgData.image + ')');
-				bgCss.push('background-size: ' + ( bgData.size || 'cover' ) + '');
-				bgCss.push('background-repeat: ' + ( bgData.repeat || 'no-repeat' ) + '');
-				bgCss.push('background-position: ' + ( bgData.position || 'center' ) + '');
-				bgCss.push('background-attachment: ' + ( bgData.attachment || 'scroll' ) + '');
+				var attachment = bgData.attachment || 'scroll';
+				if ( attachment === 'parallax' ) {
+					isParallaxImage = true;
+					// Parallax: background goes on separate div, not on section
+					var $hero = $( '.accepta-hero-section' );
+					var $parallaxBg = $hero.find( '.accepta-hero-parallax-bg' );
+					if ( $parallaxBg.length === 0 ) {
+						$parallaxBg = $( '<div class="accepta-hero-parallax-bg"></div>' );
+						$hero.prepend( $parallaxBg );
+					}
+					$parallaxBg.css( {
+						'background-image': 'url(' + bgData.image + ')',
+						'background-size': bgData.size || 'cover',
+						'background-position': bgData.position || 'center',
+						'background-repeat': bgData.repeat || 'no-repeat'
+					} );
+					$hero.addClass( 'accepta-hero-has-parallax' );
+					bgCss.push('background-image: none');
+					bgCss.push('background-color: transparent');
+					css = '.accepta-hero-section.accepta-hero-has-parallax { position: relative; overflow: hidden; }';
+					document.dispatchEvent( new CustomEvent( 'accepta-parallax-init' ) );
+					css += '.accepta-hero-section .accepta-hero-parallax-bg { position: absolute; top: -20%; left: 0; right: 0; height: 140%; z-index: 0; will-change: transform; }';
+					css += '.accepta-hero-section.accepta-hero-has-parallax .accepta-hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }';
+					css += '.accepta-hero-section .accepta-hero-content-wrapper { position: relative; z-index: 2; }';
+				} else {
+					// Scroll or fixed: remove parallax structure, apply background to section
+					var $hero = $( '.accepta-hero-section' );
+					$hero.find( '.accepta-hero-parallax-bg' ).remove();
+					$hero.removeClass( 'accepta-hero-has-parallax' );
+					bgCss.push('background-image: url(' + bgData.image + ')');
+					bgCss.push('background-size: ' + ( bgData.size || 'cover' ) + '');
+					bgCss.push('background-repeat: ' + ( bgData.repeat || 'no-repeat' ) + '');
+					bgCss.push('background-position: ' + ( bgData.position || 'center' ) + '');
+					bgCss.push('background-attachment: ' + attachment + '');
+				}
 			} else if ( bgData.type === 'video' ) {
 				// Video backgrounds are handled via inline styles in the template
 				// Just clear other background styles
@@ -676,7 +714,7 @@
 				bgCss.push('background-image: none');
 			}
 			
-			if ( bgCss.length > 0 ) {
+			if ( bgCss.length > 0 && ! isParallaxImage ) {
 				css = '.accepta-hero-section { ' + bgCss.join('; ') + '; }';
 			}
 			
@@ -730,11 +768,25 @@
 				css = '.accepta-hero-section.accepta-hero-fullwidth { width: 100vw; max-width: 100vw; margin-left: calc(-50vw + 50%); position: relative; left: 0; }';
 				css += '.accepta-hero-section.accepta-hero-fullwidth .accepta-hero-content-wrapper { width: 100%; }';
 			} else {
+				var containerWidth = wp.customize( 'accepta_container_width' ) ? wp.customize( 'accepta_container_width' ).get() : 1200;
 				$hero.addClass( 'accepta-hero-boxed' );
-				css = '.accepta-hero-section.accepta-hero-boxed { width: 100%; }';
+				css = '.accepta-hero-section.accepta-hero-boxed { width: 100%; max-width: ' + ( parseInt( containerWidth ) || 1200 ) + 'px; margin-left: auto; margin-right: auto; }';
 			}
 			
 			updateDynamicCSS( 'hero-width', css );
+		} );
+		
+		// When container width changes, update boxed hero preview
+		wp.customize( 'accepta_container_width', function( containerValue ) {
+			containerValue.bind( function() {
+				var heroWidth = value.get();
+				if ( heroWidth === 'boxed' ) {
+					var containerWidth = parseInt( containerValue.get() ) || 1200;
+					var $hero = $( '.accepta-hero-section' );
+					$hero.removeClass( 'accepta-hero-fullwidth' ).addClass( 'accepta-hero-boxed' );
+					updateDynamicCSS( 'hero-width', '.accepta-hero-section.accepta-hero-boxed { width: 100%; max-width: ' + containerWidth + 'px; margin-left: auto; margin-right: auto; }' );
+				}
+			} );
 		} );
 	} );
 	
@@ -1634,6 +1686,7 @@
 				css += '.header-content.header-layout-1 .main-navigation ul { justify-content: flex-end; margin-left: 0; flex-wrap: wrap; min-width: 0; }';
 				css += '.header-content.header-layout-1 .header-social-icons { order: 3; flex: 0 0 auto; min-width: 0; flex-shrink: 0; }';
 				css += '.header-content.header-layout-1 .header-search-toggle { order: 4; margin-left: 10px; flex: 0 0 auto; flex-shrink: 0; }';
+				css += '.header-content.header-layout-1 .header-cart-link { order: 5; margin-left: 10px; flex: 0 0 auto; flex-shrink: 0; }';
 			} else if ( newval === 'layout-2' || layoutSuffix === '2' ) {
 				css = '.header-content.header-layout-2 { justify-content: space-between; align-items: center; width: 100%; min-width: 0; box-sizing: border-box; }';
 				css += '.header-content.header-layout-2 .site-branding { order: 1; margin-right: 0; flex: 0 0 auto; min-width: 0; flex-shrink: 0; }';
@@ -1641,6 +1694,7 @@
 				css += '.header-content.header-layout-2 .main-navigation ul { justify-content: flex-start; margin-left: 0; flex-wrap: wrap; min-width: 0; }';
 				css += '.header-content.header-layout-2 .header-social-icons { order: 2; margin-left: auto; flex: 0 0 auto; min-width: 0; flex-shrink: 0; position: relative; z-index: 2; max-width: 100%; }';
 				css += '.header-content.header-layout-2 .header-search-toggle { order: 3; margin-left: 10px; flex: 0 0 auto; flex-shrink: 0; position: relative; z-index: 3; max-width: 100%; }';
+				css += '.header-content.header-layout-2 .header-cart-link { order: 4; margin-left: 10px; flex: 0 0 auto; flex-shrink: 0; position: relative; z-index: 3; max-width: 100%; }';
 			} else if ( newval === 'layout-3' || layoutSuffix === '3' ) {
 				css = '.header-content.header-layout-3 { justify-content: space-between; position: relative; align-items: center; min-height: 60px; }';
 				css += '.header-content.header-layout-3 .site-branding { order: 1; }';
@@ -1650,6 +1704,7 @@
 				css += '@media screen and (min-width: 768px) { .header-content.header-layout-3 .main-navigation ul { display: flex; justify-content: center; margin-left: 0; } }';
 				css += '.header-content.header-layout-3 .header-social-icons { order: 3; margin-left: auto; }';
 				css += '.header-content.header-layout-3 .header-search-toggle { order: 4; margin-left: 10px; }';
+				css += '.header-content.header-layout-3 .header-cart-link { order: 5; margin-left: 10px; }';
 			}
 			
 			updateDynamicCSS( 'header-layout', css );

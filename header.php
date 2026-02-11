@@ -89,6 +89,11 @@
 						<span class="screen-reader-text"><?php esc_html_e( 'Search', 'accepta' ); ?></span>
 					</button>
 				<?php endif; ?>
+				<?php
+				if ( class_exists( 'WooCommerce' ) && get_theme_mod( 'accepta_woo_display_header_cart', true ) && function_exists( 'accepta_woocommerce_cart_link' ) ) {
+					accepta_woocommerce_cart_link( true );
+				}
+				?>
 			</div><!-- .header-content -->
 
 			<?php if ( get_theme_mod( 'accepta_display_header_search', true ) ) : ?>
@@ -108,5 +113,33 @@
 			<?php endif; ?>
 		</div><!-- .container -->
 	</header><!-- #masthead -->
+
+	<?php
+	// Offcanvas minicart panel (slide from right) when WooCommerce and header cart are enabled.
+	if ( class_exists( 'WooCommerce' ) && get_theme_mod( 'accepta_woo_display_header_cart', true ) ) :
+		?>
+		<div id="accepta-minicart-offcanvas" class="accepta-minicart-offcanvas" aria-hidden="true">
+			<div class="accepta-minicart-offcanvas-overlay" data-accepta-minicart-close aria-label="<?php esc_attr_e( 'Close cart', 'accepta' ); ?>"></div>
+			<div class="accepta-minicart-offcanvas-panel">
+				<div class="accepta-minicart-offcanvas-header">
+					<h2 class="accepta-minicart-offcanvas-title"><?php esc_html_e( 'Cart', 'accepta' ); ?></h2>
+					<button type="button" class="accepta-minicart-offcanvas-close" data-accepta-minicart-close aria-label="<?php esc_attr_e( 'Close cart', 'accepta' ); ?>">
+						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+						</svg>
+					</button>
+				</div>
+				<div class="accepta-minicart-offcanvas-body">
+					<div class="woocommerce widget_shopping_cart">
+						<div class="widget_shopping_cart_content"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<?php
+	endif;
+	?>
+
+	<?php get_template_part( 'template-parts/hero-section' ); ?>
 
 	<div id="content" class="site-content">

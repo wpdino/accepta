@@ -26,21 +26,6 @@ function accepta_elementor_setup() {
 add_action( 'after_setup_theme', 'accepta_elementor_setup' );
 
 /**
- * Enqueue Elementor compatibility styles
- */
-function accepta_elementor_styles() {
-    if ( class_exists( '\Elementor\Plugin' ) ) {
-        wp_enqueue_style( 
-            'accepta-elementor',
-            get_template_directory_uri() . '/assets/css/elementor.css',
-            array(),
-            wp_get_theme()->get( 'Version' )
-        );
-    }
-}
-add_action( 'wp_enqueue_scripts', 'accepta_elementor_styles' );
-
-/**
  * Add Elementor Page Templates
  *
  * @param array $templates An array of page templates.

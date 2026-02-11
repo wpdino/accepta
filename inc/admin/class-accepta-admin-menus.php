@@ -103,16 +103,6 @@ class Accepta_Admin_Menus {
             'accepta-plugins',
             array( $this, 'plugins_page' )
         );
-        
-        // Import Demos subpage
-        add_submenu_page(
-            'accepta',
-            esc_html__( 'Import Demos', 'accepta' ),
-            esc_html__( 'Import Demos', 'accepta' ),
-            'manage_options',
-            'accepta-demos',
-            array( $this, 'demos_page' )
-        );
     }
 
     /**
@@ -127,12 +117,5 @@ class Accepta_Admin_Menus {
      */
     public function plugins_page() {
         require_once get_template_directory() . '/inc/admin/pages/plugins.php';
-    }
-
-    /**
-     * Render the Import Demos page content
-     */
-    public function demos_page() {
-        require_once get_template_directory() . '/inc/admin/pages/demos.php';
     }
 } 

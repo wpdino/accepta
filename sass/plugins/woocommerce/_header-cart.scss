@@ -1,0 +1,361 @@
+/**
+ * Header cart icon and minicart offcanvas (WooCommerce only).
+ * Loaded with woocommerce.css only when WooCommerce is active.
+ *
+ * After editing, run: npm run compile:woo-header-cart
+ * to update the header-cart block in assets/css/woocommerce.css.
+ */
+
+/* Hide duplicate/old-style cart so only our icon shows */
+.site-header .site-header-cart {
+	display: none !important;
+}
+
+.site-header .main-navigation a.cart-contents {
+	display: none !important;
+}
+
+.site-header .header-content a.cart-contents:not(.header-cart-link) {
+	display: none !important;
+}
+
+.site-header .header-content a.header-cart-link.cart-contents {
+	display: inline-flex !important;
+	visibility: visible !important;
+}
+
+/* Header cart link – same style as search and social icons */
+.header-cart-link {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 36px;
+	height: 36px;
+	background-color: transparent;
+	color: #2c3e50;
+	border-radius: 50%;
+	text-decoration: none;
+	transition: all 0.3s ease;
+	border: 1px solid rgba(44, 62, 80, 0.2);
+	padding: 0;
+	margin-left: 10px;
+	flex-shrink: 0;
+	position: relative;
+
+	svg {
+		width: 18px;
+		height: 18px;
+		transition: all 0.3s ease;
+		display: block;
+	}
+
+	&:hover {
+		background-color: $color__primary;
+		color: #fff;
+		border-color: $color__primary;
+		box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+		text-decoration: none;
+
+		svg {
+			color: #fff;
+			stroke: #fff;
+		}
+
+		.header-cart-count {
+			background-color: #fff;
+			color: $color__primary;
+		}
+	}
+
+	&:focus {
+		outline: 2px solid $color__primary;
+		outline-offset: 2px;
+	}
+}
+
+.header-cart-count {
+	position: absolute;
+	top: -8px;
+	right: -5px;
+	min-width: 18px;
+	height: 18px;
+	padding: 0 5px;
+	font-size: 11px;
+	font-weight: 600;
+	line-height: 18px;
+	text-align: center;
+	color: #fff;
+	background-color: $color__primary;
+	border-radius: 9px;
+}
+
+/* Minicart offcanvas panel (slide from right) */
+.accepta-minicart-offcanvas {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 99999;
+	visibility: hidden;
+	pointer-events: none;
+	transition: visibility 0.3s ease;
+
+	&.active {
+		visibility: visible;
+		pointer-events: auto;
+	}
+}
+
+.accepta-minicart-offcanvas-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.45);
+	opacity: 0;
+	transition: opacity 0.3s ease;
+}
+
+.accepta-minicart-offcanvas.active .accepta-minicart-offcanvas-overlay {
+	opacity: 1;
+}
+
+.accepta-minicart-offcanvas-panel {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 100%;
+	max-width: 400px;
+	height: 100%;
+	background: #fff;
+	box-shadow: -8px 0 32px rgba(0, 0, 0, 0.12);
+	transform: translateX(100%);
+	transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+}
+
+.accepta-minicart-offcanvas.active .accepta-minicart-offcanvas-panel {
+	transform: translateX(0);
+}
+
+.accepta-minicart-offcanvas-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 1.25rem 1.5rem;
+	border-bottom: 1px solid #e8e8e8;
+	flex-shrink: 0;
+	background: #fff;
+}
+
+.accepta-minicart-offcanvas-title {
+	margin: 0;
+	font-size: 1.375rem;
+	font-weight: 600;
+	color: #2c3e50;
+	letter-spacing: -0.02em;
+}
+
+.accepta-minicart-offcanvas-close {
+	width: 44px;
+	height: 44px;
+	padding: 0;
+	border: 1px solid #e0e0e0;
+	border-radius: 50%;
+	background: #f8f8f8;
+	color: #2c3e50;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+
+	&:hover {
+		background-color: $color__primary;
+		color: #fff;
+		border-color: $color__primary;
+	}
+
+	svg {
+		width: 20px;
+		height: 20px;
+	}
+}
+
+.accepta-minicart-offcanvas-body {
+	flex: 1;
+	overflow-y: auto;
+	overflow-x: hidden;
+	padding: 1.25rem 1.5rem;
+	-webkit-overflow-scrolling: touch;
+
+	.widget_shopping_cart_content {
+		padding: 0;
+	}
+
+	.woocommerce-mini-cart {
+		padding: 0;
+		margin: 0 0 1.25rem 0;
+		list-style: none;
+	}
+
+	.woocommerce-mini-cart-item {
+		display: flex;
+		align-items: flex-start;
+		gap: 0.75rem;
+		padding: 1rem 0;
+		border-bottom: 1px solid #eee;
+
+		&:last-child {
+			border-bottom: none;
+		}
+
+		> .remove {
+			flex-shrink: 0;
+			width: 28px;
+			height: 28px;
+			min-width: 28px;
+			padding: 0;
+			margin: 0;
+			margin-top: 0.25rem;
+			font-size: 0;
+			line-height: 1;
+			color: #888 !important;
+			background: #f5f5f5 !important;
+			border: 1px solid #e5e5e5 !important;
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			text-decoration: none !important;
+			transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+
+			&:hover {
+				color: #fff !important;
+				background: #c0392b !important;
+				border-color: #c0392b !important;
+			}
+
+			&::before {
+				content: "×";
+				font-size: 18px;
+				font-weight: 300;
+				line-height: 1;
+			}
+		}
+
+		> a:not(.remove) {
+			flex: 1;
+			min-width: 0;
+			display: flex;
+			align-items: flex-start;
+			gap: 0.75rem;
+			text-decoration: none;
+			color: #2c3e50;
+			flex-wrap: wrap;
+
+			&:hover {
+				color: $color__primary;
+			}
+		}
+
+		img {
+			width: 72px;
+			height: 72px;
+			min-width: 72px;
+			object-fit: cover;
+			border-radius: 6px;
+			border: 1px solid #eee;
+		}
+
+		.quantity {
+			flex-shrink: 0;
+			font-size: 0.8125rem;
+			color: #666;
+			font-weight: 400;
+			text-align: right;
+			white-space: nowrap;
+			margin-top: 0.25rem;
+
+			.amount {
+				font-weight: 600;
+				color: #2c3e50;
+			}
+		}
+
+		.woocommerce-Price-amount {
+			font-weight: 600;
+		}
+	}
+
+	.woocommerce-mini-cart__total {
+		margin: 0 0 1.25rem 0;
+		padding: 1rem 0;
+		border-top: 2px solid #eee;
+		font-size: 1.0625rem;
+		font-weight: 600;
+		color: #2c3e50;
+
+		.amount {
+			float: right;
+		}
+	}
+
+	.woocommerce-mini-cart__buttons {
+		margin: 0;
+		padding: 0;
+		border: none;
+
+		.button {
+			display: block;
+			width: 100%;
+			text-align: center;
+			padding: 0.875rem 1.25rem;
+			margin: 0 0 0.5rem 0;
+			border-radius: 6px;
+			text-decoration: none !important;
+			font-weight: 600;
+			font-size: 0.9375rem;
+			transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+			border: none;
+			cursor: pointer;
+			box-sizing: border-box;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+
+			&.wc-forward {
+				background: #f0f0f0;
+				color: #2c3e50;
+
+				&:hover {
+					background: #e0e0e0;
+					color: #2c3e50;
+				}
+			}
+
+			&.checkout {
+				background: $color__primary;
+				color: #fff;
+
+				&:hover {
+					background: $color__green-dark;
+					color: #fff;
+				}
+			}
+		}
+	}
+
+	.woocommerce-mini-cart__empty-message {
+		margin: 0;
+		padding: 2rem 0;
+		color: #666;
+		font-size: 0.9375rem;
+		text-align: center;
+	}
+}

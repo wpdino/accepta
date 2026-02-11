@@ -1,0 +1,54 @@
+/*--------------------------------------------------------------
+# Full Width Page Template (Elementor-ready)
+--------------------------------------------------------------*/
+/* Remove all width restrictions and paddings so Elementor controls layout. */
+body.accepta-page-template-full-width {
+
+	/* Remove site-content container constraints (max-width 1200px, padding). */
+	#content,
+	.site-content {
+		max-width: none;
+		width: 100%;
+		margin: 0;
+		padding: 0;
+	}
+
+	.content-wrap--full-width {
+		max-width: none;
+		width: 100%;
+		margin: 0;
+		padding: 0;
+	}
+
+	.site-main {
+		max-width: none;
+		width: 100%;
+		padding: 0;
+	}
+
+	.site-main > article,
+	.site-main > article.page {
+		max-width: none;
+		margin: 0;
+		padding: 0;
+		border-radius: 0;
+		box-shadow: none;
+	}
+
+	.entry-content {
+		max-width: none;
+		margin-top: 0;
+
+		/* Let Elementor/block editor control inner width. */
+		> .container,
+		> .alignwide,
+		> .alignfull {
+			max-width: none;
+		}
+	}
+
+	/* Elementor canvas: remove theme constraints. */
+	.elementor-page .elementor-section.elementor-section-stretched {
+		max-width: 100vw;
+	}
+}

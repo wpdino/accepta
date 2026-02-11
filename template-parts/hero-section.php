@@ -6,7 +6,7 @@
  */
 
 // Get hero settings
-$hero_enabled = get_theme_mod( 'accepta_hero_enabled', false );
+$hero_enabled = get_theme_mod( 'accepta_hero_enabled', true );
 if ( ! $hero_enabled ) {
     return;
 }
@@ -16,7 +16,7 @@ if ( ! is_front_page() ) {
     return;
 }
 
-$hero_height = get_theme_mod( 'accepta_hero_height', 'min-height' );
+$hero_height = get_theme_mod( 'accepta_hero_height', 'fullscreen' );
 $hero_min_height = get_theme_mod( 'accepta_hero_min_height', 500 );
 
 // Get background data from unified control (JSON format)
@@ -36,7 +36,7 @@ if ( ! is_array( $hero_bg ) ) {
 		'size'              => 'cover',
 		'repeat'            => 'no-repeat',
 		'position'          => 'center',
-		'attachment'        => 'scroll',
+		'attachment'        => 'parallax',
 		'overlay_enabled'   => true,
 		'overlay_color'     => '#6F9C50',
 		'overlay_opacity'   => '0.2',
@@ -65,9 +65,13 @@ $bg_video_controls = isset( $hero_bg['video_controls'] ) ? (bool) $hero_bg['vide
 $bg_overlay_enabled = isset( $hero_bg['overlay_enabled'] ) ? (bool) $hero_bg['overlay_enabled'] : false;
 $bg_overlay_color = isset( $hero_bg['overlay_color'] ) ? $hero_bg['overlay_color'] : '#6F9C50';
 $bg_overlay_opacity = isset( $hero_bg['overlay_opacity'] ) ? floatval( $hero_bg['overlay_opacity'] ) : 0.2;
+$bg_attachment = isset( $hero_bg['attachment'] ) ? $hero_bg['attachment'] : 'scroll';
+$bg_size = isset( $hero_bg['size'] ) ? $hero_bg['size'] : 'cover';
+$bg_position = isset( $hero_bg['position'] ) ? $hero_bg['position'] : 'center';
+$use_parallax = ( $bg_type === 'image' && ! empty( $bg_image ) && $bg_attachment === 'parallax' );
 
 $hero_heading = get_theme_mod( 'accepta_hero_heading', 'Build Bold! Build Beautiful!' );
-$hero_text = get_theme_mod( 'accepta_hero_text', 'Accepta is a flexible, modern WordPress theme engineered for Elementor.' );
+$hero_text = get_theme_mod( 'accepta_hero_text', 'Accepta is a modern WordPress theme built to stand out: fullscreen hero, smooth parallax backgrounds, <br/>and an overlay header that appears as you scroll. Change layout, colors, and fonts in the Customizer—no coding required.' );
 $hero_button_text = get_theme_mod( 'accepta_hero_button_text', 'Check Now' );
 $hero_button_url = get_theme_mod( 'accepta_hero_button_url', 'https://wpdino.com' );
 $hero_button_style = get_theme_mod( 'accepta_hero_button_style', 'outline' );
@@ -78,7 +82,7 @@ $hero_text_color = get_theme_mod( 'accepta_hero_text_color', '#ffffff' );
 $hero_text_size = get_theme_mod( 'accepta_hero_text_size', 18 );
 
 // Get width setting
-$hero_width = get_theme_mod( 'accepta_hero_width', 'boxed' );
+$hero_width = get_theme_mod( 'accepta_hero_width', 'fullwidth' );
 
 // Calculate width class
 $width_class = '';
@@ -106,11 +110,16 @@ if ( $bg_overlay_enabled ) {
 }
 ?>
 
-<section class="accepta-hero-section <?php echo esc_attr( $width_class ); ?> <?php echo esc_attr( $height_class ); ?>" 
+<section class="accepta-hero-section <?php echo esc_attr( $width_class ); ?> <?php echo esc_attr( $height_class ); ?><?php echo $use_parallax ? ' accepta-hero-has-parallax' : ''; ?>" 
          data-hero-width="<?php echo esc_attr( $hero_width ); ?>"
          data-hero-height="<?php echo esc_attr( $hero_height ); ?>"
          data-hero-min-height="<?php echo esc_attr( $hero_min_height ); ?>"
          data-hero-fullscreen="<?php echo ( $hero_height === 'fullscreen' ) ? 'true' : 'false'; ?>">
+    
+    <?php if ( $use_parallax ) : ?>
+        <div class="accepta-hero-parallax-bg" 
+             style="background-image: url(<?php echo esc_url( $bg_image ); ?>); background-size: <?php echo esc_attr( $bg_size ); ?>; background-position: <?php echo esc_attr( $bg_position ); ?>; background-repeat: no-repeat;"></div>
+    <?php endif; ?>
     
     <?php if ( $bg_type === 'video' && ( ! empty( $bg_video_url ) || ! empty( $bg_video_mp4 ) ) ) : ?>
         <div class="accepta-hero-video-background">

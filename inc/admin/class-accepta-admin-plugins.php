@@ -70,13 +70,13 @@ class Accepta_Admin_Plugins {
                 'slug' => 'elementor',
                 'description' => esc_html__( 'Create beautiful designs with a powerful, responsive page builder. Elementor is essential for the full Accepta theme experience.', 'accepta' ),
                 'icon' => 'elementor.png',
-                'required' => true,
+                'required' => false,
             ),
-            'one-click-demo-import' => array(
-                'name' => 'One Click Demo Import',
-                'slug' => 'one-click-demo-import',
-                'description' => esc_html__( 'Import demo content, widgets and theme settings with one click.', 'accepta' ),
-                'icon' => 'ocdi.png',
+            'dinopack-for-elementor' => array(
+                'name' => 'DinoPack for Elementor',
+                'slug' => 'dinopack-for-elementor',
+                'description' => esc_html__( 'Advanced Elementor widgets: animated headings, blog displays, galleries, WooCommerce products, and more.', 'accepta' ),
+                'icon' => '',
                 'required' => false,
             ),
             'contact-form-7' => array(

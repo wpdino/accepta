@@ -162,11 +162,11 @@ function accepta_customize_register( $wp_customize ) {
 		)
 	);
 
-	// Overlay Header Setting (default off; starter preview shows it on)
+	// Overlay Header Setting (default on)
 	$wp_customize->add_setting(
 		'accepta_transparent_header',
 		array(
-			'default'           => false,
+			'default'           => true,
 			'sanitize_callback' => 'wp_validate_boolean',
 			'transport'         => 'postMessage',
 		)
@@ -203,7 +203,7 @@ function accepta_customize_register( $wp_customize ) {
 				'section'     => 'accepta_header_section',
 				'priority'    => 20,
 				'active_callback' => function() {
-					return get_theme_mod( 'accepta_transparent_header', false );
+					return get_theme_mod( 'accepta_transparent_header', true );
 				},
 			)
 		)
@@ -459,11 +459,11 @@ function accepta_customize_register( $wp_customize ) {
 		)
 	);
 
-	// Hero Enabled (default off; starter content preview shows it on)
+	// Hero Enabled (default on)
 	$wp_customize->add_setting(
 		'accepta_hero_enabled',
 		array(
-			'default'           => false,
+			'default'           => true,
 			'sanitize_callback' => 'wp_validate_boolean',
 			'transport'         => 'refresh',
 		)
@@ -480,11 +480,11 @@ function accepta_customize_register( $wp_customize ) {
 		)
 	);
 
-	// Hero Height Type (default min-height; starter preview uses fullscreen)
+	// Hero Height Type (default fullscreen)
 	$wp_customize->add_setting(
 		'accepta_hero_height',
 		array(
-			'default'           => 'min-height',
+			'default'           => 'fullscreen',
 			'sanitize_callback' => 'accepta_sanitize_hero_height',
 			'transport'         => 'postMessage',
 		)
@@ -536,11 +536,11 @@ function accepta_customize_register( $wp_customize ) {
 		)
 	);
 
-	// Hero Width Setting (default boxed; starter preview uses fullwidth)
+	// Hero Width Setting (default fullwidth for fullscreen)
 	$wp_customize->add_setting(
 		'accepta_hero_width',
 		array(
-			'default'           => 'boxed',
+			'default'           => 'fullwidth',
 			'sanitize_callback' => 'sanitize_text_field',
 			'transport'         => 'postMessage',
 		)
@@ -581,7 +581,7 @@ function accepta_customize_register( $wp_customize ) {
 		'size'              => 'cover',
 		'repeat'            => 'no-repeat',
 		'position'          => 'center',
-		'attachment'        => 'scroll',
+		'attachment'        => 'parallax',
 		'overlay_enabled'   => true,
 		'overlay_color'     => '#6F9C50',
 		'overlay_opacity'    => '0.2',
@@ -652,7 +652,7 @@ function accepta_customize_register( $wp_customize ) {
 	$wp_customize->add_setting(
 		'accepta_hero_text',
 		array(
-			'default'           => 'Accepta is a flexible, modern WordPress theme engineered for Elementor.',
+			'default'           => 'Accepta is a modern WordPress theme built to stand out: fullscreen hero, smooth parallax backgrounds, and an overlay header that appears as you scroll. Change layout, colors, and fonts in the Customizer—no coding required.',
 			'sanitize_callback' => 'wp_kses_post',
 			'transport'         => 'postMessage',
 		)
@@ -1608,6 +1608,121 @@ function accepta_customize_register( $wp_customize ) {
 			)
 		);
 	}
+
+	// WooCommerce Panel (only when WooCommerce is active)
+	if ( class_exists( 'WooCommerce' ) ) {
+		$wp_customize->add_panel(
+			'accepta_woocommerce_panel',
+			array(
+				'title'       => __( 'WooCommerce', 'accepta' ),
+				'description' => __( 'Customize how WooCommerce is displayed in the theme: header minicart, shop, and single product.', 'accepta' ),
+				'priority'    => 125,
+			)
+		);
+
+		// Header Minicart Section
+		$wp_customize->add_section(
+			'accepta_woo_header_minicart',
+			array(
+				'title'       => __( 'Header Minicart', 'accepta' ),
+				'description' => __( 'Settings for the cart icon and minicart in the header.', 'accepta' ),
+				'panel'       => 'accepta_woocommerce_panel',
+				'priority'    => 10,
+			)
+		);
+
+		$wp_customize->add_setting(
+			'accepta_woo_display_header_cart',
+			array(
+				'default'           => true,
+				'sanitize_callback' => 'wp_validate_boolean',
+				'transport'         => 'refresh',
+			)
+		);
+		$wp_customize->add_control(
+			'accepta_woo_display_header_cart',
+			array(
+				'label'       => __( 'Display cart icon in header', 'accepta' ),
+				'description' => __( 'Show the WooCommerce cart icon and item count in the header.', 'accepta' ),
+				'section'     => 'accepta_woo_header_minicart',
+				'type'        => 'checkbox',
+				'priority'    => 10,
+			)
+		);
+
+		// Shop Section
+		$wp_customize->add_section(
+			'accepta_woo_shop',
+			array(
+				'title'       => __( 'Shop', 'accepta' ),
+				'description' => __( 'Settings for the main shop and product archive pages.', 'accepta' ),
+				'panel'       => 'accepta_woocommerce_panel',
+				'priority'    => 20,
+			)
+		);
+
+		$wp_customize->add_setting(
+			'accepta_woo_shop_columns',
+			array(
+				'default'           => 4,
+				'sanitize_callback' => 'absint',
+				'transport'         => 'refresh',
+			)
+		);
+		$wp_customize->add_control(
+			'accepta_woo_shop_columns',
+			array(
+				'label'       => __( 'Products per row', 'accepta' ),
+				'description' => __( 'Number of products to show per row on shop and archive pages.', 'accepta' ),
+				'section'     => 'accepta_woo_shop',
+				'type'        => 'select',
+				'choices'     => array(
+					'2' => '2',
+					'3' => '3',
+					'4' => '4',
+				),
+				'priority'    => 10,
+			)
+		);
+
+		// Single Product Section
+		$wp_customize->add_section(
+			'accepta_woo_single_product',
+			array(
+				'title'       => __( 'Single Product', 'accepta' ),
+				'description' => __( 'Settings for the single product page layout and display.', 'accepta' ),
+				'panel'       => 'accepta_woocommerce_panel',
+				'priority'    => 30,
+			)
+		);
+
+		$wp_customize->add_setting(
+			'accepta_woo_single_sidebar',
+			array(
+				'default'           => 'none',
+				'sanitize_callback' => function( $input ) {
+					$valid = array( 'none', 'left', 'right' );
+					return in_array( $input, $valid, true ) ? $input : 'none';
+				},
+				'transport'         => 'refresh',
+			)
+		);
+		$wp_customize->add_control(
+			'accepta_woo_single_sidebar',
+			array(
+				'label'       => __( 'Sidebar on single product', 'accepta' ),
+				'description' => __( 'Show a sidebar on single product pages.', 'accepta' ),
+				'section'     => 'accepta_woo_single_product',
+				'type'        => 'select',
+				'choices'     => array(
+					'none'  => __( 'No sidebar', 'accepta' ),
+					'left'  => __( 'Sidebar left', 'accepta' ),
+					'right' => __( 'Sidebar right', 'accepta' ),
+				),
+				'priority'    => 10,
+			)
+		);
+	}
 	
 	// Add Main Footer Panel
 	$wp_customize->add_panel(
@@ -2295,7 +2410,7 @@ function accepta_sanitize_background( $input ) {
 	$sanitized['repeat'] = isset( $input['repeat'] ) && in_array( $input['repeat'], $valid_repeats, true ) ? $input['repeat'] : 'no-repeat';
 	$valid_positions = array( 'left top', 'left center', 'left bottom', 'center top', 'center center', 'center bottom', 'right top', 'right center', 'right bottom', 'center' );
 	$sanitized['position'] = isset( $input['position'] ) && in_array( $input['position'], $valid_positions, true ) ? $input['position'] : 'center';
-	$valid_attachments = array( 'scroll', 'fixed' );
+	$valid_attachments = array( 'scroll', 'fixed', 'parallax' );
 	$sanitized['attachment'] = isset( $input['attachment'] ) && in_array( $input['attachment'], $valid_attachments, true ) ? $input['attachment'] : 'scroll';
 	
 	// Sanitize overlay options
@@ -2660,7 +2775,7 @@ function accepta_footer_styling_css() {
  */
 function accepta_sticky_header_css() {
 	$sticky_header = get_theme_mod( 'accepta_sticky_header', true );
-	$transparent_header = get_theme_mod( 'accepta_transparent_header', false );
+	$transparent_header = get_theme_mod( 'accepta_transparent_header', true );
 	$scrolled_bg = get_theme_mod( 'accepta_scrolled_header_bg', '#ffffff' );
 	$header_layout = get_theme_mod( 'accepta_header_layout', 'layout-3' );
 	$header_width = get_theme_mod( 'accepta_header_width', 'boxed' );
@@ -2688,6 +2803,7 @@ function accepta_sticky_header_css() {
 		$css .= '.header-content.header-layout-1 .main-navigation ul { justify-content: flex-end; margin-left: 0; flex-wrap: wrap; min-width: 0; }';
 		$css .= '.header-content.header-layout-1 .header-social-icons { order: 3; flex: 0 0 auto; min-width: 0; flex-shrink: 0; }';
 		$css .= '.header-content.header-layout-1 .header-search-toggle { order: 4; margin-left: 10px; flex: 0 0 auto; flex-shrink: 0; }';
+		$css .= '.header-content.header-layout-1 .header-cart-link { order: 5; margin-left: 10px; flex: 0 0 auto; flex-shrink: 0; }';
 	}
 	
 	// Layout 2: Menu near logo - LOGO Menu | Social | Search
@@ -2698,6 +2814,7 @@ function accepta_sticky_header_css() {
 		$css .= '.header-content.header-layout-2 .main-navigation ul { justify-content: flex-start; margin-left: 0; flex-wrap: wrap; min-width: 0; }';
 		$css .= '.header-content.header-layout-2 .header-social-icons { order: 2; margin-left: auto; flex: 0 0 auto; min-width: 0; flex-shrink: 0; position: relative; z-index: 2; max-width: 100%; }';
 		$css .= '.header-content.header-layout-2 .header-search-toggle { order: 3; margin-left: 10px; flex: 0 0 auto; flex-shrink: 0; position: relative; z-index: 3; max-width: 100%; }';
+		$css .= '.header-content.header-layout-2 .header-cart-link { order: 4; margin-left: 10px; flex: 0 0 auto; flex-shrink: 0; position: relative; z-index: 3; max-width: 100%; }';
 	}
 	
 	// Layout 3: Menu centered - LOGO | Menu (center) | Social | Search
@@ -2710,6 +2827,7 @@ function accepta_sticky_header_css() {
 		$css .= '@media screen and (min-width: 768px) { .header-content.header-layout-3 .main-navigation ul { display: flex; justify-content: center; margin-left: 0; } }';
 		$css .= '.header-content.header-layout-3 .header-social-icons { order: 3; margin-left: auto; }';
 		$css .= '.header-content.header-layout-3 .header-search-toggle { order: 4; margin-left: 10px; }';
+		$css .= '.header-content.header-layout-3 .header-cart-link { order: 5; margin-left: 10px; }';
 	}
 	
 	if ( ! $sticky_header ) {
@@ -2791,10 +2909,13 @@ function accepta_sticky_header_css() {
 		$css .= $overlay_prefix . '.site-header:not(.scrolled) .header-social-icons .social-icon { color: ' . esc_attr( $transparent_text_color ) . '; }';
 		$css .= $overlay_prefix . '.site-header:not(.scrolled) .header-search-toggle { color: ' . esc_attr( $transparent_text_color ) . '; }';
 		$css .= $overlay_prefix . '.site-header:not(.scrolled) .header-search-toggle svg { color: ' . esc_attr( $transparent_text_color ) . '; stroke: ' . esc_attr( $transparent_text_color ) . '; }';
+		$css .= $overlay_prefix . '.site-header:not(.scrolled) .header-cart-link { color: ' . esc_attr( $transparent_text_color ) . '; }';
+		$css .= $overlay_prefix . '.site-header:not(.scrolled) .header-cart-link svg { color: ' . esc_attr( $transparent_text_color ) . '; stroke: ' . esc_attr( $transparent_text_color ) . '; }';
 		$css .= $overlay_prefix . '.site-header:not(.scrolled) .header-search-close { color: ' . esc_attr( $transparent_text_color ) . '; }';
 		$css .= $overlay_prefix . '.site-header:not(.scrolled) .header-social-icons .social-icon { border-color: ' . esc_attr( $transparent_border_color ) . '; }';
 		$css .= $overlay_prefix . '.site-header:not(.scrolled) .header-social-icons .social-icon .social-icon-svg { filter: brightness(0) invert(1); }';
 		$css .= $overlay_prefix . '.site-header:not(.scrolled) .header-search-toggle { border-color: ' . esc_attr( $transparent_border_color ) . '; }';
+		$css .= $overlay_prefix . '.site-header:not(.scrolled) .header-cart-link { border-color: ' . esc_attr( $transparent_border_color ) . '; }';
 		$css .= $overlay_prefix . '.site-header:not(.scrolled) .custom-logo-link img { filter: brightness(0) invert(1); }';
 		$css .= $overlay_prefix . '.site-header.scrolled .custom-logo-link img { filter: none; }';
 
@@ -2823,6 +2944,8 @@ function accepta_sticky_header_css() {
 		$css .= '.site-header:not(.transparent-header) .header-social-icons .social-icon .social-icon-svg { filter: none; }';
 		$css .= '.site-header:not(.transparent-header) .header-search-toggle { color: #2c3e50; border-color: rgba(44, 62, 80, 0.2); }';
 		$css .= '.site-header:not(.transparent-header) .header-search-toggle svg { color: #2c3e50; stroke: #2c3e50; }';
+		$css .= '.site-header:not(.transparent-header) .header-cart-link { color: #2c3e50; border-color: rgba(44, 62, 80, 0.2); }';
+		$css .= '.site-header:not(.transparent-header) .header-cart-link svg { color: #2c3e50; stroke: #2c3e50; }';
 	}
 	
 	if ( $sticky_header && ! $transparent_header ) {
@@ -2849,7 +2972,7 @@ function accepta_sticky_header_css() {
  */
 function accepta_hero_section_css() {
 	$css = '';
-	$hero_enabled = get_theme_mod( 'accepta_hero_enabled', false );
+	$hero_enabled = get_theme_mod( 'accepta_hero_enabled', true );
 	
 	if ( ! $hero_enabled ) {
 		return $css;
@@ -2857,14 +2980,15 @@ function accepta_hero_section_css() {
 	
 	// Width settings
 	$hero_width = get_theme_mod( 'accepta_hero_width', 'boxed' );
+	$container_width = get_theme_mod( 'accepta_container_width', 1200 );
 	
 	if ( $hero_width === 'fullwidth' ) {
 		// Full width - extends to viewport edges
 		$css .= '.accepta-hero-section.accepta-hero-fullwidth { width: 100vw; max-width: 100vw; margin-left: calc(-50vw + 50%); position: relative; left: 0; }';
 		$css .= '.accepta-hero-section.accepta-hero-fullwidth .accepta-hero-content-wrapper { width: 100%; }';
 	} else {
-		// Boxed (default) - uses theme container width
-		$css .= '.accepta-hero-section.accepta-hero-boxed { width: 100%; }';
+		// Boxed - constrains hero and background to container width, centered
+		$css .= '.accepta-hero-section.accepta-hero-boxed { width: 100%; max-width: ' . absint( $container_width ) . 'px; margin-left: auto; margin-right: auto; }';
 	}
 	
 	// Height settings
@@ -2932,7 +3056,7 @@ function accepta_hero_section_css() {
 			'size'           => 'cover',
 			'repeat'         => 'no-repeat',
 			'position'       => 'center',
-			'attachment'     => 'scroll',
+			'attachment'     => 'parallax',
 		);
 	}
 	
@@ -2958,13 +3082,21 @@ function accepta_hero_section_css() {
 		}
 	} elseif ( $bg_type === 'image' ) {
 		$bg_image = isset( $hero_background['image'] ) ? $hero_background['image'] : '';
+		$bg_attachment = isset( $hero_background['attachment'] ) ? $hero_background['attachment'] : 'scroll';
 		if ( ! empty( $bg_image ) ) {
 			$bg_size = isset( $hero_background['size'] ) ? esc_attr( $hero_background['size'] ) : 'cover';
 			$bg_repeat = isset( $hero_background['repeat'] ) ? esc_attr( $hero_background['repeat'] ) : 'no-repeat';
 			$bg_position = isset( $hero_background['position'] ) ? esc_attr( $hero_background['position'] ) : 'center';
-			$bg_attachment = isset( $hero_background['attachment'] ) ? esc_attr( $hero_background['attachment'] ) : 'scroll';
-			
-			$css .= '.accepta-hero-section { background-image: url(' . esc_url( $bg_image ) . '); background-size: ' . $bg_size . '; background-repeat: ' . $bg_repeat . '; background-position: ' . $bg_position . '; background-attachment: ' . $bg_attachment . '; }';
+			if ( $bg_attachment === 'parallax' ) {
+				// Parallax: background is on .accepta-hero-parallax-bg (template), add structure CSS only
+				$css .= '.accepta-hero-section.accepta-hero-has-parallax { position: relative; overflow: hidden; }';
+				$css .= '.accepta-hero-section .accepta-hero-parallax-bg { position: absolute; top: -20%; left: 0; right: 0; height: 140%; z-index: 0; will-change: transform; }';
+				$css .= '.accepta-hero-section.accepta-hero-has-parallax .accepta-hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }';
+				$css .= '.accepta-hero-section .accepta-hero-content-wrapper { position: relative; z-index: 2; }';
+			} else {
+				// Scroll or fixed: apply background directly to section
+				$css .= '.accepta-hero-section { background-image: url(' . esc_url( $bg_image ) . '); background-size: ' . $bg_size . '; background-repeat: ' . $bg_repeat . '; background-position: ' . $bg_position . '; background-attachment: ' . esc_attr( $bg_attachment ) . '; }';
+			}
 		}
 	}
 	// Note: Video backgrounds are handled via inline styles in the template
@@ -3142,7 +3274,12 @@ function accepta_layout_css() {
 			$css .= '.content-sidebar-wrap .widget-area { order: 2; grid-column: 2; width: 300px; }';
 			break;
 	}
-	
+
+	// WooCommerce and any template using content-sidebar-wrap--no-sidebar: full width, no sidebar.
+	$css .= '.content-sidebar-wrap--no-sidebar { display: block; }';
+	$css .= '.content-sidebar-wrap--no-sidebar .site-main { width: 100%; max-width: 100%; }';
+	$css .= '.content-sidebar-wrap--no-sidebar .widget-area { display: none; }';
+
 	// Content padding
 	$padding_json = get_theme_mod( 'accepta_content_padding', '' );
 	$padding = json_decode( $padding_json, true );

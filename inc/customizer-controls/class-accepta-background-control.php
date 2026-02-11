@@ -234,10 +234,13 @@ class Accepta_Background_Control extends WP_Customize_Control {
 					</label>
 					
 					<label>
-						<span class="customize-control-title"><?php esc_html_e( 'Attachment', 'accepta' ); ?></span>
+						<span class="customize-control-title"><?php esc_html_e( 'Background Effect', 'accepta' ); ?></span>
 						<select class="accepta-background-image-attachment">
 							<option value="scroll" <?php selected( $attachment, 'scroll' ); ?>><?php esc_html_e( 'Scroll', 'accepta' ); ?></option>
 							<option value="fixed" <?php selected( $attachment, 'fixed' ); ?>><?php esc_html_e( 'Fixed', 'accepta' ); ?></option>
+							<?php if ( $this->id === 'accepta_hero_background' ) : ?>
+							<option value="parallax" <?php selected( $attachment, 'parallax' ); ?>><?php esc_html_e( 'Parallax', 'accepta' ); ?></option>
+							<?php endif; ?>
 						</select>
 					</label>
 				</div>

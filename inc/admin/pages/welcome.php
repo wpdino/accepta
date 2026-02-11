@@ -116,7 +116,6 @@ $menus = $admin->get_module('menus');
         
         <div class="accepta-welcome-actions">
             <a href="<?php echo esc_url( admin_url( 'admin.php?page=accepta-plugins' ) ); ?>" class="button button-primary"><?php esc_html_e( 'Install Recommended Plugins', 'accepta' ); ?></a>
-            <a href="<?php echo esc_url( admin_url( 'admin.php?page=accepta-demos' ) ); ?>" class="button button-primary"><?php esc_html_e( 'Import Demo Content', 'accepta' ); ?></a>
         </div>
         
         <div class="accepta-next-steps">

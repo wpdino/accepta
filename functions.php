@@ -224,12 +224,12 @@ function accepta_scripts() {
 		'6.4.0' 
 	);
     
-    // Register WooCommerce styles if WooCommerce is active
+    // Register WooCommerce styles if WooCommerce is active (load after WooCommerce default styles)
     if ( class_exists( 'WooCommerce' ) ) {
         wp_enqueue_style( 
 			'accepta-woocommerce-style', 
 			get_template_directory_uri() . '/assets/css/woocommerce.css', 
-			array('accepta-style'), 
+			array( 'accepta-style', 'woocommerce-layout' ), 
 			_ACCEPTA_VERSION 
 		);
         
@@ -264,7 +264,7 @@ function accepta_scripts() {
 	);
     
     // Localize script with sticky header and transparent header settings
-    $transparent_header = get_theme_mod( 'accepta_transparent_header', false );
+    $transparent_header = get_theme_mod( 'accepta_transparent_header', true );
     $scrolled_bg = get_theme_mod( 'accepta_scrolled_header_bg', '#ffffff' );
     $scrolled_bg_opacity = get_theme_mod( 'accepta_scrolled_header_bg_opacity', '1' );
     $transparent_text_color = get_theme_mod( 'accepta_transparent_header_text_color', '#ffffff' );
@@ -298,6 +298,18 @@ function accepta_scripts() {
         wp_enqueue_script(
             'accepta-header-search',
             get_template_directory_uri() . '/assets/js/header-search.js',
+            array(),
+            _ACCEPTA_VERSION,
+            true
+        );
+    }
+
+    // Enqueue minicart offcanvas script and cart fragments when WooCommerce and header cart are enabled
+    if ( class_exists( 'WooCommerce' ) && get_theme_mod( 'accepta_woo_display_header_cart', true ) ) {
+        wp_enqueue_script( 'wc-cart-fragments' );
+        wp_enqueue_script(
+            'accepta-minicart-offcanvas',
+            get_template_directory_uri() . '/assets/js/minicart-offcanvas.js',
             array(),
             _ACCEPTA_VERSION,
             true

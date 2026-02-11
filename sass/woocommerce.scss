@@ -38,6 +38,11 @@ $woocommerce__color-info: #3d9cd2;
 @import "plugins/woocommerce/components";
 
 /**
+ * Header cart icon and minicart offcanvas (loads only when WooCommerce is active)
+ */
+@import "plugins/woocommerce/header-cart";
+
+/**
  * WooCommerce widgets
  */
 @import "plugins/woocommerce/widgets";

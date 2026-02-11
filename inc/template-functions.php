@@ -23,7 +23,7 @@ function accepta_body_classes( $classes ) {
 	}
 
 	// Overlay header: apply when front page has customizer hero enabled.
-	if ( is_front_page() && get_theme_mod( 'accepta_hero_enabled', false ) ) {
+	if ( is_front_page() && get_theme_mod( 'accepta_hero_enabled', true ) ) {
 		$classes[] = 'accepta-has-hero';
 	}
 
@@ -32,8 +32,8 @@ function accepta_body_classes( $classes ) {
 		$classes[] = 'accepta-front-page-full-width';
 	}
 
-	// Full-width page template (no sidebar).
-	if ( is_page_template( 'page-templates/full-width.php' ) ) {
+	// Full-width page templates (no sidebar).
+	if ( is_page_template( 'page-templates/full-width.php' ) || is_page_template( 'page-templates/full-width-no-paddings.php' ) ) {
 		$classes[] = 'accepta-page-template-full-width';
 	}
 

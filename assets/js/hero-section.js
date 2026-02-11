@@ -229,7 +229,64 @@
                 }
             }
         });
+
+        initParallax();
     }
+
+    var parallaxScrollHandler = null;
+
+    /**
+     * Initialize parallax scroll effect for hero background.
+     * Can be called again when parallax div is added dynamically (e.g. Customizer).
+     */
+    function initParallax() {
+        var parallaxBgs = document.querySelectorAll('.accepta-hero-parallax-bg');
+        if (!parallaxBgs.length) return;
+
+        var parallaxFactor = 0.4;
+        var ticking = false;
+
+        function updateParallax() {
+            var scrollY = window.pageYOffset || document.documentElement.scrollTop;
+            document.querySelectorAll('.accepta-hero-parallax-bg').forEach(function(bg) {
+                var hero = bg.closest('.accepta-hero-section');
+                if (!hero) return;
+                var heroRect = hero.getBoundingClientRect();
+                var heroTop = heroRect.top + scrollY;
+                var heroHeight = hero.offsetHeight;
+
+                var offset = 0;
+                if (scrollY > heroTop + heroHeight) {
+                    offset = heroHeight * parallaxFactor;
+                } else if (scrollY > heroTop) {
+                    offset = (scrollY - heroTop) * parallaxFactor;
+                }
+                bg.style.transform = 'translate3d(0, ' + offset + 'px, 0)';
+            });
+            ticking = false;
+        }
+
+        function onScroll() {
+            if (!ticking) {
+                window.requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        }
+
+        // Remove old listeners if re-initializing (Customizer case)
+        if (parallaxScrollHandler) {
+            window.removeEventListener('scroll', parallaxScrollHandler, { passive: true });
+            window.removeEventListener('resize', parallaxScrollHandler);
+        }
+        parallaxScrollHandler = onScroll;
+
+        window.addEventListener('scroll', parallaxScrollHandler, { passive: true });
+        window.addEventListener('resize', parallaxScrollHandler);
+        updateParallax();
+    }
+
+    // Re-init when Customizer dynamically adds parallax div
+    document.addEventListener('accepta-parallax-init', initParallax);
 
     // Initialize when DOM is ready
     if (document.readyState === 'loading') {
