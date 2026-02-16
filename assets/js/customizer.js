@@ -193,21 +193,102 @@
 				case 'left':
 					css = '.content-sidebar-wrap { display: grid; grid-template-columns: 300px 1fr; gap: 30px; flex-wrap: nowrap; }';
 					css += '.content-sidebar-wrap .site-main { order: 2; grid-column: 2; }';
-					css += '.content-sidebar-wrap .widget-area { order: 1; grid-column: 1; width: 300px; }';
+					css += '.content-sidebar-wrap .widget-area { display: block; order: 1; grid-column: 1; width: 300px; }';
 					break;
 				case 'right':
 					css = '.content-sidebar-wrap { display: grid; grid-template-columns: 1fr 300px; gap: 30px; flex-wrap: nowrap; }';
 					css += '.content-sidebar-wrap .site-main { order: 1; grid-column: 1; }';
-					css += '.content-sidebar-wrap .widget-area { order: 2; grid-column: 2; width: 300px; }';
+					css += '.content-sidebar-wrap .widget-area { display: block; order: 2; grid-column: 2; width: 300px; }';
 					break;
 				case 'none':
 					css = '.content-sidebar-wrap { display: block; }';
 					css += '.content-sidebar-wrap .widget-area { display: none; }';
-					css += '.content-sidebar-wrap .site-main { width: 100%; }';
+					css += '.content-sidebar-wrap .site-main { width: 100%; max-width: 100%; }';
 					break;
 			}
 			
 			updateDynamicCSS( 'sidebar-layout', css );
+		} );
+	} );
+
+	// Content Box Shadow Live Preview (uses body class for front page coverage)
+	wp.customize( 'accepta_content_box_shadow', function( value ) {
+		value.bind( function( newval ) {
+			var $body = $( 'body' );
+			var sidebarLayout = wp.customize( 'accepta_sidebar_layout' ) ? wp.customize( 'accepta_sidebar_layout' ).get() : 'none';
+			var hasSidebar = sidebarLayout === 'left' || sidebarLayout === 'right';
+			var articleSelector = 'body:not(.accepta-page-template-full-width) .site-main > article:not(.sticky)';
+			var css = '';
+			
+			// Update body class for full coverage (including front page)
+			$body.removeClass( 'accepta-content-box-shadow-default accepta-content-box-shadow-only-with-sidebar accepta-content-box-shadow-none' );
+			$body.addClass( 'accepta-content-box-shadow-' + newval );
+			
+			switch( newval ) {
+				case 'default':
+					css = articleSelector + ' { box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); background: #fff; border-radius: 6px; padding: 1.75em 2em; }';
+					break;
+				case 'only-with-sidebar':
+					if ( hasSidebar ) {
+						css = articleSelector + ' { box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); background: #fff; border-radius: 6px; padding: 1.75em 2em; }';
+					} else {
+						css = 'body.accepta-content-box-shadow-only-with-sidebar .site-main > article:not(.sticky) { box-shadow: none !important; background: transparent !important; border-radius: 0 !important; padding: 1.75em 0 !important; }';
+					}
+					break;
+				case 'none':
+					css = 'body.accepta-content-box-shadow-none .site-main > article:not(.sticky) { box-shadow: none !important; background: transparent !important; border-radius: 0 !important; padding: 1.75em 0 !important; }';
+					break;
+			}
+			
+			updateDynamicCSS( 'content-box-shadow', css );
+		} );
+	} );
+
+	// Update box shadow and accepta-has-sidebar when sidebar layout changes
+	wp.customize( 'accepta_sidebar_layout', function( value ) {
+		value.bind( function( newval ) {
+			var $body = $( 'body' );
+			
+			// Toggle accepta-has-sidebar for padding/box-shadow logic
+			if ( newval === 'left' || newval === 'right' ) {
+				$body.addClass( 'accepta-has-sidebar' );
+			} else {
+				$body.removeClass( 'accepta-has-sidebar' );
+			}
+			
+			// Apply sidebar layout CSS
+			var css = '';
+			switch( newval ) {
+				case 'left':
+					css = '.content-sidebar-wrap { display: grid; grid-template-columns: 300px 1fr; gap: 30px; flex-wrap: nowrap; }';
+					css += '.content-sidebar-wrap .site-main { order: 2; grid-column: 2; }';
+					css += '.content-sidebar-wrap .widget-area { display: block; order: 1; grid-column: 1; width: 300px; }';
+					break;
+				case 'right':
+					css = '.content-sidebar-wrap { display: grid; grid-template-columns: 1fr 300px; gap: 30px; flex-wrap: nowrap; }';
+					css += '.content-sidebar-wrap .site-main { order: 1; grid-column: 1; }';
+					css += '.content-sidebar-wrap .widget-area { display: block; order: 2; grid-column: 2; width: 300px; }';
+					break;
+				case 'none':
+					css = '.content-sidebar-wrap { display: block; }';
+					css += '.content-sidebar-wrap .widget-area { display: none; }';
+					css += '.content-sidebar-wrap .site-main { width: 100%; max-width: 100%; }';
+					break;
+			}
+			updateDynamicCSS( 'sidebar-layout', css );
+			
+			// Update box shadow if option is 'only-with-sidebar'
+			var boxShadowOption = wp.customize( 'accepta_content_box_shadow' ) ? wp.customize( 'accepta_content_box_shadow' ).get() : 'default';
+			if ( boxShadowOption === 'only-with-sidebar' ) {
+				var articleSelector = 'body:not(.accepta-page-template-full-width) .site-main > article:not(.sticky)';
+				var shadowCss = '';
+				if ( newval === 'left' || newval === 'right' ) {
+					shadowCss = articleSelector + ' { box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); background: #fff; border-radius: 6px; padding: 1.75em 2em; }';
+				} else {
+					shadowCss = 'body.accepta-content-box-shadow-only-with-sidebar .site-main > article:not(.sticky) { box-shadow: none !important; background: transparent !important; border-radius: 0 !important; padding: 1.75em 0 !important; }';
+				}
+				updateDynamicCSS( 'content-box-shadow', shadowCss );
+			}
 		} );
 	} );
 
@@ -1704,6 +1785,7 @@
 				css += '@media screen and (min-width: 768px) { .header-content.header-layout-3 .main-navigation ul { display: flex; justify-content: center; margin-left: 0; } }';
 				css += '.header-content.header-layout-3 .header-social-icons { order: 3; margin-left: auto; }';
 				css += '.header-content.header-layout-3 .header-search-toggle { order: 4; margin-left: 10px; }';
+				css += '.header-content.header-layout-3:not(:has(.header-social-icons)) .header-search-toggle { margin-left: auto; }';
 				css += '.header-content.header-layout-3 .header-cart-link { order: 5; margin-left: 10px; }';
 			}
 			

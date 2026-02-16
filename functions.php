@@ -308,6 +308,13 @@ function accepta_scripts() {
     if ( class_exists( 'WooCommerce' ) && get_theme_mod( 'accepta_woo_display_header_cart', true ) ) {
         wp_enqueue_script( 'wc-cart-fragments' );
         wp_enqueue_script(
+            'accepta-woocommerce-cart-refresh',
+            get_template_directory_uri() . '/assets/js/woocommerce-cart-refresh.js',
+            array( 'jquery', 'wc-cart-fragments' ),
+            _ACCEPTA_VERSION,
+            true
+        );
+        wp_enqueue_script(
             'accepta-minicart-offcanvas',
             get_template_directory_uri() . '/assets/js/minicart-offcanvas.js',
             array(),

@@ -281,11 +281,11 @@ function accepta_get_default_social_media_items() {
 function accepta_set_default_social_icons_on_activation() {
 	$default_social = wp_json_encode( accepta_get_default_social_media_items() );
 
-	// Header: if no social data is stored, set defaults and enable display.
+	// Header: if no social data is stored, set defaults and disable display.
 	$header_social = get_theme_mod( 'accepta_header_social_media', '' );
 	$header_decoded = is_string( $header_social ) ? json_decode( $header_social, true ) : $header_social;
 	if ( empty( $header_decoded ) || ! is_array( $header_decoded ) ) {
-		set_theme_mod( 'accepta_display_header_social_icons', true );
+		set_theme_mod( 'accepta_display_header_social_icons', false );
 		set_theme_mod( 'accepta_header_social_media', $default_social );
 	}
 
@@ -402,7 +402,7 @@ function accepta_social_icons( $location = 'footer' ) {
  */
 function accepta_should_display_header_social_icons() {
 	// Check if display is enabled
-	$display_enabled = get_theme_mod( 'accepta_display_header_social_icons', true );
+	$display_enabled = get_theme_mod( 'accepta_display_header_social_icons', false );
 	if ( ! $display_enabled ) {
 		return false;
 	}

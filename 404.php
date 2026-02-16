@@ -18,13 +18,14 @@ get_header();
 			</header><!-- .page-header -->
 
 			<div class="page-content">
-				<p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'accepta' ); ?></p>
+				<p class="error-404-intro"><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'accepta' ); ?></p>
 
-					<?php
-					get_search_form();
+				<div class="error-404-search">
+					<?php get_search_form(); ?>
+				</div>
 
-					the_widget( 'WP_Widget_Recent_Posts' );
-					?>
+				<div class="error-404-widgets">
+					<?php the_widget( 'WP_Widget_Recent_Posts' ); ?>
 
 					<div class="widget widget_categories">
 						<h2 class="widget-title"><?php esc_html_e( 'Most Used Categories', 'accepta' ); ?></h2>
@@ -50,7 +51,7 @@ get_header();
 
 					the_widget( 'WP_Widget_Tag_Cloud' );
 					?>
-
+				</div><!-- .error-404-widgets -->
 			</div><!-- .page-content -->
 		</section><!-- .error-404 -->
 

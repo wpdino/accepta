@@ -9,7 +9,7 @@ $wc__star-yellow: #e6a800;
 
 /* Shop page header */
 .woocommerce .page-title {
-	margin: 0 0 0.5rem 0;
+	margin: 2em 0 0.5rem 0;
 	font-size: 1.75rem;
 	font-weight: 600;
 	color: $wc__text-dark;
@@ -30,11 +30,12 @@ $wc__star-yellow: #e6a800;
 		}
 	}
 }
-
-.woocommerce-result-count {
-	margin-bottom: 1.5rem;
-	font-size: 0.9375rem;
-	color: $color__text-input;
+.woocommerce {
+	.woocommerce-result-count {
+		margin:1em 0 1.5rem 0;
+		font-size: 0.9375rem;
+		color: $color__text-input;
+	} 
 }
 
 .woocommerce-ordering {
@@ -115,6 +116,13 @@ ul.products li.product {
 		height: auto;
 		margin: 0;
 		background: #f8f9fa;
+		border: none;
+	}
+
+	/* Image wrap – container for overlay Add to cart */
+	.woocommerce-loop-product__image-wrap {
+		position: relative;
+		overflow: hidden;
 	}
 
 	.woocommerce-loop-product__link {
@@ -132,11 +140,12 @@ ul.products li.product {
 	.woocommerce-loop-product__title,
 	h2,
 	h3 {
-		margin: 1.25rem 0 0.35rem 0;
-		padding: 0 1rem;
+		margin: 1rem 0 0.35rem 0;
+		padding: 0;
 		font-size: 1rem;
 		font-weight: 600;
 		line-height: 1.35;
+		text-align: left;
 	}
 
 	.woocommerce-loop-product__title a,
@@ -150,12 +159,18 @@ ul.products li.product {
 		}
 	}
 
+	.star-rating {
+		margin: 0.5rem 0 0 0;
+		text-align: left;
+	}
+
 	.price {
 		margin: 0.5rem 0 0.75rem 0;
-		padding: 0 1rem;
+		padding: 0;
 		font-size: 1rem;
 		font-weight: 600;
 		color: $wc__text-dark;
+		text-align: left;
 
 		del {
 			color: $color__gray;
@@ -172,87 +187,119 @@ ul.products li.product {
 		}
 	}
 
-	.button {
+	/* Add to cart – overlay at bottom of image, centered, not full width, slide up + fade in on hover */
+	.woocommerce-loop-product__image-wrap .button,
+	.woocommerce-loop-product__image-wrap .add-to-cart-overlay {
+		position: absolute;
+		bottom: 7px;
+		left: 17px;
+		right: 17px;
+		transform: translateY(100%);
 		display: inline-block;
-		width: calc(100% - 2rem);
 		text-align: center;
-		padding: 0.5rem 1rem;
-		margin: 0.75rem 1rem 0.5rem 1rem;
+		padding: 0.65rem 1.5rem;
+		margin: 0;
 		font-size: 0.8125rem;
-		font-weight: 500;
-		background: transparent;
-		color: $color__primary;
-		border: 1px solid $color__primary;
+		font-weight: 600;
+		letter-spacing: 0.03em;
+		background: $color__primary;
+		color: #fff;
+		border: none;
 		border-radius: 6px;
 		text-decoration: none;
 		cursor: pointer;
-		transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 		box-sizing: border-box;
+		opacity: 0;
+		transition: opacity 0.45s ease, transform 0.45s ease, background 0.2s ease;
 
 		&:hover {
-			background: $color__primary;
+			background: $color__green-dark;
 			color: #fff;
-			border-color: $color__primary;
 		}
 	}
 
-	.added_to_cart {
-		display: block;
-		margin: 0 1rem 1rem 1rem;
-		padding: 0.5rem 0;
-		font-size: 0.875rem;
-		font-weight: 500;
-		color: $color__primary;
-		text-decoration: none;
+	&:hover .woocommerce-loop-product__image-wrap .button,
+	&:hover .woocommerce-loop-product__image-wrap .add-to-cart-overlay,
+	.woocommerce-loop-product__image-wrap .button:focus,
+	.woocommerce-loop-product__image-wrap .add-to-cart-overlay:focus {
+		opacity: 1;
+		transform: translateY(-2em);
+	}
+
+	/* View cart – overlay on image, black button (replaces Add to cart when product in cart) */
+	.woocommerce-loop-product__image-wrap .added_to_cart {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		display: inline-block;
+		width: auto;
+		min-width: 10rem;
 		text-align: center;
-		transition: color 0.2s ease;
+		padding: 0.65rem 1.25rem;
+		margin: 0;
+		font-size: 0.8125rem;
+		font-weight: 600;
+		letter-spacing: 0.03em;
+		background: #2c3e50;
+		color: #fff;
+		border: none;		
+		border-radius: 6px;		
+		text-decoration: none;
+		cursor: pointer;
+		box-sizing: border-box;
+		transform: translate(-50%, -50%);
+		transition: background 0.2s ease, color 0.2s ease;
 
 		&:hover {
-			color: $color__green-dark;
-			text-decoration: underline;
-		}
-	}
-
-	.onsale {
-		position: absolute;
-		top: 1rem;
-		right: 1rem;
-		left: auto;
-		z-index: 1;
-		display: inline-block;
-		padding: 0.35rem 0.65rem;
-		font-size: 0.6875rem;
-		font-weight: 600;
-		text-transform: uppercase;
-		letter-spacing: 0.03em;
-		background: rgba(111, 156, 80, 0.92);
-		color: #fff;
-		border-radius: 999px;
-		text-decoration: none;
-		line-height: 1.2;
-		box-shadow: none;
-		clip-path: none;
-		transform: none;
-		border: none;
-
-		&::before,
-		&::after {
-			display: none !important;
+			background: #1a2634;
+			color: #fff;
+			text-decoration: none;
 		}
 	}
 
 	.woocommerce-loop-product__title,
 	h2,
 	h3,
-	.price,
-	.button {
-		padding-left: 1rem;
-		padding-right: 1rem;
+	.price {
+		padding-left: 0;
+		padding-right: 0;
+	}
+}
+
+.woocommerce {
+	ul.products li.product {
+		.onsale {
+			position: absolute;
+			top: 1rem;
+			right: 1rem;
+			left: auto;
+			z-index: 1;
+			display: inline-block;
+			padding: 0.05rem 0.55rem;
+			font-size: 0.6875rem;
+			font-weight: 500;
+			text-transform: uppercase;
+			letter-spacing: 0.03em;
+			background: rgba(111, 156, 80, 0.92);
+			color: #fff;
+			border-radius: 4px;
+			text-decoration: none;
+			box-shadow: none;
+			clip-path: none;
+			transform: none;
+			border: none;
+	
+			&::before,
+			&::after {
+				display: none !important;
+			}
+		}
 	}
 }
 
 /**
- * Shop pagination
+ * Shop pagination – matches blog pagination style
+ * Overrides WooCommerce core border/box layout
  */
 .woocommerce nav.woocommerce-pagination {
 	margin: 3em 0 2em;
@@ -269,6 +316,14 @@ ul.products li.product {
 	align-items: center;
 	justify-content: center;
 	gap: 0.5em;
+	border: none;
+}
+
+.woocommerce nav.woocommerce-pagination ul li {
+	border: none;
+	float: none;
+	display: block;
+	overflow: visible;
 }
 
 .woocommerce nav.woocommerce-pagination .page-numbers {
@@ -277,35 +332,112 @@ ul.products li.product {
 	justify-content: center;
 	min-width: 2.5em;
 	padding: 0.5em 0.75em;
-	background-color: #f5f5f5;
-	color: #333;
+	color: $color__text-main;
 	text-decoration: none;
 	border-radius: 4px;
 	font-weight: 500;
 	transition: background-color 0.2s ease, color 0.2s ease;
+	border: none;
 
-	&:hover:not(.current) {
-		background-color: $color__green-light;
-		color: $color__primary;
+	li {
+		background-color: #f5f5f5;
+
+		a {
+			&:hover:not(.current) {
+				background-color: $color__green-light;
+				color: $color__primary;
+			}
+		}
+	
+		span{
+			&:hover:not(.current) {
+				background-color: $color__green-light;
+				color: $color__primary;
+			}
+			&.current {
+				background-color: $color__primary;
+				color: #fff;
+				cursor: default;
+			}
+		}
 	}
 
-	&.current {
-		background-color: $color__primary;
-		color: #fff;
-		cursor: default;
-	}
+
 
 	&.prev,
 	&.next {
 		padding: 0.5em 1em;
 		background-color: #f5f5f5;
-		color: #333;
+		color: $color__text-main;
 		border-radius: 4px;
 		font-weight: 500;
+		border: none;
 
 		&:hover {
 			background-color: $color__green-light;
 			color: $color__primary;
+		}
+	}
+}
+
+/**
+ * Cart page – cross-sells and empty cart product sections
+ * Ensures products display consistently (fix dotted borders, match theme style)
+ */
+.woocommerce .cross-sells,
+.woocommerce-page .cross-sells,
+.wc-block-cart .wc-block-components-product-grid {
+	ul.products {
+		margin: 0;
+	}
+
+	ul.products li.product img,
+	.wc-block-grid__product img,
+	.wc-block-components-product-image img {
+		border: none !important;
+		border-radius: 6px 6px 0 0;
+	}
+}
+
+/* WooCommerce block product grid (empty cart "New in store" etc.) */
+.wc-block-grid__product,
+.wc-block-components-product-card {
+	.wc-block-components-product-image,
+	.wc-block-components-product-image__wrapper img {
+		border: none !important;
+	}
+
+	.wc-block-components-product-name a {
+		color: $wc__text-dark;
+		text-decoration: none;
+
+		&:hover {
+			color: $color__primary;
+		}
+	}
+
+	.wc-block-components-product-price {
+		color: $wc__text-dark;
+
+		.wc-block-components-product-price__value {
+			color: $color__primary;
+		}
+	}
+
+	.wc-block-components-product-button,
+	.wc-block-components-add-to-cart-button {
+		.wp-block-button__link {
+			background: $color__primary !important;
+			color: #fff !important;
+			border: none;
+			border-radius: 6px;
+			padding: 0.5rem 1rem;
+			font-size: 0.8125rem;
+			font-weight: 600;
+
+			&:hover {
+				background: $color__green-dark !important;
+			}
 		}
 	}
 }

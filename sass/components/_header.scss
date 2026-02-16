@@ -237,6 +237,8 @@ body.has-sticky-header {
     justify-content: center; /* Override media query */
     flex: 0 0 auto; /* Override flex: 1 from media query */
     width: auto;
+    max-width: calc(100% - 300px); /* Prevent menu from overlapping logo and icons */
+    min-width: 0;
 
     @media screen and (min-width: 768px) {
       display: flex;
@@ -249,12 +251,19 @@ body.has-sticky-header {
     ul {
       justify-content: center; /* Override media query */
       margin-left: 0; /* Override media query */
+      flex-wrap: nowrap; /* Keep menu items on one line */
+      white-space: nowrap; /* Prevent text wrapping within menu items */
 
       @media screen and (min-width: 768px) {
         display: flex;
         justify-content: center; /* Override media query */
         margin-left: 0; /* Override media query */
+        flex-wrap: nowrap; /* Keep menu items on one line */
       }
+    }
+    
+    li {
+      flex-shrink: 0; /* Prevent individual menu items from shrinking */
     }
   }
   
@@ -266,6 +275,11 @@ body.has-sticky-header {
   .header-search-toggle {
     order: 4;
     margin-left: 10px;
+  }
+
+  /* When social icons are hidden, search becomes first of right group — add margin-left: auto so it (and cart) stay right instead of being pushed to center by space-between */
+  &:not(:has(.header-social-icons)) .header-search-toggle {
+    margin-left: auto;
   }
 }
 
@@ -450,13 +464,20 @@ body.has-sticky-header {
     
     &:hover {
       background-color: $color__primary;
-      color: #ffffff;
+      color: #fff !important;
       border-color: $color__primary;
       box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
       text-decoration: none;
       
+      i {
+        color: #fff !important;
+      }
+      
+      svg,
       .social-icon-svg {
-        filter: brightness(0) invert(1); // Make SVG white on hover
+        color: #fff !important;
+        stroke: #fff !important;
+        filter: brightness(0) invert(1);
       }
     }
   }
@@ -490,9 +511,18 @@ body.has-sticky-header {
   
   &:hover {
     background-color: $color__primary;
-    color: #ffffff;
+    color: #fff !important;
     border-color: $color__primary;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+    
+    i {
+      color: #fff !important;
+    }
+    
+    svg {
+      color: #fff !important;
+      stroke: #fff !important;
+    }
   }
   
   &:focus {

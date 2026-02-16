@@ -50,7 +50,7 @@ $menus = $admin->get_module('menus');
             </div>
             
             <div class="accepta-welcome-column">
-                <img src="<?php echo esc_url( get_template_directory_uri() . '/inc/admin/assets/images/theme-screenshot.png' ); ?>" alt="<?php esc_attr_e( 'Accepta Theme', 'accepta' ); ?>" class="accepta-welcome-screenshot">
+                <img src="<?php echo esc_url( get_template_directory_uri() . '/screenshot.png' ); ?>" alt="<?php esc_attr_e( 'Accepta Theme', 'accepta' ); ?>" class="accepta-welcome-screenshot">
             </div>
         </div>
         

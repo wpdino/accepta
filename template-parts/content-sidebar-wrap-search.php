@@ -5,8 +5,9 @@
  * @package Accepta
  */
 
+$has_sidebar = accepta_has_sidebar();
 ?>
-<div class="content-sidebar-wrap">
+<div class="content-sidebar-wrap<?php echo ! $has_sidebar ? ' content-sidebar-wrap--no-sidebar' : ''; ?>">
     <main id="primary" class="site-main">
         <?php if ( have_posts() ) : ?>
 
@@ -49,5 +50,7 @@
         ?>
     </main><!-- #primary -->
 
-    <?php get_sidebar(); ?>
+    <?php if ( $has_sidebar ) : ?>
+        <?php get_sidebar(); ?>
+    <?php endif; ?>
 </div><!-- .content-sidebar-wrap --> 

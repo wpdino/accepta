@@ -77,6 +77,8 @@ Accepta includes standard WordPress widgets and is compatible with all WordPress
 **Author URI:** https://wpdino.com
 **Theme URI:** https://wpdino.com/themes/accepta
 
+**Default hero image** (assets/images/accepta-hero-bg.jpg): Free to use. Sourced from PxHere (CC0 Public Domain). Original: https://pxhere.com/en/photo/306
+
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned.
 

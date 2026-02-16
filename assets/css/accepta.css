@@ -409,8 +409,63 @@ i {
   font-style: italic;
 }
 
-blockquote {
-  margin: 0 1.5em;
+blockquote,
+.wp-block-quote {
+  position: relative;
+  margin: 2em 0;
+  padding: 2em 2em 2em 3em;
+  border: none;
+  background: linear-gradient(135deg, rgba(111, 156, 80, 0.06) 0%, rgba(230, 244, 215, 0.4) 100%);
+  border-radius: 0 10px 10px 0;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  font-family: "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  font-size: 1.125em;
+  line-height: 1.7;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: #333;
+}
+blockquote::before,
+.wp-block-quote::before {
+  content: "“";
+  position: absolute;
+  left: 0.35em;
+  top: -0.05em;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 6em;
+  line-height: 1;
+  color: #6F9C50;
+  opacity: 0.2;
+}
+blockquote p,
+.wp-block-quote p {
+  margin: 0 0 0.5em 0;
+  position: relative;
+  z-index: 1;
+}
+blockquote p:last-child,
+.wp-block-quote p:last-child {
+  margin-bottom: 0;
+}
+blockquote cite,
+.wp-block-quote cite {
+  display: block;
+  margin-top: 1em;
+  padding-top: 1em;
+  font-size: 0.875em;
+  font-style: italic;
+  font-weight: 500;
+  color: #34495e;
+  opacity: 0.9;
+  border-top: 1px solid rgba(111, 156, 80, 0.15);
+  position: relative;
+  z-index: 1;
+}
+
+/* Remove black border from quote wrapper in starter content (overrides inline style) */
+.wp-block-group:has(> .wp-block-quote),
+.wp-block-group:has(> blockquote) {
+  border: none !important;
 }
 
 address {
@@ -1218,6 +1273,8 @@ body.has-sticky-header {
   justify-content: center; /* Override media query */
   flex: 0 0 auto; /* Override flex: 1 from media query */
   width: auto;
+  max-width: calc(100% - 300px); /* Prevent menu from overlapping logo and icons */
+  min-width: 0;
 }
 @media screen and (min-width: 768px) {
   .header-content.header-layout-3 .main-navigation {
@@ -1231,13 +1288,19 @@ body.has-sticky-header {
 .header-content.header-layout-3 .main-navigation ul {
   justify-content: center; /* Override media query */
   margin-left: 0; /* Override media query */
+  flex-wrap: nowrap; /* Keep menu items on one line */
+  white-space: nowrap; /* Prevent text wrapping within menu items */
 }
 @media screen and (min-width: 768px) {
   .header-content.header-layout-3 .main-navigation ul {
     display: flex;
     justify-content: center; /* Override media query */
     margin-left: 0; /* Override media query */
+    flex-wrap: nowrap; /* Keep menu items on one line */
   }
+}
+.header-content.header-layout-3 .main-navigation li {
+  flex-shrink: 0; /* Prevent individual menu items from shrinking */
 }
 .header-content.header-layout-3 .header-social-icons {
   order: 3;
@@ -1246,6 +1309,12 @@ body.has-sticky-header {
 .header-content.header-layout-3 .header-search-toggle {
   order: 4;
   margin-left: 10px;
+}
+.header-content.header-layout-3 {
+  /* When social icons are hidden, search becomes first of right group — add margin-left: auto so it (and cart) stay right instead of being pushed to center by space-between */
+}
+.header-content.header-layout-3:not(:has(.header-social-icons)) .header-search-toggle {
+  margin-left: auto;
 }
 
 .site-branding {
@@ -1407,12 +1476,18 @@ body.has-sticky-header {
 }
 .header-social-icons .social-icon:hover {
   background-color: #6F9C50;
-  color: #ffffff;
+  color: #fff !important;
   border-color: #6F9C50;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
   text-decoration: none;
 }
+.header-social-icons .social-icon:hover i {
+  color: #fff !important;
+}
+.header-social-icons .social-icon:hover svg,
 .header-social-icons .social-icon:hover .social-icon-svg {
+  color: #fff !important;
+  stroke: #fff !important;
   filter: brightness(0) invert(1);
 }
 
@@ -1443,9 +1518,16 @@ body.has-sticky-header {
 }
 .header-search-toggle:hover {
   background-color: #6F9C50;
-  color: #ffffff;
+  color: #fff !important;
   border-color: #6F9C50;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+}
+.header-search-toggle:hover i {
+  color: #fff !important;
+}
+.header-search-toggle:hover svg {
+  color: #fff !important;
+  stroke: #fff !important;
 }
 .header-search-toggle:focus {
   outline: 2px solid #6F9C50;
@@ -1976,17 +2058,30 @@ body.has-sticky-header {
 /* Spacing and card-style background for posts (archive, blog index) */
 .site-main > article {
   margin-bottom: 2em;
+  /* Remove bottom margin only when followed by pagination; single-article archive (no pagination) keeps margin above footer */
 }
-.site-main > article:last-child {
+.site-main > article:has(+ nav.pagination), .site-main > article:has(+ .pagination) {
   margin-bottom: 0;
 }
 .site-main > article {
-  /* Card styling: only for blog/posts/pages with sidebar; exclude full-width pages */
+  /* Card styling: exclude full-width pages */
 }
-body:not(.accepta-page-template-full-width):not(.accepta-front-page-full-width) .site-main > article:not(.sticky) {
+.site-main > article:not(.sticky) {
+  /* Full padding + box shadow: when "default" OR ("only-with-sidebar" + sidebar active) */
+}
+body:not(.accepta-page-template-full-width):not(.accepta-front-page-full-width):not(.accepta-content-box-shadow-none) .site-main > article:not(.sticky) {
   padding: 1.75em 2em;
   border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+.site-main > article:not(.sticky) {
+  /* Vertical-only padding (no left/right): when "none" OR ("only-with-sidebar" + no sidebar) */
+}
+body:not(.accepta-page-template-full-width):not(.accepta-front-page-full-width).accepta-content-box-shadow-none .site-main > article:not(.sticky) {
+  padding: 1.75em 0;
+}
+body:not(.accepta-page-template-full-width):not(.accepta-front-page-full-width).accepta-content-box-shadow-only-with-sidebar:not(.accepta-has-sidebar) .site-main > article:not(.sticky) {
+  padding: 1.75em 0;
 }
 
 /* Meta line under post title – subtle background */
@@ -2300,6 +2395,87 @@ body:not(.accepta-page-template-full-width):not(.accepta-front-page-full-width) 
 }
 .accepta-icon-box-icon i {
   display: inline-block;
+}
+
+/*--------------------------------------------------------------
+# 404 Page
+--------------------------------------------------------------*/
+.error-404.not-found {
+  margin-top: 2.5rem;
+  margin-bottom: 3rem;
+  padding: 0;
+}
+
+.error-404 .page-header {
+  margin-bottom: 1.25rem;
+  padding-bottom: 0;
+  text-align: center;
+}
+.error-404 .page-header .page-title {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.75rem;
+  line-height: 1.3;
+  font-weight: 600;
+  color: #333;
+}
+
+.error-404 .page-content {
+  margin: 0;
+}
+
+.error-404-intro {
+  margin: 0 0 1.75rem 0;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #333;
+  opacity: 0.9;
+  text-align: center;
+}
+
+.error-404-search {
+  margin-bottom: 2.5rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  display: flex;
+  justify-content: center;
+}
+.error-404-search .search-form {
+  max-width: 100%;
+}
+
+.error-404-widgets {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem 2.5rem;
+}
+@media screen and (min-width: 600px) {
+  .error-404-widgets {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (min-width: 900px) {
+  .error-404-widgets {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.error-404-widgets .widget {
+  margin: 0;
+  min-width: 0;
+}
+
+/* Ensure 404 search form looks good inline */
+.error-404 .search-form {
+  display: flex;
+  gap: 0;
+  align-items: stretch;
+  max-width: 480px;
+}
+.error-404 .search-form .search-field {
+  flex: 1;
+  min-width: 0;
+}
+.error-404 .search-form .search-submit {
+  flex-shrink: 0;
 }
 
 /* Comments

@@ -15,7 +15,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /**
  * Return the front page starter content (block markup).
- * Uses theme hero image; add assets/images/accepta-hero-bg-portrait.jpg for a portrait crop in the media-text section.
+ * Uses theme hero image (accepta-hero-bg.jpg – free to use, from https://pxhere.com/en/photo/306 ).
+ * Add assets/images/accepta-hero-bg-portrait.jpg for a portrait crop in the media-text section.
  *
  * @return string Block markup for the front page.
  */
@@ -131,8 +132,8 @@ function accepta_get_front_page_starter_content() {
 					<div style="height:50px" aria-hidden="true" class="wp-block-spacer"></div>
 					<!-- /wp:spacer -->
 
-					<!-- wp:group {"style":{"spacing":{"padding":{"top":"2rem","bottom":"2rem","left":"2rem","right":"2rem"}},"border":{"width":"1px"}},"layout":{"type":"constrained"}} -->
-					<div class="wp-block-group" style="border-width:1px;padding-top:2rem;padding-right:2rem;padding-bottom:2rem;padding-left:2rem">
+					<!-- wp:group {"style":{"spacing":{"padding":{"top":"2rem","bottom":"2rem","left":"2rem","right":"2rem"}}},"layout":{"type":"constrained"}} -->
+					<div class="wp-block-group" style="padding-top:2rem;padding-right:2rem;padding-bottom:2rem;padding-left:2rem">
 					<!-- wp:quote {"className":"is-style-default"} -->
 					<blockquote class="wp-block-quote is-style-default">
 					<!-- wp:paragraph -->
@@ -222,6 +223,10 @@ function accepta_get_starter_content() {
 			'show_on_front'  => 'page',
 			'page_on_front'  => '{{front}}',
 			'page_for_posts' => '{{blog}}',
+		),
+
+		'theme_mods'  => array(
+			'accepta_sidebar_layout' => 'none',
 		),
 
 		'nav_menus'   => array(

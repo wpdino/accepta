@@ -56,6 +56,68 @@ function accepta_woocommerce_related_products_args( $args ) {
 add_filter( 'woocommerce_output_related_products_args', 'accepta_woocommerce_related_products_args' );
 
 /**
+ * Product loop – Add to cart button over the image.
+ * Uses hooks to wrap the image area and move the button inside it for overlay positioning.
+ */
+remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_product_link_close', 5 );
+remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10 );
+
+add_action( 'woocommerce_before_shop_loop_item', 'accepta_woocommerce_loop_image_wrap_open', 5 );
+add_action( 'woocommerce_before_shop_loop_item_title', 'accepta_woocommerce_loop_image_wrap_close_and_add_to_cart', 15 );
+
+remove_action( 'woocommerce_shop_loop_item_title', 'woocommerce_template_loop_product_title', 10 );
+add_action( 'woocommerce_shop_loop_item_title', 'accepta_woocommerce_template_loop_product_title', 10 );
+
+add_filter( 'woocommerce_loop_add_to_cart_args', 'accepta_woocommerce_loop_add_to_cart_args_overlay', 10, 2 );
+
+if ( ! function_exists( 'accepta_woocommerce_loop_add_to_cart_args_overlay' ) ) {
+	/**
+	 * Add class for overlay Add to cart (green background styling).
+	 *
+	 * @param array      $args    Button args.
+	 * @param WC_Product $product Product object.
+	 * @return array
+	 */
+	function accepta_woocommerce_loop_add_to_cart_args_overlay( $args, $product ) {
+		$args['class'] = ( isset( $args['class'] ) ? $args['class'] . ' ' : '' ) . 'add-to-cart-overlay';
+
+		return $args;
+	}
+}
+
+if ( ! function_exists( 'accepta_woocommerce_loop_image_wrap_open' ) ) {
+	/**
+	 * Open wrapper around product image for Add to cart overlay.
+	 */
+	function accepta_woocommerce_loop_image_wrap_open() {
+		echo '<div class="woocommerce-loop-product__image-wrap">';
+	}
+}
+
+if ( ! function_exists( 'accepta_woocommerce_loop_image_wrap_close_and_add_to_cart' ) ) {
+	/**
+	 * Close product link, output Add to cart inside image wrap, close wrapper.
+	 */
+	function accepta_woocommerce_loop_image_wrap_close_and_add_to_cart() {
+		woocommerce_template_loop_product_link_close();
+		woocommerce_template_loop_add_to_cart();
+		echo '</div><!-- .woocommerce-loop-product__image-wrap -->';
+	}
+}
+
+if ( ! function_exists( 'accepta_woocommerce_template_loop_product_title' ) ) {
+	/**
+	 * Product title with link (needed because we close the product link early).
+	 */
+	function accepta_woocommerce_template_loop_product_title() {
+		$classes = apply_filters( 'woocommerce_product_loop_title_classes', 'woocommerce-loop-product__title' );
+		echo '<h2 class="' . esc_attr( $classes ) . '">';
+		echo '<a href="' . esc_url( get_the_permalink() ) . '">' . get_the_title() . '</a>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo '</h2>';
+	}
+}
+
+/**
  * Remove default WooCommerce wrapper.
  */
 remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10 );

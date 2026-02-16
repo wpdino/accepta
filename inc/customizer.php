@@ -213,7 +213,7 @@ function accepta_customize_register( $wp_customize ) {
 	$wp_customize->add_setting(
 		'accepta_display_header_social_icons',
 		array(
-			'default'           => true,
+			'default'           => false,
 			'sanitize_callback' => 'wp_validate_boolean',
 			'transport'         => 'refresh',
 		)
@@ -946,7 +946,7 @@ function accepta_customize_register( $wp_customize ) {
 	$wp_customize->add_setting(
 		'accepta_sidebar_layout',
 		array(
-			'default'           => 'right',
+			'default'           => 'none',
 			'sanitize_callback' => 'accepta_sanitize_sidebar_layout',
 			'transport'         => 'postMessage',
 		)
@@ -973,6 +973,32 @@ function accepta_customize_register( $wp_customize ) {
 					),
 				),
 			)
+		)
+	);
+
+	// Content Box Shadow Setting
+	$wp_customize->add_setting(
+		'accepta_content_box_shadow',
+		array(
+			'default'           => 'default',
+			'sanitize_callback' => 'accepta_sanitize_content_box_shadow',
+			'transport'         => 'postMessage',
+		)
+	);
+
+	$wp_customize->add_control(
+		'accepta_content_box_shadow',
+		array(
+			'label'       => __( 'Content Box Shadow', 'accepta' ),
+			'description' => __( 'Control when box shadow appears on the content container.', 'accepta' ),
+			'section'     => 'accepta_layout_section',
+			'type'        => 'select',
+			'priority'    => 25,
+			'choices'     => array(
+				'default'          => __( 'All Layouts', 'accepta' ),
+				'only-with-sidebar' => __( 'Only With Sidebars', 'accepta' ),
+				'none'             => __( 'None', 'accepta' ),
+			),
 		)
 	);
 
@@ -2068,7 +2094,15 @@ function accepta_sanitize_checkbox( $checked ) {
  */
 function accepta_sanitize_sidebar_layout( $input ) {
 	$valid_layouts = array( 'none', 'left', 'right' );
-	return in_array( $input, $valid_layouts, true ) ? $input : 'right';
+	return in_array( $input, $valid_layouts, true ) ? $input : 'none';
+}
+
+/**
+ * Sanitize content box shadow values
+ */
+function accepta_sanitize_content_box_shadow( $input ) {
+	$valid_values = array( 'default', 'only-with-sidebar', 'none' );
+	return in_array( $input, $valid_values, true ) ? $input : 'default';
 }
 
 /**
@@ -2827,6 +2861,7 @@ function accepta_sticky_header_css() {
 		$css .= '@media screen and (min-width: 768px) { .header-content.header-layout-3 .main-navigation ul { display: flex; justify-content: center; margin-left: 0; } }';
 		$css .= '.header-content.header-layout-3 .header-social-icons { order: 3; margin-left: auto; }';
 		$css .= '.header-content.header-layout-3 .header-search-toggle { order: 4; margin-left: 10px; }';
+		$css .= '.header-content.header-layout-3:not(:has(.header-social-icons)) .header-search-toggle { margin-left: auto; }';
 		$css .= '.header-content.header-layout-3 .header-cart-link { order: 5; margin-left: 10px; }';
 	}
 	
@@ -3240,14 +3275,7 @@ function accepta_layout_css() {
 	}
 	
 	// Sidebar layout
-	$sidebar_layout = get_theme_mod( 'accepta_sidebar_layout', 'right' );
-
-	// Front page (and customizer preview when showing homepage): always full width, no sidebar.
-	$css .= 'body.accepta-front-page-full-width .content-sidebar-wrap,';
-	$css .= 'body.accepta-front-page-full-width .content-sidebar-wrap--no-sidebar { display: block; }';
-	$css .= 'body.accepta-front-page-full-width .content-sidebar-wrap .site-main,';
-	$css .= 'body.accepta-front-page-full-width .content-sidebar-wrap--no-sidebar .site-main { width: 100%; max-width: 100%; }';
-	$css .= 'body.accepta-front-page-full-width .content-sidebar-wrap .widget-area { display: none; }';
+	$sidebar_layout = get_theme_mod( 'accepta_sidebar_layout', 'none' );
 
 	// Full-width page template (no sidebar).
 	$css .= 'body.accepta-page-template-full-width .content-sidebar-wrap,';
@@ -3272,6 +3300,28 @@ function accepta_layout_css() {
 			$css .= '.content-sidebar-wrap { display: grid; grid-template-columns: 1fr 300px; gap: 30px; flex-wrap: nowrap; }';
 			$css .= '.content-sidebar-wrap .site-main { order: 1; grid-column: 1; }';
 			$css .= '.content-sidebar-wrap .widget-area { order: 2; grid-column: 2; width: 300px; }';
+			break;
+	}
+
+	// Content Box Shadow (uses body class for full coverage including front page)
+	$box_shadow_option = get_theme_mod( 'accepta_content_box_shadow', 'default' );
+	$article_sel = 'body:not(.accepta-page-template-full-width) .site-main > article:not(.sticky)';
+	switch ( $box_shadow_option ) {
+		case 'default':
+			// Always show box shadow on articles (all pages including front page)
+			$css .= $article_sel . ' { box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); background: #fff; border-radius: 6px; }';
+			break;
+		case 'only-with-sidebar':
+			// Only show box shadow when sidebar layout is left or right
+			if ( $sidebar_layout === 'left' || $sidebar_layout === 'right' ) {
+				$css .= $article_sel . ' { box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); background: #fff; border-radius: 6px; padding: 1.75em 2em; }';
+			} else {
+				$css .= 'body.accepta-content-box-shadow-only-with-sidebar .site-main > article:not(.sticky) { box-shadow: none !important; background: transparent !important; border-radius: 0 !important; padding: 1.75em 0 !important; }';
+			}
+			break;
+		case 'none':
+			// Never show box shadow – remove left/right padding
+			$css .= 'body.accepta-content-box-shadow-none .site-main > article:not(.sticky) { box-shadow: none !important; background: transparent !important; border-radius: 0 !important; padding: 1.75em 0 !important; }';
 			break;
 	}
 

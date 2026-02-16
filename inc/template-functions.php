@@ -27,14 +27,18 @@ function accepta_body_classes( $classes ) {
 		$classes[] = 'accepta-has-hero';
 	}
 
-	// Full width, no sidebar: only for starter front page (customizer preview or after user saved starter content).
-	if ( accepta_is_starter_front_page() ) {
-		$classes[] = 'accepta-front-page-full-width';
-	}
-
 	// Full-width page templates (no sidebar).
 	if ( is_page_template( 'page-templates/full-width.php' ) || is_page_template( 'page-templates/full-width-no-paddings.php' ) ) {
 		$classes[] = 'accepta-page-template-full-width';
+	}
+
+	// Content box shadow option (for Customizer override).
+	$box_shadow = get_theme_mod( 'accepta_content_box_shadow', 'default' );
+	$classes[] = 'accepta-content-box-shadow-' . sanitize_html_class( $box_shadow );
+
+	// Sidebar active (for "only with sidebars" box shadow logic).
+	if ( accepta_has_sidebar() ) {
+		$classes[] = 'accepta-has-sidebar';
 	}
 
 	return $classes;
@@ -60,6 +64,34 @@ function accepta_is_starter_front_page() {
 	}
 	// On the live site, full width only if user saved starter content.
 	return (bool) get_option( 'accepta_front_page_full_width', false );
+}
+
+/**
+ * Check if sidebar should be displayed based on layout settings.
+ *
+ * @return bool True if sidebar should be displayed, false otherwise.
+ */
+function accepta_has_sidebar() {
+	// In Customizer preview, always load sidebar HTML for live preview to work
+	if ( is_customize_preview() ) {
+		// Only respect full-width templates
+		if ( is_page_template( 'page-templates/full-width.php' ) || is_page_template( 'page-templates/full-width-no-paddings.php' ) ) {
+			return false;
+		}
+		// Otherwise always return true in Customizer so JavaScript can control visibility
+		return true;
+	}
+	
+	// Full-width page templates never show sidebar
+	if ( is_page_template( 'page-templates/full-width.php' ) || is_page_template( 'page-templates/full-width-no-paddings.php' ) ) {
+		return false;
+	}
+	
+	// Check sidebar layout setting from Customizer
+	$sidebar_layout = get_theme_mod( 'accepta_sidebar_layout', 'none' );
+	
+	// Return true only if sidebar layout is 'left' or 'right'
+	return in_array( $sidebar_layout, array( 'left', 'right' ), true );
 }
 
 /**

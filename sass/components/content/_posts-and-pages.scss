@@ -2,16 +2,26 @@
 .site-main > article {
 	margin-bottom: 2em;
 
-	&:last-child {
+	/* Remove bottom margin only when followed by pagination; single-article archive (no pagination) keeps margin above footer */
+	&:has(+ nav.pagination),
+	&:has(+ .pagination) {
 		margin-bottom: 0;
 	}
 
-	/* Card styling: only for blog/posts/pages with sidebar; exclude full-width pages */
+	/* Card styling: exclude full-width pages */
 	&:not(.sticky) {
-		body:not(.accepta-page-template-full-width):not(.accepta-front-page-full-width) & {
+		/* Full padding + box shadow: when "default" OR ("only-with-sidebar" + sidebar active) */
+		body:not(.accepta-page-template-full-width):not(.accepta-front-page-full-width):not(.accepta-content-box-shadow-none) & {
 			padding: 1.75em 2em;
 			border-radius: 8px;
 			box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+		}
+		/* Vertical-only padding (no left/right): when "none" OR ("only-with-sidebar" + no sidebar) */
+		body:not(.accepta-page-template-full-width):not(.accepta-front-page-full-width).accepta-content-box-shadow-none & {
+			padding: 1.75em 0;
+		}
+		body:not(.accepta-page-template-full-width):not(.accepta-front-page-full-width).accepta-content-box-shadow-only-with-sidebar:not(.accepta-has-sidebar) & {
+			padding: 1.75em 0;
 		}
 	}
 }
