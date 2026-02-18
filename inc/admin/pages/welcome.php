@@ -41,12 +41,23 @@ $menus = $admin->get_module('menus');
                     <p><?php esc_html_e( 'Customize your site\'s appearance through the WordPress Customizer. Change colors, layouts, and more to match your brand.', 'accepta' ); ?></p>
                     <a href="<?php echo esc_url( admin_url( 'customize.php' ) ); ?>" class="button button-primary"><?php esc_html_e( 'Customize Your Site', 'accepta' ); ?></a>
                 </div>
-                
-                <div class="accepta-feature-section">
-                    <h3><?php esc_html_e( 'Documentation', 'accepta' ); ?></h3>
-                    <p><?php esc_html_e( 'Learn how to use all the features of the Accepta theme. Check the theme\'s readme.txt file for detailed information.', 'accepta' ); ?></p>
-                    <a href="<?php echo esc_url( get_template_directory_uri() . '/readme.txt' ); ?>" class="button button-secondary" target="_blank"><?php esc_html_e( 'Read Documentation', 'accepta' ); ?></a>
+
+                <div class="accepta-feature-section accepta-pro-promo">
+                    <h3><span class="dashicons dashicons-star-filled" aria-hidden="true"></span><?php esc_html_e( 'Accepta PRO — Coming Soon', 'accepta' ); ?></h3>
+                    <p><?php esc_html_e( 'More premium features, extra layouts, and dedicated support are on the way. Stay tuned!', 'accepta' ); ?></p>
+                    <p class="accepta-pro-newsletter">
+                        <?php
+                        echo wp_kses_post(
+                            sprintf(
+                                /* translators: %s: link to WPDINO newsletter signup */
+                                __( 'Be the first to know when Accepta PRO launches! %s for exclusive updates, tips, and early-access offers.', 'accepta' ),
+                                '<a href="' . esc_url( $admin->add_utm_params( 'https://wpdino.com', 'pro_newsletter_cta' ) ) . '" target="_blank" rel="noopener noreferrer" class="accepta-pro-newsletter-link">' . esc_html__( 'Subscribe to our newsletter', 'accepta' ) . '</a>'
+                            )
+                        );
+                        ?>
+                    </p>
                 </div>
+
             </div>
             
             <div class="accepta-welcome-column">
@@ -110,6 +121,12 @@ $menus = $admin->get_module('menus');
                     <span class="dashicons dashicons-editor-table"></span>
                     <h3><?php esc_html_e( 'Elementor Integration', 'accepta' ); ?></h3>
                     <p><?php esc_html_e( 'Full compatibility with Elementor Page Builder for a powerful and intuitive design experience.', 'accepta' ); ?></p>
+                </div>
+
+                <div class="accepta-feature-item">
+                    <span class="dashicons dashicons-universal-access"></span>
+                    <h3><?php esc_html_e( 'Accessibility Ready', 'accepta' ); ?></h3>
+                    <p><?php esc_html_e( 'Designed with accessibility in mind so your site is usable for everyone.', 'accepta' ); ?></p>
                 </div>
             </div>
         </div>

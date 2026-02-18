@@ -248,13 +248,46 @@ h1 .accepta-theme-version {
     background: var(--light-bg);
     padding: var(--spacing-md);
     margin-bottom: var(--spacing-md);
-    border-left: 4px solid var(--primary-color);
+    border-radius: var(--border-radius);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
     transition: var(--transition);
 }
 
 .accepta-feature-section:hover {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-    transform: translateY(-3px);
+    transform: translateY(-2px);
+}
+
+.accepta-feature-section.accepta-pro-promo {
+    background: linear-gradient(135deg, rgba(111, 156, 80, 0.08) 0%, rgba(111, 156, 80, 0.04) 100%);
+    border: 1px dashed rgba(111, 156, 80, 0.25);
+}
+
+.accepta-feature-section.accepta-pro-promo h3 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.accepta-feature-section.accepta-pro-promo .dashicons-star-filled {
+    color: var(--primary-color);
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+}
+
+.accepta-pro-newsletter {
+    margin-bottom: 0 !important;
+}
+
+.accepta-pro-newsletter-link {
+    font-weight: 600;
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.accepta-pro-newsletter-link:hover {
+    text-decoration: underline;
 }
 
 .accepta-feature-section h3 {

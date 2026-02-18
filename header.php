@@ -55,8 +55,8 @@
 					</div><!-- .branding-text -->
 				</div><!-- .site-branding -->
 
-				<nav id="site-navigation" class="main-navigation">
-					<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+				<nav id="site-navigation" class="main-navigation" aria-label="<?php esc_attr_e( 'Primary', 'accepta' ); ?>">
+					<button type="button" class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>

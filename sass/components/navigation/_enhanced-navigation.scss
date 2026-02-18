@@ -171,22 +171,34 @@
 	}
 }
 
-/* Hamburger menu icon styling */
+/* Hamburger menu icon styling - icon only, no box */
 .menu-toggle {
 	display: inline-block;
+	background: none;
 	background-color: transparent;
 	border: none;
+	box-shadow: none;
+	outline: none;
 	padding: 0.75rem;
 	cursor: pointer;
 	margin-left: auto;
 	flex-direction: column;
 	justify-content: space-between;
-	
-	&:hover, &:focus {
+	appearance: none;
+
+	&:hover,
+	&:focus {
 		background-color: transparent;
 		box-shadow: none;
+		border: none;
+		outline: none;
 	}
-	
+
+	&:focus-visible {
+		outline: 2px solid currentColor;
+		outline-offset: 2px;
+	}
+
 	span {
 		display: block;
 		height: 3px;
@@ -216,47 +228,95 @@
 	}
 }
 
-/* Mobile navigation */
-.main-navigation.toggled ul {
-	display: block;
-	background: #fff;
-	width: 100%;
-	position: absolute;
-	left: 0;
-	top: 100%;
-	z-index: 999;
-	padding: 1rem;
-	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-	text-align: left;
-	
-	li {
+/* Mobile navigation - levels, spacing, separators */
+@media screen and (max-width: 767px) {
+	.main-navigation.toggled ul {
+		display: block;
+		background: #fff;
 		width: 100%;
-		margin-right: 0;
-		padding: 0;
-	}
-	
-	a {
-		padding: 0.7rem 0;
-		transition: color 0.3s ease;
-		
-		&:hover {
-			color: $color__primary;
+		position: absolute;
+		left: 0;
+		top: 100%;
+		z-index: 999;
+		padding: 0.75rem 1rem 1.25rem;
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+		text-align: left;
+		max-height: calc(100vh - 80px);
+		overflow-y: auto;
+
+		/* First-level items: spacing and separator */
+		> li {
+			width: 100%;
+			margin: 0;
+			padding: 0;
+			border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+
+			&:last-child {
+				border-bottom: none;
+			}
 		}
-	}
-	
-	ul {
-		position: static;
-		box-shadow: none;
-		padding: 0 0 0 1.5rem;
-		border-radius: 0;
-		
-		&::before, &::after {
-			display: none; /* Hide arrow and accent line in mobile */
+
+		> li > a {
+			display: block;
+			color: #2c3e50;
+			text-decoration: none;
+			font-weight: 600;
+			font-size: 1rem;
+			line-height: 1.4;
+			padding: 0.85rem 0;
+			transition: color 0.2s ease;
+
+			&:hover {
+				color: $color__primary;
+			}
 		}
-		
-		a {
-			width: auto;
-			padding: 0.5rem 0;
+
+		/* Sub-menus: indentation and spacing after parent */
+		ul {
+			position: static;
+			box-shadow: none;
+			padding: 0.5rem 0 0.5rem 1.25rem;
+			margin: 0.5rem 0 0 0.5rem;
+			border-radius: 0;
+
+			&::before,
+			&::after {
+				display: none;
+			}
+
+			li {
+				margin: 0;
+				padding: 0;
+				border-bottom: none;
+			}
+
+			a {
+				display: block;
+				color: #4a5568;
+				text-decoration: none;
+				font-weight: 500;
+				font-size: 0.9375rem;
+				line-height: 1.4;
+				padding: 0.5rem 0;
+				transition: color 0.2s ease;
+
+				&:hover {
+					color: $color__primary;
+				}
+			}
+
+			/* Third level and deeper: more indentation, equal spacing below last child */
+			ul {
+				padding-left: 1rem;
+				margin-left: 0.25rem;
+				padding-bottom: 0.5rem; /* Match top spacing so last child has equal space below */
+
+				a {
+					font-size: 0.875rem;
+					color: #5a6578;
+					padding: 0.4rem 0;
+				}
+			}
 		}
 	}
 }

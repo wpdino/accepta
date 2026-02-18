@@ -2932,13 +2932,15 @@ function accepta_sticky_header_css() {
 		}
 
 		// Overlay header text colors (when not scrolled, on hero page only)
-		// Parent menu items: white (transparent color). Children (dropdown): black as original.
+		// Nav link colors only on desktop so mobile dropdown keeps dark text on white panel.
 		$css .= $overlay_prefix . '.site-header:not(.scrolled) .site-title a { color: ' . esc_attr( $transparent_text_color ) . '; }';
 		$css .= $overlay_prefix . '.site-header:not(.scrolled) .site-description { color: ' . esc_attr( $transparent_text_color ) . '; opacity: 0.8; }';
+		$css .= '@media screen and (min-width: 768px) { ';
 		$css .= $overlay_prefix . '.site-header:not(.scrolled) .main-navigation > ul > li > a, ';
 		$css .= $overlay_prefix . '.site-header:not(.scrolled) .main-navigation .nav-menu > li > a { color: ' . esc_attr( $transparent_text_color ) . ' !important; }';
 		$css .= $overlay_prefix . '.site-header:not(.scrolled) .main-navigation ul ul a { color: #000 !important; }';
 		$css .= $overlay_prefix . '.site-header:not(.scrolled) .main-navigation ul ul a:hover { color: #6F9C50; }';
+		$css .= ' }';
 		$css .= $overlay_prefix . '.site-header:not(.scrolled) .menu-toggle { color: ' . esc_attr( $transparent_text_color ) . '; }';
 		$css .= $overlay_prefix . '.site-header:not(.scrolled) .menu-toggle .icon-bar { background-color: ' . esc_attr( $transparent_text_color ) . '; }';
 		$css .= $overlay_prefix . '.site-header:not(.scrolled) .header-social-icons .social-icon { color: ' . esc_attr( $transparent_text_color ) . '; }';

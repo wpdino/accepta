@@ -40,7 +40,6 @@ document.addEventListener('DOMContentLoaded', function() {
             if (primaryMenu) {
                 primaryMenu.classList.remove('toggled');
             }
-            
             // Reset the menu toggle button state
             if (menuToggle) {
                 menuToggle.setAttribute('aria-expanded', 'false');
@@ -95,7 +94,6 @@ document.addEventListener('DOMContentLoaded', function() {
             // Check if the click is outside the navigation area
             if (!e.target.closest('.main-navigation')) {
                 primaryMenu.classList.remove('toggled');
-                
                 // Close all dropdown menus
                 const allOpenDropdowns = primaryMenu.querySelectorAll('.menu-item-has-children.toggled, .page_item_has_children.toggled');
                 allOpenDropdowns.forEach(function(item) {

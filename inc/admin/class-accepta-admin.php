@@ -242,6 +242,28 @@ class Accepta_Admin {
     public function get_theme_info() {
         return $this->theme_info;
     }
+
+    /**
+     * Add UTM parameters to a URL for tracking
+     *
+     * @param string $url     The original URL.
+     * @param string $content The content identifier for utm_content.
+     * @return string URL with UTM parameters.
+     */
+    public function add_utm_params( $url, $content = '' ) {
+        $utm_params = array(
+            'utm_source' => 'wpadmin',
+            'utm_medium' => 'accepta',
+            'utm_campaign' => 'accepta_free',
+        );
+
+        if ( ! empty( $content ) ) {
+            $utm_params['utm_content'] = $content;
+        }
+
+        $separator = strpos( $url, '?' ) !== false ? '&' : '?';
+        return $url . $separator . http_build_query( $utm_params );
+    }
     
     /**
      * Get module instance
