@@ -203,29 +203,21 @@ add_action( 'widgets_init', 'accepta_widgets_init' );
  */
 function accepta_scripts() {
 
-	// Enqueue main stylesheet from assets directory
-    wp_enqueue_style( 
-		'accepta-style', 
-		get_template_directory_uri() . '/assets/css/accepta.css', 
-		array(), 
+	wp_enqueue_style(
+		'accepta-style',
+		get_template_directory_uri() . '/assets/css/accepta.css',
+		array(),
 		_ACCEPTA_VERSION
 	);
-    
 	wp_style_add_data( 'accepta-style', 'rtl', 'replace' );
-    
-    // Google Fonts are now handled dynamically by accepta_enqueue_google_fonts()
-    
-    // Enqueue Font Awesome for icons (bundled with theme).
-    // Use a theme-specific handle to avoid conflicts with plugins (e.g. Elementor)
-    // that may register/dequeue a generic `font-awesome` handle.
-    wp_enqueue_style( 
-		'accepta-font-awesome', 
-		get_template_directory_uri() . '/assets/fonts/fontawesome/all.min.css', 
-		array(), 
-		'6.4.0' 
+
+	wp_enqueue_style(
+		'font-awesome',
+		get_template_directory_uri() . '/assets/fonts/fontawesome/all.min.css',
+		array(),
+		'6.4.0'
 	);
-    
-    // Register WooCommerce styles if WooCommerce is active (load after WooCommerce default styles)
+
     if ( class_exists( 'WooCommerce' ) ) {
         wp_enqueue_style( 
 			'accepta-woocommerce-style', 
@@ -244,18 +236,16 @@ function accepta_scripts() {
 		_ACCEPTA_VERSION, 
 		true 
 	);
-    
-    // Enqueue mobile menu script
-    wp_enqueue_script( 
+
+	wp_enqueue_script( 
 		'accepta-mobile-menu', 
 		get_template_directory_uri() . '/assets/js/mobile-menu.js', 
 		array(), 
 		_ACCEPTA_VERSION,
 		true 
 	);
-    
-    // Enqueue sticky header script
-    $sticky_header_enabled = get_theme_mod( 'accepta_sticky_header', true );
+
+	$sticky_header_enabled = get_theme_mod( 'accepta_sticky_header', true );
     wp_enqueue_script( 
 		'accepta-sticky-header', 
 		get_template_directory_uri() . '/assets/js/sticky-header.js', 
@@ -263,9 +253,8 @@ function accepta_scripts() {
 		_ACCEPTA_VERSION, 
 		true 
 	);
-    
-    // Localize script with sticky header and transparent header settings
-    $transparent_header = get_theme_mod( 'accepta_transparent_header', true );
+
+	$transparent_header = get_theme_mod( 'accepta_transparent_header', true );
     $scrolled_bg = get_theme_mod( 'accepta_scrolled_header_bg', '#ffffff' );
     $scrolled_bg_opacity = get_theme_mod( 'accepta_scrolled_header_bg_opacity', '1' );
     $transparent_text_color = get_theme_mod( 'accepta_transparent_header_text_color', '#ffffff' );
@@ -283,8 +272,7 @@ function accepta_scripts() {
 		)
 	);
 
-    // Enqueue hero section script
-    if ( is_front_page() || is_home() ) {
+	if ( is_front_page() || is_home() ) {
         wp_enqueue_script(
             'accepta-hero-section',
             get_template_directory_uri() . '/assets/js/hero-section.js',
@@ -293,9 +281,8 @@ function accepta_scripts() {
             true
         );
     }
-    
-    // Enqueue header search script
-    if ( get_theme_mod( 'accepta_display_header_search', true ) ) {
+
+	if ( get_theme_mod( 'accepta_display_header_search', true ) ) {
         wp_enqueue_script(
             'accepta-header-search',
             get_template_directory_uri() . '/assets/js/header-search.js',
@@ -305,8 +292,7 @@ function accepta_scripts() {
         );
     }
 
-    // Enqueue minicart offcanvas script and cart fragments when WooCommerce and header cart are enabled
-    if ( class_exists( 'WooCommerce' ) && get_theme_mod( 'accepta_woo_display_header_cart', true ) ) {
+	if ( class_exists( 'WooCommerce' ) && get_theme_mod( 'accepta_woo_display_header_cart', true ) ) {
         wp_enqueue_script( 'wc-cart-fragments' );
         wp_enqueue_script(
             'accepta-woocommerce-cart-refresh',
@@ -324,37 +310,24 @@ function accepta_scripts() {
         );
     }
 
-	// Enqueue comment reply script
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
 add_action( 'wp_enqueue_scripts', 'accepta_scripts' );
 
-/**
- * Add font preloading for better performance
- */
-function accepta_preload_fonts() {
-	// Preload Font Awesome fonts
-	echo '<link rel="preload" href="' . get_template_directory_uri() . '/assets/fonts/fontawesome/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous">' . "\n";
-	echo '<link rel="preload" href="' . get_template_directory_uri() . '/assets/fonts/fontawesome/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">' . "\n";
-	echo '<link rel="preload" href="' . get_template_directory_uri() . '/assets/fonts/fontawesome/webfonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">' . "\n";
-}
-add_action( 'wp_head', 'accepta_preload_fonts', 1 );
 
 /**
  * Get all Google Fonts used across typography settings
  */
 function accepta_get_all_google_fonts() {
 	$google_fonts = array();
-	
-	// Always include Outfit as the default theme font
+
 	$google_fonts['Outfit'] = array( 
 		'weights' => array( '300', '400', '500', '600', '700' ),
 		'used_in' => array( 'default' )
 	);
-	
-	// Get all typography settings
+
 	$typography_settings = array( 
 		'body' => get_theme_mod( 'accepta_body_typography', '' ),
 		'all_headings' => get_theme_mod( 'accepta_all_headings_typography', '' ),
@@ -367,19 +340,14 @@ function accepta_get_all_google_fonts() {
 		'h6' => get_theme_mod( 'accepta_h6_typography', '' ),
 		'button' => get_theme_mod( 'accepta_button_typography', '' ),
 	);
-	
-	// Process typography settings
+
 	foreach ( $typography_settings as $type => $typography ) {
 		if ( ! empty( $typography ) ) {
 			$typography_data = json_decode( $typography, true );
 			if ( is_array( $typography_data ) && ! empty( $typography_data['font_family'] ) ) {
 				$font_family = $typography_data['font_family'];
-				
-				// Extract clean font name (first font in stack)
 				$clean_font_name = explode( ',', $font_family )[0];
 				$clean_font_name = trim( str_replace( array( '"', "'" ), '', $clean_font_name ) );
-				
-				// Check if it's a Google Font (not a system font)
 				if ( ! accepta_is_system_font( $clean_font_name ) ) {
 					if ( ! isset( $google_fonts[ $clean_font_name ] ) ) {
 						$google_fonts[ $clean_font_name ] = array( 
@@ -401,14 +369,11 @@ function accepta_get_all_google_fonts() {
  */
 function accepta_enqueue_google_fonts() {
 	$google_fonts_data = accepta_get_all_google_fonts();
-	
-	// Extract just the font names and weights for URL generation
 	$google_fonts = array();
 	foreach ( $google_fonts_data as $font_name => $font_data ) {
 		$google_fonts[ $font_name ] = $font_data['weights'];
 	}
-	
-	// Enqueue Google Fonts
+
 	if ( ! empty( $google_fonts ) ) {
 		$font_families = array();
 		

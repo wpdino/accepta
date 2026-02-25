@@ -97,7 +97,8 @@
 			</div><!-- .header-content -->
 
 			<?php if ( get_theme_mod( 'accepta_display_header_search', true ) ) : ?>
-				<div class="header-search-overlay" aria-hidden="true">
+				<div class="header-search-overlay" role="dialog" aria-modal="true" aria-labelledby="header-search-dialog-label" aria-hidden="true">
+					<h2 id="header-search-dialog-label" class="screen-reader-text"><?php esc_html_e( 'Search', 'accepta' ); ?></h2>
 					<button class="header-search-close" aria-label="<?php esc_attr_e( 'Close search', 'accepta' ); ?>">
 						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>

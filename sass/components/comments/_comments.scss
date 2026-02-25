@@ -138,10 +138,10 @@
 		}
 		
 		a {
-			color: #69B40F; /* Primary color */
-			text-decoration: none;
+			color: #69B40F;
+			text-decoration: underline;
 			word-wrap: break-word;
-			
+
 			&:hover {
 				text-decoration: underline;
 			}
@@ -411,7 +411,8 @@
 	}
 }
 
-/* Make sure links in comments wrap instead of overflowing */
+/* Links in comment text: underline and wrap */
 .comment-content a {
+	text-decoration: underline;
 	word-wrap: break-word;
 }

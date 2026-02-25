@@ -85,9 +85,9 @@ class Accepta_Admin_Customizer {
     public function ensure_fontawesome_in_preview() {
         if ( is_customize_preview() ) {
             // Ensure Font Awesome is enqueued in preview
-            if ( ! wp_style_is( 'accepta-font-awesome', 'enqueued' ) ) {
+            if ( ! wp_style_is( 'font-awesome', 'enqueued' ) ) {
                 wp_enqueue_style(
-                    'accepta-font-awesome',
+                    'font-awesome',
                     get_template_directory_uri() . '/assets/fonts/fontawesome/all.min.css',
                     array(),
                     '6.4.0'

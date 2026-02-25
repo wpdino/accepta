@@ -65,19 +65,7 @@
         // Update header height on resize
         window.addEventListener('resize', function() {
             updateHeaderHeight();
-            // On mobile: remove sticky state so header scrolls with page
-            if (window.innerWidth <= 767) {
-                header.classList.remove('scrolled');
-                header.style.removeProperty('position');
-                header.style.removeProperty('top');
-                header.style.left = '';
-                header.style.right = '';
-                header.style.removeProperty('background-color');
-                header.style.removeProperty('box-shadow');
-                header.style.removeProperty('padding');
-                document.body.classList.remove('has-sticky-header');
-                return;
-            }
+            
             // Recalculate admin bar height on resize
             adminBarHeight = getAdminBarHeight();
             if (header.classList.contains('scrolled') && isAdminBar) {
@@ -126,20 +114,6 @@
     }
 
     function handleScroll() {
-        // On mobile: header scrolls with page (no sticky)
-        if (window.innerWidth <= 767) {
-            header.classList.remove('scrolled');
-            header.style.removeProperty('position');
-            header.style.removeProperty('top');
-            header.style.left = '';
-            header.style.right = '';
-            header.style.removeProperty('background-color');
-            header.style.removeProperty('box-shadow');
-            header.style.removeProperty('padding');
-            document.body.classList.remove('has-sticky-header');
-            return;
-        }
-
         // Threshold to activate sticky header
         const threshold = 50; // Lower threshold for quicker activation
         const isTransparent = typeof acceptaStickyHeader !== 'undefined' && acceptaStickyHeader.transparent;

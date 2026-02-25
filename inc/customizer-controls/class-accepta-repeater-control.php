@@ -84,9 +84,8 @@ class Accepta_Repeater_Control extends WP_Customize_Control {
 	 * Enqueue control related scripts/styles
 	 */
 	public function enqueue() {
-		// Enqueue Font Awesome for icon previews (use theme's local version)
 		wp_enqueue_style(
-			'accepta-font-awesome',
+			'font-awesome',
 			get_template_directory_uri() . '/assets/fonts/fontawesome/all.min.css',
 			array(),
 			'6.4.0'
@@ -103,7 +102,7 @@ class Accepta_Repeater_Control extends WP_Customize_Control {
 		wp_enqueue_style(
 			'accepta-repeater-control',
 			get_template_directory_uri() . '/inc/customizer-controls/css/repeater-control.css',
-			array( 'accepta-font-awesome' ),
+			array( 'font-awesome' ),
 			wp_get_theme()->get( 'Version' )
 		);
 
