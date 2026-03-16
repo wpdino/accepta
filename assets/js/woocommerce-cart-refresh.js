@@ -7,7 +7,7 @@
 (function () {
 	'use strict';
 
-	function init() {
+	function acceptaWooCartRefreshInit() {
 		if ( typeof jQuery === 'undefined' ) return;
 
 		var $ = jQuery;
@@ -17,8 +17,8 @@
 	}
 
 	if ( document.readyState === 'loading' ) {
-		document.addEventListener( 'DOMContentLoaded', init );
+		document.addEventListener( 'DOMContentLoaded', acceptaWooCartRefreshInit );
 	} else {
-		init();
+		acceptaWooCartRefreshInit();
 	}
 })();

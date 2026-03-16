@@ -1,6 +1,9 @@
 /**
  * Mobile menu toggle functionality
  */
+(function() {
+    'use strict';
+
 document.addEventListener('DOMContentLoaded', function() {
     const menuToggle = document.querySelector('.menu-toggle');
     const primaryMenu = document.querySelector('#primary-menu');
@@ -15,14 +18,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Function to setup mobile dropdown behaviors
-    function setupMobileDropdowns() {
+    function acceptaMobileSetupDropdowns() {
         if (window.innerWidth <= 768) {
             // First remove existing click events to prevent duplicates
             dropdownItems.forEach(function(item) {
                 const link = item.querySelector('a');
                 if (link) {
-                    link.removeEventListener('click', handleDropdownClick);
-                    link.addEventListener('click', handleDropdownClick);
+                    link.removeEventListener('click', acceptaMobileHandleDropdownClick);
+                    link.addEventListener('click', acceptaMobileHandleDropdownClick);
                 }
             });
         } else {
@@ -30,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
             dropdownItems.forEach(function(item) {
                 const link = item.querySelector('a');
                 if (link) {
-                    link.removeEventListener('click', handleDropdownClick);
+                    link.removeEventListener('click', acceptaMobileHandleDropdownClick);
                 }
                 // Reset any toggled state when switching to desktop
                 item.classList.remove('toggled');
@@ -48,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Handler for dropdown clicks
-    function handleDropdownClick(e) {
+    function acceptaMobileHandleDropdownClick(e) {
         // Only prevent default if we're on mobile
         if (window.innerWidth <= 768) {
             e.preventDefault();
@@ -86,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Setup on page load
-    setupMobileDropdowns();
+    acceptaMobileSetupDropdowns();
     
     // Close mobile menu when clicking outside
     document.addEventListener('click', function(e) {
@@ -112,8 +115,10 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('resize', function() {
         // Debounce the resize event
         clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(function() {
-            setupMobileDropdowns();
-        }, 250);
+            resizeTimer = setTimeout(function() {
+                acceptaMobileSetupDropdowns();
+            }, 250);
     });
 }); 
+
+})(); 

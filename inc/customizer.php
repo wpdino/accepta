@@ -35,11 +35,6 @@ function accepta_customize_register( $wp_customize ) {
 	if ( class_exists( 'Accepta_Range_Control' ) ) {
 		$wp_customize->register_control_type( 'Accepta_Range_Control' );
 	}
-	// Note: Alignment control doesn't need to be registered as a control type
-	// It works fine without registration, similar to other controls
-	// if ( class_exists( 'Accepta_Alignment_Control' ) ) {
-	// 	$wp_customize->register_control_type( 'Accepta_Alignment_Control' );
-	// }
 
 	$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
 	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
@@ -2868,7 +2863,6 @@ function accepta_sticky_header_css() {
 	if ( ! $sticky_header ) {
 		// If sticky header is disabled, set position to relative and remove sticky-related styles
 		$css .= '.site-header { position: relative; top: auto; }';
-		//$css .= '.admin-bar .site-header { top: auto; }';
 		$css .= 'body.has-sticky-header { padding-top: 0; }';
 		$css .= 'body { padding-top: 0; }';
 		// Remove any scrolled class effects

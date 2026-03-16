@@ -77,9 +77,6 @@ class Accepta_Admin {
         // Enqueue admin scripts and styles
         add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
         
-        // Add dashboard widget
-        //add_action( 'wp_dashboard_setup', array( $this, 'add_dashboard_widget' ) );
-        
         // Handle AJAX for dismissing plugin notice
         add_action( 'wp_ajax_accepta_dismiss_plugin_notice', array( $this, 'dismiss_plugin_notice' ) );
         

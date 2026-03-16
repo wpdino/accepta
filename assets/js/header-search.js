@@ -7,7 +7,7 @@
 
     var FOCUSABLE_SELECTOR = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
 
-    function getFocusables(container) {
+    function acceptaHeaderGetFocusables(container) {
         if (!container) return [];
         var nodes = container.querySelectorAll(FOCUSABLE_SELECTOR);
         return Array.prototype.filter.call(nodes, function(el) {
@@ -34,7 +34,7 @@
             body.style.overflow = 'hidden';
 
             setTimeout(function() {
-                var focusables = getFocusables(searchOverlay);
+                var focusables = acceptaHeaderGetFocusables(searchOverlay);
                 if (searchField) {
                     searchField.focus();
                 } else if (focusables.length > 0) {
@@ -57,7 +57,7 @@
             if (!searchOverlay.classList.contains('active') || e.key !== 'Tab') {
                 return;
             }
-            var focusables = getFocusables(searchOverlay);
+            var focusables = acceptaHeaderGetFocusables(searchOverlay);
             if (focusables.length === 0) return;
 
             var first = focusables[0];

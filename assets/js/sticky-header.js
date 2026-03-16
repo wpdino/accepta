@@ -33,7 +33,7 @@
     const isAdminBar = document.body.classList.contains('admin-bar');
     
     // Get admin bar height from CSS variable or calculate it
-    function getAdminBarHeight() {
+    function acceptaStickyGetAdminBarHeight() {
         if (!isAdminBar) return 0;
         // Use WordPress CSS variable if available (WordPress 5.7+)
         const cssVar = getComputedStyle(document.documentElement).getPropertyValue('--wp-admin--admin-bar--height');
@@ -48,7 +48,7 @@
         return window.innerWidth > 782 ? 32 : 46;
     }
     
-    let adminBarHeight = getAdminBarHeight();
+    let adminBarHeight = acceptaStickyGetAdminBarHeight();
     
     // Set the header height as a CSS variable
     document.documentElement.style.setProperty('--header-height', `${headerHeight}px`);
@@ -56,18 +56,18 @@
     /**
      * Initialize sticky header
      */
-    function initStickyHeader() {
+    function acceptaStickyInitHeader() {
         if (!header) return;
         
         // Get initial header height
-        updateHeaderHeight();
+        acceptaStickyUpdateHeaderHeight();
         
         // Update header height on resize
         window.addEventListener('resize', function() {
-            updateHeaderHeight();
+            acceptaStickyUpdateHeaderHeight();
             
             // Recalculate admin bar height on resize
-            adminBarHeight = getAdminBarHeight();
+            adminBarHeight = acceptaStickyGetAdminBarHeight();
             if (header.classList.contains('scrolled') && isAdminBar) {
                 header.style.top = `${adminBarHeight}px`;
             }
@@ -79,7 +79,7 @@
             
             if (!ticking) {
                 window.requestAnimationFrame(function() {
-                    handleScroll();
+                    acceptaStickyHandleScroll();
                     ticking = false;
                 });
                 
@@ -91,7 +91,7 @@
     /**
      * Update header height
      */
-    function updateHeaderHeight() {
+    function acceptaStickyUpdateHeaderHeight() {
         headerHeight = header.offsetHeight;
         document.documentElement.style.setProperty('--header-height', `${headerHeight}px`);
     }
@@ -102,7 +102,7 @@
     /**
      * Convert hex color to rgba
      */
-    function hexToRgba(hex, opacity) {
+    function acceptaStickyHexToRgba(hex, opacity) {
         hex = hex.replace('#', '');
         if (hex.length === 3) {
             hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
@@ -113,7 +113,7 @@
         return 'rgba(' + r + ', ' + g + ', ' + b + ', ' + opacity + ')';
     }
 
-    function handleScroll() {
+    function acceptaStickyHandleScroll() {
         // Threshold to activate sticky header
         const threshold = 50; // Lower threshold for quicker activation
         const isTransparent = typeof acceptaStickyHeader !== 'undefined' && acceptaStickyHeader.transparent;
@@ -124,7 +124,7 @@
             if (!header.classList.contains('scrolled')) {
                 header.classList.add('scrolled');
                 // Update header height after it becomes sticky (after transition)
-                setTimeout(updateHeaderHeight, 300);
+                setTimeout(acceptaStickyUpdateHeaderHeight, 300);
             }
             
             // Always apply scrolled background color with opacity (whether just scrolled or already scrolled)
@@ -134,7 +134,7 @@
                 header.style.top = isAdminBar ? `${adminBarHeight}px` : '0';
                 // Apply scrolled background color with opacity
                 if (scrolledBg) {
-                    const rgba = hexToRgba(scrolledBg, scrolledBgOpacity);
+                    const rgba = acceptaStickyHexToRgba(scrolledBg, scrolledBgOpacity);
                     header.style.backgroundColor = rgba;
                     header.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.1)';
                     header.style.padding = '0.5rem 0';
@@ -148,7 +148,7 @@
                 
                 // Apply scrolled background color with opacity
                 if (scrolledBg) {
-                    const rgba = hexToRgba(scrolledBg, scrolledBgOpacity);
+                    const rgba = acceptaStickyHexToRgba(scrolledBg, scrolledBgOpacity);
                     header.style.backgroundColor = rgba;
                     header.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.1)';
                     header.style.padding = '0.5rem 0';
@@ -180,15 +180,15 @@
                 }
                 
                 // Update header height after it becomes non-sticky (after transition)
-                setTimeout(updateHeaderHeight, 300);
+                setTimeout(acceptaStickyUpdateHeaderHeight, 300);
             }
         }
     }
 
     // Initialize when DOM is fully loaded
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initStickyHeader);
+        document.addEventListener('DOMContentLoaded', acceptaStickyInitHeader);
     } else {
-        initStickyHeader();
+        acceptaStickyInitHeader();
     }
 })(); 

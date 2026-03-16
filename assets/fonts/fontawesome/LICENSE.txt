@@ -1,0 +1,23 @@
+Font Awesome Free 6.4.0
+========================
+
+This theme bundles a subset of Font Awesome Free 6.4.0 for iconography.
+
+Project page:
+https://fontawesome.com
+
+License overview for Font Awesome Free:
+---------------------------------------
+
+- Icons:      CC BY 4.0 (Creative Commons Attribution 4.0 International)
+- Fonts:      SIL OFL 1.1 (SIL Open Font License 1.1)
+- CSS/Code:   MIT License
+
+Full license details:
+https://fontawesome.com/license/free
+
+Copyright:
+----------
+
+Copyright (c) Fonticons, Inc.
+

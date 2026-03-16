@@ -500,12 +500,6 @@ require get_template_directory() . '/inc/template-functions.php';
 require get_template_directory() . '/inc/customizer.php';
 
 /**
- * Customizer icons.
- */
-// Customizer icons removed as requested
-// require get_template_directory() . '/inc/customizer-icons.php';
-
-/**
  * Elementor compatibility.
  */
 require get_template_directory() . '/inc/elementor.php';

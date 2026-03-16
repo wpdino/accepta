@@ -79,6 +79,16 @@ Accepta includes standard WordPress widgets and is compatible with all WordPress
 
 **Default hero image** (assets/images/accepta-hero-bg.jpg): Free to use. Sourced from PxHere (CC0 Public Domain). Original: https://pxhere.com/en/photo/306
 
+**Font Awesome Free** (assets/fonts/fontawesome):
+- Version: 6.4.0
+- Project: https://fontawesome.com
+- License overview:
+  - Icons: CC BY 4.0 (Creative Commons Attribution 4.0 International)
+  - Fonts: SIL OFL 1.1 (SIL Open Font License 1.1)
+  - CSS/Code: MIT License
+- Full license: https://fontawesome.com/license/free
+- Local license file: assets/fonts/fontawesome/LICENSE.txt
+
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned.
 
