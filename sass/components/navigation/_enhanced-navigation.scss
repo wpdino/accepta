@@ -187,6 +187,12 @@
 		background-color: transparent;
 		box-shadow: none !important;
 	}
+
+	&:focus,
+	&:focus-visible {
+		outline: 1px dotted currentColor;
+		outline-offset: 2px;
+	}
 	
 	span {
 		display: block;
@@ -354,6 +360,12 @@ body.accepta-mobile-menu-open {
 		background: transparent;
 		color: #333;
 		cursor: pointer;
+	}
+
+	#site-navigation.main-navigation.toggled > #primary-menu.toggled .accepta-submenu-toggle:focus,
+	#site-navigation.main-navigation.toggled > #primary-menu.toggled .accepta-submenu-toggle:focus-visible {
+		outline: 1px dotted currentColor;
+		outline-offset: 2px;
 	}
 
 	#site-navigation.main-navigation.toggled > #primary-menu.toggled .accepta-submenu-toggle::before {

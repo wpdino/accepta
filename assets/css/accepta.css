@@ -1940,6 +1940,10 @@ body.has-sticky-header {
   background-color: transparent;
   box-shadow: none !important;
 }
+.menu-toggle:focus, .menu-toggle:focus-visible {
+  outline: 1px dotted currentColor;
+  outline-offset: 2px;
+}
 .menu-toggle span {
   display: block;
   height: 2px;
@@ -2084,6 +2088,11 @@ body.accepta-mobile-menu-open {
     background: transparent;
     color: #333;
     cursor: pointer;
+  }
+  #site-navigation.main-navigation.toggled > #primary-menu.toggled .accepta-submenu-toggle:focus,
+  #site-navigation.main-navigation.toggled > #primary-menu.toggled .accepta-submenu-toggle:focus-visible {
+    outline: 1px dotted currentColor;
+    outline-offset: 2px;
   }
   #site-navigation.main-navigation.toggled > #primary-menu.toggled .accepta-submenu-toggle::before {
     content: "";
