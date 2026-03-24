@@ -31,6 +31,7 @@
             searchOverlay.classList.add('active');
             searchOverlay.setAttribute('aria-hidden', 'false');
             searchToggle.setAttribute('aria-expanded', 'true');
+            body.classList.add('accepta-search-open');
             body.style.overflow = 'hidden';
 
             setTimeout(function() {
@@ -48,6 +49,7 @@
             searchOverlay.classList.remove('active');
             searchOverlay.setAttribute('aria-hidden', 'true');
             searchToggle.setAttribute('aria-expanded', 'false');
+            body.classList.remove('accepta-search-open');
             body.style.overflow = '';
             searchToggle.focus();
         }

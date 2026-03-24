@@ -36,8 +36,6 @@ if ($screen && strpos($screen->id, 'accepta-') !== false) {
             </p>
         </div>
         <div class="accepta-admin-footer-right">
-            <a href="<?php echo esc_url( 'https://wordpress.org/support/themes/' ); ?>" target="_blank"><?php esc_html_e( 'Support', 'accepta' ); ?></a>
-            <span>|</span>
             <a href="<?php echo esc_url( admin_url( 'customize.php' ) ); ?>"><?php esc_html_e( 'Customize', 'accepta' ); ?></a>
         </div>
     </div>

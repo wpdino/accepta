@@ -254,21 +254,21 @@ function accepta_scripts() {
 		true 
 	);
 
-	$transparent_header = get_theme_mod( 'accepta_transparent_header', true );
-    $scrolled_bg = get_theme_mod( 'accepta_scrolled_header_bg', '#ffffff' );
-    $scrolled_bg_opacity = get_theme_mod( 'accepta_scrolled_header_bg_opacity', '1' );
+	$transparent_header     = get_theme_mod( 'accepta_transparent_header', true );
+    $scrolled_bg            = get_theme_mod( 'accepta_scrolled_header_bg', '#ffffff' );
+    $scrolled_bg_opacity    = get_theme_mod( 'accepta_scrolled_header_bg_opacity', '1' );
     $transparent_text_color = get_theme_mod( 'accepta_transparent_header_text_color', '#ffffff' );
-    $scrolled_text_color = get_theme_mod( 'accepta_scrolled_header_text_color', '#2c3e50' );
+    $scrolled_text_color    = get_theme_mod( 'accepta_scrolled_header_text_color', '#2c3e50' );
     wp_localize_script(
 		'accepta-sticky-header',
 		'acceptaStickyHeader',
 		array(
-			'enabled' => $sticky_header_enabled,
-			'transparent' => $transparent_header,
-			'scrolledBg' => $scrolled_bg,
-			'scrolledBgOpacity' => floatval( $scrolled_bg_opacity ),
-			'transparentTextColor' => $transparent_text_color,
-			'scrolledTextColor' => $scrolled_text_color,
+			'enabled'              => (bool) $sticky_header_enabled,
+			'transparent'          => (bool) $transparent_header,
+			'scrolledBg'           => sanitize_hex_color( $scrolled_bg ),
+			'scrolledBgOpacity'    => round( (float) $scrolled_bg_opacity, 3 ),
+			'transparentTextColor' => sanitize_hex_color( $transparent_text_color ),
+			'scrolledTextColor'    => sanitize_hex_color( $scrolled_text_color ),
 		)
 	);
 
@@ -318,6 +318,44 @@ add_action( 'wp_enqueue_scripts', 'accepta_scripts' );
 
 
 /**
+ * Decode and sanitize typography JSON from Customizer settings.
+ *
+ * @param mixed $raw_typography_json Raw JSON typography value.
+ * @return array Sanitized typography array or empty array on invalid input.
+ */
+function accepta_sanitize_typography_json( $raw_typography_json ) {
+	$raw_typography_json = (string) $raw_typography_json;
+	if ( '' === $raw_typography_json ) {
+		return array();
+	}
+
+	$decoded = json_decode( $raw_typography_json, true );
+	if ( ! is_array( $decoded ) ) {
+		return array();
+	}
+
+	$sanitized = array();
+
+	if ( isset( $decoded['font_family'] ) ) {
+		$sanitized['font_family'] = sanitize_text_field( (string) $decoded['font_family'] );
+	}
+	if ( isset( $decoded['font_weight'] ) ) {
+		$sanitized['font_weight'] = sanitize_text_field( (string) $decoded['font_weight'] );
+	}
+	if ( isset( $decoded['font_size'] ) ) {
+		$sanitized['font_size'] = floatval( $decoded['font_size'] );
+	}
+	if ( isset( $decoded['line_height'] ) ) {
+		$sanitized['line_height'] = floatval( $decoded['line_height'] );
+	}
+	if ( isset( $decoded['letter_spacing'] ) ) {
+		$sanitized['letter_spacing'] = floatval( $decoded['letter_spacing'] );
+	}
+
+	return $sanitized;
+}
+
+/**
  * Get all Google Fonts used across typography settings
  */
 function accepta_get_all_google_fonts() {
@@ -328,24 +366,22 @@ function accepta_get_all_google_fonts() {
 		'used_in' => array( 'default' )
 	);
 
-	$typography_settings = array( 
-		'body' => get_theme_mod( 'accepta_body_typography', '' ),
-		'all_headings' => get_theme_mod( 'accepta_all_headings_typography', '' ),
-		'post_title' => get_theme_mod( 'accepta_post_title_typography', '' ),
-		'h1' => get_theme_mod( 'accepta_h1_typography', '' ),
-		'h2' => get_theme_mod( 'accepta_h2_typography', '' ),
-		'h3' => get_theme_mod( 'accepta_h3_typography', '' ),
-		'h4' => get_theme_mod( 'accepta_h4_typography', '' ),
-		'h5' => get_theme_mod( 'accepta_h5_typography', '' ),
-		'h6' => get_theme_mod( 'accepta_h6_typography', '' ),
-		'button' => get_theme_mod( 'accepta_button_typography', '' ),
+	$typography_settings = array(
+		'body'         => accepta_sanitize_typography_json( get_theme_mod( 'accepta_body_typography', '' ) ),
+		'all_headings' => accepta_sanitize_typography_json( get_theme_mod( 'accepta_all_headings_typography', '' ) ),
+		'post_title'   => accepta_sanitize_typography_json( get_theme_mod( 'accepta_post_title_typography', '' ) ),
+		'h1'           => accepta_sanitize_typography_json( get_theme_mod( 'accepta_h1_typography', '' ) ),
+		'h2'           => accepta_sanitize_typography_json( get_theme_mod( 'accepta_h2_typography', '' ) ),
+		'h3'           => accepta_sanitize_typography_json( get_theme_mod( 'accepta_h3_typography', '' ) ),
+		'h4'           => accepta_sanitize_typography_json( get_theme_mod( 'accepta_h4_typography', '' ) ),
+		'h5'           => accepta_sanitize_typography_json( get_theme_mod( 'accepta_h5_typography', '' ) ),
+		'h6'           => accepta_sanitize_typography_json( get_theme_mod( 'accepta_h6_typography', '' ) ),
+		'button'       => accepta_sanitize_typography_json( get_theme_mod( 'accepta_button_typography', '' ) ),
 	);
 
 	foreach ( $typography_settings as $type => $typography ) {
-		if ( ! empty( $typography ) ) {
-			$typography_data = json_decode( $typography, true );
-			if ( is_array( $typography_data ) && ! empty( $typography_data['font_family'] ) ) {
-				$font_family = $typography_data['font_family'];
+		if ( is_array( $typography ) && ! empty( $typography['font_family'] ) ) {
+				$font_family = $typography['font_family'];
 				$clean_font_name = explode( ',', $font_family )[0];
 				$clean_font_name = trim( str_replace( array( '"', "'" ), '', $clean_font_name ) );
 				if ( ! accepta_is_system_font( $clean_font_name ) ) {
@@ -357,7 +393,6 @@ function accepta_get_all_google_fonts() {
 					}
 					$google_fonts[ $clean_font_name ]['used_in'][] = $type;
 				}
-			}
 		}
 	}
 	

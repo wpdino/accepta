@@ -6,14 +6,87 @@
 
 document.addEventListener('DOMContentLoaded', function() {
     const menuToggle = document.querySelector('.menu-toggle');
+    const mainNavigation = document.querySelector('.main-navigation');
     const primaryMenu = document.querySelector('#primary-menu');
     const dropdownItems = document.querySelectorAll('.menu-item-has-children, .page_item_has_children');
-    
+    const body = document.body;
+    const menuPanelGap = 12;
+
+    function acceptaMobileIsOpen() {
+        return !!(primaryMenu && primaryMenu.classList.contains('toggled'));
+    }
+
+    function acceptaMobileGetFocusableElements() {
+        if (!primaryMenu) {
+            return [];
+        }
+
+        const focusables = primaryMenu.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])');
+        return Array.prototype.filter.call(focusables, function(el) {
+            return el.offsetParent !== null;
+        });
+    }
+
+    function acceptaMobileOpenMenu() {
+        if (!menuToggle || !primaryMenu) {
+            return;
+        }
+
+        primaryMenu.classList.add('toggled');
+        menuToggle.classList.add('toggled');
+        menuToggle.setAttribute('aria-expanded', 'true');
+        body.classList.add('accepta-mobile-menu-open');
+
+        if (mainNavigation) {
+            mainNavigation.classList.add('toggled');
+        }
+
+        // Position fixed menu below the toggle/header row.
+        const toggleRect = menuToggle.getBoundingClientRect();
+        document.documentElement.style.setProperty('--accepta-mobile-menu-top', Math.max(0, Math.round(toggleRect.bottom + menuPanelGap)) + 'px');
+
+        const focusables = acceptaMobileGetFocusableElements();
+        if (focusables.length > 0) {
+            focusables[0].focus();
+        } else {
+            menuToggle.focus();
+        }
+    }
+
+    function acceptaMobileCloseMenu(restoreFocus) {
+        if (!menuToggle || !primaryMenu) {
+            return;
+        }
+
+        primaryMenu.classList.remove('toggled');
+        menuToggle.classList.remove('toggled');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        body.classList.remove('accepta-mobile-menu-open');
+        document.documentElement.style.removeProperty('--accepta-mobile-menu-top');
+
+        if (mainNavigation) {
+            mainNavigation.classList.remove('toggled');
+        }
+
+        // Close all open dropdown menus when closing main menu.
+        const allOpenDropdowns = primaryMenu.querySelectorAll('.menu-item-has-children.toggled, .page_item_has_children.toggled');
+        allOpenDropdowns.forEach(function(item) {
+            item.classList.remove('toggled');
+        });
+
+        if (restoreFocus) {
+            menuToggle.focus();
+        }
+    }
+
     // Toggle mobile menu
     if (menuToggle && primaryMenu) {
         menuToggle.addEventListener('click', function() {
-            primaryMenu.classList.toggle('toggled');
-            this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');
+            if (acceptaMobileIsOpen()) {
+                acceptaMobileCloseMenu(false);
+            } else {
+                acceptaMobileOpenMenu();
+            }
         });
     }
     
@@ -38,15 +111,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Reset any toggled state when switching to desktop
                 item.classList.remove('toggled');
             });
-            
-            // Make sure the menu is visible on desktop if it was hidden
-            if (primaryMenu) {
-                primaryMenu.classList.remove('toggled');
-            }
-            // Reset the menu toggle button state
-            if (menuToggle) {
-                menuToggle.setAttribute('aria-expanded', 'false');
-            }
+
+            // Ensure mobile modal state is cleaned up on desktop.
+            acceptaMobileCloseMenu(false);
         }
     }
     
@@ -96,16 +163,58 @@ document.addEventListener('DOMContentLoaded', function() {
         if (window.innerWidth <= 768 && primaryMenu && primaryMenu.classList.contains('toggled')) {
             // Check if the click is outside the navigation area
             if (!e.target.closest('.main-navigation')) {
-                primaryMenu.classList.remove('toggled');
-                // Close all dropdown menus
-                const allOpenDropdowns = primaryMenu.querySelectorAll('.menu-item-has-children.toggled, .page_item_has_children.toggled');
-                allOpenDropdowns.forEach(function(item) {
-                    item.classList.remove('toggled');
-                });
-                
-                if (menuToggle) {
-                    menuToggle.setAttribute('aria-expanded', 'false');
-                }
+                acceptaMobileCloseMenu(false);
+            }
+        }
+    });
+
+    // Trap focus inside mobile menu when open.
+    document.addEventListener('keydown', function(e) {
+        if (window.innerWidth > 768 || !acceptaMobileIsOpen() || !menuToggle) {
+            return;
+        }
+
+        if (e.key === 'Escape') {
+            e.preventDefault();
+            acceptaMobileCloseMenu(true);
+            return;
+        }
+
+        if (e.key !== 'Tab') {
+            return;
+        }
+
+        const focusables = acceptaMobileGetFocusableElements();
+        const closeButton = menuToggle;
+        const active = document.activeElement;
+
+        if (focusables.length === 0) {
+            e.preventDefault();
+            closeButton.focus();
+            return;
+        }
+
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+
+        if (!e.shiftKey) {
+            // Forward cycle: close button -> first item, last item -> close button.
+            if (active === closeButton) {
+                e.preventDefault();
+                first.focus();
+            } else if (active === last) {
+                e.preventDefault();
+                closeButton.focus();
+            }
+        } else {
+            // Backward cycle requested:
+            // first item -> close button, close button -> last item.
+            if (active === first) {
+                e.preventDefault();
+                closeButton.focus();
+            } else if (active === closeButton) {
+                e.preventDefault();
+                last.focus();
             }
         }
     });
@@ -115,9 +224,9 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('resize', function() {
         // Debounce the resize event
         clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(function() {
-                acceptaMobileSetupDropdowns();
-            }, 250);
+        resizeTimer = setTimeout(function() {
+            acceptaMobileSetupDropdowns();
+        }, 250);
     });
 }); 
 

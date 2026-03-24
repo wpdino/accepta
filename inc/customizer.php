@@ -2930,8 +2930,8 @@ function accepta_sticky_header_css() {
 		$css .= $overlay_prefix . '.site-header:not(.scrolled) .site-title a { color: ' . esc_attr( $transparent_text_color ) . '; }';
 		$css .= $overlay_prefix . '.site-header:not(.scrolled) .site-description { color: ' . esc_attr( $transparent_text_color ) . '; opacity: 0.8; }';
 		$css .= $overlay_prefix . '.site-header:not(.scrolled) .main-navigation > ul > li > a, ';
-		$css .= $overlay_prefix . '.site-header:not(.scrolled) .main-navigation .nav-menu > li > a { color: ' . esc_attr( $transparent_text_color ) . ' !important; }';
-		$css .= $overlay_prefix . '.site-header:not(.scrolled) .main-navigation ul ul a { color: #000 !important; }';
+		$css .= $overlay_prefix . '.site-header:not(.scrolled) .main-navigation .nav-menu > li > a { color: ' . esc_attr( $transparent_text_color ) . ' ; }';
+		$css .= $overlay_prefix . '.site-header:not(.scrolled) .main-navigation ul ul a { color: #000 ; }';
 		$css .= $overlay_prefix . '.site-header:not(.scrolled) .main-navigation ul ul a:hover { color: #6F9C50; }';
 		$css .= $overlay_prefix . '.site-header:not(.scrolled) .menu-toggle { color: ' . esc_attr( $transparent_text_color ) . '; }';
 		$css .= $overlay_prefix . '.site-header:not(.scrolled) .menu-toggle .icon-bar { background-color: ' . esc_attr( $transparent_text_color ) . '; }';
@@ -3310,12 +3310,12 @@ function accepta_layout_css() {
 			if ( $sidebar_layout === 'left' || $sidebar_layout === 'right' ) {
 				$css .= $article_sel . ' { box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); background: #fff; border-radius: 6px; padding: 1.75em 2em; }';
 			} else {
-				$css .= 'body.accepta-content-box-shadow-only-with-sidebar .site-main > article:not(.sticky) { box-shadow: none !important; background: transparent !important; border-radius: 0 !important; padding: 1.75em 0 !important; }';
+				$css .= 'body.accepta-content-box-shadow-only-with-sidebar .site-main > article:not(.sticky) { box-shadow: none ; background: transparent ; border-radius: 0 ; padding: 1.75em 0 ; }';
 			}
 			break;
 		case 'none':
 			// Never show box shadow – remove left/right padding
-			$css .= 'body.accepta-content-box-shadow-none .site-main > article:not(.sticky) { box-shadow: none !important; background: transparent !important; border-radius: 0 !important; padding: 1.75em 0 !important; }';
+			$css .= 'body.accepta-content-box-shadow-none .site-main > article:not(.sticky) { box-shadow: none ; background: transparent ; border-radius: 0 ; padding: 1.75em 0 ; }';
 			break;
 	}
 

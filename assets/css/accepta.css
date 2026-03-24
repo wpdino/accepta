@@ -1929,24 +1929,25 @@ body.has-sticky-header {
   display: inline-block;
   background-color: transparent;
   border: none;
-  padding: 0.75rem;
+  padding: 0.45rem;
   cursor: pointer;
   margin-left: auto;
   flex-direction: column;
   justify-content: space-between;
+  box-shadow: none !important;
 }
 .menu-toggle:hover, .menu-toggle:focus {
   background-color: transparent;
-  box-shadow: none;
+  box-shadow: none !important;
 }
 .menu-toggle span {
   display: block;
-  height: 3px;
-  width: 24px;
+  height: 2px;
+  width: 20px;
   background-color: #333;
   border-radius: 3px;
   transition: all 0.3s ease;
-  margin: 5px 0;
+  margin: 3px 0;
 }
 .menu-toggle:hover span {
   background-color: #6F9C50;
@@ -1961,43 +1962,127 @@ body.has-sticky-header {
   transform: rotate(45deg) translate(-5px, -6px);
 }
 
-/* Mobile navigation */
-.main-navigation.toggled ul {
+/* Mobile navigation modal panel */
+#site-navigation.main-navigation.toggled > #primary-menu.toggled {
   display: block;
   background: #fff;
-  width: 100%;
-  position: absolute;
+  width: 100vw;
+  max-width: 100vw;
+  position: fixed;
+  top: var(--accepta-mobile-menu-top, 0);
+  right: 0;
+  bottom: 0;
   left: 0;
-  top: 100%;
-  z-index: 999;
-  padding: 1rem;
+  margin: 0;
+  padding: 1rem 1.25rem;
+  max-height: calc(100vh - var(--accepta-mobile-menu-top, 0px));
+  overflow-y: auto;
+  z-index: 100000;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   text-align: left;
 }
-.main-navigation.toggled ul li {
-  width: 100%;
-  margin-right: 0;
-  padding: 0;
+
+body.accepta-mobile-menu-open {
+  overflow: hidden;
 }
-.main-navigation.toggled ul a {
-  padding: 0.7rem 0;
-  transition: color 0.3s ease;
+
+@media (max-width: 767px) {
+  .header-content {
+    position: relative;
+  }
+  /* Reset desktop layout-specific nav positioning on mobile only. */
+  .header-content.header-layout-1 #site-navigation.main-navigation,
+  .header-content.header-layout-2 #site-navigation.main-navigation,
+  .header-content.header-layout-3 #site-navigation.main-navigation {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    transform: none !important;
+    max-width: none !important;
+  }
+  /* Keep the toggle aligned to the right in mobile header row. */
+  #site-navigation.main-navigation {
+    width: auto !important;
+    flex: 0 0 auto !important;
+    margin-left: auto !important;
+    margin-right: 0 !important;
+    order: 98;
+    position: relative !important;
+    z-index: 100001;
+  }
+  #site-navigation.main-navigation .menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 !important;
+    padding: 0.35rem;
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    position: absolute;
+    top: 50%;
+    right: 52px;
+    transform: translateY(-50%);
+    z-index: 100002;
+  }
+  .header-content .header-search-toggle {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    margin: 0 !important;
+    z-index: 100002;
+  }
+  body.accepta-search-open .header-content .header-search-toggle {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+  body.accepta-search-open #site-navigation.main-navigation .menu-toggle {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+  #site-navigation.main-navigation.toggled > #primary-menu.toggled > li {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid #eee;
+  }
+  #site-navigation.main-navigation.toggled > #primary-menu.toggled > li:last-child {
+    border-bottom: none;
+  }
+  #site-navigation.main-navigation.toggled > #primary-menu.toggled a {
+    display: block;
+    width: 100%;
+    padding: 0.75rem 0;
+    color: #333;
+    transition: color 0.3s ease;
+  }
+  #site-navigation.main-navigation.toggled > #primary-menu.toggled a:hover {
+    color: #6F9C50;
+  }
+  #site-navigation.main-navigation.toggled > #primary-menu.toggled ul {
+    position: static;
+    left: auto;
+    right: auto;
+    box-shadow: none;
+    padding-left: 1.25rem;
+    border-radius: 0;
+  }
+  #site-navigation.main-navigation.toggled > #primary-menu.toggled ul::before,
+  #site-navigation.main-navigation.toggled > #primary-menu.toggled ul::after {
+    display: none;
+  }
+  #site-navigation.main-navigation.toggled > #primary-menu.toggled ul a {
+    width: auto;
+    padding: 0.5rem 0;
+  }
 }
-.main-navigation.toggled ul a:hover {
-  color: #6F9C50;
-}
-.main-navigation.toggled ul ul {
-  position: static;
-  box-shadow: none;
-  padding: 0 0 0 1.5rem;
-  border-radius: 0;
-}
-.main-navigation.toggled ul ul::before, .main-navigation.toggled ul ul::after {
-  display: none;
-}
-.main-navigation.toggled ul ul a {
-  width: auto;
-  padding: 0.5rem 0;
+body.accepta-mobile-menu-open .site-header,
+body.accepta-mobile-menu-open .header-content {
+  overflow: visible !important;
 }
 
 /* Desktop navigation */
