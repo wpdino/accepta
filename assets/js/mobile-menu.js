@@ -72,6 +72,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const allOpenDropdowns = primaryMenu.querySelectorAll('.menu-item-has-children.toggled, .page_item_has_children.toggled');
         allOpenDropdowns.forEach(function(item) {
             item.classList.remove('toggled');
+            const itemToggle = item.querySelector(':scope > .accepta-submenu-toggle');
+            if (itemToggle) {
+                itemToggle.setAttribute('aria-expanded', 'false');
+            }
         });
 
         if (restoreFocus) {
@@ -91,24 +95,58 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Function to setup mobile dropdown behaviors
+    function acceptaMobileGetSubmenuToggleButton(item) {
+        return item.querySelector(':scope > .accepta-submenu-toggle');
+    }
+
+    function acceptaMobileEnsureSubmenuToggleButton(item) {
+        const submenu = item.querySelector(':scope > .sub-menu, :scope > .children');
+        if (!submenu) {
+            return null;
+        }
+
+        let toggleButton = acceptaMobileGetSubmenuToggleButton(item);
+        if (toggleButton) {
+            return toggleButton;
+        }
+
+        const parentLink = item.querySelector(':scope > a');
+        const buttonText = parentLink ? parentLink.textContent.trim() : 'Submenu';
+
+        toggleButton = document.createElement('button');
+        toggleButton.type = 'button';
+        toggleButton.className = 'accepta-submenu-toggle';
+        toggleButton.setAttribute('aria-label', 'Toggle submenu for ' + buttonText);
+        toggleButton.setAttribute('aria-expanded', 'false');
+        toggleButton.setAttribute('aria-controls', submenu.id || '');
+
+        if (!submenu.id) {
+            submenu.id = 'accepta-submenu-' + Math.random().toString(36).slice(2, 10);
+            toggleButton.setAttribute('aria-controls', submenu.id);
+        }
+
+        item.insertBefore(toggleButton, submenu);
+        return toggleButton;
+    }
+
     function acceptaMobileSetupDropdowns() {
         if (window.innerWidth <= 768) {
-            // First remove existing click events to prevent duplicates
             dropdownItems.forEach(function(item) {
-                const link = item.querySelector('a');
-                if (link) {
-                    link.removeEventListener('click', acceptaMobileHandleDropdownClick);
-                    link.addEventListener('click', acceptaMobileHandleDropdownClick);
+                const toggleButton = acceptaMobileEnsureSubmenuToggleButton(item);
+                if (toggleButton) {
+                    toggleButton.setAttribute('aria-expanded', item.classList.contains('toggled') ? 'true' : 'false');
+                    toggleButton.removeEventListener('click', acceptaMobileHandleDropdownClick);
+                    toggleButton.addEventListener('click', acceptaMobileHandleDropdownClick);
                 }
             });
         } else {
-            // Remove mobile-specific behaviors when on desktop
             dropdownItems.forEach(function(item) {
-                const link = item.querySelector('a');
-                if (link) {
-                    link.removeEventListener('click', acceptaMobileHandleDropdownClick);
+                const toggleButton = acceptaMobileGetSubmenuToggleButton(item);
+                if (toggleButton) {
+                    toggleButton.removeEventListener('click', acceptaMobileHandleDropdownClick);
+                    toggleButton.remove();
                 }
-                // Reset any toggled state when switching to desktop
+
                 item.classList.remove('toggled');
             });
 
@@ -118,6 +156,39 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Handler for dropdown clicks
+    function acceptaMobileCollapseNested(parentItem) {
+        const nestedDropdowns = parentItem.querySelectorAll('.menu-item-has-children.toggled, .page_item_has_children.toggled');
+        nestedDropdowns.forEach(function(nestedItem) {
+            nestedItem.classList.remove('toggled');
+            const nestedToggle = nestedItem.querySelector(':scope > .accepta-submenu-toggle');
+            if (nestedToggle) {
+                nestedToggle.setAttribute('aria-expanded', 'false');
+            }
+        });
+    }
+
+    function acceptaMobileToggleParentItem(parentItem, shouldOpen) {
+        if (!parentItem) {
+            return;
+        }
+
+        const parentToggle = parentItem.querySelector(':scope > .accepta-submenu-toggle');
+        const willOpen = typeof shouldOpen === 'boolean' ? shouldOpen : !parentItem.classList.contains('toggled');
+
+        if (willOpen) {
+            parentItem.classList.add('toggled');
+            if (parentToggle) {
+                parentToggle.setAttribute('aria-expanded', 'true');
+            }
+        } else {
+            parentItem.classList.remove('toggled');
+            if (parentToggle) {
+                parentToggle.setAttribute('aria-expanded', 'false');
+            }
+            acceptaMobileCollapseNested(parentItem);
+        }
+    }
+
     function acceptaMobileHandleDropdownClick(e) {
         // Only prevent default if we're on mobile
         if (window.innerWidth <= 768) {
@@ -125,36 +196,19 @@ document.addEventListener('DOMContentLoaded', function() {
             e.stopPropagation();
             
             const parentItem = this.parentNode;
-            parentItem.classList.toggle('toggled');
-            
-            // Find the submenu - could be either .sub-menu or .children
-            const submenu = parentItem.querySelector('.sub-menu, .children');
-            
-            // If nested dropdown was toggled but parent item is being closed, close all nested dropdowns
-            if (!parentItem.classList.contains('toggled')) {
-                // Close all child dropdown items when parent is closed
-                const nestedDropdowns = parentItem.querySelectorAll('.menu-item-has-children.toggled, .page_item_has_children.toggled');
-                nestedDropdowns.forEach(function(nestedItem) {
-                    nestedItem.classList.remove('toggled');
-                });
-            }
+            const isOpening = !parentItem.classList.contains('toggled');
+            acceptaMobileToggleParentItem(parentItem, isOpening);
             
             // Close other open dropdowns at the same level
             const siblings = parentItem.parentNode.querySelectorAll(':scope > .menu-item-has-children, :scope > .page_item_has_children');
             siblings.forEach(function(sibling) {
                 if (sibling !== parentItem) {
-                    sibling.classList.remove('toggled');
-                    
-                    // Also close any nested dropdowns in siblings
-                    const nestedDropdowns = sibling.querySelectorAll('.menu-item-has-children.toggled, .page_item_has_children.toggled');
-                    nestedDropdowns.forEach(function(nestedItem) {
-                        nestedItem.classList.remove('toggled');
-                    });
+                    acceptaMobileToggleParentItem(sibling, false);
                 }
             });
         }
     }
-    
+
     // Setup on page load
     acceptaMobileSetupDropdowns();
     

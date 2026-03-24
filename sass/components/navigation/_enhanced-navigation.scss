@@ -302,9 +302,7 @@ body.accepta-mobile-menu-open {
 
 	// Hide hamburger/toggle while the search overlay is open.
 	body.accepta-search-open #site-navigation.main-navigation .menu-toggle {
-		opacity: 0;
-		visibility: hidden;
-		pointer-events: none;
+		display: none !important;
 	}
 
 	#site-navigation.main-navigation.toggled > #primary-menu.toggled > li {
@@ -331,6 +329,49 @@ body.accepta-mobile-menu-open {
 		}
 	}
 
+	#site-navigation.main-navigation.toggled > #primary-menu.toggled .menu-item-has-children,
+	#site-navigation.main-navigation.toggled > #primary-menu.toggled .page_item_has_children {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+	}
+
+	#site-navigation.main-navigation.toggled > #primary-menu.toggled .menu-item-has-children > a,
+	#site-navigation.main-navigation.toggled > #primary-menu.toggled .page_item_has_children > a {
+		width: calc(100% - 2.25rem);
+		padding-right: 0.5rem;
+	}
+
+	#site-navigation.main-navigation.toggled > #primary-menu.toggled .accepta-submenu-toggle {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 2.25rem;
+		height: 2.25rem;
+		margin: 0;
+		padding: 0;
+		border: 0;
+		background: transparent;
+		color: #333;
+		cursor: pointer;
+	}
+
+	#site-navigation.main-navigation.toggled > #primary-menu.toggled .accepta-submenu-toggle::before {
+		content: '';
+		display: inline-block;
+		width: 0.5rem;
+		height: 0.5rem;
+		border-right: 2px solid currentColor;
+		border-bottom: 2px solid currentColor;
+		transform: rotate(45deg);
+		transition: transform 0.2s ease;
+	}
+
+	#site-navigation.main-navigation.toggled > #primary-menu.toggled .menu-item-has-children.toggled > .accepta-submenu-toggle::before,
+	#site-navigation.main-navigation.toggled > #primary-menu.toggled .page_item_has_children.toggled > .accepta-submenu-toggle::before {
+		transform: rotate(-135deg);
+	}
+
 	#site-navigation.main-navigation.toggled > #primary-menu.toggled ul {
 		position: static;
 		left: auto;
@@ -338,6 +379,28 @@ body.accepta-mobile-menu-open {
 		box-shadow: none;
 		padding-left: 1.25rem;
 		border-radius: 0;
+	}
+
+	#site-navigation.main-navigation.toggled > #primary-menu.toggled .menu-item-has-children > .sub-menu,
+	#site-navigation.main-navigation.toggled > #primary-menu.toggled .page_item_has_children > .children {
+		display: none;
+		position: static !important;
+		float: none;
+		width: 100%;
+		margin: 0;
+		padding: 0 0 0 1rem;
+		border: 0;
+		background: transparent;
+	}
+
+	#site-navigation.main-navigation.toggled > #primary-menu.toggled .menu-item-has-children.toggled > .sub-menu,
+	#site-navigation.main-navigation.toggled > #primary-menu.toggled .page_item_has_children.toggled > .children {
+		display: block;
+	}
+
+	#site-navigation.main-navigation.toggled > #primary-menu.toggled .sub-menu .sub-menu,
+	#site-navigation.main-navigation.toggled > #primary-menu.toggled .children .children {
+		padding-left: 0.9rem;
 	}
 
 	#site-navigation.main-navigation.toggled > #primary-menu.toggled ul::before,
@@ -396,12 +459,6 @@ body.accepta-mobile-menu-open .header-content {
 		}
 	}
 	
-	/* Ensure layout-specific styles override default media query styles */
-	.header-content.header-layout-1 .main-navigation,
-	.header-content.header-layout-2 .main-navigation,
-	.header-content.header-layout-3 .main-navigation {
-		/* Layout-specific styles are defined in _header.scss with higher specificity */
-	}
 }
 
 /* Animation for dropdown */
