@@ -22,12 +22,19 @@ input[type="submit"] {
 		transform: translateY(-1px);
 	}
 
-	&:active,
-	&:focus {
+	&:active {
 		background: darken($color__primary, 12%);
 		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
 		transform: translateY(0);
-		outline: none;
+	}
+
+	&:focus,
+	&:focus-visible {
+		background: darken($color__primary, 12%);
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+		transform: translateY(0);
+		outline: 1px dotted currentColor;
+		outline-offset: 2px;
 	}
 
 	&:disabled {
@@ -124,12 +131,21 @@ a.button {
 		text-decoration: none;
 	}
 
-	&:active,
-	&:focus {
+	&:active {
 		background: darken($color__primary, 12%);
 		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
 		transform: translateY(0);
-		outline: none;
+		color: #ffffff;
+		text-decoration: none;
+	}
+
+	&:focus,
+	&:focus-visible {
+		background: darken($color__primary, 12%);
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+		transform: translateY(0);
+		outline: 1px dotted currentColor;
+		outline-offset: 2px;
 		color: #ffffff;
 		text-decoration: none;
 	}

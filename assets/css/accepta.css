@@ -612,17 +612,26 @@ input[type=submit]:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transform: translateY(-1px);
 }
-button:active, button:focus,
+button:active,
 input[type=button]:active,
-input[type=button]:focus,
 input[type=reset]:active,
-input[type=reset]:focus,
-input[type=submit]:active,
-input[type=submit]:focus {
+input[type=submit]:active {
   background: rgb(82.2152542373, 115.5457627119, 59.2542372881);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
   transform: translateY(0);
-  outline: none;
+}
+button:focus, button:focus-visible,
+input[type=button]:focus,
+input[type=button]:focus-visible,
+input[type=reset]:focus,
+input[type=reset]:focus-visible,
+input[type=submit]:focus,
+input[type=submit]:focus-visible {
+  background: rgb(82.2152542373, 115.5457627119, 59.2542372881);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  transform: translateY(0);
+  outline: 1px dotted currentColor;
+  outline-offset: 2px;
 }
 button:disabled,
 input[type=button]:disabled,
@@ -711,13 +720,22 @@ a.button:hover {
   color: #ffffff;
   text-decoration: none;
 }
-.button:active, .button:focus,
-a.button:active,
-a.button:focus {
+.button:active,
+a.button:active {
   background: rgb(82.2152542373, 115.5457627119, 59.2542372881);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
   transform: translateY(0);
-  outline: none;
+  color: #ffffff;
+  text-decoration: none;
+}
+.button:focus, .button:focus-visible,
+a.button:focus,
+a.button:focus-visible {
+  background: rgb(82.2152542373, 115.5457627119, 59.2542372881);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  transform: translateY(0);
+  outline: 1px dotted currentColor;
+  outline-offset: 2px;
   color: #ffffff;
   text-decoration: none;
 }
@@ -1647,6 +1665,10 @@ body.has-sticky-header {
 }
 .header-search-overlay .header-search-overlay-content .header-search-form-wrapper .search-form .search-submit:focus {
   outline: 2px solid rgba(255, 255, 255, 0.5);
+  outline-offset: 2px;
+}
+.header-search-overlay .header-search-overlay-content .header-search-form-wrapper .search-form .search-submit:focus-visible {
+  outline: 1px dotted currentColor;
   outline-offset: 2px;
 }
 
