@@ -113,6 +113,7 @@ class Accepta_Repeater_Control extends WP_Customize_Control {
 			array(
 				'confirmDelete' => __( 'Are you sure you want to delete this item?', 'accepta' ),
 				'addNew' => __( 'Add New Item', 'accepta' ),
+				/* translators: %d: maximum number of repeater items allowed. */
 				'maxItems' => sprintf( __( 'Maximum %d items allowed', 'accepta' ), $this->max_items ),
 				'templateUrl' => get_template_directory_uri(),
 			)
@@ -194,6 +195,7 @@ class Accepta_Repeater_Control extends WP_Customize_Control {
 			<div class="accepta-repeater-item-header">
 				<span class="accepta-repeater-item-title">
 					<?php 
+					/* translators: %d: 1-based repeater item index. */
 					$title = ! empty( $item['label'] ) ? $item['label'] : sprintf( __( 'Item %d', 'accepta' ), $index + 1 );
 					echo esc_html( $title );
 					?>
@@ -223,7 +225,10 @@ class Accepta_Repeater_Control extends WP_Customize_Control {
 		<div class="accepta-repeater-item" data-index="{{data.index}}">
 			<div class="accepta-repeater-item-header">
 				<span class="accepta-repeater-item-title">
-					<?php printf( __( 'Item %s', 'accepta' ), '{{data.index + 1}}' ); ?>
+					<?php
+					/* translators: %s: JavaScript template placeholder for the 1-based repeater item index. */
+					printf( __( 'Item %s', 'accepta' ), '{{data.index + 1}}' );
+					?>
 				</span>
 				<div class="accepta-repeater-item-actions">
 					<button type="button" class="accepta-repeater-item-toggle" title="<?php esc_attr_e( 'Toggle', 'accepta' ); ?>">

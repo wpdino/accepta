@@ -63,19 +63,27 @@
     --text-light: #666666;
     --light-bg: #f1f1f1;
     --white: #ffffff;
-    --border-radius: 0px;
+    --border-radius: 5px;
     --box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px 0px;
     --transition: all 0.3s ease;
     --spacing-xs: 8px;
     --spacing-sm: 15px;
     --spacing-md: 20px;
-    --spacing-lg: 35px;
+    --spacing-lg: 30px;
     --spacing-xl: 50px;
+}
+
+.accepta-card {
+	background: var(--white);
+	box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+	padding: var(--spacing-lg);
+	margin-bottom: var(--spacing-md);
+	padding-top:10px;
 }
 
 .accepta-admin-wrap {
     background: #f1f1f1;
-    margin: 20px -20px 0 -2px;
+    margin: 0px -20px 0 -2px;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
     color: var(--text-color);
     min-height: 100vh;
@@ -146,7 +154,7 @@
     background: #e9e9e9;
     border-color: #bbb;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transform: translateY(-2px);
+
 }
 
 .accepta-admin-wrap .button-hero {
@@ -478,11 +486,10 @@ h1 .accepta-theme-version {
 
 /* Plugins Page Styles */
 .accepta-plugins-toolbar {
-    margin-bottom: var(--spacing-lg);
-    padding: var(--spacing-md);
-    background: rgba(0, 0, 0, 0.02);
-    border-radius: var(--border-radius);
-    border: 1px solid rgba(0, 0, 0, 0.06);
+    background: var(--white);
+	padding: var(--spacing-lg);
+	padding-bottom: 0;
+
 }
 
 .accepta-plugins-toolbar-primary {
@@ -695,15 +702,10 @@ h1 .accepta-theme-version {
     text-align: center;
 }
 
-.accepta-plugin-item-error {
+.accepta-plugin-info .accepta-plugin-item-error p strong {
     margin-top: var(--spacing-xs);
     min-height: 0;
-}
-
-.accepta-plugin-error {
-    font-size: 12px;
-    color: #c0392b;
-    margin: 0;
+	color: #c0392b;
 }
 
 .accepta-plugin-item--loading .js-accepta-plugin-btn {
@@ -1486,10 +1488,6 @@ h1 .accepta-theme-version {
     color: var(--primary-color);
 }
 
-.accepta-admin-footer-links a:hover .dashicons {
-    transform: translateY(-2px);
-}
-
 .accepta-admin-footer-links a:hover::after {
     width: 100%;
 }
@@ -1520,7 +1518,6 @@ h1 .accepta-theme-version {
 .accepta-admin-footer-social a:hover {
     background: var(--primary-color);
     color: var(--white);
-    transform: translateY(-4px);
     box-shadow: 0 4px 10px rgba(111, 156, 80, 0.3);
     text-decoration: none;
 }
@@ -1560,13 +1557,36 @@ h1 .accepta-theme-version {
 }
 
 .accepta-admin-footer-right a {
-    color: var(--primary-color);
+    color: #fff;
     text-decoration: none;
     font-size: 14px;
+	opacity: 0.6;
 }
 
 .accepta-admin-footer-right a:hover {
     color: var(--primary-color);
+}
+
+.accepta-admin-footer-social  {
+    display: flex;
+    gap: var(--spacing-sm);
+    position: relative;
+    z-index: 1;
+}
+.accepta-admin-footer-social a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+	color: #fff;
+	background: rgba(255, 255, 255, 0.08);
+}
+.accepta-admin-footer-social a:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: var(--white);
+    text-decoration: none;
 }
 
 /* RTL Styles */

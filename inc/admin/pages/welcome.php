@@ -17,15 +17,20 @@ $menus = $admin->get_module('menus');
 ?>
 
 <div class="wrap accepta-admin-wrap">
+	<h1 class="notices-hook"></h1>
     <div class="accepta-header">
         <div class="accepta-header-content">
             <h1>
                 <?php 
+					/* translators: %s: theme name. */
 					printf( esc_html__( 'Welcome to %s!', 'accepta' ), $theme_info['name'] ); 
 				?>
             </h1>
             <span class="accepta-theme-version">
-                <?php printf( esc_html__( 'v. %s', 'accepta' ), $theme_info['version'] ); ?>
+                <?php
+				/* translators: %s: theme version number. */
+				printf( esc_html__( 'v. %s', 'accepta' ), $theme_info['version'] );
+				?>
             </span>
         </div>
     </div>

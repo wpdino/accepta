@@ -1,56 +1,87 @@
-# Copyright (C) 2020 WPDINO
+# Copyright (C) 2026 WPDINO
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accepta 1.0.0\n"
-"Report-Msgid-Bugs-To: https://wpdino.com\n"
+"Project-Id-Version: Accepta 1.0.3\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/accepta\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-02-18T10:47+00:00\n"
+"POT-Creation-Date: 2026-03-30T10:42:35+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: xgettext\n"
+"X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accepta\n"
 
 #. Theme Name of the theme
+#: style.css:2
+#: inc/admin/class-accepta-admin-menus.php:78
+#: inc/admin/class-accepta-admin-menus.php:79
 msgid "Accepta"
 msgstr ""
 
-#. Theme URI of the theme
-msgid "https://wpdino.com/themes/accepta"
-msgstr ""
-
 #. Description of the theme
-msgid ""
-"Accepta is a modern, lightweight, and highly customizable WordPress theme "
-"perfect for businesses, creative agencies, and online stores. Designed with "
-"performance and flexibility in mind, it delivers exceptional user experience "
-"and optimal loading speeds. The theme features seamless integration with "
-"Elementor page builder, allowing you to create stunning layouts without "
-"coding. Built-in WooCommerce support makes it ideal for e-commerce websites "
-"with beautifully styled product pages, shop layouts, and checkout flows. "
-"Accepta offers multiple header layouts, flexible footer options, and a clean, "
-"professional design that adapts perfectly to any device. With extensive "
-"customization options through the WordPress Customizer, you can easily "
-"adjust colors, typography, layouts, and more to match your brand identity. "
-"The theme is translation-ready, SEO-optimized, and follows WordPress coding "
-"standards for reliability and security. Whether you're building a business "
-"website, portfolio, blog, or online shop, Accepta provides the perfect "
-"foundation to bring your vision to life."
+#: style.css:5
+msgid "Accepta is a modern, lightweight, and highly customizable WordPress theme perfect for businesses, creative agencies, and online stores. Designed with performance and flexibility in mind, it delivers exceptional user experience and optimal loading speeds. The theme features seamless integration with Elementor page builder, allowing you to create stunning layouts without coding. Built-in WooCommerce support makes it ideal for e-commerce websites with beautifully styled product pages, shop layouts, and checkout flows. Accepta offers multiple header layouts, flexible footer options, and a clean, professional design that adapts perfectly to any device. With extensive customization options through the WordPress Customizer, you can easily adjust colors, typography, layouts, and more to match your brand identity. The theme is translation-ready, SEO-optimized, and follows WordPress coding standards for reliability and security. Whether you're building a business website, portfolio, blog, or online shop, Accepta provides the perfect foundation to bring your vision to life."
 msgstr ""
 
 #. Author of the theme
+#: style.css:3
 msgid "WPDINO"
 msgstr ""
 
 #. Author URI of the theme
+#: style.css:4
 msgid "https://wpdino.com"
 msgstr ""
 
-#: functions.php:45 inc/customizer.php:732 inc/starter-content.php:234
+#: 404.php:17
+msgid "Oops! That page can&rsquo;t be found."
+msgstr ""
+
+#: 404.php:21
+msgid "It looks like nothing was found at this location. Maybe try one of the links below or a search?"
+msgstr ""
+
+#: 404.php:31
+msgid "Most Used Categories"
+msgstr ""
+
+#. translators: %1$s: smiley
+#: 404.php:49
+#, php-format
+msgid "Try looking in the monthly archives. %1$s"
+msgstr ""
+
+#. translators: 1: title.
+#: comments.php:35
+#, php-format
+msgid "One thought on &ldquo;%1$s&rdquo;"
+msgstr ""
+
+#. translators: 1: comment count number, 2: title.
+#: comments.php:41
+#, php-format
+msgctxt "comments title"
+msgid "%1$s thought on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
+msgstr[0] ""
+msgstr[1] ""
+
+#: comments.php:68
+msgid "Comments are closed."
+msgstr ""
+
+#: footer.php:64
+#: inc/customizer.php:1977
+msgid "{copyright} {current-year} {site-title}. Powered by {wordpress}."
+msgstr ""
+
+#: functions.php:45
 #: header.php:58
+#: inc/customizer.php:727
+#: inc/starter-content.php:234
 msgid "Primary"
 msgstr ""
 
@@ -94,24 +125,39 @@ msgstr ""
 msgid "Add widgets here to appear in the fourth footer column."
 msgstr ""
 
-#: 404.php:17
-msgid "Oops! That page can&rsquo;t be found."
+#: header.php:26
+msgid "Skip to content"
 msgstr ""
 
-#: 404.php:21
-msgid ""
-"It looks like nothing was found at this location. Maybe try one of the links "
-"below or a search?"
+#: header.php:63
+msgid "Menu"
 msgstr ""
 
-#: 404.php:31
-msgid "Most Used Categories"
+#: header.php:84
+msgid "Open search"
 msgstr ""
 
-#. translators: %1$s: smiley
-#: 404.php:49
-#, php-format
-msgid "Try looking in the monthly archives. %1$s"
+#: header.php:89
+#: header.php:101
+#: inc/accepta-theme-functions.php:48
+msgid "Search"
+msgstr ""
+
+#: header.php:102
+msgid "Close search"
+msgstr ""
+
+#: header.php:106
+msgid "Close"
+msgstr ""
+
+#: header.php:123
+#: header.php:127
+msgid "Close cart"
+msgstr ""
+
+#: header.php:126
+msgid "Cart"
 msgstr ""
 
 #: inc/accepta-theme-functions.php:33
@@ -119,9 +165,7 @@ msgid "About Accepta"
 msgstr ""
 
 #: inc/accepta-theme-functions.php:34
-msgid ""
-"Accepta is a modern, responsive WordPress theme designed for businesses, "
-"portfolios, and blogs."
+msgid "Accepta is a modern, responsive WordPress theme designed for businesses, portfolios, and blogs."
 msgstr ""
 
 #: inc/accepta-theme-functions.php:38
@@ -129,17 +173,11 @@ msgid "About WPDINO"
 msgstr ""
 
 #: inc/accepta-theme-functions.php:39
-msgid ""
-"WPDINO is a WordPress development company. We create beautiful, functional "
-"themes that help businesses grow online."
+msgid "WPDINO is a WordPress development company. We create beautiful, functional themes that help businesses grow online."
 msgstr ""
 
 #: inc/accepta-theme-functions.php:43
 msgid "Quick Links"
-msgstr ""
-
-#: inc/accepta-theme-functions.php:48 header.php:89
-msgid "Search"
 msgstr ""
 
 #: inc/accepta-theme-functions.php:53
@@ -166,21 +204,8 @@ msgstr ""
 msgid "Privacy Policy"
 msgstr ""
 
-#: inc/woocommerce.php:207 inc/woocommerce.php:222
-msgid "View your shopping cart"
-msgstr ""
-
-#. translators: number of items in the mini cart.
-#: inc/woocommerce.php:243
-#, php-format
-msgid "%d item"
-msgid_plural "%d items"
-msgstr[0] ""
-msgstr[1] ""
-
-#: inc/admin/class-accepta-admin-menus.php:78
-#: inc/admin/class-accepta-admin-menus.php:79
-msgid "Accepta"
+#: inc/admin/class-accepta-admin-customizer.php:173
+msgid "Accepta Customizer"
 msgstr ""
 
 #: inc/admin/class-accepta-admin-menus.php:90
@@ -196,45 +221,12 @@ msgstr ""
 msgid "Install Plugins"
 msgstr ""
 
-#: inc/admin/class-accepta-admin.php:156
-msgid "Accepta Theme Information"
-msgstr ""
-
-#: inc/admin/class-accepta-admin.php:168
-msgid "Theme"
-msgstr ""
-
-#: inc/admin/class-accepta-admin.php:174
-msgid "v."
-msgstr ""
-
-#: inc/admin/class-accepta-admin.php:178
-msgid "Author"
-msgstr ""
-
-#: inc/admin/class-accepta-admin.php:189
-msgid "Theme Dashboard"
-msgstr ""
-
-#: inc/admin/class-accepta-admin.php:192
-#: inc/admin/templates/admin-footer.php:41
-msgid "Customize"
-msgstr ""
-
-#: inc/admin/class-accepta-admin-customizer.php:173
-msgid "Accepta Customizer"
-msgstr ""
-
 #: inc/admin/class-accepta-admin-plugins.php:71
-msgid ""
-"Create beautiful designs with a powerful, responsive page builder. Elementor "
-"is essential for the full Accepta theme experience."
+msgid "Create beautiful designs with a powerful, responsive page builder. Elementor is essential for the full Accepta theme experience."
 msgstr ""
 
 #: inc/admin/class-accepta-admin-plugins.php:78
-msgid ""
-"Advanced Elementor widgets: animated headings, blog displays, galleries, "
-"WooCommerce products, and more."
+msgid "Advanced Elementor widgets: animated headings, blog displays, galleries, WooCommerce products, and more."
 msgstr ""
 
 #: inc/admin/class-accepta-admin-plugins.php:85
@@ -242,9 +234,7 @@ msgid "Create customizable contact forms and manage multiple contact forms."
 msgstr ""
 
 #: inc/admin/class-accepta-admin-plugins.php:92
-msgid ""
-"Add eCommerce functionality to your website with the world's favorite online "
-"shop solution."
+msgid "Add eCommerce functionality to your website with the world's favorite online shop solution."
 msgstr ""
 
 #: inc/admin/class-accepta-admin-plugins.php:204
@@ -292,19 +282,23 @@ msgstr ""
 msgid "Activating..."
 msgstr ""
 
-#: inc/admin/class-accepta-admin-plugins.php:279 inc/admin/pages/plugins.php:60
+#: inc/admin/class-accepta-admin-plugins.php:279
+#: inc/admin/pages/plugins.php:61
 msgid "Active"
 msgstr ""
 
-#: inc/admin/class-accepta-admin-plugins.php:280 inc/admin/pages/plugins.php:60
+#: inc/admin/class-accepta-admin-plugins.php:280
+#: inc/admin/pages/plugins.php:61
 msgid "Install"
 msgstr ""
 
-#: inc/admin/class-accepta-admin-plugins.php:281 inc/admin/pages/plugins.php:60
+#: inc/admin/class-accepta-admin-plugins.php:281
+#: inc/admin/pages/plugins.php:61
 msgid "Activate"
 msgstr ""
 
-#: inc/admin/class-accepta-admin-plugins.php:282 inc/admin/pages/plugins.php:48
+#: inc/admin/class-accepta-admin-plugins.php:282
+#: inc/admin/pages/plugins.php:49
 msgid "Install & Activate Selected Plugins"
 msgstr ""
 
@@ -312,13 +306,251 @@ msgstr ""
 msgid "Accepta Theme recommends one plugin to enhance your site."
 msgstr ""
 
-#: inc/admin/class-accepta-admin-plugins.php:353
+#. translators: %d: number of recommended plugins.
+#: inc/admin/class-accepta-admin-plugins.php:354
 #, php-format
 msgid "Accepta Theme recommends %d plugins to enhance your site."
 msgstr ""
 
-#: inc/admin/class-accepta-admin-plugins.php:359
+#: inc/admin/class-accepta-admin-plugins.php:360
 msgid "View Recommended Plugins"
+msgstr ""
+
+#: inc/admin/class-accepta-admin.php:153
+msgid "Accepta Theme Information"
+msgstr ""
+
+#: inc/admin/class-accepta-admin.php:165
+msgid "Theme"
+msgstr ""
+
+#: inc/admin/class-accepta-admin.php:171
+msgid "v."
+msgstr ""
+
+#: inc/admin/class-accepta-admin.php:175
+msgid "Author"
+msgstr ""
+
+#: inc/admin/class-accepta-admin.php:186
+msgid "Theme Dashboard"
+msgstr ""
+
+#: inc/admin/class-accepta-admin.php:189
+#: inc/admin/templates/admin-footer.php:39
+msgid "Customize"
+msgstr ""
+
+#: inc/admin/pages/plugins.php:41
+msgid "Recommended Plugins"
+msgstr ""
+
+#: inc/admin/pages/plugins.php:42
+msgid "Enhance your Accepta theme with these recommended plugins. Install or activate them with one click."
+msgstr ""
+
+#: inc/admin/pages/plugins.php:47
+msgid "Select the plugins you want to install, then click the button below to install and activate them."
+msgstr ""
+
+#: inc/admin/pages/plugins.php:89
+msgid "Include"
+msgstr ""
+
+#: inc/admin/pages/plugins.php:100
+msgid "Required"
+msgstr ""
+
+#. translators: %s: theme name.
+#: inc/admin/pages/welcome.php:26
+#, php-format
+msgid "Welcome to %s!"
+msgstr ""
+
+#. translators: %s: theme version number.
+#: inc/admin/pages/welcome.php:32
+#, php-format
+msgid "v. %s"
+msgstr ""
+
+#: inc/admin/pages/welcome.php:41
+msgid "Getting Started"
+msgstr ""
+
+#: inc/admin/pages/welcome.php:42
+msgid "Thank you for choosing Accepta! This modern and versatile WordPress theme is designed to make your website stand out. Explore the features and options below to get started."
+msgstr ""
+
+#: inc/admin/pages/welcome.php:45
+msgid "Theme Customization"
+msgstr ""
+
+#: inc/admin/pages/welcome.php:46
+msgid "Customize your site's appearance through the WordPress Customizer. Change colors, layouts, and more to match your brand."
+msgstr ""
+
+#: inc/admin/pages/welcome.php:47
+#: inc/admin/pages/welcome.php:173
+msgid "Customize Your Site"
+msgstr ""
+
+#: inc/admin/pages/welcome.php:51
+msgid "Accepta PRO — Coming Soon"
+msgstr ""
+
+#: inc/admin/pages/welcome.php:52
+msgid "More premium features, extra layouts, and dedicated support are on the way. Stay tuned!"
+msgstr ""
+
+#. translators: %s: link to WPDINO newsletter signup
+#: inc/admin/pages/welcome.php:58
+#, php-format
+msgid "Be the first to know when Accepta PRO launches! %s for exclusive updates, tips, and early-access offers."
+msgstr ""
+
+#: inc/admin/pages/welcome.php:59
+msgid "Subscribe to our newsletter"
+msgstr ""
+
+#: inc/admin/pages/welcome.php:69
+msgid "Accepta Theme"
+msgstr ""
+
+#: inc/admin/pages/welcome.php:74
+msgid "Theme Features"
+msgstr ""
+
+#: inc/admin/pages/welcome.php:79
+msgid "Responsive Design"
+msgstr ""
+
+#: inc/admin/pages/welcome.php:80
+msgid "Looks great on all devices, from mobile phones to desktop computers."
+msgstr ""
+
+#: inc/admin/pages/welcome.php:85
+msgid "Fast Loading"
+msgstr ""
+
+#: inc/admin/pages/welcome.php:86
+msgid "Optimized code for better performance and faster page loading times."
+msgstr ""
+
+#: inc/admin/pages/welcome.php:91
+#: inc/admin/pages/welcome.php:164
+msgid "Widget Areas"
+msgstr ""
+
+#: inc/admin/pages/welcome.php:92
+msgid "Multiple widget areas to customize your site's sidebar and footer."
+msgstr ""
+
+#: inc/admin/pages/welcome.php:97
+msgid "Customization Options"
+msgstr ""
+
+#: inc/admin/pages/welcome.php:98
+msgid "Extensive options in the WordPress Customizer to personalize your site."
+msgstr ""
+
+#: inc/admin/pages/welcome.php:103
+msgid "Translation Ready"
+msgstr ""
+
+#: inc/admin/pages/welcome.php:104
+msgid "Fully translatable to create a website in your language."
+msgstr ""
+
+#: inc/admin/pages/welcome.php:109
+msgid "WooCommerce Compatible"
+msgstr ""
+
+#: inc/admin/pages/welcome.php:110
+msgid "Ready for e-commerce with WooCommerce integration."
+msgstr ""
+
+#: inc/admin/pages/welcome.php:115
+msgid "Advanced Layouts"
+msgstr ""
+
+#: inc/admin/pages/welcome.php:116
+msgid "Flexible layout options with various header and footer styles."
+msgstr ""
+
+#: inc/admin/pages/welcome.php:121
+msgid "SEO Optimized"
+msgstr ""
+
+#: inc/admin/pages/welcome.php:122
+msgid "Built with best SEO practices to help your site rank higher in search engines."
+msgstr ""
+
+#: inc/admin/pages/welcome.php:127
+msgid "Elementor Integration"
+msgstr ""
+
+#: inc/admin/pages/welcome.php:128
+msgid "Full compatibility with Elementor Page Builder for a powerful and intuitive design experience."
+msgstr ""
+
+#: inc/admin/pages/welcome.php:133
+msgid "Accessibility Ready"
+msgstr ""
+
+#: inc/admin/pages/welcome.php:134
+msgid "Designed with accessibility in mind so your site is usable for everyone."
+msgstr ""
+
+#: inc/admin/pages/welcome.php:140
+msgid "Install Recommended Plugins"
+msgstr ""
+
+#: inc/admin/pages/welcome.php:144
+msgid "Next Steps"
+msgstr ""
+
+#: inc/admin/pages/welcome.php:145
+msgid "Follow these steps to get the most out of your new Accepta theme:"
+msgstr ""
+
+#: inc/admin/pages/welcome.php:150
+msgid "Essential Setup"
+msgstr ""
+
+#: inc/admin/pages/welcome.php:151
+msgid "Configure your site logo, colors, and basic settings to match your brand."
+msgstr ""
+
+#: inc/admin/pages/welcome.php:152
+msgid "Site Identity"
+msgstr ""
+
+#: inc/admin/pages/welcome.php:157
+msgid "Navigation Setup"
+msgstr ""
+
+#: inc/admin/pages/welcome.php:158
+msgid "Create and configure your site's navigation menus for optimal user experience."
+msgstr ""
+
+#: inc/admin/pages/welcome.php:159
+msgid "Manage Menus"
+msgstr ""
+
+#: inc/admin/pages/welcome.php:165
+msgid "Add content to your sidebar and footer areas through the Widgets screen."
+msgstr ""
+
+#: inc/admin/pages/welcome.php:166
+msgid "Add Widgets"
+msgstr ""
+
+#: inc/admin/pages/welcome.php:171
+msgid "Advanced Options"
+msgstr ""
+
+#: inc/admin/pages/welcome.php:172
+msgid "Explore all customization options to fine-tune your site to perfection."
 msgstr ""
 
 #. translators: Accepta version and WPDINO link
@@ -327,1035 +559,27 @@ msgstr ""
 msgid "Accepta v%1$s by %2$s"
 msgstr ""
 
-#: inc/admin/templates/admin-footer.php:39
-msgid "Support"
-msgstr ""
-
-#: inc/admin/pages/plugins.php:40
-msgid "Recommended Plugins"
-msgstr ""
-
-#: inc/admin/pages/plugins.php:41
-msgid ""
-"Enhance your Accepta theme with these recommended plugins. Install or "
-"activate them with one click."
-msgstr ""
-
-#: inc/admin/pages/plugins.php:46
-msgid ""
-"Select the plugins you want to install, then click the button below to "
-"install and activate them."
-msgstr ""
-
-#: inc/admin/pages/plugins.php:88
-msgid "Include"
-msgstr ""
-
-#: inc/admin/pages/plugins.php:99
-msgid "Required"
-msgstr ""
-
-#: inc/admin/pages/welcome.php:24
-#, php-format
-msgid "Welcome to %s!"
-msgstr ""
-
-#: inc/admin/pages/welcome.php:28
-#, php-format
-msgid "v. %s"
-msgstr ""
-
-#: inc/admin/pages/welcome.php:36
-msgid "Getting Started"
-msgstr ""
-
-#: inc/admin/pages/welcome.php:37
-msgid ""
-"Thank you for choosing Accepta! This modern and versatile WordPress theme is "
-"designed to make your website stand out. Explore the features and options "
-"below to get started."
-msgstr ""
-
-#: inc/admin/pages/welcome.php:40
-msgid "Theme Customization"
-msgstr ""
-
-#: inc/admin/pages/welcome.php:41
-msgid ""
-"Customize your site's appearance through the WordPress Customizer. Change "
-"colors, layouts, and more to match your brand."
-msgstr ""
-
-#: inc/admin/pages/welcome.php:42 inc/admin/pages/welcome.php:168
-msgid "Customize Your Site"
-msgstr ""
-
-#: inc/admin/pages/welcome.php:46
-msgid "Accepta PRO — Coming Soon"
-msgstr ""
-
-#: inc/admin/pages/welcome.php:47
-msgid ""
-"More premium features, extra layouts, and dedicated support are on the way. "
-"Stay tuned!"
-msgstr ""
-
-#. translators: %s: link to WPDINO newsletter signup
-#: inc/admin/pages/welcome.php:53
-#, php-format
-msgid ""
-"Be the first to know when Accepta PRO launches! %s for exclusive updates, "
-"tips, and early-access offers."
-msgstr ""
-
-#: inc/admin/pages/welcome.php:54
-msgid "Subscribe to our newsletter"
-msgstr ""
-
-#: inc/admin/pages/welcome.php:64
-msgid "Accepta Theme"
-msgstr ""
-
-#: inc/admin/pages/welcome.php:69
-msgid "Theme Features"
-msgstr ""
-
-#: inc/admin/pages/welcome.php:74
-msgid "Responsive Design"
-msgstr ""
-
-#: inc/admin/pages/welcome.php:75
-msgid "Looks great on all devices, from mobile phones to desktop computers."
-msgstr ""
-
-#: inc/admin/pages/welcome.php:80
-msgid "Fast Loading"
-msgstr ""
-
-#: inc/admin/pages/welcome.php:81
-msgid "Optimized code for better performance and faster page loading times."
-msgstr ""
-
-#: inc/admin/pages/welcome.php:86 inc/admin/pages/welcome.php:159
-msgid "Widget Areas"
-msgstr ""
-
-#: inc/admin/pages/welcome.php:87
-msgid "Multiple widget areas to customize your site's sidebar and footer."
-msgstr ""
-
-#: inc/admin/pages/welcome.php:92
-msgid "Customization Options"
-msgstr ""
-
-#: inc/admin/pages/welcome.php:93
-msgid "Extensive options in the WordPress Customizer to personalize your site."
-msgstr ""
-
-#: inc/admin/pages/welcome.php:98
-msgid "Translation Ready"
-msgstr ""
-
-#: inc/admin/pages/welcome.php:99
-msgid "Fully translatable to create a website in your language."
-msgstr ""
-
-#: inc/admin/pages/welcome.php:104
-msgid "WooCommerce Compatible"
-msgstr ""
-
-#: inc/admin/pages/welcome.php:105
-msgid "Ready for e-commerce with WooCommerce integration."
-msgstr ""
-
-#: inc/admin/pages/welcome.php:110
-msgid "Advanced Layouts"
-msgstr ""
-
-#: inc/admin/pages/welcome.php:111
-msgid "Flexible layout options with various header and footer styles."
-msgstr ""
-
-#: inc/admin/pages/welcome.php:116
-msgid "SEO Optimized"
-msgstr ""
-
-#: inc/admin/pages/welcome.php:117
-msgid ""
-"Built with best SEO practices to help your site rank higher in search "
-"engines."
-msgstr ""
-
-#: inc/admin/pages/welcome.php:122
-msgid "Elementor Integration"
-msgstr ""
-
-#: inc/admin/pages/welcome.php:123
-msgid ""
-"Full compatibility with Elementor Page Builder for a powerful and intuitive "
-"design experience."
-msgstr ""
-
-#: inc/admin/pages/welcome.php:128
-msgid "Accessibility Ready"
-msgstr ""
-
-#: inc/admin/pages/welcome.php:129
-msgid ""
-"Designed with accessibility in mind so your site is usable for everyone."
-msgstr ""
-
-#: inc/admin/pages/welcome.php:135
-msgid "Install Recommended Plugins"
-msgstr ""
-
-#: inc/admin/pages/welcome.php:139
-msgid "Next Steps"
-msgstr ""
-
-#: inc/admin/pages/welcome.php:140
-msgid "Follow these steps to get the most out of your new Accepta theme:"
-msgstr ""
-
-#: inc/admin/pages/welcome.php:145
-msgid "Essential Setup"
-msgstr ""
-
-#: inc/admin/pages/welcome.php:146
-msgid ""
-"Configure your site logo, colors, and basic settings to match your brand."
-msgstr ""
-
-#: inc/admin/pages/welcome.php:147
-msgid "Site Identity"
-msgstr ""
-
-#: inc/admin/pages/welcome.php:152
-msgid "Navigation Setup"
-msgstr ""
-
-#: inc/admin/pages/welcome.php:153
-msgid ""
-"Create and configure your site's navigation menus for optimal user "
-"experience."
-msgstr ""
-
-#: inc/admin/pages/welcome.php:154
-msgid "Manage Menus"
-msgstr ""
-
-#: inc/admin/pages/welcome.php:160
-msgid ""
-"Add content to your sidebar and footer areas through the Widgets screen."
-msgstr ""
-
-#: inc/admin/pages/welcome.php:161
-msgid "Add Widgets"
-msgstr ""
-
-#: inc/admin/pages/welcome.php:166
-msgid "Advanced Options"
-msgstr ""
-
-#: inc/admin/pages/welcome.php:167
-msgid "Explore all customization options to fine-tune your site to perfection."
-msgstr ""
-
-#: inc/customizer.php:57
-msgid "Layout"
-msgstr ""
-
-#: inc/customizer.php:58
-msgid ""
-"Configure site layout, container width, sidebar position, and content "
-"spacing."
-msgstr ""
-
-#: inc/customizer.php:67
-msgid "Header"
-msgstr ""
-
-#: inc/customizer.php:68
-msgid "Configure header settings and behavior."
-msgstr ""
-
-#: inc/customizer.php:91
-msgid "Header Width"
-msgstr ""
-
-#: inc/customizer.php:92
-msgid ""
-"Choose whether the header should be boxed (within container) or fullwidth."
-msgstr ""
-
-#: inc/customizer.php:97 inc/customizer.php:560
-msgid "Boxed"
-msgstr ""
-
-#: inc/customizer.php:100 inc/customizer.php:564
-msgid "Full Width"
-msgstr ""
-
-#: inc/customizer.php:125
-msgid "Header Layout"
-msgstr ""
-
-#: inc/customizer.php:126
-msgid ""
-"Select the header layout. On mobile devices, the hamburger menu icon appears "
-"and the main menu is displayed in the sidebar."
-msgstr ""
-
-#: inc/customizer.php:131
-msgid "Layout 1"
-msgstr ""
-
-#: inc/customizer.php:134
-msgid "Layout 2"
-msgstr ""
-
-#: inc/customizer.php:137
-msgid "Layout 3"
-msgstr ""
-
-#: inc/customizer.php:157
-msgid "Enable Sticky Header"
-msgstr ""
-
-#: inc/customizer.php:158
-msgid "Make the header stick to the top when scrolling down the page."
-msgstr ""
-
-#: inc/customizer.php:178
-msgid "Overlay"
-msgstr ""
-
-#: inc/customizer.php:179
-msgid ""
-"Make the header overlay the hero section. Background will appear on scroll."
-msgstr ""
-
-#: inc/customizer.php:201
-msgid "Overlay Text Color"
-msgstr ""
-
-#: inc/customizer.php:202
-msgid "Text color for header content when overlay is enabled."
-msgstr ""
-
-#: inc/customizer.php:225
-msgid "Display Social Icons in Header"
-msgstr ""
-
-#: inc/customizer.php:226
-msgid "Enable or disable the display of social media icons in the header."
-msgstr ""
-
-#: inc/customizer.php:277
-msgid "Header Social Media Links"
-msgstr ""
-
-#: inc/customizer.php:278
-msgid ""
-"Add your social media profiles for the header. You can use Font Awesome "
-"icons or upload custom images for icons."
-msgstr ""
-
-#: inc/customizer.php:288 inc/customizer.php:2053
-#: inc/customizer-controls/class-accepta-repeater-control.php:71
-msgid "Label"
-msgstr ""
-
-#: inc/customizer.php:289 inc/customizer.php:2054
-msgid "e.g., Facebook"
-msgstr ""
-
-#: inc/customizer.php:293 inc/customizer.php:2058
-#: inc/customizer-controls/class-accepta-repeater-control.php:76
-msgid "URL"
-msgstr ""
-
-#: inc/customizer.php:294 inc/customizer.php:2059
-#: inc/customizer-controls/class-accepta-repeater-control.php:77
-msgid "https://example.com"
-msgstr ""
-
-#: inc/customizer.php:298 inc/customizer.php:2063
-msgid "Icon Type"
-msgstr ""
-
-#: inc/customizer.php:300 inc/customizer.php:2065
-msgid "Font Awesome"
-msgstr ""
-
-#: inc/customizer.php:301 inc/customizer.php:311 inc/customizer.php:2066
-#: inc/customizer.php:2076
-msgid "Custom Icon"
-msgstr ""
-
-#: inc/customizer.php:306 inc/customizer.php:2071
-msgid "Font Awesome Icon"
-msgstr ""
-
-#: inc/customizer.php:307 inc/customizer.php:2072
-msgid "fab fa-facebook-f"
-msgstr ""
-
-#: inc/customizer.php:331
-msgid "Display Search Button in Header"
-msgstr ""
-
-#: inc/customizer.php:332
-msgid ""
-"Enable or disable the search button in the header. Clicking it will open a "
-"search form overlay."
-msgstr ""
-
-#: inc/customizer.php:354
-msgid "Scrolled Header Background"
-msgstr ""
-
-#: inc/customizer.php:355
-msgid ""
-"Background color for the header when scrolled (only applies if sticky header "
-"is enabled)."
-msgstr ""
-
-#: inc/customizer.php:430
-msgid "Scrolled Header Text Color"
-msgstr ""
-
-#: inc/customizer.php:431
-msgid ""
-"Text color for header content when scrolled (only applies if sticky header "
-"is enabled)."
-msgstr ""
-
-#: inc/customizer.php:445
-msgid "Homepage Hero Section"
-msgstr ""
-
-#: inc/customizer.php:446
-msgid ""
-"Configure the homepage hero section with background, content, and styling "
-"options."
-msgstr ""
-
-#: inc/customizer.php:455
-msgid "General Settings"
-msgstr ""
-
-#: inc/customizer.php:456
-msgid "Enable and configure basic hero section settings."
-msgstr ""
-
-#: inc/customizer.php:475
-msgid "Enable Hero Section"
-msgstr ""
-
-#: inc/customizer.php:476
-msgid "Display hero section on the homepage."
-msgstr ""
-
-#: inc/customizer.php:496
-msgid "Height Type"
-msgstr ""
-
-#: inc/customizer.php:497
-msgid "Choose how the hero section height is determined."
-msgstr ""
-
-#: inc/customizer.php:501
-msgid "Minimum Height"
-msgstr ""
-
-#: inc/customizer.php:502
-msgid "Custom Height"
-msgstr ""
-
-#: inc/customizer.php:503
-msgid "Fullscreen"
-msgstr ""
-
-#: inc/customizer.php:522
-msgid "Minimum Height (px)"
-msgstr ""
-
-#: inc/customizer.php:523
-msgid "Set the minimum height for the hero section."
-msgstr ""
-
-#: inc/customizer.php:554
-msgid "Width"
-msgstr ""
-
-#: inc/customizer.php:555
-msgid "Choose the width layout for the hero section."
-msgstr ""
-
-#: inc/customizer.php:611 inc/customizer.php:1887
-msgid "Background"
-msgstr ""
-
-#: inc/customizer.php:612
-msgid ""
-"Choose a solid color, gradient, image, or video background for the hero "
-"section."
-msgstr ""
-
-#: inc/customizer.php:623
-msgid "Content"
-msgstr ""
-
-#: inc/customizer.php:624
-msgid "Configure hero section content (heading, text, button)."
-msgstr ""
-
-#: inc/customizer.php:643
-msgid "Heading"
-msgstr ""
-
-#: inc/customizer.php:644
-msgid "Enter the hero section heading text."
-msgstr ""
-
-#: inc/customizer.php:664
-msgid "Text"
-msgstr ""
-
-#: inc/customizer.php:665
-msgid "Enter the hero section description text."
-msgstr ""
-
-#: inc/customizer.php:685
-msgid "Button Text"
-msgstr ""
-
-#: inc/customizer.php:686
-msgid "Enter the button label text."
-msgstr ""
-
-#: inc/customizer.php:706
-msgid "Button URL"
-msgstr ""
-
-#: inc/customizer.php:707
-msgid "Enter the button link URL."
-msgstr ""
-
-#: inc/customizer.php:727
-msgid "Button Style"
-msgstr ""
-
-#: inc/customizer.php:728
-msgid "Choose the button style."
-msgstr ""
-
-#: inc/customizer.php:733
-msgid "Secondary"
-msgstr ""
-
-#: inc/customizer.php:734
-msgid "Outline"
-msgstr ""
-
-#: inc/customizer.php:744
-msgid "Content Styling"
-msgstr ""
-
-#: inc/customizer.php:745
-msgid "Style the hero section content (colors, sizes)."
-msgstr ""
-
-#: inc/customizer.php:766
-msgid "Heading Color"
-msgstr ""
-
-#: inc/customizer.php:767
-msgid "Choose the heading text color."
-msgstr ""
-
-#: inc/customizer.php:787
-msgid "Heading Size (px)"
-msgstr ""
-
-#: inc/customizer.php:788
-msgid "Set the heading font size."
-msgstr ""
-
-#: inc/customizer.php:815 inc/customizer.php:1126 inc/customizer.php:1910
-msgid "Text Color"
-msgstr ""
-
-#: inc/customizer.php:816
-msgid "Choose the text color."
-msgstr ""
-
-#: inc/customizer.php:836
-msgid "Text Size (px)"
-msgstr ""
-
-#: inc/customizer.php:837
-msgid "Set the text font size."
-msgstr ""
-
-#: inc/customizer.php:853
-msgid "Content Alignment"
-msgstr ""
-
-#: inc/customizer.php:854
-msgid "Control the alignment of hero section content."
-msgstr ""
-
-#: inc/customizer.php:875
-msgid "Horizontal Alignment"
-msgstr ""
-
-#: inc/customizer.php:876
-msgid "Align content horizontally across different screen sizes."
-msgstr ""
-
-#: inc/customizer.php:880 inc/customizer.php:909
 #: inc/customizer-controls/class-accepta-alignment-control.php:71
 #: inc/customizer-controls/class-accepta-alignment-control.php:152
+#: inc/customizer.php:875
+#: inc/customizer.php:904
 msgid "Start"
 msgstr ""
 
-#: inc/customizer.php:881 inc/customizer.php:910
-#: inc/customizer-controls/class-accepta-background-control.php:232
-#: inc/customizer-controls/class-accepta-hero-background-control.php:260
 #: inc/customizer-controls/class-accepta-alignment-control.php:74
 #: inc/customizer-controls/class-accepta-alignment-control.php:153
+#: inc/customizer-controls/class-accepta-background-control.php:232
+#: inc/customizer-controls/class-accepta-hero-background-control.php:260
+#: inc/customizer.php:876
+#: inc/customizer.php:905
 msgid "Center"
 msgstr ""
 
-#: inc/customizer.php:882 inc/customizer.php:911
 #: inc/customizer-controls/class-accepta-alignment-control.php:77
 #: inc/customizer-controls/class-accepta-alignment-control.php:154
+#: inc/customizer.php:877
+#: inc/customizer.php:906
 msgid "End"
-msgstr ""
-
-#: inc/customizer.php:904
-msgid "Vertical Alignment"
-msgstr ""
-
-#: inc/customizer.php:905
-msgid "Align content vertically across different screen sizes."
-msgstr ""
-
-#: inc/customizer.php:933
-msgid "Container Width"
-msgstr ""
-
-#: inc/customizer.php:934
-msgid "Set the maximum width of the site container. Range: 800px - 1600px."
-msgstr ""
-
-#: inc/customizer.php:960
-msgid "Sidebar Layout"
-msgstr ""
-
-#: inc/customizer.php:961
-msgid "Choose the sidebar position for your site layout."
-msgstr ""
-
-#: inc/customizer.php:966
-#: inc/customizer-controls/class-accepta-layout-control.php:50
-msgid "No Sidebar"
-msgstr ""
-
-#: inc/customizer.php:969
-#: inc/customizer-controls/class-accepta-layout-control.php:54
-msgid "Left Sidebar"
-msgstr ""
-
-#: inc/customizer.php:972
-#: inc/customizer-controls/class-accepta-layout-control.php:58
-msgid "Right Sidebar"
-msgstr ""
-
-#: inc/customizer.php:992
-msgid "Content Box Shadow"
-msgstr ""
-
-#: inc/customizer.php:993
-msgid "Control when box shadow appears on the content container."
-msgstr ""
-
-#: inc/customizer.php:998
-msgid "All Layouts"
-msgstr ""
-
-#: inc/customizer.php:999
-msgid "Only With Sidebars"
-msgstr ""
-
-#: inc/customizer.php:1000
-#: inc/customizer-controls/class-accepta-typography-control.php:296
-msgid "None"
-msgstr ""
-
-#: inc/customizer.php:1024
-msgid "Content Padding"
-msgstr ""
-
-#: inc/customizer.php:1025
-msgid "Set padding around the main content area."
-msgstr ""
-
-#: inc/customizer.php:1054
-msgid "Content Margin"
-msgstr ""
-
-#: inc/customizer.php:1055
-msgid "Set margin around the main content area."
-msgstr ""
-
-#: inc/customizer.php:1080
-msgid "Global Primary Color"
-msgstr ""
-
-#: inc/customizer.php:1081
-msgid ""
-"Set the main brand color used throughout the site for buttons, links, and "
-"accents."
-msgstr ""
-
-#: inc/customizer.php:1103
-msgid "Background Color"
-msgstr ""
-
-#: inc/customizer.php:1104
-msgid "Set the main background color for the site content areas."
-msgstr ""
-
-#: inc/customizer.php:1127
-msgid "Set the main text color used for content and paragraphs."
-msgstr ""
-
-#: inc/customizer.php:1149
-msgid "Link Color"
-msgstr ""
-
-#: inc/customizer.php:1150
-msgid "Set the color for links in content."
-msgstr ""
-
-#: inc/customizer.php:1172
-msgid "Link Hover Color"
-msgstr ""
-
-#: inc/customizer.php:1173
-msgid "Set the color for links when hovered or focused."
-msgstr ""
-
-#: inc/customizer.php:1184
-msgid "Typography"
-msgstr ""
-
-#: inc/customizer.php:1185
-msgid "Customize fonts, sizes, and typography settings for your site."
-msgstr ""
-
-#: inc/customizer.php:1194 inc/customizer.php:1324
-msgid "Body Typography"
-msgstr ""
-
-#: inc/customizer.php:1195 inc/customizer.php:1325
-msgid "Set typography for body text and paragraphs."
-msgstr ""
-
-#: inc/customizer.php:1205
-msgid "All Headings (Default)"
-msgstr ""
-
-#: inc/customizer.php:1206
-msgid ""
-"Set default typography for all headings (font family, weight, line height, "
-"etc.). Font sizes are set individually for each heading level below with "
-"responsive options."
-msgstr ""
-
-#: inc/customizer.php:1216
-msgid "Post/Page Title"
-msgstr ""
-
-#: inc/customizer.php:1217
-msgid "Set typography for post and page titles."
-msgstr ""
-
-#: inc/customizer.php:1227 inc/customizer.php:1419
-msgid "H1 Typography"
-msgstr ""
-
-#: inc/customizer.php:1228 inc/customizer.php:1420
-msgid "Set typography for H1 headings and entry titles."
-msgstr ""
-
-#: inc/customizer.php:1238 inc/customizer.php:1451
-msgid "H2 Typography"
-msgstr ""
-
-#: inc/customizer.php:1239 inc/customizer.php:1452
-msgid "Set typography for H2 headings."
-msgstr ""
-
-#: inc/customizer.php:1249 inc/customizer.php:1483
-msgid "H3 Typography"
-msgstr ""
-
-#: inc/customizer.php:1250 inc/customizer.php:1484
-msgid "Set typography for H3 headings."
-msgstr ""
-
-#: inc/customizer.php:1260 inc/customizer.php:1515
-msgid "H4 Typography"
-msgstr ""
-
-#: inc/customizer.php:1261 inc/customizer.php:1516
-msgid "Set typography for H4 headings."
-msgstr ""
-
-#: inc/customizer.php:1271 inc/customizer.php:1547
-msgid "H5 Typography"
-msgstr ""
-
-#: inc/customizer.php:1272 inc/customizer.php:1548
-msgid "Set typography for H5 headings."
-msgstr ""
-
-#: inc/customizer.php:1282 inc/customizer.php:1579
-msgid "H6 Typography"
-msgstr ""
-
-#: inc/customizer.php:1283 inc/customizer.php:1580
-msgid "Set typography for H6 headings."
-msgstr ""
-
-#: inc/customizer.php:1293 inc/customizer.php:1613
-msgid "Button Typography"
-msgstr ""
-
-#: inc/customizer.php:1294 inc/customizer.php:1614
-msgid "Set typography for buttons and form elements."
-msgstr ""
-
-#: inc/customizer.php:1352
-msgid "All Headings Typography"
-msgstr ""
-
-#: inc/customizer.php:1353
-msgid ""
-"Set default typography for all headings (font family, weight, line height, "
-"etc.). Font sizes should be set individually for each heading level below."
-msgstr ""
-
-#: inc/customizer.php:1385
-msgid "Post/Page Title Typography"
-msgstr ""
-
-#: inc/customizer.php:1386
-msgid "Set typography for post and page titles (.entry-title)."
-msgstr ""
-
-#: inc/customizer.php:1643
-msgid "WooCommerce"
-msgstr ""
-
-#: inc/customizer.php:1644
-msgid ""
-"Customize how WooCommerce is displayed in the theme: header minicart, shop, "
-"and single product."
-msgstr ""
-
-#: inc/customizer.php:1653
-msgid "Header Minicart"
-msgstr ""
-
-#: inc/customizer.php:1654
-msgid "Settings for the cart icon and minicart in the header."
-msgstr ""
-
-#: inc/customizer.php:1671
-msgid "Display cart icon in header"
-msgstr ""
-
-#: inc/customizer.php:1672
-msgid "Show the WooCommerce cart icon and item count in the header."
-msgstr ""
-
-#: inc/customizer.php:1683
-msgid "Shop"
-msgstr ""
-
-#: inc/customizer.php:1684
-msgid "Settings for the main shop and product archive pages."
-msgstr ""
-
-#: inc/customizer.php:1701
-msgid "Products per row"
-msgstr ""
-
-#: inc/customizer.php:1702
-msgid "Number of products to show per row on shop and archive pages."
-msgstr ""
-
-#: inc/customizer.php:1718
-msgid "Single Product"
-msgstr ""
-
-#: inc/customizer.php:1719
-msgid "Settings for the single product page layout and display."
-msgstr ""
-
-#: inc/customizer.php:1739
-msgid "Sidebar on single product"
-msgstr ""
-
-#: inc/customizer.php:1740
-msgid "Show a sidebar on single product pages."
-msgstr ""
-
-#: inc/customizer.php:1744
-msgid "No sidebar"
-msgstr ""
-
-#: inc/customizer.php:1745
-msgid "Sidebar left"
-msgstr ""
-
-#: inc/customizer.php:1746
-msgid "Sidebar right"
-msgstr ""
-
-#: inc/customizer.php:1757
-msgid "Footer"
-msgstr ""
-
-#: inc/customizer.php:1758
-msgid ""
-"Customize all aspects of your footer including layout, social media, and "
-"styling."
-msgstr ""
-
-#: inc/customizer.php:1767
-msgid "Layouts"
-msgstr ""
-
-#: inc/customizer.php:1768
-msgid "Configure footer layout and column structure."
-msgstr ""
-
-#: inc/customizer.php:1789
-msgid "Footer Columns"
-msgstr ""
-
-#: inc/customizer.php:1790
-msgid "Choose how many columns to display in the footer."
-msgstr ""
-
-#: inc/customizer.php:1795
-msgid "No Columns"
-msgstr ""
-
-#: inc/customizer.php:1798
-msgid "1 Column"
-msgstr ""
-
-#: inc/customizer.php:1801
-msgid "2 Columns"
-msgstr ""
-
-#: inc/customizer.php:1804
-msgid "3 Columns"
-msgstr ""
-
-#: inc/customizer.php:1807
-msgid "4 Columns"
-msgstr ""
-
-#: inc/customizer.php:1818
-msgid "Socials"
-msgstr ""
-
-#: inc/customizer.php:1819
-msgid ""
-"Add your social media profile links. They will appear in the site footer."
-msgstr ""
-
-#: inc/customizer.php:1838
-msgid "Display Social Icons"
-msgstr ""
-
-#: inc/customizer.php:1839
-msgid "Enable or disable the display of social media icons in the footer."
-msgstr ""
-
-#: inc/customizer.php:1850
-msgid "Styling"
-msgstr ""
-
-#: inc/customizer.php:1851
-msgid ""
-"Customize footer spacing and visual appearance. All changes are previewed "
-"live with responsive controls."
-msgstr ""
-
-#: inc/customizer.php:1888
-msgid ""
-"Choose a solid color, gradient, or image background for the footer area."
-msgstr ""
-
-#: inc/customizer.php:1911
-msgid "Set the text color for the footer area."
-msgstr ""
-
-#: inc/customizer.php:1937
-msgid "Footer Padding"
-msgstr ""
-
-#: inc/customizer.php:1938
-msgid ""
-"Set internal spacing for the footer area. Use responsive controls for "
-"different devices."
-msgstr ""
-
-#: inc/customizer.php:1967
-msgid "Footer Margin"
-msgstr ""
-
-#: inc/customizer.php:1968
-msgid ""
-"Set external spacing around the footer area. Use responsive controls for "
-"different devices."
-msgstr ""
-
-#: inc/customizer.php:1982 footer.php:64
-msgid "{copyright} {current-year} {site-title}. Powered by {wordpress}."
-msgstr ""
-
-#: inc/customizer.php:1993
-msgid "Copyright Text"
-msgstr ""
-
-#: inc/customizer.php:1994
-msgid ""
-"Create your copyright text using dynamic tags. Click the tags below to "
-"insert them into your text."
-msgstr ""
-
-#: inc/customizer.php:2045
-msgid "Social Media Links"
-msgstr ""
-
-#: inc/customizer.php:2046
-msgid ""
-"Add your social media profiles. You can use Font Awesome icons or upload "
-"custom images for icons."
-msgstr ""
-
-#: inc/customizer.php:2330
-msgid "Default"
 msgstr ""
 
 #: inc/customizer-controls/class-accepta-background-control.php:114
@@ -1430,8 +654,8 @@ msgstr ""
 
 #: inc/customizer-controls/class-accepta-background-control.php:187
 #: inc/customizer-controls/class-accepta-hero-background-control.php:215
-#: inc/customizer-controls/class-accepta-repeater-control.php:349
-#: inc/customizer-controls/class-accepta-repeater-control.php:453
+#: inc/customizer-controls/class-accepta-repeater-control.php:353
+#: inc/customizer-controls/class-accepta-repeater-control.php:457
 msgid "Select Image"
 msgstr ""
 
@@ -1439,10 +663,10 @@ msgstr ""
 #: inc/customizer-controls/class-accepta-background-control.php:283
 #: inc/customizer-controls/class-accepta-hero-background-control.php:218
 #: inc/customizer-controls/class-accepta-hero-background-control.php:320
-#: inc/customizer-controls/class-accepta-repeater-control.php:352
-#: inc/customizer-controls/class-accepta-repeater-control.php:381
-#: inc/customizer-controls/class-accepta-repeater-control.php:456
-#: inc/customizer-controls/class-accepta-repeater-control.php:479
+#: inc/customizer-controls/class-accepta-repeater-control.php:356
+#: inc/customizer-controls/class-accepta-repeater-control.php:385
+#: inc/customizer-controls/class-accepta-repeater-control.php:460
+#: inc/customizer-controls/class-accepta-repeater-control.php:483
 msgid "Remove"
 msgstr ""
 
@@ -1631,8 +855,155 @@ msgstr ""
 msgid "Overlay Opacity"
 msgstr ""
 
+#: inc/customizer-controls/class-accepta-copyright-control.php:47
+msgid "Copyright Symbol (©)"
+msgstr ""
+
+#: inc/customizer-controls/class-accepta-copyright-control.php:48
+msgid "Current Year"
+msgstr ""
+
+#: inc/customizer-controls/class-accepta-copyright-control.php:49
+msgid "Site Title"
+msgstr ""
+
+#: inc/customizer-controls/class-accepta-copyright-control.php:50
+msgid "Site URL"
+msgstr ""
+
+#: inc/customizer-controls/class-accepta-copyright-control.php:51
+msgid "Theme Name"
+msgstr ""
+
+#: inc/customizer-controls/class-accepta-copyright-control.php:52
+msgid "Theme Author"
+msgstr ""
+
+#: inc/customizer-controls/class-accepta-copyright-control.php:53
+msgid "WordPress Link"
+msgstr ""
+
+#: inc/customizer-controls/class-accepta-copyright-control.php:101
+msgid "Available Tags:"
+msgstr ""
+
+#: inc/customizer-controls/class-accepta-copyright-control.php:117
+msgid "Enter your copyright text here. Use the tags above to insert dynamic content."
+msgstr ""
+
+#: inc/customizer-controls/class-accepta-copyright-control.php:125
+msgid "Preview:"
+msgstr ""
+
 #: inc/customizer-controls/class-accepta-hero-background-control.php:265
 msgid "Attachment"
+msgstr ""
+
+#: inc/customizer-controls/class-accepta-layout-control.php:50
+#: inc/customizer.php:961
+msgid "No Sidebar"
+msgstr ""
+
+#: inc/customizer-controls/class-accepta-layout-control.php:54
+#: inc/customizer.php:964
+msgid "Left Sidebar"
+msgstr ""
+
+#: inc/customizer-controls/class-accepta-layout-control.php:58
+#: inc/customizer.php:967
+msgid "Right Sidebar"
+msgstr ""
+
+#: inc/customizer-controls/class-accepta-repeater-control.php:71
+#: inc/customizer.php:283
+#: inc/customizer.php:2048
+msgid "Label"
+msgstr ""
+
+#: inc/customizer-controls/class-accepta-repeater-control.php:72
+msgid "Enter label"
+msgstr ""
+
+#: inc/customizer-controls/class-accepta-repeater-control.php:76
+#: inc/customizer.php:288
+#: inc/customizer.php:2053
+msgid "URL"
+msgstr ""
+
+#: inc/customizer-controls/class-accepta-repeater-control.php:77
+#: inc/customizer.php:289
+#: inc/customizer.php:2054
+msgid "https://example.com"
+msgstr ""
+
+#: inc/customizer-controls/class-accepta-repeater-control.php:114
+msgid "Are you sure you want to delete this item?"
+msgstr ""
+
+#: inc/customizer-controls/class-accepta-repeater-control.php:115
+msgid "Add New Item"
+msgstr ""
+
+#. translators: %d: maximum number of repeater items allowed.
+#: inc/customizer-controls/class-accepta-repeater-control.php:117
+#, php-format
+msgid "Maximum %d items allowed"
+msgstr ""
+
+#: inc/customizer-controls/class-accepta-repeater-control.php:152
+msgid "Add Item"
+msgstr ""
+
+#. translators: %d: 1-based repeater item index.
+#: inc/customizer-controls/class-accepta-repeater-control.php:199
+#, php-format
+msgid "Item %d"
+msgstr ""
+
+#: inc/customizer-controls/class-accepta-repeater-control.php:204
+#: inc/customizer-controls/class-accepta-repeater-control.php:234
+msgid "Toggle"
+msgstr ""
+
+#: inc/customizer-controls/class-accepta-repeater-control.php:208
+#: inc/customizer-controls/class-accepta-repeater-control.php:238
+msgid "Delete"
+msgstr ""
+
+#. translators: %s: JavaScript template placeholder for the 1-based repeater item index.
+#: inc/customizer-controls/class-accepta-repeater-control.php:230
+#, php-format
+msgid "Item %s"
+msgstr ""
+
+#: inc/customizer-controls/class-accepta-repeater-control.php:382
+#: inc/customizer-controls/class-accepta-repeater-control.php:480
+msgid "Select Icon"
+msgstr ""
+
+#: inc/customizer-controls/class-accepta-spacing-control.php:116
+msgid "Are you sure you want to reset all spacing values to defaults?"
+msgstr ""
+
+#: inc/customizer-controls/class-accepta-spacing-control.php:169
+#: inc/customizer-controls/class-accepta-spacing-control.php:171
+msgid "Reset to Default"
+msgstr ""
+
+#: inc/customizer-controls/class-accepta-spacing-control.php:184
+msgid "Top"
+msgstr ""
+
+#: inc/customizer-controls/class-accepta-spacing-control.php:185
+msgid "Right"
+msgstr ""
+
+#: inc/customizer-controls/class-accepta-spacing-control.php:186
+msgid "Bottom"
+msgstr ""
+
+#: inc/customizer-controls/class-accepta-spacing-control.php:187
+msgid "Left"
 msgstr ""
 
 #: inc/customizer-controls/class-accepta-typography-control.php:192
@@ -1724,6 +1095,11 @@ msgstr ""
 msgid "Text Transform"
 msgstr ""
 
+#: inc/customizer-controls/class-accepta-typography-control.php:296
+#: inc/customizer.php:995
+msgid "None"
+msgstr ""
+
 #: inc/customizer-controls/class-accepta-typography-control.php:297
 msgid "Uppercase"
 msgstr ""
@@ -1736,116 +1112,729 @@ msgstr ""
 msgid "Capitalize"
 msgstr ""
 
-#: inc/customizer-controls/class-accepta-copyright-control.php:47
-msgid "Copyright Symbol (©)"
+#: inc/customizer.php:52
+msgid "Layout"
 msgstr ""
 
-#: inc/customizer-controls/class-accepta-copyright-control.php:48
-msgid "Current Year"
+#: inc/customizer.php:53
+msgid "Configure site layout, container width, sidebar position, and content spacing."
 msgstr ""
 
-#: inc/customizer-controls/class-accepta-copyright-control.php:49
-msgid "Site Title"
+#: inc/customizer.php:62
+msgid "Header"
 msgstr ""
 
-#: inc/customizer-controls/class-accepta-copyright-control.php:50
-msgid "Site URL"
+#: inc/customizer.php:63
+msgid "Configure header settings and behavior."
 msgstr ""
 
-#: inc/customizer-controls/class-accepta-copyright-control.php:51
-msgid "Theme Name"
+#: inc/customizer.php:86
+msgid "Header Width"
 msgstr ""
 
-#: inc/customizer-controls/class-accepta-copyright-control.php:52
-msgid "Theme Author"
+#: inc/customizer.php:87
+msgid "Choose whether the header should be boxed (within container) or fullwidth."
 msgstr ""
 
-#: inc/customizer-controls/class-accepta-copyright-control.php:53
-msgid "WordPress Link"
+#: inc/customizer.php:92
+#: inc/customizer.php:555
+msgid "Boxed"
 msgstr ""
 
-#: inc/customizer-controls/class-accepta-copyright-control.php:101
-msgid "Available Tags:"
+#: inc/customizer.php:95
+#: inc/customizer.php:559
+msgid "Full Width"
 msgstr ""
 
-#: inc/customizer-controls/class-accepta-copyright-control.php:117
-msgid ""
-"Enter your copyright text here. Use the tags above to insert dynamic content."
+#: inc/customizer.php:120
+msgid "Header Layout"
 msgstr ""
 
-#: inc/customizer-controls/class-accepta-copyright-control.php:125
-msgid "Preview:"
+#: inc/customizer.php:121
+msgid "Select the header layout. On mobile devices, the hamburger menu icon appears and the main menu is displayed in the sidebar."
 msgstr ""
 
-#: inc/customizer-controls/class-accepta-spacing-control.php:116
-msgid "Are you sure you want to reset all spacing values to defaults?"
+#: inc/customizer.php:126
+msgid "Layout 1"
 msgstr ""
 
-#: inc/customizer-controls/class-accepta-spacing-control.php:169
-#: inc/customizer-controls/class-accepta-spacing-control.php:171
-msgid "Reset to Default"
+#: inc/customizer.php:129
+msgid "Layout 2"
 msgstr ""
 
-#: inc/customizer-controls/class-accepta-spacing-control.php:184
-msgid "Top"
+#: inc/customizer.php:132
+msgid "Layout 3"
 msgstr ""
 
-#: inc/customizer-controls/class-accepta-spacing-control.php:185
-msgid "Right"
+#: inc/customizer.php:152
+msgid "Enable Sticky Header"
 msgstr ""
 
-#: inc/customizer-controls/class-accepta-spacing-control.php:186
-msgid "Bottom"
+#: inc/customizer.php:153
+msgid "Make the header stick to the top when scrolling down the page."
 msgstr ""
 
-#: inc/customizer-controls/class-accepta-spacing-control.php:187
-msgid "Left"
+#: inc/customizer.php:173
+msgid "Overlay"
 msgstr ""
 
-#: inc/customizer-controls/class-accepta-repeater-control.php:72
-msgid "Enter label"
+#: inc/customizer.php:174
+msgid "Make the header overlay the hero section. Background will appear on scroll."
 msgstr ""
 
-#: inc/customizer-controls/class-accepta-repeater-control.php:115
-msgid "Are you sure you want to delete this item?"
+#: inc/customizer.php:196
+msgid "Overlay Text Color"
 msgstr ""
 
-#: inc/customizer-controls/class-accepta-repeater-control.php:116
-msgid "Add New Item"
+#: inc/customizer.php:197
+msgid "Text color for header content when overlay is enabled."
 msgstr ""
 
-#: inc/customizer-controls/class-accepta-repeater-control.php:117
-#, php-format
-msgid "Maximum %d items allowed"
+#: inc/customizer.php:220
+msgid "Display Social Icons in Header"
 msgstr ""
 
-#: inc/customizer-controls/class-accepta-repeater-control.php:152
-msgid "Add Item"
+#: inc/customizer.php:221
+msgid "Enable or disable the display of social media icons in the header."
 msgstr ""
 
-#: inc/customizer-controls/class-accepta-repeater-control.php:198
-#, php-format
-msgid "Item %d"
+#: inc/customizer.php:272
+msgid "Header Social Media Links"
 msgstr ""
 
-#: inc/customizer-controls/class-accepta-repeater-control.php:203
-#: inc/customizer-controls/class-accepta-repeater-control.php:230
-msgid "Toggle"
+#: inc/customizer.php:273
+msgid "Add your social media profiles for the header. You can use Font Awesome icons or upload custom images for icons."
 msgstr ""
 
-#: inc/customizer-controls/class-accepta-repeater-control.php:207
-#: inc/customizer-controls/class-accepta-repeater-control.php:234
-msgid "Delete"
+#: inc/customizer.php:284
+#: inc/customizer.php:2049
+msgid "e.g., Facebook"
 msgstr ""
 
-#: inc/customizer-controls/class-accepta-repeater-control.php:227
-#, php-format
-msgid "Item %s"
+#: inc/customizer.php:293
+#: inc/customizer.php:2058
+msgid "Icon Type"
 msgstr ""
 
-#: inc/customizer-controls/class-accepta-repeater-control.php:378
-#: inc/customizer-controls/class-accepta-repeater-control.php:476
-msgid "Select Icon"
+#: inc/customizer.php:295
+#: inc/customizer.php:2060
+msgid "Font Awesome"
+msgstr ""
+
+#: inc/customizer.php:296
+#: inc/customizer.php:306
+#: inc/customizer.php:2061
+#: inc/customizer.php:2071
+msgid "Custom Icon"
+msgstr ""
+
+#: inc/customizer.php:301
+#: inc/customizer.php:2066
+msgid "Font Awesome Icon"
+msgstr ""
+
+#: inc/customizer.php:302
+#: inc/customizer.php:2067
+msgid "fab fa-facebook-f"
+msgstr ""
+
+#: inc/customizer.php:326
+msgid "Display Search Button in Header"
+msgstr ""
+
+#: inc/customizer.php:327
+msgid "Enable or disable the search button in the header. Clicking it will open a search form overlay."
+msgstr ""
+
+#: inc/customizer.php:349
+msgid "Scrolled Header Background"
+msgstr ""
+
+#: inc/customizer.php:350
+msgid "Background color for the header when scrolled (only applies if sticky header is enabled)."
+msgstr ""
+
+#: inc/customizer.php:425
+msgid "Scrolled Header Text Color"
+msgstr ""
+
+#: inc/customizer.php:426
+msgid "Text color for header content when scrolled (only applies if sticky header is enabled)."
+msgstr ""
+
+#: inc/customizer.php:440
+msgid "Homepage Hero Section"
+msgstr ""
+
+#: inc/customizer.php:441
+msgid "Configure the homepage hero section with background, content, and styling options."
+msgstr ""
+
+#: inc/customizer.php:450
+msgid "General Settings"
+msgstr ""
+
+#: inc/customizer.php:451
+msgid "Enable and configure basic hero section settings."
+msgstr ""
+
+#: inc/customizer.php:470
+msgid "Enable Hero Section"
+msgstr ""
+
+#: inc/customizer.php:471
+msgid "Display hero section on the homepage."
+msgstr ""
+
+#: inc/customizer.php:491
+msgid "Height Type"
+msgstr ""
+
+#: inc/customizer.php:492
+msgid "Choose how the hero section height is determined."
+msgstr ""
+
+#: inc/customizer.php:496
+msgid "Minimum Height"
+msgstr ""
+
+#: inc/customizer.php:497
+msgid "Custom Height"
+msgstr ""
+
+#: inc/customizer.php:498
+msgid "Fullscreen"
+msgstr ""
+
+#: inc/customizer.php:517
+msgid "Minimum Height (px)"
+msgstr ""
+
+#: inc/customizer.php:518
+msgid "Set the minimum height for the hero section."
+msgstr ""
+
+#: inc/customizer.php:549
+msgid "Width"
+msgstr ""
+
+#: inc/customizer.php:550
+msgid "Choose the width layout for the hero section."
+msgstr ""
+
+#: inc/customizer.php:606
+#: inc/customizer.php:1882
+msgid "Background"
+msgstr ""
+
+#: inc/customizer.php:607
+msgid "Choose a solid color, gradient, image, or video background for the hero section."
+msgstr ""
+
+#: inc/customizer.php:618
+msgid "Content"
+msgstr ""
+
+#: inc/customizer.php:619
+msgid "Configure hero section content (heading, text, button)."
+msgstr ""
+
+#: inc/customizer.php:638
+msgid "Heading"
+msgstr ""
+
+#: inc/customizer.php:639
+msgid "Enter the hero section heading text."
+msgstr ""
+
+#: inc/customizer.php:659
+msgid "Text"
+msgstr ""
+
+#: inc/customizer.php:660
+msgid "Enter the hero section description text."
+msgstr ""
+
+#: inc/customizer.php:680
+msgid "Button Text"
+msgstr ""
+
+#: inc/customizer.php:681
+msgid "Enter the button label text."
+msgstr ""
+
+#: inc/customizer.php:701
+msgid "Button URL"
+msgstr ""
+
+#: inc/customizer.php:702
+msgid "Enter the button link URL."
+msgstr ""
+
+#: inc/customizer.php:722
+msgid "Button Style"
+msgstr ""
+
+#: inc/customizer.php:723
+msgid "Choose the button style."
+msgstr ""
+
+#: inc/customizer.php:728
+msgid "Secondary"
+msgstr ""
+
+#: inc/customizer.php:729
+msgid "Outline"
+msgstr ""
+
+#: inc/customizer.php:739
+msgid "Content Styling"
+msgstr ""
+
+#: inc/customizer.php:740
+msgid "Style the hero section content (colors, sizes)."
+msgstr ""
+
+#: inc/customizer.php:761
+msgid "Heading Color"
+msgstr ""
+
+#: inc/customizer.php:762
+msgid "Choose the heading text color."
+msgstr ""
+
+#: inc/customizer.php:782
+msgid "Heading Size (px)"
+msgstr ""
+
+#: inc/customizer.php:783
+msgid "Set the heading font size."
+msgstr ""
+
+#: inc/customizer.php:810
+#: inc/customizer.php:1121
+#: inc/customizer.php:1905
+msgid "Text Color"
+msgstr ""
+
+#: inc/customizer.php:811
+msgid "Choose the text color."
+msgstr ""
+
+#: inc/customizer.php:831
+msgid "Text Size (px)"
+msgstr ""
+
+#: inc/customizer.php:832
+msgid "Set the text font size."
+msgstr ""
+
+#: inc/customizer.php:848
+msgid "Content Alignment"
+msgstr ""
+
+#: inc/customizer.php:849
+msgid "Control the alignment of hero section content."
+msgstr ""
+
+#: inc/customizer.php:870
+msgid "Horizontal Alignment"
+msgstr ""
+
+#: inc/customizer.php:871
+msgid "Align content horizontally across different screen sizes."
+msgstr ""
+
+#: inc/customizer.php:899
+msgid "Vertical Alignment"
+msgstr ""
+
+#: inc/customizer.php:900
+msgid "Align content vertically across different screen sizes."
+msgstr ""
+
+#: inc/customizer.php:928
+msgid "Container Width"
+msgstr ""
+
+#: inc/customizer.php:929
+msgid "Set the maximum width of the site container. Range: 800px - 1600px."
+msgstr ""
+
+#: inc/customizer.php:955
+msgid "Sidebar Layout"
+msgstr ""
+
+#: inc/customizer.php:956
+msgid "Choose the sidebar position for your site layout."
+msgstr ""
+
+#: inc/customizer.php:987
+msgid "Content Box Shadow"
+msgstr ""
+
+#: inc/customizer.php:988
+msgid "Control when box shadow appears on the content container."
+msgstr ""
+
+#: inc/customizer.php:993
+msgid "All Layouts"
+msgstr ""
+
+#: inc/customizer.php:994
+msgid "Only With Sidebars"
+msgstr ""
+
+#: inc/customizer.php:1019
+msgid "Content Padding"
+msgstr ""
+
+#: inc/customizer.php:1020
+msgid "Set padding around the main content area."
+msgstr ""
+
+#: inc/customizer.php:1049
+msgid "Content Margin"
+msgstr ""
+
+#: inc/customizer.php:1050
+msgid "Set margin around the main content area."
+msgstr ""
+
+#: inc/customizer.php:1075
+msgid "Global Primary Color"
+msgstr ""
+
+#: inc/customizer.php:1076
+msgid "Set the main brand color used throughout the site for buttons, links, and accents."
+msgstr ""
+
+#: inc/customizer.php:1098
+msgid "Background Color"
+msgstr ""
+
+#: inc/customizer.php:1099
+msgid "Set the main background color for the site content areas."
+msgstr ""
+
+#: inc/customizer.php:1122
+msgid "Set the main text color used for content and paragraphs."
+msgstr ""
+
+#: inc/customizer.php:1144
+msgid "Link Color"
+msgstr ""
+
+#: inc/customizer.php:1145
+msgid "Set the color for links in content."
+msgstr ""
+
+#: inc/customizer.php:1167
+msgid "Link Hover Color"
+msgstr ""
+
+#: inc/customizer.php:1168
+msgid "Set the color for links when hovered or focused."
+msgstr ""
+
+#: inc/customizer.php:1179
+msgid "Typography"
+msgstr ""
+
+#: inc/customizer.php:1180
+msgid "Customize fonts, sizes, and typography settings for your site."
+msgstr ""
+
+#: inc/customizer.php:1189
+#: inc/customizer.php:1319
+msgid "Body Typography"
+msgstr ""
+
+#: inc/customizer.php:1190
+#: inc/customizer.php:1320
+msgid "Set typography for body text and paragraphs."
+msgstr ""
+
+#: inc/customizer.php:1200
+msgid "All Headings (Default)"
+msgstr ""
+
+#: inc/customizer.php:1201
+msgid "Set default typography for all headings (font family, weight, line height, etc.). Font sizes are set individually for each heading level below with responsive options."
+msgstr ""
+
+#: inc/customizer.php:1211
+msgid "Post/Page Title"
+msgstr ""
+
+#: inc/customizer.php:1212
+msgid "Set typography for post and page titles."
+msgstr ""
+
+#: inc/customizer.php:1222
+#: inc/customizer.php:1414
+msgid "H1 Typography"
+msgstr ""
+
+#: inc/customizer.php:1223
+#: inc/customizer.php:1415
+msgid "Set typography for H1 headings and entry titles."
+msgstr ""
+
+#: inc/customizer.php:1233
+#: inc/customizer.php:1446
+msgid "H2 Typography"
+msgstr ""
+
+#: inc/customizer.php:1234
+#: inc/customizer.php:1447
+msgid "Set typography for H2 headings."
+msgstr ""
+
+#: inc/customizer.php:1244
+#: inc/customizer.php:1478
+msgid "H3 Typography"
+msgstr ""
+
+#: inc/customizer.php:1245
+#: inc/customizer.php:1479
+msgid "Set typography for H3 headings."
+msgstr ""
+
+#: inc/customizer.php:1255
+#: inc/customizer.php:1510
+msgid "H4 Typography"
+msgstr ""
+
+#: inc/customizer.php:1256
+#: inc/customizer.php:1511
+msgid "Set typography for H4 headings."
+msgstr ""
+
+#: inc/customizer.php:1266
+#: inc/customizer.php:1542
+msgid "H5 Typography"
+msgstr ""
+
+#: inc/customizer.php:1267
+#: inc/customizer.php:1543
+msgid "Set typography for H5 headings."
+msgstr ""
+
+#: inc/customizer.php:1277
+#: inc/customizer.php:1574
+msgid "H6 Typography"
+msgstr ""
+
+#: inc/customizer.php:1278
+#: inc/customizer.php:1575
+msgid "Set typography for H6 headings."
+msgstr ""
+
+#: inc/customizer.php:1288
+#: inc/customizer.php:1608
+msgid "Button Typography"
+msgstr ""
+
+#: inc/customizer.php:1289
+#: inc/customizer.php:1609
+msgid "Set typography for buttons and form elements."
+msgstr ""
+
+#: inc/customizer.php:1347
+msgid "All Headings Typography"
+msgstr ""
+
+#: inc/customizer.php:1348
+msgid "Set default typography for all headings (font family, weight, line height, etc.). Font sizes should be set individually for each heading level below."
+msgstr ""
+
+#: inc/customizer.php:1380
+msgid "Post/Page Title Typography"
+msgstr ""
+
+#: inc/customizer.php:1381
+msgid "Set typography for post and page titles (.entry-title)."
+msgstr ""
+
+#: inc/customizer.php:1638
+msgid "WooCommerce"
+msgstr ""
+
+#: inc/customizer.php:1639
+msgid "Customize how WooCommerce is displayed in the theme: header minicart, shop, and single product."
+msgstr ""
+
+#: inc/customizer.php:1648
+msgid "Header Minicart"
+msgstr ""
+
+#: inc/customizer.php:1649
+msgid "Settings for the cart icon and minicart in the header."
+msgstr ""
+
+#: inc/customizer.php:1666
+msgid "Display cart icon in header"
+msgstr ""
+
+#: inc/customizer.php:1667
+msgid "Show the WooCommerce cart icon and item count in the header."
+msgstr ""
+
+#: inc/customizer.php:1678
+msgid "Shop"
+msgstr ""
+
+#: inc/customizer.php:1679
+msgid "Settings for the main shop and product archive pages."
+msgstr ""
+
+#: inc/customizer.php:1696
+msgid "Products per row"
+msgstr ""
+
+#: inc/customizer.php:1697
+msgid "Number of products to show per row on shop and archive pages."
+msgstr ""
+
+#: inc/customizer.php:1713
+msgid "Single Product"
+msgstr ""
+
+#: inc/customizer.php:1714
+msgid "Settings for the single product page layout and display."
+msgstr ""
+
+#: inc/customizer.php:1734
+msgid "Sidebar on single product"
+msgstr ""
+
+#: inc/customizer.php:1735
+msgid "Show a sidebar on single product pages."
+msgstr ""
+
+#: inc/customizer.php:1739
+msgid "No sidebar"
+msgstr ""
+
+#: inc/customizer.php:1740
+msgid "Sidebar left"
+msgstr ""
+
+#: inc/customizer.php:1741
+msgid "Sidebar right"
+msgstr ""
+
+#: inc/customizer.php:1752
+msgid "Footer"
+msgstr ""
+
+#: inc/customizer.php:1753
+msgid "Customize all aspects of your footer including layout, social media, and styling."
+msgstr ""
+
+#: inc/customizer.php:1762
+msgid "Layouts"
+msgstr ""
+
+#: inc/customizer.php:1763
+msgid "Configure footer layout and column structure."
+msgstr ""
+
+#: inc/customizer.php:1784
+msgid "Footer Columns"
+msgstr ""
+
+#: inc/customizer.php:1785
+msgid "Choose how many columns to display in the footer."
+msgstr ""
+
+#: inc/customizer.php:1790
+msgid "No Columns"
+msgstr ""
+
+#: inc/customizer.php:1793
+msgid "1 Column"
+msgstr ""
+
+#: inc/customizer.php:1796
+msgid "2 Columns"
+msgstr ""
+
+#: inc/customizer.php:1799
+msgid "3 Columns"
+msgstr ""
+
+#: inc/customizer.php:1802
+msgid "4 Columns"
+msgstr ""
+
+#: inc/customizer.php:1813
+msgid "Socials"
+msgstr ""
+
+#: inc/customizer.php:1814
+msgid "Add your social media profile links. They will appear in the site footer."
+msgstr ""
+
+#: inc/customizer.php:1833
+msgid "Display Social Icons"
+msgstr ""
+
+#: inc/customizer.php:1834
+msgid "Enable or disable the display of social media icons in the footer."
+msgstr ""
+
+#: inc/customizer.php:1845
+msgid "Styling"
+msgstr ""
+
+#: inc/customizer.php:1846
+msgid "Customize footer spacing and visual appearance. All changes are previewed live with responsive controls."
+msgstr ""
+
+#: inc/customizer.php:1883
+msgid "Choose a solid color, gradient, or image background for the footer area."
+msgstr ""
+
+#: inc/customizer.php:1906
+msgid "Set the text color for the footer area."
+msgstr ""
+
+#: inc/customizer.php:1932
+msgid "Footer Padding"
+msgstr ""
+
+#: inc/customizer.php:1933
+msgid "Set internal spacing for the footer area. Use responsive controls for different devices."
+msgstr ""
+
+#: inc/customizer.php:1962
+msgid "Footer Margin"
+msgstr ""
+
+#: inc/customizer.php:1963
+msgid "Set external spacing around the footer area. Use responsive controls for different devices."
+msgstr ""
+
+#: inc/customizer.php:1988
+msgid "Copyright Text"
+msgstr ""
+
+#: inc/customizer.php:1989
+msgid "Create your copyright text using dynamic tags. Click the tags below to insert them into your text."
+msgstr ""
+
+#: inc/customizer.php:2040
+msgid "Social Media Links"
+msgstr ""
+
+#: inc/customizer.php:2041
+msgid "Add your social media profiles. You can use Font Awesome icons or upload custom images for icons."
+msgstr ""
+
+#: inc/customizer.php:2325
+msgid "Default"
 msgstr ""
 
 #: inc/elementor.php:35
@@ -1860,6 +1849,136 @@ msgstr ""
 msgid "Accepta Elements"
 msgstr ""
 
+#: inc/starter-content.php:36
+msgctxt "Theme starter content"
+msgid "Build Bold. Build Beautiful."
+msgstr ""
+
+#: inc/starter-content.php:40
+msgctxt "Theme starter content"
+msgid "Accepta is a flexible, modern WordPress theme. Use the hero section above and this content to showcase your business. Customize everything in the Theme Customizer."
+msgstr ""
+
+#: inc/starter-content.php:48
+msgctxt "Theme starter content"
+msgid "Get started"
+msgstr ""
+
+#: inc/starter-content.php:52
+msgctxt "Theme starter content"
+msgid "Edit this page or add new pages from the dashboard. Enable the hero section and overlay header in Customize to get the full look."
+msgstr ""
+
+#: inc/starter-content.php:60
+msgctxt "Theme starter content"
+msgid "Why Choose Accepta"
+msgstr ""
+
+#: inc/starter-content.php:75
+msgctxt "Theme starter content"
+msgid "Flexible &amp; Modern"
+msgstr ""
+
+#: inc/starter-content.php:78
+msgctxt "Theme starter content"
+msgid "Clean layout and responsive design that works on any device. Built with the block editor so you can rearrange and style content easily."
+msgstr ""
+
+#: inc/starter-content.php:89
+msgctxt "Theme starter content"
+msgid "Elementor Ready"
+msgstr ""
+
+#: inc/starter-content.php:92
+msgctxt "Theme starter content"
+msgid "Use Elementor for drag-and-drop page building. The theme integrates with popular page builders so you can create custom layouts without code."
+msgstr ""
+
+#: inc/starter-content.php:103
+msgctxt "Theme starter content"
+msgid "Fully Customizable"
+msgstr ""
+
+#: inc/starter-content.php:106
+msgctxt "Theme starter content"
+msgid "Control hero, header, colors, and typography from the Theme Customizer. No coding required to match your brand."
+msgstr ""
+
+#: inc/starter-content.php:121
+msgctxt "Theme starter content"
+msgid "Designed for Your Success"
+msgstr ""
+
+#: inc/starter-content.php:124
+msgctxt "Theme starter content"
+msgid "Accepta gives you a professional starting point for your website. Customize the hero image, add your own content, and launch with confidence. The theme is built for clarity and performance."
+msgstr ""
+
+#: inc/starter-content.php:127
+msgctxt "Theme starter content image alt"
+msgid "Accepta theme"
+msgstr ""
+
+#: inc/starter-content.php:140
+msgctxt "Theme starter content"
+msgid "Accepta made it easy to launch our site. Clean design, easy to customize, and it looks great on every device."
+msgstr ""
+
+#: inc/starter-content.php:142
+msgctxt "Theme starter content testimonial citation"
+msgid "— Happy Customer"
+msgstr ""
+
+#: inc/starter-content.php:187
+msgctxt "Theme starter content"
+msgid "Homepage"
+msgstr ""
+
+#: inc/starter-content.php:192
+msgctxt "Theme starter content"
+msgid "Blog"
+msgstr ""
+
+#: inc/starter-content.php:196
+msgctxt "Theme starter content"
+msgid "About"
+msgstr ""
+
+#: inc/starter-content.php:199
+msgctxt "Theme starter content"
+msgid "About Us"
+msgstr ""
+
+#: inc/starter-content.php:203
+msgctxt "Theme starter content"
+msgid "This is a sample About page. Replace this text with your own story."
+msgstr ""
+
+#: inc/starter-content.php:209
+#: inc/starter-content.php:212
+msgctxt "Theme starter content"
+msgid "Contact"
+msgstr ""
+
+#: inc/starter-content.php:216
+msgctxt "Theme starter content"
+msgid "Use this page to share your contact details or a contact form."
+msgstr ""
+
+#. translators: %s: post date.
+#: inc/template-tags.php:30
+#, php-format
+msgctxt "post date"
+msgid "Posted on %s"
+msgstr ""
+
+#. translators: %s: post author.
+#: inc/template-tags.php:46
+#, php-format
+msgctxt "post author"
+msgid "by %s"
+msgstr ""
+
 #. translators: used between list items, there is a space after the comma
 #: inc/template-tags.php:63
 msgid ", "
@@ -1869,6 +1988,12 @@ msgstr ""
 #: inc/template-tags.php:66
 #, php-format
 msgid "Posted in %1$s"
+msgstr ""
+
+#. translators: used between list items, there is a space after the comma
+#: inc/template-tags.php:70
+msgctxt "list item separator"
+msgid ", "
 msgstr ""
 
 #. translators: 1: list of tags.
@@ -1884,56 +2009,28 @@ msgid "Leave a Comment<span class=\"screen-reader-text\"> on %s</span>"
 msgstr ""
 
 #. translators: %s: Name of current post. Only visible to screen readers
-#: inc/template-tags.php:100 template-parts/content-page.php:41
+#: inc/template-tags.php:100
+#: template-parts/content-page.php:41
 #, php-format
 msgid "Edit <span class=\"screen-reader-text\">%s</span>"
 msgstr ""
 
-#. translators: 1: title.
-#: comments.php:35
-#, php-format
-msgid "One thought on &ldquo;%1$s&rdquo;"
+#: inc/woocommerce.php:207
+#: inc/woocommerce.php:222
+msgid "View your shopping cart"
 msgstr ""
 
-#. translators: 1: comment count number, 2: title.
-#: comments.php:41
+#. translators: number of items in the mini cart.
+#: inc/woocommerce.php:243
 #, php-format
-msgctxt "comments title"
-msgid "%1$s thought on &ldquo;%2$s&rdquo;"
-msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
+msgid "%d item"
+msgid_plural "%d items"
 msgstr[0] ""
 msgstr[1] ""
 
-#: comments.php:68
-msgid "Comments are closed."
-msgstr ""
-
-#: header.php:26
-msgid "Skip to content"
-msgstr ""
-
-#: header.php:63
-msgid "Menu"
-msgstr ""
-
-#: header.php:84
-msgid "Open search"
-msgstr ""
-
-#: header.php:101
-msgid "Close search"
-msgstr ""
-
-#: header.php:105
-msgid "Close"
-msgstr ""
-
-#: header.php:122 header.php:126
-msgid "Close cart"
-msgstr ""
-
-#: header.php:125
-msgid "Cart"
+#. Template Name of the theme
+#: page-templates/full-width.php:3
+msgid "Full Width (For Elementor Builder)"
 msgstr ""
 
 #: template-parts/content-none.php:14
@@ -1943,36 +2040,38 @@ msgstr ""
 #. translators: 1: link to WP admin new post page.
 #: template-parts/content-none.php:24
 #, php-format
-msgid ""
-"Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
 msgstr ""
 
 #: template-parts/content-none.php:37
-msgid ""
-"Sorry, but nothing matched your search terms. Please try again with some "
-"different keywords."
+msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
 msgstr ""
 
 #: template-parts/content-none.php:44
-msgid ""
-"It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps "
-"searching can help."
+msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
 msgstr ""
 
-#: template-parts/content-page.php:27 template-parts/content.php:54
+#: template-parts/content-page.php:27
+#: template-parts/content.php:54
 msgid "Pages:"
 msgstr ""
 
-#: template-parts/content-sidebar-wrap.php:39
 #: template-parts/content-sidebar-wrap-archive.php:38
 #: template-parts/content-sidebar-wrap-search.php:40
+#: template-parts/content-sidebar-wrap.php:39
 msgid "&larr; Previous"
 msgstr ""
 
-#: template-parts/content-sidebar-wrap.php:40
 #: template-parts/content-sidebar-wrap-archive.php:39
 #: template-parts/content-sidebar-wrap-search.php:41
+#: template-parts/content-sidebar-wrap.php:40
 msgid "Next &rarr;"
+msgstr ""
+
+#. translators: %s: search query.
+#: template-parts/content-sidebar-wrap-search.php:18
+#, php-format
+msgid "Search Results for: %s"
 msgstr ""
 
 #: template-parts/content-sidebar-wrap-single.php:20
@@ -1993,16 +2092,12 @@ msgstr ""
 msgid "Continue reading"
 msgstr ""
 
-#: template-parts/hero-section.php:148 template-parts/hero-section.php:167
+#: template-parts/hero-section.php:148
+#: template-parts/hero-section.php:167
 msgid "Play/Pause"
 msgstr ""
 
-#: template-parts/hero-section.php:156 template-parts/hero-section.php:175
+#: template-parts/hero-section.php:156
+#: template-parts/hero-section.php:175
 msgid "Mute/Unmute"
-msgstr ""
-
-#. translators: %s: search query.
-#: template-parts/content-sidebar-wrap-search.php:18
-#, php-format
-msgid "Search Results for: %s"
 msgstr ""

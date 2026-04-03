@@ -350,6 +350,7 @@ class Accepta_Admin_Plugins {
                         esc_html_e( 'Accepta Theme recommends one plugin to enhance your site.', 'accepta' );
                     } else {
                         printf( 
+                            /* translators: %d: number of recommended plugins. */
                             esc_html__( 'Accepta Theme recommends %d plugins to enhance your site.', 'accepta' ),
                             $recommended_count
                         );

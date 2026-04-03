@@ -30,22 +30,22 @@ function accepta_add_sample_footer_widgets() {
 	$sample_widgets = array(
 		'footer-1' => array(
 			'type' => 'text',
-			'title' => __( 'About Accepta', 'accepta' ),
-			'content' => __( 'Accepta is a modern, responsive WordPress theme designed for businesses, portfolios, and blogs.', 'accepta' ),
+			'title' => esc_html__( 'About Accepta', 'accepta' ),
+			'content' => esc_html__( 'Accepta is a modern, responsive WordPress theme designed for businesses, portfolios, and blogs.', 'accepta' ),
 		),
 		'footer-2' => array(
 			'type' => 'text',
-			'title' => __( 'About WPDINO', 'accepta' ),
-			'content' => __( 'WPDINO is a WordPress development company. We create beautiful, functional themes that help businesses grow online.', 'accepta' ),
+			'title' => esc_html__( 'About WPDINO', 'accepta' ),
+			'content' => esc_html__( 'WPDINO is a WordPress development company. We create beautiful, functional themes that help businesses grow online.', 'accepta' ),
 		),
 		'footer-3' => array(
 			'type' => 'nav_menu_or_pages',
-			'title' => __( 'Quick Links', 'accepta' ),
+			'title' => esc_html__( 'Quick Links', 'accepta' ),
 			'menu' => 'sample-footer-menu',
 		),
 		'footer-4' => array(
 			'type' => 'search',
-			'title' => __( 'Search', 'accepta' ),
+			'title' => esc_html__( 'Search', 'accepta' ),
 		),
 	);
 

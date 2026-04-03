@@ -36,7 +36,26 @@ if ($screen && strpos($screen->id, 'accepta-') !== false) {
             </p>
         </div>
         <div class="accepta-admin-footer-right">
+			<a href="https://wordpress.org/support/theme/accepta/" target="_blank"><?php esc_html_e( 'Support', 'accepta' ); ?></a> <span>|</span>
             <a href="<?php echo esc_url( admin_url( 'customize.php' ) ); ?>"><?php esc_html_e( 'Customize', 'accepta' ); ?></a>
+
+
+			<?php 
+			// Social links (Facebook, X, Instagram).
+			printf(
+				'<div class="accepta-admin-footer-social">
+					<a href="%1$s" target="_blank" aria-label="%4$s"><span class="dashicons dashicons-facebook-alt"></span></a>
+					<a href="%2$s" target="_blank" aria-label="%5$s"><span class="dashicons dashicons-twitter"></span></a>
+					<a href="%3$s" target="_blank" aria-label="%6$s"><span class="dashicons dashicons-camera"></span></a>
+				</div>',
+				esc_url( 'https://www.facebook.com/wpdinocom' ),
+				esc_url( 'https://x.com/wpdinocom' ),
+				esc_url( 'https://www.instagram.com/_wpdino_/' ),
+				esc_attr__( 'Follow WPDINO on Facebook', 'accepta' ),
+				esc_attr__( 'Follow WPDINO on X (Twitter)', 'accepta' ),
+				esc_attr__( 'Follow WPDINO on Instagram', 'accepta' )
+			);
+			?>
         </div>
     </div>
 </div> 

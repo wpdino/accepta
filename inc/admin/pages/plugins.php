@@ -36,6 +36,7 @@ foreach ( $accepta_plugins as $slug => $plugin ) {
 ?>
 
 <div class="wrap accepta-admin-wrap">
+	<h1 class="notices-hook"></h1>
     <div class="accepta-header">
         <h1><?php esc_html_e( 'Recommended Plugins', 'accepta' ); ?></h1>
         <p class="about-description"><?php esc_html_e( 'Enhance your Accepta theme with these recommended plugins. Install or activate them with one click.', 'accepta' ); ?></p>
@@ -50,59 +51,61 @@ foreach ( $accepta_plugins as $slug => $plugin ) {
         </div>
     </div>
 
-    <div class="accepta-plugins-wrap">
-        <div class="accepta-plugins-grid">
-            <?php foreach ( $accepta_plugins as $plugin_slug => $plugin ) :
-                $plugin_status = $plugins_module->is_plugin_installed( $plugin_slug );
-                $is_active     = $plugin_status['active'];
-                $is_installed  = $plugin_status['installed'];
-                $button_class  = $is_active ? 'button button-disabled js-accepta-plugin-btn accepta-plugin-btn--active' : 'button button-primary js-accepta-plugin-btn';
-                $button_text   = $is_active ? esc_html__( 'Active', 'accepta' ) : ( $is_installed ? esc_html__( 'Activate', 'accepta' ) : esc_html__( 'Install', 'accepta' ) );
-            ?>
-                <div class="accepta-plugin-item accepta-plugin-item-<?php echo esc_attr( $plugin_slug ); ?> <?php echo $is_active ? 'accepta-plugin-item--active' : ''; ?>">
-                    <div class="accepta-plugin-icon">
-                        <?php if ( ! empty( $plugin['icon_url'] ) ) : ?>
-                            <img src="<?php echo esc_url( $plugin['icon_url'] ); ?>" alt="<?php echo esc_attr( $plugin['name'] ); ?>" width="64" height="64">
-                        <?php elseif ( ! empty( $plugin['icon'] ) && file_exists( get_template_directory() . '/inc/admin/assets/images/plugins/' . $plugin['icon'] ) ) : ?>
-                            <img src="<?php echo esc_url( get_template_directory_uri() . '/inc/admin/assets/images/plugins/' . $plugin['icon'] ); ?>" alt="<?php echo esc_attr( $plugin['name'] ); ?>">
-                        <?php else : ?>
-                            <span class="dashicons dashicons-admin-plugins"></span>
-                        <?php endif; ?>
-                    </div>
+	<div class="accepta-card">
+		<div class="accepta-plugins-wrap">
+			<div class="accepta-plugins-grid">
+				<?php foreach ( $accepta_plugins as $plugin_slug => $plugin ) :
+					$plugin_status = $plugins_module->is_plugin_installed( $plugin_slug );
+					$is_active     = $plugin_status['active'];
+					$is_installed  = $plugin_status['installed'];
+					$button_class  = $is_active ? 'button button-disabled js-accepta-plugin-btn accepta-plugin-btn--active' : 'button button-primary js-accepta-plugin-btn';
+					$button_text   = $is_active ? esc_html__( 'Active', 'accepta' ) : ( $is_installed ? esc_html__( 'Activate', 'accepta' ) : esc_html__( 'Install', 'accepta' ) );
+				?>
+					<div class="accepta-plugin-item accepta-plugin-item-<?php echo esc_attr( $plugin_slug ); ?> <?php echo $is_active ? 'accepta-plugin-item--active' : ''; ?>">
+						<div class="accepta-plugin-icon">
+							<?php if ( ! empty( $plugin['icon_url'] ) ) : ?>
+								<img src="<?php echo esc_url( $plugin['icon_url'] ); ?>" alt="<?php echo esc_attr( $plugin['name'] ); ?>" width="64" height="64">
+							<?php elseif ( ! empty( $plugin['icon'] ) && file_exists( get_template_directory() . '/inc/admin/assets/images/plugins/' . $plugin['icon'] ) ) : ?>
+								<img src="<?php echo esc_url( get_template_directory_uri() . '/inc/admin/assets/images/plugins/' . $plugin['icon'] ); ?>" alt="<?php echo esc_attr( $plugin['name'] ); ?>">
+							<?php else : ?>
+								<span class="dashicons dashicons-admin-plugins"></span>
+							<?php endif; ?>
+						</div>
 
-                    <div class="accepta-plugin-info">
-                        <h3><?php echo esc_html( $plugin['name'] ); ?></h3>
-                        <p><?php echo wp_kses_post( $plugin['description'] ); ?></p>
-                        <div class="accepta-plugin-item-error" role="alert" aria-live="polite"></div>
-                    </div>
+						<div class="accepta-plugin-info">
+							<h3><?php echo esc_html( $plugin['name'] ); ?></h3>
+							<p><?php echo wp_kses_post( $plugin['description'] ); ?></p>
+							<div class="accepta-plugin-item-error" role="alert" aria-live="polite"></div>
+						</div>
 
-                    <div class="accepta-plugin-actions">
-                        <div class="accepta-plugin-loading-state" aria-hidden="true">
-                            <span class="accepta-plugin-spinner"></span>
-                            <span class="accepta-plugin-loading-text"></span>
-                        </div>
-                        <?php if ( ! $is_active ) : ?>
-                            <label class="accepta-plugin-checkbox-label">
-                                <input type="checkbox" class="accepta-plugin-checkbox" name="<?php echo esc_attr( $plugin_slug ); ?>" value="1" data-slug="<?php echo esc_attr( $plugin_slug ); ?>" checked>
-                                <span class="accepta-plugin-checkbox-box" aria-hidden="true"></span>
-                                <span class="accepta-plugin-checkbox-text"><?php esc_html_e( 'Include', 'accepta' ); ?></span>
-                            </label>
-                        <?php endif; ?>
-                        <button type="button"
-                                class="<?php echo esc_attr( $button_class ); ?>"
-                                data-slug="<?php echo esc_attr( $plugin_slug ); ?>"
-                                data-initial-text="<?php echo esc_attr( $button_text ); ?>"
-                                <?php echo $is_active ? ' disabled' : ''; ?>>
-                            <?php echo esc_html( $button_text ); ?>
-                        </button>
-                        <?php if ( ! empty( $plugin['required'] ) ) : ?>
-                            <span class="accepta-plugin-status required"><?php esc_html_e( 'Required', 'accepta' ); ?></span>
-                        <?php endif; ?>
-                    </div>
-                </div>
-            <?php endforeach; ?>
-        </div>
-    </div>
+						<div class="accepta-plugin-actions">
+							<div class="accepta-plugin-loading-state" aria-hidden="true">
+								<span class="accepta-plugin-spinner"></span>
+								<span class="accepta-plugin-loading-text"></span>
+							</div>
+							<?php if ( ! $is_active ) : ?>
+								<label class="accepta-plugin-checkbox-label">
+									<input type="checkbox" class="accepta-plugin-checkbox" name="<?php echo esc_attr( $plugin_slug ); ?>" value="1" data-slug="<?php echo esc_attr( $plugin_slug ); ?>" checked>
+									<span class="accepta-plugin-checkbox-box" aria-hidden="true"></span>
+									<span class="accepta-plugin-checkbox-text"><?php esc_html_e( 'Include', 'accepta' ); ?></span>
+								</label>
+							<?php endif; ?>
+							<button type="button"
+									class="<?php echo esc_attr( $button_class ); ?>"
+									data-slug="<?php echo esc_attr( $plugin_slug ); ?>"
+									data-initial-text="<?php echo esc_attr( $button_text ); ?>"
+									<?php echo $is_active ? ' disabled' : ''; ?>>
+								<?php echo esc_html( $button_text ); ?>
+							</button>
+							<?php if ( ! empty( $plugin['required'] ) ) : ?>
+								<span class="accepta-plugin-status required"><?php esc_html_e( 'Required', 'accepta' ); ?></span>
+							<?php endif; ?>
+						</div>
+					</div>
+				<?php endforeach; ?>
+			</div>
+		</div>
+	</div>
 
 	<?php include_once get_template_directory() . '/inc/admin/templates/admin-footer.php'; ?>
 </div>
