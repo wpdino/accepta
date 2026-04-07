@@ -1,20 +1,96 @@
-name: Deploy to wp.org
+name: Deploy to WordPress.org Theme Repo
+
 on:
   release:
     types: [published]
+  workflow_dispatch:
+
 jobs:
-  tag:
-    name: New release theme
+  deploy:
+    name: Build and deploy theme
     runs-on: ubuntu-latest
+
+    env:
+      SLUG: accepta
+      SVN_URL: https://themes.svn.wordpress.org/accepta
+
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-    - name: WordPress Theme Deploy
-      id: deploy
-      uses: 10up/action-wordpress-plugin-deploy@stable
-      with:
-        generate-zip: false
-      env:
-        SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
-        SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
-        SLUG: accepta
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build assets
+        run: npm run compile
+
+      - name: Detect theme version
+        id: version
+        run: |
+          VERSION=$(sed -n 's/^Version:[[:space:]]*//p' style.css | head -n 1 | tr -d '\r')
+          if [ -z "$VERSION" ]; then
+            echo "Could not detect Version in style.css"
+            exit 1
+          fi
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "Detected version: $VERSION"
+
+      - name: Checkout WordPress.org SVN
+        run: |
+          svn checkout --non-interactive \
+            --username "${{ secrets.SVN_USERNAME }}" \
+            --password "${{ secrets.SVN_PASSWORD }}" \
+            "$SVN_URL" svn
+
+      - name: Sync files to trunk
+        run: |
+          rsync -rc --delete \
+            --exclude='.git/' \
+            --exclude='.github/' \
+            --exclude-from='.distignore' \
+            ./ svn/trunk/
+
+      - name: Create or update version tag
+        run: |
+          TAG_PATH="svn/tags/${{ steps.version.outputs.version }}"
+          if [ ! -d "$TAG_PATH" ]; then
+            svn copy \
+              --non-interactive \
+              --username "${{ secrets.SVN_USERNAME }}" \
+              --password "${{ secrets.SVN_PASSWORD }}" \
+              "file://$PWD/svn/trunk" \
+              "file://$PWD/$TAG_PATH" \
+              -m "Tagging version ${{ steps.version.outputs.version }}"
+          else
+            rsync -rc --delete \
+              --exclude='.git/' \
+              --exclude='.github/' \
+              --exclude-from='.distignore' \
+              ./ "$TAG_PATH"/
+          fi
+
+      - name: SVN add/remove
+        run: |
+          cd svn
+          svn status | awk '/^\?/ {print $2}' | xargs -r svn add --parents
+          svn status | awk '/^\!/ {print $2}' | xargs -r svn rm --force
+
+      - name: Commit changes
+        run: |
+          cd svn
+          if [ -z "$(svn status)" ]; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          svn commit --non-interactive \
+            --username "${{ secrets.SVN_USERNAME }}" \
+            --password "${{ secrets.SVN_PASSWORD }}" \
+            -m "Deploy version ${{ steps.version.outputs.version }} from GitHub Actions"
