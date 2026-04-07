@@ -2,6 +2,7 @@
 /.wordpress-org export-ignore
 /.github export-ignore
 /scss export-ignore
+/sass export-ignore
 
 # Files
 *.git export-ignore
