@@ -4,7 +4,7 @@ on:
     types: [published]
 jobs:
   tag:
-    name: New release
+    name: New release theme
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
