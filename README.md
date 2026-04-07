@@ -36,6 +36,15 @@ The theme includes a comprehensive customizer with options for:
 
 For theme support and documentation, visit [WPDINO](https://wpdino.com).
 
+## Changelog
+
+### 1.0.4 (2026-04-07)
+
+* Fixed social icon rendering conflicts when Elementor is active by improving Font Awesome enqueue strategy.
+* Added "Outfit" to Google Fonts list and normalized font list ordering.
+* Updated translation template (.pot) and added translators comments for placeholder strings.
+* Increased admin plugin API cache duration to two weeks.
+
 ## License
 
 This theme is licensed under the GPL v2 or later.

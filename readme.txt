@@ -3,8 +3,8 @@
 Contributors: wpdino
 Requires at least: 5.0
 Tested up to: 6.9
-Stable tag: 1.0.0
-Version: 1.0.0
+Stable tag: 1.0.4
+Version: 1.0.4
 Requires PHP: 7.4
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -59,6 +59,12 @@ Yes, Accepta is translation ready and includes .pot file for translations.
 Accepta includes standard WordPress widgets and is compatible with all WordPress widgets and plugins.
 
 == Changelog ==
+
+= 1.0.4 - 2026-04-07 =
+* Fixed social icon rendering conflicts when Elementor is active by improving Font Awesome enqueue strategy.
+* Added "Outfit" to Google Fonts list and normalized font list ordering.
+* Updated translation template (.pot) and added translators comments for placeholder strings.
+* Increased admin plugin API cache duration to two weeks.
 
 = 1.0.0 - 2025-12-05 =
 * Initial release
