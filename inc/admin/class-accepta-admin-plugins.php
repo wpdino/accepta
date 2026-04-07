@@ -119,7 +119,7 @@ class Accepta_Admin_Plugins {
     }
 
     /**
-     * Get plugin information from the WordPress.org API (cached one day).
+     * Get plugin information from the WordPress.org API (cached two weeks).
      *
      * @param string $slug Plugin slug.
      * @return array|null Associative array with name, description, icon, version, homepage, or null on failure.
@@ -147,7 +147,7 @@ class Accepta_Admin_Plugins {
     }
 
     /**
-     * Get plugin info from WordPress.org API (raw). Cached for one day.
+     * Get plugin info from WordPress.org API (raw). Cached for two weeks.
      *
      * @param string $slug Plugin slug.
      * @return object|WP_Error|null Plugin info object, WP_Error, or null.
@@ -177,7 +177,7 @@ class Accepta_Admin_Plugins {
             )
         );
         if ( ! is_wp_error( $response ) ) {
-            set_transient( $cache_key, $response, DAY_IN_SECONDS );
+            set_transient( $cache_key, $response, 2 * WEEK_IN_SECONDS );
         }
         return $response;
     }

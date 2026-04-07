@@ -1481,6 +1481,27 @@ body.has-sticky-header {
 .header-social-icons .social-icon i {
   font-size: 16px;
 }
+.header-social-icons .social-icon i.fab,
+.header-social-icons .social-icon i.fab::before {
+  font-family: "Font Awesome 6 Brands", "Font Awesome 5 Brands", sans-serif !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+}
+.header-social-icons .social-icon i.fas,
+.header-social-icons .social-icon i.far,
+.header-social-icons .social-icon i.fas::before,
+.header-social-icons .social-icon i.far::before {
+  font-family: "Font Awesome 6 Free", "Font Awesome 5 Free", sans-serif !important;
+  font-style: normal !important;
+}
+.header-social-icons .social-icon i.fas,
+.header-social-icons .social-icon i.fas::before {
+  font-weight: 900 !important;
+}
+.header-social-icons .social-icon i.far,
+.header-social-icons .social-icon i.far::before {
+  font-weight: 400 !important;
+}
 .header-social-icons .social-icon .social-icon-svg {
   width: 18px;
   height: 18px;
@@ -4014,6 +4035,27 @@ img.aligncenter,
 }
 .footer-social-icons .social-icon i {
   font-size: 18px;
+}
+.footer-social-icons .social-icon i.fab,
+.footer-social-icons .social-icon i.fab::before {
+  font-family: "Font Awesome 6 Brands", "Font Awesome 5 Brands", sans-serif !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+}
+.footer-social-icons .social-icon i.fas,
+.footer-social-icons .social-icon i.far,
+.footer-social-icons .social-icon i.fas::before,
+.footer-social-icons .social-icon i.far::before {
+  font-family: "Font Awesome 6 Free", "Font Awesome 5 Free", sans-serif !important;
+  font-style: normal !important;
+}
+.footer-social-icons .social-icon i.fas,
+.footer-social-icons .social-icon i.fas::before {
+  font-weight: 900 !important;
+}
+.footer-social-icons .social-icon i.far,
+.footer-social-icons .social-icon i.far::before {
+  font-weight: 400 !important;
 }
 .footer-social-icons .social-icon .social-icon-svg {
   width: 20px;

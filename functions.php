@@ -211,13 +211,6 @@ function accepta_scripts() {
 	);
 	wp_style_add_data( 'accepta-style', 'rtl', 'replace' );
 
-	wp_enqueue_style(
-		'font-awesome',
-		get_template_directory_uri() . '/assets/fonts/fontawesome/all.min.css',
-		array(),
-		'6.4.0'
-	);
-
     if ( class_exists( 'WooCommerce' ) ) {
         wp_enqueue_style( 
 			'accepta-woocommerce-style', 
@@ -316,6 +309,19 @@ function accepta_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'accepta_scripts' );
 
+/**
+ * Enqueue bundled Font Awesome after page-builder/plugin styles (e.g. Elementor)
+ * so brand icons (fab) resolve to the correct webfont instead of showing raw glyphs.
+ */
+function accepta_enqueue_font_awesome() {
+	wp_enqueue_style(
+		'accepta-font-awesome',
+		get_template_directory_uri() . '/assets/fonts/fontawesome/all.min.css',
+		array(),
+		'6.4.0'
+	);
+}
+add_action( 'wp_enqueue_scripts', 'accepta_enqueue_font_awesome', 100 );
 
 /**
  * Decode and sanitize typography JSON from Customizer settings.

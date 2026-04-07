@@ -212,9 +212,7 @@ function accepta_get_starter_content() {
 					<h2 class="wp-block-heading">' . esc_html_x( 'Contact', 'Theme starter content', 'accepta' ) . '</h2>
 					<!-- /wp:heading -->
 
-					<!-- wp:paragraph -->
-					<p>' . esc_html_x( 'Use this page to share your contact details or a contact form.', 'Theme starter content', 'accepta' ) . '</p>
-					<!-- /wp:paragraph -->
+					[contact-form-7 id="f9f4471" title="Contact form 1"]
 				',
 			),
 		),
