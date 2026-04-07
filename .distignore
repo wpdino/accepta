@@ -44,6 +44,7 @@ vendor
 yarn.lock
 CLAUDE.md
 scss
+sass
 backups
 README_DEV.md
 FONT_MIGRATION_FIXES.md
