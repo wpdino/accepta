@@ -71,6 +71,7 @@
             if (header.classList.contains('scrolled') && isAdminBar) {
                 header.style.top = `${adminBarHeight}px`;
             }
+
         });
 
         // Listen for scroll events

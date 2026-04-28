@@ -20,18 +20,25 @@ $menus = $admin->get_module('menus');
 	<h1 class="notices-hook"></h1>
     <div class="accepta-header">
         <div class="accepta-header-content">
+			<div class="accepta-header-content-left">
             <h1>
                 <?php 
 					/* translators: %s: theme name. */
 					printf( esc_html__( 'Welcome to %s!', 'accepta' ), $theme_info['name'] ); 
 				?>
             </h1>
-            <span class="accepta-theme-version">
-                <?php
-				/* translators: %s: theme version number. */
-				printf( esc_html__( 'v. %s', 'accepta' ), $theme_info['version'] );
-				?>
-            </span>
+				<p class="accepta-subtitle">
+					<?php esc_html_e( 'Thank you for choosing Accepta. You’re just a few steps away from building a fast, modern website.', 'accepta' ); ?>
+				</p>
+			</div>
+			<div class="accepta-header-content-right">
+				<span class="accepta-theme-version">
+					<?php
+					/* translators: %s: theme version number. */
+					printf( esc_html__( 'v. %s', 'accepta' ), $theme_info['version'] );
+					?>
+				</span>
+			</div>
         </div>
     </div>
 

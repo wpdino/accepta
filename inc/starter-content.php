@@ -28,9 +28,6 @@ function accepta_get_front_page_starter_content() {
 	return '
 					<!-- wp:group {"layout":{"type":"constrained"}} -->
 					<div class="wp-block-group">
-					<!-- wp:spacer {"height":"40px"} -->
-					<div style="height:40px" aria-hidden="true" class="wp-block-spacer"></div>
-					<!-- /wp:spacer -->
 
 					<!-- wp:heading {"textAlign":"center","fontSize":"large"} -->
 					<h2 class="wp-block-heading has-text-align-center has-large-font-size">' . esc_html_x( 'Build Bold. Build Beautiful.', 'Theme starter content', 'accepta' ) . '</h2>

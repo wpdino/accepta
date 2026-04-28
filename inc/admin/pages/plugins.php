@@ -38,8 +38,12 @@ foreach ( $accepta_plugins as $slug => $plugin ) {
 <div class="wrap accepta-admin-wrap">
 	<h1 class="notices-hook"></h1>
     <div class="accepta-header">
-        <h1><?php esc_html_e( 'Recommended Plugins', 'accepta' ); ?></h1>
-        <p class="about-description"><?php esc_html_e( 'Enhance your Accepta theme with these recommended plugins. Install or activate them with one click.', 'accepta' ); ?></p>
+		<div class="accepta-header-content">
+			<div class="accepta-header-content-left">
+			<h1><?php esc_html_e( 'Recommended Plugins', 'accepta' ); ?></h1>
+				<p class="about-description"><?php esc_html_e( 'Enhance your Accepta theme with these recommended plugins. Install or activate them with one click.', 'accepta' ); ?></p>
+			</div>
+		</div>
     </div>
 
     <div class="accepta-plugins-toolbar">
