@@ -201,11 +201,26 @@ add_action( 'widgets_init', 'accepta_widgets_init' );
 /**
  * Enqueue scripts and styles.
  */
+function accepta_get_asset_uri( $relative_path ) {
+	$is_debug = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG;
+
+	if ( ! $is_debug ) {
+		$pathinfo = pathinfo( $relative_path );
+		$min_path = $pathinfo['dirname'] . '/' . $pathinfo['filename'] . '.min.' . $pathinfo['extension'];
+
+		if ( file_exists( get_template_directory() . '/' . $min_path ) ) {
+			return get_template_directory_uri() . '/' . $min_path;
+		}
+	}
+
+	return get_template_directory_uri() . '/' . $relative_path;
+}
+
 function accepta_scripts() {
 
 	wp_enqueue_style(
 		'accepta-style',
-		get_template_directory_uri() . '/assets/css/accepta.css',
+		accepta_get_asset_uri( 'assets/css/accepta.css' ),
 		array(),
 		_ACCEPTA_VERSION
 	);
@@ -214,7 +229,7 @@ function accepta_scripts() {
     if ( class_exists( 'WooCommerce' ) ) {
         wp_enqueue_style( 
 			'accepta-woocommerce-style', 
-			get_template_directory_uri() . '/assets/css/woocommerce.css', 
+			accepta_get_asset_uri( 'assets/css/woocommerce.css' ), 
 			array( 'accepta-style', 'woocommerce-layout' ), 
 			_ACCEPTA_VERSION 
 		);
@@ -224,7 +239,7 @@ function accepta_scripts() {
 
 	wp_enqueue_script( 
 		'accepta-navigation', 
-		get_template_directory_uri() . '/assets/js/navigation.js', 
+		accepta_get_asset_uri( 'assets/js/navigation.js' ), 
 		array(), 
 		_ACCEPTA_VERSION, 
 		true 
@@ -232,7 +247,7 @@ function accepta_scripts() {
 
 	wp_enqueue_script( 
 		'accepta-mobile-menu', 
-		get_template_directory_uri() . '/assets/js/mobile-menu.js', 
+		accepta_get_asset_uri( 'assets/js/mobile-menu.js' ), 
 		array(), 
 		_ACCEPTA_VERSION,
 		true 
@@ -241,7 +256,7 @@ function accepta_scripts() {
 	$sticky_header_enabled = get_theme_mod( 'accepta_sticky_header', true );
     wp_enqueue_script( 
 		'accepta-sticky-header', 
-		get_template_directory_uri() . '/assets/js/sticky-header.js', 
+		accepta_get_asset_uri( 'assets/js/sticky-header.js' ), 
 		array(), 
 		_ACCEPTA_VERSION, 
 		true 
@@ -268,7 +283,7 @@ function accepta_scripts() {
 	if ( is_front_page() || is_home() ) {
         wp_enqueue_script(
             'accepta-hero-section',
-            get_template_directory_uri() . '/assets/js/hero-section.js',
+            accepta_get_asset_uri( 'assets/js/hero-section.js' ),
             array(),
             _ACCEPTA_VERSION,
             true
@@ -278,7 +293,7 @@ function accepta_scripts() {
 	if ( get_theme_mod( 'accepta_display_header_search', true ) ) {
         wp_enqueue_script(
             'accepta-header-search',
-            get_template_directory_uri() . '/assets/js/header-search.js',
+            accepta_get_asset_uri( 'assets/js/header-search.js' ),
             array(),
             _ACCEPTA_VERSION,
             true
@@ -289,14 +304,14 @@ function accepta_scripts() {
         wp_enqueue_script( 'wc-cart-fragments' );
         wp_enqueue_script(
             'accepta-woocommerce-cart-refresh',
-            get_template_directory_uri() . '/assets/js/woocommerce-cart-refresh.js',
+            accepta_get_asset_uri( 'assets/js/woocommerce-cart-refresh.js' ),
             array( 'jquery', 'wc-cart-fragments' ),
             _ACCEPTA_VERSION,
             true
         );
         wp_enqueue_script(
             'accepta-minicart-offcanvas',
-            get_template_directory_uri() . '/assets/js/minicart-offcanvas.js',
+            accepta_get_asset_uri( 'assets/js/minicart-offcanvas.js' ),
             array(),
             _ACCEPTA_VERSION,
             true
@@ -432,14 +447,16 @@ function accepta_enqueue_google_fonts() {
 			// Enqueue the Google Fonts
 			wp_enqueue_style( 'accepta-google-fonts', $fonts_url, array(), null );
 			
-			// Add debug comment to show combined fonts
-			add_action( 'wp_head', function() use ( $google_fonts_data, $fonts_url ) {
-				echo '<!-- Accepta Combined Google Fonts (' . count( $google_fonts_data ) . ' fonts): -->' . "\n";
-				foreach ( $google_fonts_data as $font_name => $font_data ) {
-					echo '<!--   ' . $font_name . ' (used in: ' . implode( ', ', $font_data['used_in'] ) . ') -->' . "\n";
-				}
-				echo '<!-- Single Google Fonts Request: ' . esc_url( $fonts_url ) . ' -->' . "\n";
-			}, 1 );
+			// Add debug comments only in debug environments.
+			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+				add_action( 'wp_head', function() use ( $google_fonts_data, $fonts_url ) {
+					echo '<!-- Accepta Combined Google Fonts (' . count( $google_fonts_data ) . ' fonts): -->' . "\n";
+					foreach ( $google_fonts_data as $font_name => $font_data ) {
+						echo '<!--   ' . $font_name . ' (used in: ' . implode( ', ', $font_data['used_in'] ) . ') -->' . "\n";
+					}
+					echo '<!-- Single Google Fonts Request: ' . esc_url( $fonts_url ) . ' -->' . "\n";
+				}, 1 );
+			}
 		}
 	}
 }

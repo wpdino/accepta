@@ -15,7 +15,7 @@ $has_sidebar = accepta_has_sidebar();
                 <h1 class="page-title">
                     <?php
                     /* translators: %s: search query. */
-                    printf( esc_html__( 'Search Results for: %s', 'accepta' ), '<span>' . get_search_query() . '</span>' );
+                    printf( esc_html__( 'Search Results for: %s', 'accepta' ), '<span>' . esc_html( get_search_query() ) . '</span>' );
                     ?>
                 </h1>
             </header><!-- .page-header -->

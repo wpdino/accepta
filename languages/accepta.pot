@@ -2,14 +2,14 @@
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accepta 1.0.3\n"
+"Project-Id-Version: Accepta 1.0.4\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/accepta\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-03-30T10:42:35+00:00\n"
+"POT-Creation-Date: 2026-04-30T08:38:04+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accepta\n"
@@ -81,7 +81,7 @@ msgstr ""
 #: functions.php:45
 #: header.php:58
 #: inc/customizer.php:727
-#: inc/starter-content.php:234
+#: inc/starter-content.php:229
 msgid "Primary"
 msgstr ""
 
@@ -283,22 +283,22 @@ msgid "Activating..."
 msgstr ""
 
 #: inc/admin/class-accepta-admin-plugins.php:279
-#: inc/admin/pages/plugins.php:61
+#: inc/admin/pages/plugins.php:66
 msgid "Active"
 msgstr ""
 
 #: inc/admin/class-accepta-admin-plugins.php:280
-#: inc/admin/pages/plugins.php:61
+#: inc/admin/pages/plugins.php:66
 msgid "Install"
 msgstr ""
 
 #: inc/admin/class-accepta-admin-plugins.php:281
-#: inc/admin/pages/plugins.php:61
+#: inc/admin/pages/plugins.php:66
 msgid "Activate"
 msgstr ""
 
 #: inc/admin/class-accepta-admin-plugins.php:282
-#: inc/admin/pages/plugins.php:49
+#: inc/admin/pages/plugins.php:53
 msgid "Install & Activate Selected Plugins"
 msgstr ""
 
@@ -337,219 +337,223 @@ msgid "Theme Dashboard"
 msgstr ""
 
 #: inc/admin/class-accepta-admin.php:189
-#: inc/admin/templates/admin-footer.php:39
+#: inc/admin/templates/admin-footer.php:40
 msgid "Customize"
 msgstr ""
 
-#: inc/admin/pages/plugins.php:41
+#: inc/admin/pages/plugins.php:43
 msgid "Recommended Plugins"
 msgstr ""
 
-#: inc/admin/pages/plugins.php:42
+#: inc/admin/pages/plugins.php:44
 msgid "Enhance your Accepta theme with these recommended plugins. Install or activate them with one click."
 msgstr ""
 
-#: inc/admin/pages/plugins.php:47
+#: inc/admin/pages/plugins.php:51
 msgid "Select the plugins you want to install, then click the button below to install and activate them."
 msgstr ""
 
-#: inc/admin/pages/plugins.php:89
+#: inc/admin/pages/plugins.php:94
 msgid "Include"
 msgstr ""
 
-#: inc/admin/pages/plugins.php:100
+#: inc/admin/pages/plugins.php:105
 msgid "Required"
 msgstr ""
 
 #. translators: %s: theme name.
-#: inc/admin/pages/welcome.php:26
+#: inc/admin/pages/welcome.php:27
 #, php-format
 msgid "Welcome to %s!"
 msgstr ""
 
+#: inc/admin/pages/welcome.php:31
+msgid "Thank you for choosing Accepta. You’re just a few steps away from building a fast, modern website."
+msgstr ""
+
 #. translators: %s: theme version number.
-#: inc/admin/pages/welcome.php:32
+#: inc/admin/pages/welcome.php:38
 #, php-format
 msgid "v. %s"
 msgstr ""
 
-#: inc/admin/pages/welcome.php:41
+#: inc/admin/pages/welcome.php:48
 msgid "Getting Started"
 msgstr ""
 
-#: inc/admin/pages/welcome.php:42
+#: inc/admin/pages/welcome.php:49
 msgid "Thank you for choosing Accepta! This modern and versatile WordPress theme is designed to make your website stand out. Explore the features and options below to get started."
 msgstr ""
 
-#: inc/admin/pages/welcome.php:45
+#: inc/admin/pages/welcome.php:52
 msgid "Theme Customization"
 msgstr ""
 
-#: inc/admin/pages/welcome.php:46
+#: inc/admin/pages/welcome.php:53
 msgid "Customize your site's appearance through the WordPress Customizer. Change colors, layouts, and more to match your brand."
 msgstr ""
 
-#: inc/admin/pages/welcome.php:47
-#: inc/admin/pages/welcome.php:173
+#: inc/admin/pages/welcome.php:54
+#: inc/admin/pages/welcome.php:180
 msgid "Customize Your Site"
 msgstr ""
 
-#: inc/admin/pages/welcome.php:51
+#: inc/admin/pages/welcome.php:58
 msgid "Accepta PRO — Coming Soon"
 msgstr ""
 
-#: inc/admin/pages/welcome.php:52
+#: inc/admin/pages/welcome.php:59
 msgid "More premium features, extra layouts, and dedicated support are on the way. Stay tuned!"
 msgstr ""
 
 #. translators: %s: link to WPDINO newsletter signup
-#: inc/admin/pages/welcome.php:58
+#: inc/admin/pages/welcome.php:65
 #, php-format
 msgid "Be the first to know when Accepta PRO launches! %s for exclusive updates, tips, and early-access offers."
 msgstr ""
 
-#: inc/admin/pages/welcome.php:59
+#: inc/admin/pages/welcome.php:66
 msgid "Subscribe to our newsletter"
 msgstr ""
 
-#: inc/admin/pages/welcome.php:69
+#: inc/admin/pages/welcome.php:76
 msgid "Accepta Theme"
 msgstr ""
 
-#: inc/admin/pages/welcome.php:74
+#: inc/admin/pages/welcome.php:81
 msgid "Theme Features"
 msgstr ""
 
-#: inc/admin/pages/welcome.php:79
+#: inc/admin/pages/welcome.php:86
 msgid "Responsive Design"
 msgstr ""
 
-#: inc/admin/pages/welcome.php:80
+#: inc/admin/pages/welcome.php:87
 msgid "Looks great on all devices, from mobile phones to desktop computers."
 msgstr ""
 
-#: inc/admin/pages/welcome.php:85
+#: inc/admin/pages/welcome.php:92
 msgid "Fast Loading"
 msgstr ""
 
-#: inc/admin/pages/welcome.php:86
+#: inc/admin/pages/welcome.php:93
 msgid "Optimized code for better performance and faster page loading times."
 msgstr ""
 
-#: inc/admin/pages/welcome.php:91
-#: inc/admin/pages/welcome.php:164
+#: inc/admin/pages/welcome.php:98
+#: inc/admin/pages/welcome.php:171
 msgid "Widget Areas"
 msgstr ""
 
-#: inc/admin/pages/welcome.php:92
+#: inc/admin/pages/welcome.php:99
 msgid "Multiple widget areas to customize your site's sidebar and footer."
 msgstr ""
 
-#: inc/admin/pages/welcome.php:97
+#: inc/admin/pages/welcome.php:104
 msgid "Customization Options"
 msgstr ""
 
-#: inc/admin/pages/welcome.php:98
+#: inc/admin/pages/welcome.php:105
 msgid "Extensive options in the WordPress Customizer to personalize your site."
 msgstr ""
 
-#: inc/admin/pages/welcome.php:103
+#: inc/admin/pages/welcome.php:110
 msgid "Translation Ready"
 msgstr ""
 
-#: inc/admin/pages/welcome.php:104
+#: inc/admin/pages/welcome.php:111
 msgid "Fully translatable to create a website in your language."
 msgstr ""
 
-#: inc/admin/pages/welcome.php:109
+#: inc/admin/pages/welcome.php:116
 msgid "WooCommerce Compatible"
 msgstr ""
 
-#: inc/admin/pages/welcome.php:110
+#: inc/admin/pages/welcome.php:117
 msgid "Ready for e-commerce with WooCommerce integration."
 msgstr ""
 
-#: inc/admin/pages/welcome.php:115
+#: inc/admin/pages/welcome.php:122
 msgid "Advanced Layouts"
 msgstr ""
 
-#: inc/admin/pages/welcome.php:116
+#: inc/admin/pages/welcome.php:123
 msgid "Flexible layout options with various header and footer styles."
 msgstr ""
 
-#: inc/admin/pages/welcome.php:121
+#: inc/admin/pages/welcome.php:128
 msgid "SEO Optimized"
 msgstr ""
 
-#: inc/admin/pages/welcome.php:122
+#: inc/admin/pages/welcome.php:129
 msgid "Built with best SEO practices to help your site rank higher in search engines."
 msgstr ""
 
-#: inc/admin/pages/welcome.php:127
+#: inc/admin/pages/welcome.php:134
 msgid "Elementor Integration"
 msgstr ""
 
-#: inc/admin/pages/welcome.php:128
+#: inc/admin/pages/welcome.php:135
 msgid "Full compatibility with Elementor Page Builder for a powerful and intuitive design experience."
 msgstr ""
 
-#: inc/admin/pages/welcome.php:133
+#: inc/admin/pages/welcome.php:140
 msgid "Accessibility Ready"
 msgstr ""
 
-#: inc/admin/pages/welcome.php:134
+#: inc/admin/pages/welcome.php:141
 msgid "Designed with accessibility in mind so your site is usable for everyone."
 msgstr ""
 
-#: inc/admin/pages/welcome.php:140
+#: inc/admin/pages/welcome.php:147
 msgid "Install Recommended Plugins"
 msgstr ""
 
-#: inc/admin/pages/welcome.php:144
+#: inc/admin/pages/welcome.php:151
 msgid "Next Steps"
 msgstr ""
 
-#: inc/admin/pages/welcome.php:145
+#: inc/admin/pages/welcome.php:152
 msgid "Follow these steps to get the most out of your new Accepta theme:"
 msgstr ""
 
-#: inc/admin/pages/welcome.php:150
+#: inc/admin/pages/welcome.php:157
 msgid "Essential Setup"
 msgstr ""
 
-#: inc/admin/pages/welcome.php:151
+#: inc/admin/pages/welcome.php:158
 msgid "Configure your site logo, colors, and basic settings to match your brand."
 msgstr ""
 
-#: inc/admin/pages/welcome.php:152
+#: inc/admin/pages/welcome.php:159
 msgid "Site Identity"
 msgstr ""
 
-#: inc/admin/pages/welcome.php:157
+#: inc/admin/pages/welcome.php:164
 msgid "Navigation Setup"
 msgstr ""
 
-#: inc/admin/pages/welcome.php:158
+#: inc/admin/pages/welcome.php:165
 msgid "Create and configure your site's navigation menus for optimal user experience."
 msgstr ""
 
-#: inc/admin/pages/welcome.php:159
+#: inc/admin/pages/welcome.php:166
 msgid "Manage Menus"
 msgstr ""
 
-#: inc/admin/pages/welcome.php:165
+#: inc/admin/pages/welcome.php:172
 msgid "Add content to your sidebar and footer areas through the Widgets screen."
 msgstr ""
 
-#: inc/admin/pages/welcome.php:166
+#: inc/admin/pages/welcome.php:173
 msgid "Add Widgets"
 msgstr ""
 
-#: inc/admin/pages/welcome.php:171
+#: inc/admin/pages/welcome.php:178
 msgid "Advanced Options"
 msgstr ""
 
-#: inc/admin/pages/welcome.php:172
+#: inc/admin/pages/welcome.php:179
 msgid "Explore all customization options to fine-tune your site to perfection."
 msgstr ""
 
@@ -557,6 +561,22 @@ msgstr ""
 #: inc/admin/templates/admin-footer.php:32
 #, php-format
 msgid "Accepta v%1$s by %2$s"
+msgstr ""
+
+#: inc/admin/templates/admin-footer.php:39
+msgid "Support"
+msgstr ""
+
+#: inc/admin/templates/admin-footer.php:54
+msgid "Follow WPDINO on Facebook"
+msgstr ""
+
+#: inc/admin/templates/admin-footer.php:55
+msgid "Follow WPDINO on X (Twitter)"
+msgstr ""
+
+#: inc/admin/templates/admin-footer.php:56
+msgid "Follow WPDINO on Instagram"
 msgstr ""
 
 #: inc/customizer-controls/class-accepta-alignment-control.php:71
@@ -1849,120 +1869,115 @@ msgstr ""
 msgid "Accepta Elements"
 msgstr ""
 
-#: inc/starter-content.php:36
+#: inc/starter-content.php:33
 msgctxt "Theme starter content"
 msgid "Build Bold. Build Beautiful."
 msgstr ""
 
-#: inc/starter-content.php:40
+#: inc/starter-content.php:37
 msgctxt "Theme starter content"
 msgid "Accepta is a flexible, modern WordPress theme. Use the hero section above and this content to showcase your business. Customize everything in the Theme Customizer."
 msgstr ""
 
-#: inc/starter-content.php:48
+#: inc/starter-content.php:45
 msgctxt "Theme starter content"
 msgid "Get started"
 msgstr ""
 
-#: inc/starter-content.php:52
+#: inc/starter-content.php:49
 msgctxt "Theme starter content"
 msgid "Edit this page or add new pages from the dashboard. Enable the hero section and overlay header in Customize to get the full look."
 msgstr ""
 
-#: inc/starter-content.php:60
+#: inc/starter-content.php:57
 msgctxt "Theme starter content"
 msgid "Why Choose Accepta"
 msgstr ""
 
-#: inc/starter-content.php:75
+#: inc/starter-content.php:72
 msgctxt "Theme starter content"
 msgid "Flexible &amp; Modern"
 msgstr ""
 
-#: inc/starter-content.php:78
+#: inc/starter-content.php:75
 msgctxt "Theme starter content"
 msgid "Clean layout and responsive design that works on any device. Built with the block editor so you can rearrange and style content easily."
 msgstr ""
 
-#: inc/starter-content.php:89
+#: inc/starter-content.php:86
 msgctxt "Theme starter content"
 msgid "Elementor Ready"
 msgstr ""
 
-#: inc/starter-content.php:92
+#: inc/starter-content.php:89
 msgctxt "Theme starter content"
 msgid "Use Elementor for drag-and-drop page building. The theme integrates with popular page builders so you can create custom layouts without code."
 msgstr ""
 
-#: inc/starter-content.php:103
+#: inc/starter-content.php:100
 msgctxt "Theme starter content"
 msgid "Fully Customizable"
 msgstr ""
 
-#: inc/starter-content.php:106
+#: inc/starter-content.php:103
 msgctxt "Theme starter content"
 msgid "Control hero, header, colors, and typography from the Theme Customizer. No coding required to match your brand."
 msgstr ""
 
-#: inc/starter-content.php:121
+#: inc/starter-content.php:118
 msgctxt "Theme starter content"
 msgid "Designed for Your Success"
 msgstr ""
 
-#: inc/starter-content.php:124
+#: inc/starter-content.php:121
 msgctxt "Theme starter content"
 msgid "Accepta gives you a professional starting point for your website. Customize the hero image, add your own content, and launch with confidence. The theme is built for clarity and performance."
 msgstr ""
 
-#: inc/starter-content.php:127
+#: inc/starter-content.php:124
 msgctxt "Theme starter content image alt"
 msgid "Accepta theme"
 msgstr ""
 
-#: inc/starter-content.php:140
+#: inc/starter-content.php:137
 msgctxt "Theme starter content"
 msgid "Accepta made it easy to launch our site. Clean design, easy to customize, and it looks great on every device."
 msgstr ""
 
-#: inc/starter-content.php:142
+#: inc/starter-content.php:139
 msgctxt "Theme starter content testimonial citation"
 msgid "— Happy Customer"
 msgstr ""
 
-#: inc/starter-content.php:187
+#: inc/starter-content.php:184
 msgctxt "Theme starter content"
 msgid "Homepage"
 msgstr ""
 
-#: inc/starter-content.php:192
+#: inc/starter-content.php:189
 msgctxt "Theme starter content"
 msgid "Blog"
 msgstr ""
 
-#: inc/starter-content.php:196
+#: inc/starter-content.php:193
 msgctxt "Theme starter content"
 msgid "About"
 msgstr ""
 
-#: inc/starter-content.php:199
+#: inc/starter-content.php:196
 msgctxt "Theme starter content"
 msgid "About Us"
 msgstr ""
 
-#: inc/starter-content.php:203
+#: inc/starter-content.php:200
 msgctxt "Theme starter content"
 msgid "This is a sample About page. Replace this text with your own story."
 msgstr ""
 
+#: inc/starter-content.php:206
 #: inc/starter-content.php:209
-#: inc/starter-content.php:212
 msgctxt "Theme starter content"
 msgid "Contact"
-msgstr ""
-
-#: inc/starter-content.php:216
-msgctxt "Theme starter content"
-msgid "Use this page to share your contact details or a contact form."
 msgstr ""
 
 #. translators: %s: post date.

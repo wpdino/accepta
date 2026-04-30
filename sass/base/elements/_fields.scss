@@ -51,3 +51,20 @@ select {
 textarea {
 	width: 100%;
 }
+
+/* Accessible keyboard focus styles across interactive controls */
+a:focus-visible,
+button:focus-visible,
+input:not([type="hidden"]):focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[role="button"]:focus-visible,
+[tabindex]:not([tabindex="-1"]):focus-visible {
+	outline: 2px solid $color__primary;
+	outline-offset: 2px;
+}
+
+a:focus-visible {
+	text-decoration: underline;
+	text-decoration-thickness: 2px;
+}
