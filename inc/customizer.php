@@ -2938,12 +2938,15 @@ function accepta_sticky_header_css() {
 		$css .= $overlay_prefix . '.site-header:not(.scrolled) .header-social-icons .social-icon { color: ' . esc_attr( $transparent_text_color ) . '; }';
 		$css .= $overlay_prefix . '.site-header:not(.scrolled) .header-search-toggle { color: ' . esc_attr( $transparent_text_color ) . '; }';
 		$css .= $overlay_prefix . '.site-header:not(.scrolled) .header-search-toggle svg { color: ' . esc_attr( $transparent_text_color ) . '; stroke: ' . esc_attr( $transparent_text_color ) . '; }';
+		$css .= $overlay_prefix . '.site-header:not(.scrolled) .header-social-toggle { color: ' . esc_attr( $transparent_text_color ) . '; }';
+		$css .= $overlay_prefix . '.site-header:not(.scrolled) .header-social-toggle svg { color: ' . esc_attr( $transparent_text_color ) . '; }';
 		$css .= $overlay_prefix . '.site-header:not(.scrolled) .header-cart-link { color: ' . esc_attr( $transparent_text_color ) . '; }';
 		$css .= $overlay_prefix . '.site-header:not(.scrolled) .header-cart-link svg { color: ' . esc_attr( $transparent_text_color ) . '; stroke: ' . esc_attr( $transparent_text_color ) . '; }';
 		$css .= $overlay_prefix . '.site-header:not(.scrolled) .header-search-close { color: ' . esc_attr( $transparent_text_color ) . '; }';
 		$css .= $overlay_prefix . '.site-header:not(.scrolled) .header-social-icons .social-icon { border-color: ' . esc_attr( $transparent_border_color ) . '; }';
 		$css .= $overlay_prefix . '.site-header:not(.scrolled) .header-social-icons .social-icon .social-icon-svg { filter: brightness(0) invert(1); }';
 		$css .= $overlay_prefix . '.site-header:not(.scrolled) .header-search-toggle { border-color: ' . esc_attr( $transparent_border_color ) . '; }';
+		$css .= $overlay_prefix . '.site-header:not(.scrolled) .header-social-toggle { border-color: ' . esc_attr( $transparent_border_color ) . '; }';
 		$css .= $overlay_prefix . '.site-header:not(.scrolled) .header-cart-link { border-color: ' . esc_attr( $transparent_border_color ) . '; }';
 		$css .= $overlay_prefix . '.site-header:not(.scrolled) .custom-logo-link img { filter: brightness(0) invert(1); }';
 		$css .= $overlay_prefix . '.site-header.scrolled .custom-logo-link img { filter: none; }';
@@ -2973,6 +2976,8 @@ function accepta_sticky_header_css() {
 		$css .= '.site-header:not(.transparent-header) .header-social-icons .social-icon .social-icon-svg { filter: none; }';
 		$css .= '.site-header:not(.transparent-header) .header-search-toggle { color: #2c3e50; border-color: rgba(44, 62, 80, 0.2); }';
 		$css .= '.site-header:not(.transparent-header) .header-search-toggle svg { color: #2c3e50; stroke: #2c3e50; }';
+		$css .= '.site-header:not(.transparent-header) .header-social-toggle { color: #2c3e50; border-color: rgba(44, 62, 80, 0.2); }';
+		$css .= '.site-header:not(.transparent-header) .header-social-toggle svg { color: #2c3e50; }';
 		$css .= '.site-header:not(.transparent-header) .header-cart-link { color: #2c3e50; border-color: rgba(44, 62, 80, 0.2); }';
 		$css .= '.site-header:not(.transparent-header) .header-cart-link svg { color: #2c3e50; stroke: #2c3e50; }';
 	}

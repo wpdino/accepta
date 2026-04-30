@@ -108,6 +108,18 @@
 		right: 92px !important;
 	}
 
+	.header-content.has-header-social-icons .header-social-toggle {
+		right: 92px !important;
+	}
+
+	.header-content.has-header-social-icons .header-search-toggle {
+		right: 52px !important;
+	}
+
+	.header-content.has-header-social-icons #site-navigation.main-navigation .menu-toggle {
+		right: 132px !important;
+	}
+
 	// Hide cart icon while the search overlay is open.
 	body.accepta-search-open .header-content .header-cart-link {
 		opacity: 0;

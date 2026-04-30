@@ -50,6 +50,11 @@
           stroke: #ffffff;
         }
       }
+
+      .header-social-toggle {
+        color: #ffffff;
+        border-color: rgba(255, 255, 255, 0.3);
+      }
     }
   }
   
@@ -557,6 +562,51 @@ body.has-sticky-header {
   }
 }
 
+/* Mobile-only social links toggle button */
+.header-social-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background-color: transparent;
+  color: #2c3e50;
+  border-radius: 50%;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(44, 62, 80, 0.2);
+  cursor: pointer;
+  box-shadow: none;
+  padding: 0;
+  margin-left: 10px;
+  flex-shrink: 0;
+
+  svg {
+    width: 18px;
+    height: 18px;
+    display: block;
+  }
+
+  &:hover {
+    background-color: $color__primary;
+    color: #fff !important;
+    border-color: $color__primary;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+  }
+
+  &[aria-expanded="true"] {
+    background-color: $color__primary;
+    color: #fff !important;
+    border-color: $color__primary;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+  }
+
+  &:focus {
+    outline: 2px solid $color__primary;
+    outline-offset: 2px;
+  }
+}
+
 /* Header Search Overlay */
 .header-search-overlay {
   position: fixed;
@@ -705,3 +755,72 @@ body.has-sticky-header {
     margin-right: 0; /* Remove margin since search button has its own margin-left */
   }
 } 
+
+@media (max-width: 767px) {
+  .site-header.transparent-header:not(.scrolled) .header-content.has-header-social-icons .header-social-toggle {
+    color: #ffffff !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+  }
+
+  .header-content.has-header-social-icons {
+    .header-social-toggle {
+      display: inline-flex !important;
+      position: absolute;
+      top: 50%;
+      right: 52px;
+      transform: translateY(-50%);
+      margin: 0 !important;
+      z-index: 100002;
+    }
+
+    .header-search-toggle {
+      right: 12px !important;
+    }
+
+    #site-navigation.main-navigation .menu-toggle {
+      right: 92px !important;
+    }
+
+    .header-social-icons {
+      display: none !important;
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 12px;
+      z-index: 100003;
+      margin: 0;
+      padding: 10px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.98);
+      border: 1px solid rgba(44, 62, 80, 0.15);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+
+      .social-icons {
+        gap: 8px;
+      }
+
+      .social-icon {
+        color: #2c3e50 !important;
+        border-color: rgba(44, 62, 80, 0.25) !important;
+
+        .social-icon-svg {
+          filter: none !important;
+        }
+
+        &:hover {
+          color: #fff !important;
+          border-color: $color__primary !important;
+        }
+      }
+    }
+
+    &.social-icons-open .header-social-icons {
+      display: flex !important;
+    }
+  }
+
+  body.accepta-search-open .header-content .header-social-toggle {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}

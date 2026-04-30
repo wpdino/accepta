@@ -9,8 +9,41 @@ document.addEventListener('DOMContentLoaded', function() {
     const mainNavigation = document.querySelector('.main-navigation');
     const primaryMenu = document.querySelector('#primary-menu');
     const dropdownItems = document.querySelectorAll('.menu-item-has-children, .page_item_has_children');
+    const socialToggle = document.querySelector('.header-social-toggle');
+    const headerContent = document.querySelector('.header-content');
+    const socialIconsPanel = document.querySelector('.header-social-icons');
+    const searchToggle = document.querySelector('.header-search-toggle');
     const body = document.body;
     const menuPanelGap = 12;
+
+    function acceptaMobileSocialIsOpen() {
+        return !!(headerContent && headerContent.classList.contains('social-icons-open'));
+    }
+
+    function acceptaMobileOpenSocialIcons() {
+        if (!socialToggle || !headerContent || !socialIconsPanel) {
+            return;
+        }
+
+        headerContent.classList.add('social-icons-open');
+        socialToggle.setAttribute('aria-expanded', 'true');
+        socialIconsPanel.setAttribute('aria-hidden', 'false');
+    }
+
+    function acceptaMobileCloseSocialIcons() {
+        if (!socialToggle || !headerContent || !socialIconsPanel) {
+            return;
+        }
+
+        headerContent.classList.remove('social-icons-open');
+        socialToggle.setAttribute('aria-expanded', 'false');
+        socialIconsPanel.setAttribute('aria-hidden', 'true');
+    }
+
+    if (socialToggle && socialIconsPanel) {
+        socialToggle.setAttribute('aria-expanded', 'false');
+        socialIconsPanel.setAttribute('aria-hidden', window.innerWidth <= 768 ? 'true' : 'false');
+    }
 
     function acceptaMobileIsOpen() {
         return !!(primaryMenu && primaryMenu.classList.contains('toggled'));
@@ -36,6 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
         menuToggle.classList.add('toggled');
         menuToggle.setAttribute('aria-expanded', 'true');
         body.classList.add('accepta-mobile-menu-open');
+        acceptaMobileCloseSocialIcons();
 
         if (mainNavigation) {
             mainNavigation.classList.add('toggled');
@@ -91,6 +125,30 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 acceptaMobileOpenMenu();
             }
+        });
+    }
+
+    if (socialToggle && headerContent && socialIconsPanel) {
+        socialToggle.addEventListener('click', function(e) {
+            if (window.innerWidth > 768) {
+                return;
+            }
+
+            e.preventDefault();
+            e.stopPropagation();
+
+            if (acceptaMobileSocialIsOpen()) {
+                acceptaMobileCloseSocialIcons();
+            } else {
+                acceptaMobileCloseMenu(false);
+                acceptaMobileOpenSocialIcons();
+            }
+        });
+    }
+
+    if (searchToggle) {
+        searchToggle.addEventListener('click', function() {
+            acceptaMobileCloseSocialIcons();
         });
     }
     
@@ -152,6 +210,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Ensure mobile modal state is cleaned up on desktop.
             acceptaMobileCloseMenu(false);
+            acceptaMobileCloseSocialIcons();
         }
     }
     
@@ -220,6 +279,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 acceptaMobileCloseMenu(false);
             }
         }
+
+        if (window.innerWidth <= 768 && acceptaMobileSocialIsOpen()) {
+            const clickedInsideSocial = e.target.closest('.header-social-icons');
+            const clickedSocialToggle = e.target.closest('.header-social-toggle');
+            if (!clickedInsideSocial && !clickedSocialToggle) {
+                acceptaMobileCloseSocialIcons();
+            }
+        }
     });
 
     // Trap focus inside mobile menu when open.
@@ -230,7 +297,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (e.key === 'Escape') {
             e.preventDefault();
-            acceptaMobileCloseMenu(true);
+            if (acceptaMobileSocialIsOpen()) {
+                acceptaMobileCloseSocialIcons();
+                if (socialToggle) {
+                    socialToggle.focus();
+                }
+            } else {
+                acceptaMobileCloseMenu(true);
+            }
             return;
         }
 

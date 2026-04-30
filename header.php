@@ -32,8 +32,10 @@
 			// Remove 'layout-' prefix if present to avoid double prefix
 			$layout_suffix = str_replace( 'layout-', '', $header_layout );
 			$header_layout_class = 'header-layout-' . esc_attr( $layout_suffix );
+			$show_header_social_icons = function_exists( 'accepta_should_display_header_social_icons' ) && accepta_should_display_header_social_icons();
+			$header_extra_classes = $show_header_social_icons ? ' has-header-social-icons' : '';
 			?>
-			<div class="header-content <?php echo esc_attr( $header_layout_class ); ?>">
+			<div class="header-content <?php echo esc_attr( $header_layout_class . $header_extra_classes ); ?>">
 				<div class="site-branding">
 					<?php the_custom_logo(); ?>
 					<div class="branding-text">
@@ -74,8 +76,17 @@
 					?>
 				</nav><!-- #site-navigation -->
 
-				<?php if ( function_exists( 'accepta_should_display_header_social_icons' ) && accepta_should_display_header_social_icons() ) : ?>
-					<div class="header-social-icons">
+				<?php if ( $show_header_social_icons ) : ?>
+					<button type="button" class="header-social-toggle" aria-controls="header-social-icons-panel" aria-expanded="false">
+						<svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+							<circle cx="6" cy="12" r="2" fill="currentColor"/>
+							<circle cx="12" cy="6" r="2" fill="currentColor"/>
+							<circle cx="18" cy="12" r="2" fill="currentColor"/>
+							<path d="M7.8 10.8L10.2 7.2M13.8 7.2L16.2 10.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+						</svg>
+						<span class="screen-reader-text"><?php esc_html_e( 'Toggle social links', 'accepta' ); ?></span>
+					</button>
+					<div id="header-social-icons-panel" class="header-social-icons">
 						<?php accepta_social_icons( 'header' ); ?>
 					</div>
 				<?php endif; ?>
