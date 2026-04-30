@@ -38,6 +38,15 @@ For theme support and documentation, visit [WPDINO](https://wpdino.com).
 
 ## Changelog
 
+### 1.0.5 (2026-04-30)
+
+* Improved search pages so they look cleaner and easier to read, especially when no results are found.
+* Improved keyboard navigation by making focus highlights more visible across buttons, links, and form fields.
+* Improved loading speed by using smaller optimized CSS and JavaScript files on live websites.
+* Reduced extra code output in page source for better performance in production.
+* Updated language template file to include all current translatable text.
+* Updated compatibility information to use one clear PHP requirement across theme files.
+
 ### 1.0.4 (2026-04-07)
 
 * Fixed social icon rendering conflicts when Elementor is active by improving Font Awesome enqueue strategy.
