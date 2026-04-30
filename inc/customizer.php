@@ -5,7 +5,7 @@
  * @package Accepta
  */
 
-// Include custom control classes only when in customizer context
+	// Include custom control classes only when in customizer context
 	if ( class_exists( 'WP_Customize_Control' ) ) {
 		require_once get_template_directory() . '/inc/customizer-controls/class-accepta-spacing-control.php';
 		require_once get_template_directory() . '/inc/customizer-controls/class-accepta-copyright-control.php';
