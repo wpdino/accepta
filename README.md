@@ -43,6 +43,8 @@ For theme support and documentation, visit [WPDINO](https://wpdino.com).
 * Improved search pages so they look cleaner and easier to read, especially when no results are found.
 * Improved keyboard navigation by making focus highlights more visible across buttons, links, and form fields.
 * Improved loading speed by using smaller optimized CSS and JavaScript files on live websites.
+* Fixed mobile header icon order so the cart button appears after the search icon.
+* Fixed a mobile issue where the cart button could stay visible when the search overlay is open.
 * Reduced extra code output in page source for better performance in production.
 * Updated language template file to include all current translatable text.
 * Updated compatibility information to use one clear PHP requirement across theme files.

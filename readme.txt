@@ -3,8 +3,8 @@
 Contributors: wpdino
 Requires at least: 5.0
 Tested up to: 6.9
-Stable tag: 1.0.4
-Version: 1.0.4
+Stable tag: 1.0.5
+Version: 1.0.5
 Requires PHP: 7.4
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -64,6 +64,8 @@ Accepta includes standard WordPress widgets and is compatible with all WordPress
 * Improved search pages so they look cleaner and easier to read, especially when no results are found.
 * Improved keyboard navigation by making focus highlights more visible across buttons, links, and form fields.
 * Improved loading speed by using smaller optimized CSS and JavaScript files on live websites.
+* Fixed mobile header icon order so the cart button appears after the search icon.
+* Fixed a mobile issue where the cart button could stay visible when the search overlay is open.
 * Reduced extra code output in page source for better performance in production.
 * Updated language template file to include all current translatable text.
 * Updated compatibility information to use one clear PHP requirement across theme files.

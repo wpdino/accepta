@@ -1816,6 +1816,28 @@ p.no-comments a.button:hover {
   border-radius: 9px;
 }
 
+/* Mobile header icon order: menu, search, cart (right side) */
+@media (max-width: 767px) {
+  .header-content .header-cart-link {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    margin: 0 !important;
+    z-index: 100002;
+  }
+  .header-content .header-search-toggle {
+    right: 52px !important;
+  }
+  #site-navigation.main-navigation .menu-toggle {
+    right: 92px !important;
+  }
+  body.accepta-search-open .header-content .header-cart-link {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
 /* Minicart offcanvas panel (slide from right) */
 .accepta-minicart-offcanvas {
   position: fixed;
