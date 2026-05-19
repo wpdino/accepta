@@ -1033,6 +1033,16 @@
 	} );
 	
 	// Hero Alignment Live Preview (Responsive)
+	function mapHeroHorizontalToTextAlign( alignValue ) {
+		if ( alignValue === 'flex-end' ) {
+			return 'end';
+		}
+		if ( alignValue === 'center' ) {
+			return 'center';
+		}
+		return 'start';
+	}
+
 	// Horizontal Alignment
 	wp.customize( 'accepta_hero_align_horizontal', function( value ) {
 		value.bind( function( newval ) {
@@ -1043,24 +1053,24 @@
 					
 					// Desktop
 					if ( alignData.desktop ) {
-						css += '.accepta-hero-content { align-items: ' + alignData.desktop + '; }';
+						css += '.accepta-hero-content { align-items: ' + alignData.desktop + '; text-align: ' + mapHeroHorizontalToTextAlign( alignData.desktop ) + '; }';
 					}
 					
 					// Tablet
 					if ( alignData.tablet ) {
-						css += '@media (min-width: 600px) and (max-width: 782px) { .accepta-hero-content { align-items: ' + alignData.tablet + '; } }';
+						css += '@media (min-width: 600px) and (max-width: 782px) { .accepta-hero-content { align-items: ' + alignData.tablet + '; text-align: ' + mapHeroHorizontalToTextAlign( alignData.tablet ) + '; } }';
 					}
 					
 					// Mobile
 					if ( alignData.mobile ) {
-						css += '@media (max-width: 599px) { .accepta-hero-content { align-items: ' + alignData.mobile + '; } }';
+						css += '@media (max-width: 599px) { .accepta-hero-content { align-items: ' + alignData.mobile + '; text-align: ' + mapHeroHorizontalToTextAlign( alignData.mobile ) + '; } }';
 					}
 					
 					updateDynamicCSS( 'hero-align-horizontal', css );
 				}
 			} catch ( e ) {
 				// Fallback if JSON parse fails
-				var css = '.accepta-hero-content { align-items: center; }';
+				var css = '.accepta-hero-content { align-items: center; text-align: center; }';
 				updateDynamicCSS( 'hero-align-horizontal', css );
 			}
 		} );

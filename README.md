@@ -38,6 +38,13 @@ For theme support and documentation, visit [WPDINO](https://wpdino.com).
 
 ## Changelog
 
+### 1.0.6 (2026-05-12)
+
+* Fixed hero content alignment so horizontal alignment options in the Customizer now correctly align both content position and text.
+* Improved hero alignment output by mapping flex alignment values to logical text alignment values for better LTR/RTL behavior.
+* Updated Customizer live preview to apply hero text alignment changes instantly without refresh.
+* Removed hard-coded centered hero text CSS that was overriding Customizer alignment settings.
+
 ### 1.0.5 (2026-04-30)
 
 * Improved search pages so they look cleaner and easier to read, especially when no results are found.

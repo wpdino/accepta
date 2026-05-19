@@ -3002,6 +3002,27 @@ function accepta_sticky_header_css() {
 }
 
 /**
+ * Map hero horizontal flex align-items values to text-align for block-level copy.
+ *
+ * align-items alone does not re-flow multi-line text inside a full-width flex item;
+ * text-align keeps paragraphs in .accepta-hero-text aligned with the chosen option.
+ *
+ * @param string $flex_align flex-start|center|flex-end.
+ * @return string start|center|end
+ */
+function accepta_hero_horizontal_to_text_align( $flex_align ) {
+	switch ( $flex_align ) {
+		case 'flex-end':
+			return 'end';
+		case 'center':
+			return 'center';
+		case 'flex-start':
+		default:
+			return 'start';
+	}
+}
+
+/**
  * Generate hero section CSS
  */
 function accepta_hero_section_css() {
@@ -3060,17 +3081,20 @@ function accepta_hero_section_css() {
 	// Desktop
 	$css .= '.accepta-hero-content-wrapper .container { justify-content: ' . esc_attr( $align_v['desktop'] ) . '; }';
 	$css .= '.accepta-hero-content { align-items: ' . esc_attr( $align_h['desktop'] ) . '; }';
+	$css .= '.accepta-hero-content { text-align: ' . esc_attr( accepta_hero_horizontal_to_text_align( $align_h['desktop'] ) ) . '; }';
 	
 	// Tablet
 	$css .= '@media (min-width: 600px) and (max-width: 782px) {';
 	$css .= '.accepta-hero-content-wrapper .container { justify-content: ' . esc_attr( $align_v['tablet'] ) . '; }';
 	$css .= '.accepta-hero-content { align-items: ' . esc_attr( $align_h['tablet'] ) . '; }';
+	$css .= '.accepta-hero-content { text-align: ' . esc_attr( accepta_hero_horizontal_to_text_align( $align_h['tablet'] ) ) . '; }';
 	$css .= '}';
 	
 	// Mobile
 	$css .= '@media (max-width: 599px) {';
 	$css .= '.accepta-hero-content-wrapper .container { justify-content: ' . esc_attr( $align_v['mobile'] ) . '; }';
 	$css .= '.accepta-hero-content { align-items: ' . esc_attr( $align_h['mobile'] ) . '; }';
+	$css .= '.accepta-hero-content { text-align: ' . esc_attr( accepta_hero_horizontal_to_text_align( $align_h['mobile'] ) ) . '; }';
 	$css .= '}';
 	
 	// Get hero background settings from the unified control

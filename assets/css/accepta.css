@@ -1892,7 +1892,7 @@ body.has-sticky-header {
   }
 }
 @media (max-width: 599px) {
-  .main-navigation li {
+  .main-navigation ul > li {
     margin: 0;
     padding: 8px 0;
     border-bottom: 1px solid #f0f0f0;
@@ -1998,6 +1998,7 @@ body.has-sticky-header {
   width: 100%;
   display: block;
   margin: 0;
+  border-bottom: none;
 }
 .main-navigation ul ul li:hover > ul, .main-navigation ul ul li.focus > ul {
   display: block;
@@ -4446,9 +4447,6 @@ img.aligncenter,
 .accepta-hero-section .accepta-hero-content-wrapper .container, .accepta-hero-section .accepta-hero-content-wrapper .site-content {
   max-width: 1200px;
   margin: 0 auto;
-}
-.accepta-hero-section .accepta-hero-content-wrapper .accepta-hero-content {
-  text-align: center;
 }
 .accepta-hero-section .accepta-hero-content-wrapper .accepta-hero-content .accepta-hero-heading {
   margin: 0 0 20px;
