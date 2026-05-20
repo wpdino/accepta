@@ -3,8 +3,8 @@
 Contributors: wpdino
 Requires at least: 5.0
 Tested up to: 6.9
-Stable tag: 1.0.5
-Version: 1.0.5
+Stable tag: 1.0.6
+Version: 1.0.6
 Requires PHP: 7.4
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -60,7 +60,7 @@ Accepta includes standard WordPress widgets and is compatible with all WordPress
 
 == Changelog ==
 
-= 1.0.6 - 2026-05-12 =
+= 1.0.6 - 2026-05-20 =
 * Fixed hero content alignment so horizontal alignment options in the Customizer now correctly align both content position and text.
 * Improved hero alignment output by mapping flex alignment values to logical text alignment values for better LTR/RTL behavior.
 * Updated Customizer live preview to apply hero text alignment changes instantly without refresh.
