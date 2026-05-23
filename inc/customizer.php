@@ -136,6 +136,27 @@ function accepta_customize_register( $wp_customize ) {
 		)
 	);
 
+	// Hide header tagline (site description)
+	$wp_customize->add_setting(
+		'accepta_hide_header_tagline',
+		array(
+			'default'           => false,
+			'sanitize_callback' => 'wp_validate_boolean',
+			'transport'         => 'postMessage',
+		)
+	);
+
+	$wp_customize->add_control(
+		'accepta_hide_header_tagline',
+		array(
+			'label'       => __( 'Hide Tagline', 'accepta' ),
+			'description' => __( 'Hide the site tagline in the header. You can still edit it under Site Identity.', 'accepta' ),
+			'section'     => 'accepta_header_section',
+			'type'        => 'checkbox',
+			'priority'    => 7,
+		)
+	);
+
 	// Sticky Header Setting
 	$wp_customize->add_setting(
 		'accepta_sticky_header',
@@ -2809,6 +2830,10 @@ function accepta_sticky_header_css() {
 	$header_layout = get_theme_mod( 'accepta_header_layout', 'layout-3' );
 	$header_width = get_theme_mod( 'accepta_header_width', 'boxed' );
 	$css = '';
+
+	if ( get_theme_mod( 'accepta_hide_header_tagline', false ) ) {
+		$css .= '.site-header .site-description { display: none; }';
+	}
 	
 	// Header width CSS
 	if ( $header_width === 'fullwidth' ) {
@@ -2948,8 +2973,6 @@ function accepta_sticky_header_css() {
 		$css .= $overlay_prefix . '.site-header:not(.scrolled) .header-search-toggle { border-color: ' . esc_attr( $transparent_border_color ) . '; }';
 		$css .= $overlay_prefix . '.site-header:not(.scrolled) .header-social-toggle { border-color: ' . esc_attr( $transparent_border_color ) . '; }';
 		$css .= $overlay_prefix . '.site-header:not(.scrolled) .header-cart-link { border-color: ' . esc_attr( $transparent_border_color ) . '; }';
-		$css .= $overlay_prefix . '.site-header:not(.scrolled) .custom-logo-link img { filter: brightness(0) invert(1); }';
-		$css .= $overlay_prefix . '.site-header.scrolled .custom-logo-link img { filter: none; }';
 
 		// On hero page only: remove top padding and let hero sit under header
 		$css .= 'body.accepta-has-hero:not(.has-sticky-header) { padding-top: 0; }';

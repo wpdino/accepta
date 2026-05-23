@@ -1410,6 +1410,10 @@ body.has-sticky-header {
   object-fit: contain; /* Ensures logo maintains proportions */
 }
 
+.custom-logo-link + .branding-text {
+  margin-left: 1.25rem;
+}
+
 /* Navigation adjustments */
 .main-navigation {
   display: flex;
@@ -1438,7 +1442,9 @@ body.has-sticky-header {
   }
   .branding-text {
     margin-top: 0;
-    margin-left: 0;
+  }
+  .custom-logo-link + .branding-text {
+    margin-left: 0.75rem;
   }
   .site-header-container {
     padding: 10px 15px;

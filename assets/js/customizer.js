@@ -1578,9 +1578,6 @@
 				css += '.site-header:not(.scrolled) .header-search-toggle svg { color: ' + transparentColor + '; stroke: ' + transparentColor + '; }';
 				css += '.site-header:not(.scrolled) .header-search-close { color: ' + transparentColor + '; }';
 				
-				// Apply logo filter
-				css += '.site-header:not(.scrolled) .custom-logo-link img { filter: brightness(0) invert(1); }';
-				
 				// Overlay header social icons and search button border colors (when not scrolled) - use text color with 0.3 opacity
 				css += '.site-header:not(.scrolled) .header-social-icons .social-icon { border-color: ' + transparentBorderColor + '; }';
 				css += '.site-header:not(.scrolled) .header-social-icons .social-icon .social-icon-svg { filter: brightness(0) invert(1); }';
@@ -1751,6 +1748,14 @@
 				
 				updateDynamicCSS( 'header-width', css );
 			} );
+		} );
+	} );
+
+	// Hide header tagline live preview
+	wp.customize( 'accepta_hide_header_tagline', function( value ) {
+		value.bind( function( to ) {
+			var css = to ? '.site-header .site-description { display: none; }' : '';
+			updateDynamicCSS( 'header-tagline', css );
 		} );
 	} );
 

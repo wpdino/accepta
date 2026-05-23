@@ -1410,6 +1410,10 @@ body.has-sticky-header {
   object-fit: contain; /* Ensures logo maintains proportions */
 }
 
+.custom-logo-link + .branding-text {
+  margin-right: 1.25rem;
+}
+
 /* Navigation adjustments */
 .main-navigation {
   display: flex;
@@ -1438,7 +1442,9 @@ body.has-sticky-header {
   }
   .branding-text {
     margin-top: 0;
-    margin-right: 0;
+  }
+  .custom-logo-link + .branding-text {
+    margin-right: 0.75rem;
   }
   .site-header-container {
     padding: 10px 15px;
@@ -1892,7 +1898,7 @@ body.has-sticky-header {
   }
 }
 @media (max-width: 599px) {
-  .main-navigation li {
+  .main-navigation ul > li {
     margin: 0;
     padding: 8px 0;
     border-bottom: 1px solid #f0f0f0;
@@ -1998,6 +2004,7 @@ body.has-sticky-header {
   width: 100%;
   display: block;
   margin: 0;
+  border-bottom: none;
 }
 .main-navigation ul ul li:hover > ul, .main-navigation ul ul li.focus > ul {
   display: block;
