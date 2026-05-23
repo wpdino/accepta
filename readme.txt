@@ -3,8 +3,8 @@
 Contributors: wpdino
 Requires at least: 5.0
 Tested up to: 6.9
-Stable tag: 1.0.6
-Version: 1.0.6
+Stable tag: 1.0.7
+Version: 1.0.7
 Requires PHP: 7.4
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -59,6 +59,11 @@ Yes, Accepta is translation ready and includes .pot file for translations.
 Accepta includes standard WordPress widgets and is compatible with all WordPress widgets and plugins.
 
 == Changelog ==
+
+= 1.0.7 - 2026-05-23 =
+* Fixed custom logo display on overlay headers by removing the invert filter that broke colored and light logos.
+* Added spacing between the custom logo and site title in the header.
+* Added a "Hide Tagline" option in the Header Customizer section (off by default).
 
 = 1.0.6 - 2026-05-20 =
 * Fixed hero content alignment so horizontal alignment options in the Customizer now correctly align both content position and text.
