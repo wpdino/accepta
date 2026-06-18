@@ -58,14 +58,12 @@ class Accepta_Admin_Menus {
     }
     
     /**
-     * Get the Accepta menu icon as a base64 SVG (WordPress native admin menu support).
+     * Get the Accepta menu icon URL for the admin menu.
      *
-     * @return string Data URI for the menu icon.
+     * @return string Menu icon URL.
      */
     private function get_menu_icon() {
-        $svg = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><path d="M10 2L3 18h2.8l1.4-3.5h5.6l1.4 3.5H17L10 2zm0 4.5l3.5 7.5H6.5L10 6.5z" fill="#ffffff"/></svg>';
-
-        return 'data:image/svg+xml;base64,' . base64_encode( $svg );
+        return get_template_directory_uri() . '/inc/admin/assets/images/accepta-icon.svg';
     }
 
     /**

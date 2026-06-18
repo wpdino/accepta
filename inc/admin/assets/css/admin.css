@@ -3,21 +3,17 @@
  * Modern design with improved spacing and padding
  */
 
-/* Custom Admin Menu Icon (base64 SVG set by WordPress on div.wp-menu-image.svg) */
-#adminmenu #toplevel_page_accepta div.wp-menu-image.svg {
-    width: 36px !important;
-    height: 34px !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    display: block !important;
-    background-size: 20px 20px !important;
-    background-position: center center !important;
-    background-repeat: no-repeat !important;
+/* Custom Admin Menu Icon */
+
+#adminmenu #toplevel_page_accepta div.wp-menu-image::before {
+    color: #fff;
 }
 
-/* Hide placeholder <br> from WordPress SVG icon markup */
-#toplevel_page_accepta .wp-menu-image br {
-    display: none !important;
+#adminmenu #toplevel_page_accepta div.wp-menu-image img {
+    width: 20px;
+    height: 20px;
+    padding: 7px 0 0;
+	opacity: 1;
 }
 
 /* Admin Common Styles */
