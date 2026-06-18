@@ -355,10 +355,7 @@
 	// Global Colors Live Preview
 	wp.customize( 'accepta_primary_color', function( value ) {
 		value.bind( function( newval ) {
-			var css = ':root { --accepta-primary-color: ' + newval + '; }';
-			css += '.button, input[type="submit"], .wp-block-button__link { background-color: ' + newval + '; }';
-			css += 'a { color: ' + newval + '; }';
-			updateDynamicCSS( 'primary-color', css );
+			updateDynamicCSS( 'primary-color', generatePrimaryColorCSS( newval ) );
 		} );
 	} );
 
@@ -1363,6 +1360,22 @@
 				$desktopBtn.addClass( 'active' ).trigger( 'click' );
 				break;
 		}
+	}
+
+	// Generate primary color CSS (mirrors accepta_global_colors_css() in PHP).
+	function generatePrimaryColorCSS( color ) {
+		var css = ':root { --accepta-primary-color: ' + color + '; }';
+		css += 'button, .button, input[type="button"], input[type="reset"], input[type="submit"], .wp-block-button__link { background-color: ' + color + '; }';
+		css += '.site-title a:hover, .site-title a:focus, .accepta-icon-box-icon, blockquote::before, .wp-block-quote::before { color: ' + color + '; }';
+		css += '.main-navigation a:hover, .main-navigation a:focus { color: ' + color + '; }';
+		css += '.footer-widget-area .widget ul li a:before, .footer-widget-area .widget ul li a:hover, .entry-title a:hover, .entry-title a:focus { color: ' + color + '; }';
+		css += '.widget-title { border-left-color: ' + color + '; }';
+		css += '.social-icon:hover { background-color: ' + color + '; }';
+		css += 'blockquote { border-left-color: ' + color + '; }';
+		css += '.page-numbers.current, .page-numbers:hover { background-color: ' + color + '; }';
+		css += '.footer-widget-area .widget .widget-title:after, .header-search-toggle:hover, .footer-social-icons .social-icon:hover, .header-search-overlay .header-search-overlay-content .header-search-form-wrapper .search-form .search-submit, .footer-widget-area .widget.widget_search .search-form .search-submit { background-color: ' + color + '; }';
+		css += '.header-search-overlay .header-search-overlay-content .header-search-form-wrapper .search-form .search-field:focus { border-color: ' + color + '; }';
+		return css;
 	}
 
 	// Helper function to update dynamic CSS

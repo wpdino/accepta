@@ -1082,7 +1082,7 @@ function accepta_customize_register( $wp_customize ) {
 	$wp_customize->add_setting(
 		'accepta_primary_color',
 		array(
-			'default'           => '#0073aa',
+			'default'           => '#6f9c50',
 			'sanitize_callback' => 'sanitize_hex_color',
 			'transport'         => 'postMessage',
 		)
@@ -1151,7 +1151,7 @@ function accepta_customize_register( $wp_customize ) {
 	$wp_customize->add_setting(
 		'accepta_link_color',
 		array(
-			'default'           => '#0073aa',
+			'default'           => '#6f9c50',
 			'sanitize_callback' => 'sanitize_hex_color',
 			'transport'         => 'postMessage',
 		)
@@ -3245,23 +3245,28 @@ function accepta_global_colors_css() {
 	$css = '';
 	
 	// Get color values
-	$primary_color = get_theme_mod( 'accepta_primary_color', '#0073aa' );
+	$primary_color = get_theme_mod( 'accepta_primary_color', '#6f9c50' );
 	$background_color = get_theme_mod( 'accepta_background_color', '#ffffff' );
 	$text_color = get_theme_mod( 'accepta_text_color', '#333333' );
-	$link_color = get_theme_mod( 'accepta_link_color', '#0073aa' );
+	$link_color = get_theme_mod( 'accepta_link_color', '#6f9c50' );
 	$link_hover_color = get_theme_mod( 'accepta_link_hover_color', '#005a87' );
 	
 	// Primary Color Applications
-	if ( $primary_color && $primary_color !== '#0073aa' ) {
+	if ( $primary_color ) {
 		$css .= ':root { --accepta-primary-color: ' . esc_attr( $primary_color ) . '; }';
+	}
+
+	if ( $primary_color && $primary_color !== '#6f9c50' ) {
 		$css .= 'button, .button, input[type="button"], input[type="reset"], input[type="submit"] { background-color: ' . esc_attr( $primary_color ) . '; }';
-		$css .= '.site-title a:hover, .site-title a:focus { color: ' . esc_attr( $primary_color ) . '; }';
+		$css .= '.site-title a:hover, .site-title a:focus, .accepta-icon-box-icon, blockquote::before, .wp-block-quote::before { color: ' . esc_attr( $primary_color ) . '; }';
 		$css .= '.main-navigation a:hover, .main-navigation a:focus { color: ' . esc_attr( $primary_color ) . '; }';
-		$css .= '.entry-title a:hover, .entry-title a:focus { color: ' . esc_attr( $primary_color ) . '; }';
+		$css .= '.footer-widget-area .widget ul li a:before,.footer-widget-area .widget ul li a:hover, .entry-title a:hover, .entry-title a:focus { color: ' . esc_attr( $primary_color ) . '; }';
 		$css .= '.widget-title { border-left-color: ' . esc_attr( $primary_color ) . '; }';
 		$css .= '.social-icon:hover { background-color: ' . esc_attr( $primary_color ) . '; }';
 		$css .= 'blockquote { border-left-color: ' . esc_attr( $primary_color ) . '; }';
 		$css .= '.page-numbers.current, .page-numbers:hover { background-color: ' . esc_attr( $primary_color ) . '; }';
+		$css .= '.footer-widget-area .widget .widget-title:after,.header-search-toggle:hover,.footer-social-icons .social-icon:hover,.header-search-overlay .header-search-overlay-content .header-search-form-wrapper .search-form .search-submit,.footer-widget-area .widget.widget_search .search-form .search-submit { background-color: ' . esc_attr( $primary_color ) . '; }';
+		$css .= '.header-search-overlay .header-search-overlay-content .header-search-form-wrapper .search-form .search-field:focus {border-color: ' . esc_attr( $primary_color ) . '; }';
 	}
 	
 	// Background Color Applications
@@ -3286,7 +3291,7 @@ function accepta_global_colors_css() {
 	}
 	
 	// Link Color Applications
-	if ( $link_color && $link_color !== '#0073aa' ) {
+	if ( $link_color && $link_color !== '#6f9c50' ) {
 		$css .= ':root { --accepta-link-color: ' . esc_attr( $link_color ) . '; }';
 		$css .= 'a { color: ' . esc_attr( $link_color ) . '; }';
 		$css .= '.entry-content a, .entry-summary a, .widget a { color: ' . esc_attr( $link_color ) . '; }';

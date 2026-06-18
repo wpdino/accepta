@@ -60,7 +60,8 @@ Accepta includes standard WordPress widgets and is compatible with all WordPress
 
 == Changelog ==
 
-= 1.0.7 - 2026-05-23 =
+= 1.0.7 - 2026-05-22 =
+* Added one-time redirect to the Accepta dashboard after first theme activation.
 * Fixed custom logo display on overlay headers by removing the invert filter that broke colored and light logos.
 * Added spacing between the custom logo and site title in the header.
 * Added a "Hide Tagline" option in the Header Customizer section (off by default).

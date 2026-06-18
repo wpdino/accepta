@@ -4162,7 +4162,7 @@ img.aligncenter,
   box-shadow: 0 0 0 2px rgba(111, 156, 80, 0.2);
 }
 .footer-widget-area .widget.widget_search .search-form .search-submit {
-  background-color: #6F9C50;
+  background-color: var(--accepta-primary-color, #6F9C50);
   border: none;
   border-radius: 6px 0 0 6px;
   color: #ffffff;
@@ -4177,7 +4177,7 @@ img.aligncenter,
   min-width: 100px;
 }
 .footer-widget-area .widget.widget_search .search-form .search-submit:hover {
-  background-color: rgb(91.8101694915, 129.0305084746, 66.1694915254);
+  filter: brightness(0.92);
   transform: translateY(-1px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
