@@ -320,9 +320,9 @@
 			background-color: #fff;
 			
 			&:focus {
-				border-color: #69B40F; /* Primary color */
+				border-color: $accepta-primary-css;
 				outline: none;
-				box-shadow: 0 0 0 2px rgba(105, 180, 15, 0.2);
+				box-shadow: $accepta-primary-focus-ring;
 			}
 		}
 	}
@@ -346,9 +346,9 @@
 			min-height: 150px;
 			
 			&:focus {
-				border-color: #69B40F; /* Primary color */
+				border-color: $accepta-primary-css;
 				outline: none;
-				box-shadow: 0 0 0 2px rgba(105, 180, 15, 0.2);
+				box-shadow: $accepta-primary-focus-ring;
 			}
 		}
 	}

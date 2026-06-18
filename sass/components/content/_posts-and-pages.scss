@@ -48,6 +48,7 @@
 	&:hover,
 	&:focus {
 		text-decoration: none;
+		color: $accepta-primary-css;
 	}
 }
 
@@ -57,25 +58,25 @@
 	position: relative;
 	margin-top: 2em;
 	padding: 1.75em 1.75em 1.75em calc(1.75em + 4px);
-	background-color: rgba($color__primary, 0.06);
-	border: 1px solid rgba($color__primary, 0.2);
-	border-left: 4px solid $color__primary;
+	background-color: $accepta-primary-tint-css;
+	border: 1px solid $accepta-primary-tint-strong-css;
+	border-left: 4px solid $accepta-primary-css;
 	border-radius: 0 8px 8px 0;
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 
 	.entry-header .entry-title a {
-		color: $color__primary;
+		color: $accepta-primary-css;
 		font-weight: 600;
 		text-decoration: none;
 
 		&:hover {
-			color: $color__green-dark;
+			color: $accepta-primary-hover-css;
 			text-decoration: none;
 		}
 	}
 
 	.entry-footer {
-		border-top-color: rgba($color__primary, 0.2);
+		border-top-color: $accepta-primary-tint-strong-css;
 	}
 }
 
@@ -110,13 +111,13 @@
 	margin-bottom: 0;
 
 	.more-link {
-		color: $color__primary;
+		color: $accepta-primary-css;
 		font-weight: 500;
 		text-decoration: none;
 		transition: color 0.2s ease;
 
 		&:hover {
-			color: $color__green-dark;
+			color: $accepta-primary-hover-css;
 		}
 	}
 }
@@ -150,12 +151,12 @@
 	transition: background-color 0.2s ease, color 0.2s ease;
 
 	&:hover:not(.current) {
-		background-color: $color__green-light;
-		color: $color__primary;
+		background-color: $accepta-primary-tint-css;
+		color: $accepta-primary-css;
 	}
 
 	&.current {
-		background-color: $color__primary;
+		background-color: $accepta-primary-css;
 		color: #fff;
 	}
 
@@ -210,16 +211,16 @@
 		border: 1px solid #eee;
 		
 		&:hover {
-			background-color: $color__green-light;
-			color: $color__primary;
-			border-color: $color__green-light;
+			background-color: $accepta-primary-tint-css;
+			color: $accepta-primary-css;
+			border-color: $accepta-primary-tint-css;
 		}
 	}
 	
 	> span:not(.page-links-title) {
-		background-color: $color__primary;
+		background-color: $accepta-primary-css;
 		color: white;
-		border: 1px solid $color__primary;
+		border: 1px solid $accepta-primary-css;
 	}
 }
 
@@ -263,13 +264,13 @@
 			display: inline;
 			margin: 0;
 			padding: 0;
-			color: $color__primary;
+			color: $accepta-primary-css;
 			font-weight: 500;
 			text-decoration: none;
 			transition: color 0.2s ease;
 
 			&:hover {
-				color: darken($color__primary, 10%);
+				color: $accepta-primary-hover-css;
 				text-decoration: none;
 			}
 		}
@@ -297,9 +298,9 @@
 			transition: all 0.2s ease;
 			
 			&:hover {
-				background-color: $color__green-light;
-				color: $color__primary;
-				border-color: $color__green-light;
+				background-color: $accepta-primary-tint-css;
+				color: $accepta-primary-css;
+				border-color: $accepta-primary-tint-css;
 				text-decoration: none;
 			}
 			
@@ -319,7 +320,7 @@
 			transition: color 0.2s ease;
 			
 			&:hover {
-				color: $color__primary;
+				color: $accepta-primary-css;
 			}
 			
 			&::before {
@@ -341,7 +342,7 @@
 			transition: color 0.2s ease;
 
 			&:hover {
-				color: $color__primary;
+				color: $accepta-primary-css;
 			}
 
 			&::before {
@@ -361,10 +362,9 @@
 	margin-bottom: 1rem;
 	font-size: 2rem;
 	line-height: 1;
-	color: $color__primary;
+	color: $accepta-primary-css;
 
 	i {
 		display: inline-block;
 	}
 }
-

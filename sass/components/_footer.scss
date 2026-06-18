@@ -148,8 +148,8 @@
       margin-bottom: 10px;
       
       &:focus {
-        border-color: $color__primary;
-        box-shadow: 0 0 0 2px rgba($color__primary, 0.2);
+        border-color: $accepta-primary-css;
+        box-shadow: $accepta-primary-focus-ring;
         outline: none;
       }
     }
@@ -157,7 +157,7 @@
     input[type="button"], 
     input[type="reset"], 
     input[type="submit"] {
-      background-color: $color__primary;
+      background-color: var(--accepta-primary-color, #{$color__primary});
       border: none;
       color: white;
       padding: 10px 15px;
@@ -166,7 +166,7 @@
       transition: all 0.3s ease;
       
       &:hover {
-        background-color: darken($color__primary, 10%);
+        filter: brightness(0.92);
       }
     }
     
@@ -341,9 +341,9 @@
           
           &:focus {
             background-color: rgba(255, 255, 255, 0.2);
-            border-color: $color__primary;
+            border-color: $accepta-primary-css;
             outline: none;
-            box-shadow: 0 0 0 2px rgba($color__primary, 0.2);
+            box-shadow: $accepta-primary-focus-ring;
           }
         }
         
@@ -364,12 +364,11 @@
           
           &:hover {
             filter: brightness(0.92);
-            transform: translateY(-1px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
           }
           
           &:active {
-            transform: translateY(0);
+            filter: brightness(0.88);
           }
         }
       }

@@ -16,7 +16,7 @@ blockquote,
 	margin: 2em 0;
 	padding: 2em 2em 2em 3em;
 	border: none;
-	background: linear-gradient(135deg, rgba($color__primary, 0.06) 0%, rgba($color__green-light, 0.4) 100%);
+	background: linear-gradient(135deg, color-mix(in srgb, $accepta-primary-css 6%, transparent) 0%, color-mix(in srgb, $accepta-primary-css 18%, white) 100%);
 	border-radius: 0 10px 10px 0;
 	box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
 	font-family: $font__main;
@@ -34,7 +34,7 @@ blockquote,
 		font-family: Georgia, "Times New Roman", serif;
 		font-size: 6em;
 		line-height: 1;
-		color: $color__primary;
+		color: $accepta-primary-css;
 		opacity: 0.2;
 	}
 
@@ -57,7 +57,7 @@ blockquote,
 		font-weight: 500;
 		color: $color__secondary;
 		opacity: 0.9;
-		border-top: 1px solid rgba($color__primary, 0.15);
+		border-top: 1px solid $accepta-primary-tint-strong-css;
 		position: relative;
 		z-index: 1;
 

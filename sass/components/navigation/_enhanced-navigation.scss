@@ -46,8 +46,7 @@
 				left: 0;
 				right: 0;
 				height: 4px;
-				background: $color__primary;
-				background: linear-gradient(90deg, $color__primary, $color__green-dark);
+				background: linear-gradient(90deg, $accepta-primary-css, color-mix(in srgb, $accepta-primary-css 75%, black));
 			}
 
 			ul {
@@ -94,7 +93,7 @@
 				text-align: left; /* Ensure dropdown text aligns left */
 
 				&:hover {
-					color: $color__primary;
+					color: $accepta-primary-css;
 				}
 				
 				// Add hover background
@@ -105,7 +104,7 @@
 					left: 0;
 					right: 0;
 					bottom: 0;
-					background-color: $color__green-light;
+					background-color: color-mix(in srgb, $accepta-primary-css 12%, transparent);
 					z-index: -1;
 				}
 			}
@@ -123,7 +122,7 @@
 
 		&:hover > a,
 		&.focus > a {
-			color: $color__primary;
+			color: $accepta-primary-css;
 		}
 		
 		&:last-child {
@@ -142,7 +141,7 @@
 		transition: color 0.3s ease;
 		
 		&:hover {
-			color: $color__primary;
+			color: $accepta-primary-css;
 		}
 	}
 
@@ -150,7 +149,7 @@
 	.current-menu-item > a,
 	.current_page_ancestor > a,
 	.current-menu-ancestor > a {
-		color: $color__primary;
+		color: $accepta-primary-css;
 		font-weight: 600;
 	}
 	
@@ -206,7 +205,7 @@
 	}
 	
 	&:hover span {
-		background-color: $color__primary;
+		background-color: $accepta-primary-css;
 	}
 	
 	&.toggled {
@@ -332,7 +331,7 @@ body.accepta-mobile-menu-open {
 		transition: color 0.3s ease;
 
 		&:hover {
-			color: $color__primary;
+			color: $accepta-primary-css;
 		}
 	}
 
@@ -472,6 +471,29 @@ body.accepta-mobile-menu-open .header-content {
 		}
 	}
 	
+}
+
+/* Keep hover/active accent on primary color when header text is overridden */
+.site-header.scrolled .main-navigation li:hover > a,
+.site-header.scrolled .main-navigation li.focus > a,
+.site-header.scrolled .main-navigation a:hover,
+.site-header.scrolled .main-navigation a:focus,
+.site-header.scrolled .main-navigation .current_page_item > a,
+.site-header.scrolled .main-navigation .current-menu-item > a,
+.site-header.scrolled .main-navigation .current_page_ancestor > a,
+.site-header.scrolled .main-navigation .current-menu-ancestor > a {
+	color: $accepta-primary-css;
+}
+
+.site-header.transparent-header:not(.scrolled) .main-navigation > ul > li:hover > a,
+.site-header.transparent-header:not(.scrolled) .main-navigation .nav-menu > li:hover > a,
+.site-header.transparent-header:not(.scrolled) .main-navigation > ul > li.focus > a,
+.site-header.transparent-header:not(.scrolled) .main-navigation .nav-menu > li.focus > a,
+.site-header.transparent-header:not(.scrolled) .main-navigation .current_page_item > a,
+.site-header.transparent-header:not(.scrolled) .main-navigation .current-menu-item > a,
+.site-header.transparent-header:not(.scrolled) .main-navigation .current_page_ancestor > a,
+.site-header.transparent-header:not(.scrolled) .main-navigation .current-menu-ancestor > a {
+	color: $accepta-primary-css;
 }
 
 /* Animation for dropdown */

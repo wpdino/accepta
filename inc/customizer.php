@@ -2927,6 +2927,7 @@ function accepta_sticky_header_css() {
 	
 	// Overlay header styles (only on pages that have the hero, e.g. front page with hero enabled)
 	if ( $transparent_header ) {
+		$primary_color = get_theme_mod( 'accepta_primary_color', '#6f9c50' );
 		$transparent_text_color = get_theme_mod( 'accepta_transparent_header_text_color', '#ffffff' );
 		$scrolled_text_color = get_theme_mod( 'accepta_scrolled_header_text_color', '#2c3e50' );
 		// Convert text color to rgba with 0.3 opacity for borders
@@ -2957,7 +2958,7 @@ function accepta_sticky_header_css() {
 		$css .= $overlay_prefix . '.site-header:not(.scrolled) .main-navigation > ul > li > a, ';
 		$css .= $overlay_prefix . '.site-header:not(.scrolled) .main-navigation .nav-menu > li > a { color: ' . esc_attr( $transparent_text_color ) . ' ; }';
 		$css .= $overlay_prefix . '.site-header:not(.scrolled) .main-navigation ul ul a { color: #000 ; }';
-		$css .= $overlay_prefix . '.site-header:not(.scrolled) .main-navigation ul ul a:hover { color: #6F9C50; }';
+		$css .= $overlay_prefix . '.site-header:not(.scrolled) .main-navigation ul ul a:hover { color: ' . esc_attr( $primary_color ) . '; }';
 		$css .= $overlay_prefix . '.site-header:not(.scrolled) .menu-toggle { color: ' . esc_attr( $transparent_text_color ) . '; }';
 		$css .= $overlay_prefix . '.site-header:not(.scrolled) .menu-toggle .icon-bar { background-color: ' . esc_attr( $transparent_text_color ) . '; }';
 		$css .= $overlay_prefix . '.site-header:not(.scrolled) .header-social-icons .social-icon { color: ' . esc_attr( $transparent_text_color ) . '; }';
@@ -3259,8 +3260,12 @@ function accepta_global_colors_css() {
 	if ( $primary_color && $primary_color !== '#6f9c50' ) {
 		$css .= 'button, .button, input[type="button"], input[type="reset"], input[type="submit"] { background-color: ' . esc_attr( $primary_color ) . '; }';
 		$css .= '.site-title a:hover, .site-title a:focus, .accepta-icon-box-icon, blockquote::before, .wp-block-quote::before { color: ' . esc_attr( $primary_color ) . '; }';
-		$css .= '.main-navigation a:hover, .main-navigation a:focus { color: ' . esc_attr( $primary_color ) . '; }';
+		$css .= '.main-navigation a:hover, .main-navigation a:focus, .main-navigation li:hover > a, .main-navigation li.focus > a { color: ' . esc_attr( $primary_color ) . '; }';
+		$css .= '.main-navigation .current_page_item > a, .main-navigation .current-menu-item > a, .main-navigation .current_page_ancestor > a, .main-navigation .current-menu-ancestor > a { color: ' . esc_attr( $primary_color ) . '; }';
 		$css .= '.footer-widget-area .widget ul li a:before,.footer-widget-area .widget ul li a:hover, .entry-title a:hover, .entry-title a:focus { color: ' . esc_attr( $primary_color ) . '; }';
+		$css .= '.entry-content .read-more-link .more-link, .entry-footer .cat-links a, .entry-footer .comments-link a:hover, .entry-footer .edit-link a:hover, .sticky .entry-title a { color: ' . esc_attr( $primary_color ) . '; }';
+		$css .= '.site-main .pagination .page-numbers.current, .page-links > span:not(.page-links-title) { background-color: ' . esc_attr( $primary_color ) . '; border-color: ' . esc_attr( $primary_color ) . '; }';
+		$css .= '.site-main .pagination .page-numbers:hover:not(.current), .page-links a:hover { color: ' . esc_attr( $primary_color ) . '; }';
 		$css .= '.widget-title { border-left-color: ' . esc_attr( $primary_color ) . '; }';
 		$css .= '.social-icon:hover { background-color: ' . esc_attr( $primary_color ) . '; }';
 		$css .= 'blockquote { border-left-color: ' . esc_attr( $primary_color ) . '; }';
@@ -3293,7 +3298,7 @@ function accepta_global_colors_css() {
 	// Link Color Applications
 	if ( $link_color && $link_color !== '#6f9c50' ) {
 		$css .= ':root { --accepta-link-color: ' . esc_attr( $link_color ) . '; }';
-		$css .= 'a { color: ' . esc_attr( $link_color ) . '; }';
+		$css .= 'a, a:visited { color: ' . esc_attr( $link_color ) . '; }';
 		$css .= '.entry-content a, .entry-summary a, .widget a { color: ' . esc_attr( $link_color ) . '; }';
 		$css .= '.comment-content a { color: ' . esc_attr( $link_color ) . '; }';
 	}
@@ -3301,10 +3306,9 @@ function accepta_global_colors_css() {
 	// Link Hover Color Applications
 	if ( $link_hover_color && $link_hover_color !== '#005a87' ) {
 		$css .= ':root { --accepta-link-hover-color: ' . esc_attr( $link_hover_color ) . '; }';
-		$css .= 'a:hover, a:focus { color: ' . esc_attr( $link_hover_color ) . '; }';
+		$css .= 'a:hover, a:focus, a:active { color: ' . esc_attr( $link_hover_color ) . '; }';
 		$css .= '.entry-content a:hover, .entry-content a:focus, .entry-summary a:hover, .entry-summary a:focus, .widget a:hover, .widget a:focus { color: ' . esc_attr( $link_hover_color ) . '; }';
 		$css .= '.comment-content a:hover, .comment-content a:focus { color: ' . esc_attr( $link_hover_color ) . '; }';
-		$css .= 'button:hover, .button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover { background-color: ' . esc_attr( $link_hover_color ) . '; }';
 	}
 	
 	return $css;

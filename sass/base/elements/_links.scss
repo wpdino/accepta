@@ -1,14 +1,14 @@
 a {
-	color: $color__link;
+	color: $accepta-link-css;
 
 	&:visited {
-		color: $color__link-visited;
+		color: $accepta-link-css;
 	}
 
 	&:hover,
 	&:focus,
 	&:active {
-		color: $color__link-hover;
+		color: $accepta-link-hover-css;
 	}
 
 	&:focus {

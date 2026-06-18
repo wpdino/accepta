@@ -31,14 +31,14 @@
         
         &:focus {
             background-color: rgba(0, 0, 0, 0.08);
-            border-color: $color__primary;
+            border-color: $accepta-primary-css;
             outline: none;
-            box-shadow: 0 0 0 2px rgba($color__primary, 0.2);
+            box-shadow: $accepta-primary-focus-ring;
         }
     }
     
     .search-submit {
-        background-color: $color__primary;
+        background-color: var(--accepta-primary-color, #{$color__primary});
         border: none;
         border-radius: 0 6px 6px 0;
         color: #ffffff;
@@ -53,13 +53,12 @@
         min-width: 100px;
         
         &:hover {
-            background-color: darken($color__primary, 8%);
-            transform: translateY(-1px);
+            filter: brightness(0.92);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
         
         &:active {
-            transform: translateY(0);
+            filter: brightness(0.88);
         }
     }
 }

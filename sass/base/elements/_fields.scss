@@ -27,9 +27,9 @@ textarea {
 
 	&:focus {
 		color: $color__text-input-focus;
-		border-color: $color__primary;
+		border-color: $accepta-primary-css;
 		outline: none;
-		box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05), 0 0 0 3px rgba($color__primary, 0.1);
+		box-shadow: $accepta-primary-focus-ring-soft;
 	}
 	
 	&:disabled {
@@ -46,6 +46,13 @@ textarea {
 
 select {
 	border: 1px solid $color__border-input;
+	border-radius: 4px;
+
+	&:focus {
+		border-color: $accepta-primary-css;
+		outline: none;
+		box-shadow: $accepta-primary-focus-ring;
+	}
 }
 
 textarea {
@@ -60,7 +67,7 @@ select:focus-visible,
 textarea:focus-visible,
 [role="button"]:focus-visible,
 [tabindex]:not([tabindex="-1"]):focus-visible {
-	outline: 2px solid $color__primary;
+	outline: 2px solid $accepta-primary-css;
 	outline-offset: 2px;
 }
 

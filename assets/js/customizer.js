@@ -375,14 +375,16 @@
 
 	wp.customize( 'accepta_link_color', function( value ) {
 		value.bind( function( newval ) {
-			var css = 'a { color: ' + newval + '; }';
+			var css = ':root { --accepta-link-color: ' + newval + '; }';
+			css += 'a, a:visited, .entry-content a, .entry-summary a, .widget a, .comment-content a { color: ' + newval + '; }';
 			updateDynamicCSS( 'link-color', css );
 		} );
 	} );
 
 	wp.customize( 'accepta_link_hover_color', function( value ) {
 		value.bind( function( newval ) {
-			var css = 'a:hover { color: ' + newval + '; }';
+			var css = ':root { --accepta-link-hover-color: ' + newval + '; }';
+			css += 'a:hover, a:focus, a:active, .entry-content a:hover, .entry-content a:focus, .entry-summary a:hover, .entry-summary a:focus, .widget a:hover, .widget a:focus, .comment-content a:hover, .comment-content a:focus { color: ' + newval + '; }';
 			updateDynamicCSS( 'link-hover-color', css );
 		} );
 	} );
@@ -1367,8 +1369,12 @@
 		var css = ':root { --accepta-primary-color: ' + color + '; }';
 		css += 'button, .button, input[type="button"], input[type="reset"], input[type="submit"], .wp-block-button__link { background-color: ' + color + '; }';
 		css += '.site-title a:hover, .site-title a:focus, .accepta-icon-box-icon, blockquote::before, .wp-block-quote::before { color: ' + color + '; }';
-		css += '.main-navigation a:hover, .main-navigation a:focus { color: ' + color + '; }';
+		css += '.main-navigation a:hover, .main-navigation a:focus, .main-navigation li:hover > a, .main-navigation li.focus > a { color: ' + color + '; }';
+		css += '.main-navigation .current_page_item > a, .main-navigation .current-menu-item > a, .main-navigation .current_page_ancestor > a, .main-navigation .current-menu-ancestor > a { color: ' + color + '; }';
 		css += '.footer-widget-area .widget ul li a:before, .footer-widget-area .widget ul li a:hover, .entry-title a:hover, .entry-title a:focus { color: ' + color + '; }';
+		css += '.entry-content .read-more-link .more-link, .entry-footer .cat-links a, .entry-footer .comments-link a:hover, .entry-footer .edit-link a:hover, .sticky .entry-title a { color: ' + color + '; }';
+		css += '.site-main .pagination .page-numbers.current, .page-links > span:not(.page-links-title) { background-color: ' + color + '; border-color: ' + color + '; }';
+		css += '.site-main .pagination .page-numbers:hover:not(.current), .page-links a:hover { color: ' + color + '; }';
 		css += '.widget-title { border-left-color: ' + color + '; }';
 		css += '.social-icon:hover { background-color: ' + color + '; }';
 		css += 'blockquote { border-left-color: ' + color + '; }';

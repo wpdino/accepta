@@ -1,10 +1,9 @@
 === Accepta ===
-
 Contributors: wpdino
 Requires at least: 5.0
 Tested up to: 6.9
-Stable tag: 1.0.7
-Version: 1.0.7
+Stable tag: 1.0.8
+Version: 1.0.8
 Requires PHP: 7.4
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -60,8 +59,17 @@ Accepta includes standard WordPress widgets and is compatible with all WordPress
 
 == Changelog ==
 
-= 1.0.7 - 2026-05-22 =
-* Added one-time redirect to the Accepta dashboard after first theme activation.
+= 1.0.8 - 2026-06-18 =
+* Added theme.json with a brand color palette, Outfit typography, spacing scale, layout widths, and block editor styles for buttons, links, headings, quotes, and separators.
+* Added 55 block patterns for heroes, CTAs, pricing, services, testimonials, contact, blog layouts, and full page templates (Home, About, Services, Pricing, Contact).
+* Registered Accepta and Accepta Pages pattern categories and disabled core block patterns to keep the pattern library focused.
+* Fixed block pattern markup so buttons and column layouts use valid Gutenberg block structure (resolves "Attempt Block Recovery" errors).
+* Global Primary Color from the Customizer now drives buttons, navigation, forms, footer accents, blog links, pagination, and focus states via CSS custom properties.
+* Extended Customizer live preview for primary, link, link hover, and visited link colors.
+* Replaced hardcoded green accents across theme styles with Customizer-aware CSS variables.
+* Updated button hover states to use a brightness filter instead of fixed darken colors.
+
+= 1.0.7 - 2026-05-23 =
 * Fixed custom logo display on overlay headers by removing the invert filter that broke colored and light logos.
 * Added spacing between the custom logo and site title in the header.
 * Added a "Hide Tagline" option in the Header Customizer section (off by default).

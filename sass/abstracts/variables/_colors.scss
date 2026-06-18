@@ -29,3 +29,15 @@ $color__gray: #999;
 // Additional green shades
 $color__green-light: #E6F4D7;
 $color__green-dark: #5a7d3f;
+
+// Customizer-aware primary color tokens
+$accepta-primary-css: var(--accepta-primary-color, #{$color__primary});
+$accepta-primary-hover-css: color-mix(in srgb, $accepta-primary-css 80%, black);
+$accepta-primary-tint-css: color-mix(in srgb, $accepta-primary-css 12%, transparent);
+$accepta-primary-tint-strong-css: color-mix(in srgb, $accepta-primary-css 20%, transparent);
+$accepta-primary-focus-ring: 0 0 0 2px color-mix(in srgb, var(--accepta-primary-color, #{$color__primary}) 20%, transparent);
+$accepta-primary-focus-ring-soft: inset 0 1px 3px rgba(0, 0, 0, 0.05), 0 0 0 3px color-mix(in srgb, var(--accepta-primary-color, #{$color__primary}) 10%, transparent);
+
+// Customizer-aware link color tokens
+$accepta-link-css: var(--accepta-link-color, var(--accepta-primary-color, #{$color__link}));
+$accepta-link-hover-css: var(--accepta-link-hover-color, $accepta-primary-hover-css);

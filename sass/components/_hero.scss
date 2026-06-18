@@ -200,26 +200,23 @@
 				transition: all 0.3s ease;
 				
 				&.accepta-hero-button-primary {
-					background-color: $color__primary;
+					background-color: var(--accepta-primary-color, #{$color__primary});
 					color: #ffffff;
-					border: 2px solid $color__primary;
+					border: 2px solid var(--accepta-primary-color, #{$color__primary});
 					
 					&:hover {
-						background-color: darken($color__primary, 8%);
-						border-color: darken($color__primary, 8%);
-						transform: translateY(-2px);
+						filter: brightness(0.92);
 						box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 					}
 				}
 				
 				&.accepta-hero-button-secondary {
 					background-color: #ffffff;
-					color: $color__primary;
+					color: var(--accepta-primary-color, #{$color__primary});
 					border: 2px solid #ffffff;
 					
 					&:hover {
 						background-color: rgba(255, 255, 255, 0.9);
-						transform: translateY(-2px);
 						box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 					}
 				}
@@ -231,8 +228,7 @@
 					
 					&:hover {
 						background-color: #ffffff;
-						color: $color__primary;
-						transform: translateY(-2px);
+						color: var(--accepta-primary-color, #{$color__primary});
 						box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 					}
 				}
