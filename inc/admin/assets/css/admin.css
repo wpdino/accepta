@@ -3,52 +3,21 @@
  * Modern design with improved spacing and padding
  */
 
-/* Custom Admin Menu Icon - Override dashicon */
-#toplevel_page_accepta .wp-menu-image,
-#toplevel_page_accepta.wp-has-current-submenu .wp-menu-image,
-#toplevel_page_accepta.wp-menu-open .wp-menu-image,
-#toplevel_page_accepta:hover .wp-menu-image,
-#toplevel_page_accepta a .wp-menu-image {
+/* Custom Admin Menu Icon (base64 SVG set by WordPress on div.wp-menu-image.svg) */
+#adminmenu #toplevel_page_accepta div.wp-menu-image.svg {
     width: 36px !important;
     height: 34px !important;
     padding: 0 !important;
     margin: 0 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
+    display: block !important;
     background-size: 20px 20px !important;
     background-position: center center !important;
     background-repeat: no-repeat !important;
-    /* Use SVG file directly - more reliable than data URI */
-    background-image: url("../../images/accepta-icon.svg") !important;
-    font-size: 0 !important;
-    line-height: 0 !important;
-    text-indent: 0 !important;
-    position: relative !important;
 }
 
-/* Completely hide the dashicon :before pseudo-element */
-#toplevel_page_accepta .wp-menu-image.dashicons-before:before,
-#toplevel_page_accepta .wp-menu-image:before,
-#toplevel_page_accepta.wp-has-current-submenu .wp-menu-image:before,
-#toplevel_page_accepta.wp-menu-open .wp-menu-image:before,
-#toplevel_page_accepta:hover .wp-menu-image:before {
+/* Hide placeholder <br> from WordPress SVG icon markup */
+#toplevel_page_accepta .wp-menu-image br {
     display: none !important;
-    content: '' !important;
-    width: 0 !important;
-    height: 0 !important;
-    font-size: 0 !important;
-    line-height: 0 !important;
-    visibility: hidden !important;
-}
-
-/* Hide any img tags, br tags, or other content */
-#toplevel_page_accepta .wp-menu-image img,
-#toplevel_page_accepta .wp-menu-image br,
-#toplevel_page_accepta .wp-menu-image * {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
 }
 
 /* Admin Common Styles */

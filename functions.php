@@ -102,6 +102,14 @@ function accepta_setup() {
 		require_once get_template_directory() . '/inc/starter-content.php';
 		add_theme_support( 'starter-content', accepta_get_starter_content() );
 	}
+
+	// Block editor (Gutenberg) support.
+	add_theme_support( 'wp-block-styles' );
+	add_theme_support( 'align-wide' );
+	add_theme_support( 'responsive-embeds' );
+	add_theme_support( 'editor-styles' );
+
+	// Block patterns are loaded from /patterns (see inc/block-patterns.php).
 }
 add_action( 'after_setup_theme', 'accepta_setup' );
 
@@ -461,6 +469,7 @@ function accepta_enqueue_google_fonts() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'accepta_enqueue_google_fonts' );
+add_action( 'enqueue_block_editor_assets', 'accepta_enqueue_google_fonts' );
 
 
 /**
@@ -536,6 +545,11 @@ add_filter( 'load_rtl_styles', function( $rtl_styles ) {
  * Load Accepta theme custom functions
  */
 require get_template_directory() . '/inc/accepta-theme-functions.php';
+
+/**
+ * Block patterns (Gutenberg).
+ */
+require get_template_directory() . '/inc/block-patterns.php';
 
 /**
  * Implement the Custom Header feature.

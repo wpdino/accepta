@@ -110,25 +110,6 @@ class Accepta_Admin {
             filemtime( get_template_directory() . '/inc/admin/assets/css/admin.css' )
         );
         
-        // Add inline CSS for menu icon with correct SVG path and positioning
-        $icon_url = get_template_directory_uri() . '/inc/admin/assets/images/accepta-icon.svg';
-        $custom_css = "
-        #toplevel_page_accepta .wp-menu-image,
-        #toplevel_page_accepta.wp-has-current-submenu .wp-menu-image,
-        #toplevel_page_accepta.wp-menu-open .wp-menu-image,
-        #toplevel_page_accepta:hover .wp-menu-image,
-        #toplevel_page_accepta a .wp-menu-image {
-            width: 36px !important;
-            height: 34px !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            background-image: url('" . esc_url( $icon_url ) . "') !important;
-            background-size: 20px 20px !important;
-            background-position: center center !important;
-        }";
-        wp_add_inline_style( 'accepta-admin-style', $custom_css );
-        
         // Only load scripts on Accepta theme pages
         if ( strpos( $hook, 'accepta' ) === false ) {
             return;
