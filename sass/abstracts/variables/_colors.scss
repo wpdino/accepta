@@ -40,4 +40,5 @@ $accepta-primary-focus-ring-soft: inset 0 1px 3px rgba(0, 0, 0, 0.05), 0 0 0 3px
 
 // Customizer-aware link color tokens
 $accepta-link-css: var(--accepta-link-color, var(--accepta-primary-color, #{$color__link}));
+$accepta-link-visited-css: var(--accepta-link-visited-color, var(--accepta-primary-color, #{$color__link-visited}));
 $accepta-link-hover-css: var(--accepta-link-hover-color, $accepta-primary-hover-css);

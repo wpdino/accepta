@@ -56,20 +56,57 @@
 		return processed;
 	}
 
-	function renderFooterCopyright( rawText ) {
-		var $copyright = $( '.footer-copyright' );
-		if ( ! $copyright.length ) {
+	function ensureFooterSiteInfo() {
+		var $footer = $( '.site-footer' );
+		var $siteInfo = $footer.children( '.site-info' );
+
+		if ( ! $siteInfo.length ) {
+			$siteInfo = $( '<div class="site-info"><div class="container"></div></div>' );
+			$footer.append( $siteInfo );
+		}
+
+		return $siteInfo;
+	}
+
+	function updateSiteInfoVisibility() {
+		var $siteInfo = $( '.site-footer > .site-info' );
+
+		if ( ! $siteInfo.length ) {
 			return;
 		}
 
-		var processed = processCopyrightTagsForPreview( rawText || '' );
+		var hasCopyright = $siteInfo.find( '.footer-copyright' ).length > 0 &&
+			$siteInfo.find( '.footer-copyright' ).text().trim() !== '';
+		var hasSocial = $siteInfo.find( '.footer-social-icons' ).is( ':visible' ) &&
+			$siteInfo.find( '.footer-social-icons .social-icon' ).length > 0;
 
-		// Match backend behavior: keep the container visible, use a non-breaking space when empty.
-		if ( processed && processed.trim() !== '' ) {
-			$copyright.html( processed ).show();
+		if ( hasCopyright || hasSocial ) {
+			$siteInfo.show();
 		} else {
-			$copyright.html( '&nbsp;' ).show();
+			$siteInfo.hide();
 		}
+	}
+
+	function renderFooterCopyright( rawText ) {
+		var rawHasContent = rawText && String( rawText ).trim() !== '';
+
+		if ( ! rawHasContent ) {
+			$( '.site-footer .footer-copyright' ).remove();
+			updateSiteInfoVisibility();
+			return;
+		}
+
+		var $siteInfo = ensureFooterSiteInfo();
+		var $container = $siteInfo.children( '.container' );
+		var $copyright = $container.children( '.footer-copyright' );
+
+		if ( ! $copyright.length ) {
+			$copyright = $( '<div class="footer-copyright"></div>' );
+			$container.append( $copyright );
+		}
+
+		$copyright.html( processCopyrightTagsForPreview( rawText ) ).show();
+		updateSiteInfoVisibility();
 	}
 
 	// Wait for customizer to be ready
@@ -173,6 +210,8 @@
 				// Hide the social icons section if no items
 				$( '.footer-social-icons' ).hide();
 			}
+
+			updateSiteInfoVisibility();
 		} );
 	} );
 
@@ -375,16 +414,18 @@
 
 	wp.customize( 'accepta_link_color', function( value ) {
 		value.bind( function( newval ) {
+			var contentLinks = '.entry-content a, .entry-content a:visited, .entry-summary a, .entry-summary a:visited, .page-content a, .page-content a:visited, .comment-content a, .comment-content a:visited';
 			var css = ':root { --accepta-link-color: ' + newval + '; }';
-			css += 'a, a:visited, .entry-content a, .entry-summary a, .widget a, .comment-content a { color: ' + newval + '; }';
+			css += contentLinks + ' { color: ' + newval + '; }';
 			updateDynamicCSS( 'link-color', css );
 		} );
 	} );
 
 	wp.customize( 'accepta_link_hover_color', function( value ) {
 		value.bind( function( newval ) {
+			var contentLinkStates = '.entry-content a:hover, .entry-content a:focus, .entry-content a:active, .entry-summary a:hover, .entry-summary a:focus, .entry-summary a:active, .page-content a:hover, .page-content a:focus, .page-content a:active, .comment-content a:hover, .comment-content a:focus, .comment-content a:active';
 			var css = ':root { --accepta-link-hover-color: ' + newval + '; }';
-			css += 'a:hover, a:focus, a:active, .entry-content a:hover, .entry-content a:focus, .entry-summary a:hover, .entry-summary a:focus, .widget a:hover, .widget a:focus, .comment-content a:hover, .comment-content a:focus { color: ' + newval + '; }';
+			css += contentLinkStates + ' { color: ' + newval + '; }';
 			updateDynamicCSS( 'link-hover-color', css );
 		} );
 	} );
@@ -1379,7 +1420,8 @@
 		css += '.social-icon:hover { background-color: ' + color + '; }';
 		css += 'blockquote { border-left-color: ' + color + '; }';
 		css += '.page-numbers.current, .page-numbers:hover { background-color: ' + color + '; }';
-		css += '.footer-widget-area .widget .widget-title:after, .header-search-toggle:hover, .footer-social-icons .social-icon:hover, .header-search-overlay .header-search-overlay-content .header-search-form-wrapper .search-form .search-submit, .footer-widget-area .widget.widget_search .search-form .search-submit { background-color: ' + color + '; }';
+		css += '.footer-widget-area .widget .widget-title:after, .header-search-toggle:hover, .header-social-icons .social-icon:hover, .footer-social-icons .social-icon:hover, .header-search-overlay .header-search-overlay-content .header-search-form-wrapper .search-form .search-submit, .footer-widget-area .widget.widget_search .search-form .search-submit { background-color: ' + color + '; }';
+		css += '.header-social-icons .social-icon:hover { border-color: ' + color + '; }';
 		css += '.header-search-overlay .header-search-overlay-content .header-search-form-wrapper .search-form .search-field:focus { border-color: ' + color + '; }';
 		return css;
 	}

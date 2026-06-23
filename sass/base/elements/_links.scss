@@ -1,16 +1,23 @@
-a {
-	color: $accepta-link-css;
-
-	&:visited {
+.entry-content,
+.entry-summary,
+.page-content,
+.comment-content {
+	a {
 		color: $accepta-link-css;
-	}
 
-	&:hover,
-	&:focus,
-	&:active {
-		color: $accepta-link-hover-css;
-	}
+		&:visited {
+			color: $accepta-link-visited-css;
+		}
 
+		&:hover,
+		&:focus,
+		&:active {
+			color: $accepta-link-hover-css;
+		}
+	}
+}
+
+a {
 	&:focus {
 		outline: thin dotted;
 	}

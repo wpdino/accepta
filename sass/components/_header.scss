@@ -501,9 +501,9 @@ body.has-sticky-header {
     }
     
     &:hover {
-      background-color: $color__primary;
+      background-color: $accepta-primary-css;
       color: #fff !important;
-      border-color: $color__primary;
+      border-color: $accepta-primary-css;
       box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
       text-decoration: none;
       
@@ -815,7 +815,7 @@ body.has-sticky-header {
 
         &:hover {
           color: #fff !important;
-          border-color: $color__primary !important;
+          border-color: $accepta-primary-css !important;
         }
       }
     }

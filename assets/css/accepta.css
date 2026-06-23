@@ -568,15 +568,31 @@ table {
 
 /* Links
 --------------------------------------------- */
-a {
+.entry-content a,
+.entry-summary a,
+.page-content a,
+.comment-content a {
   color: var(--accepta-link-color, var(--accepta-primary-color, #6F9C50));
 }
-a:visited {
-  color: var(--accepta-link-color, var(--accepta-primary-color, #6F9C50));
+.entry-content a:visited,
+.entry-summary a:visited,
+.page-content a:visited,
+.comment-content a:visited {
+  color: var(--accepta-link-visited-color, var(--accepta-primary-color, #5a7d3f));
 }
-a:hover, a:focus, a:active {
+.entry-content a:hover, .entry-content a:focus, .entry-content a:active,
+.entry-summary a:hover,
+.entry-summary a:focus,
+.entry-summary a:active,
+.page-content a:hover,
+.page-content a:focus,
+.page-content a:active,
+.comment-content a:hover,
+.comment-content a:focus,
+.comment-content a:active {
   color: var(--accepta-link-hover-color, color-mix(in srgb, var(--accepta-primary-color, #6F9C50) 80%, black));
 }
+
 a:focus {
   outline: thin dotted;
 }
@@ -1537,9 +1553,9 @@ body.has-sticky-header {
   text-transform: uppercase;
 }
 .header-social-icons .social-icon:hover {
-  background-color: #6F9C50;
+  background-color: var(--accepta-primary-color, #6F9C50);
   color: #fff !important;
-  border-color: #6F9C50;
+  border-color: var(--accepta-primary-color, #6F9C50);
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
   text-decoration: none;
 }
@@ -1810,7 +1826,7 @@ body.has-sticky-header {
   }
   .header-content.has-header-social-icons .header-social-icons .social-icon:hover {
     color: #fff !important;
-    border-color: #6F9C50 !important;
+    border-color: var(--accepta-primary-color, #6F9C50) !important;
   }
   .header-content.has-header-social-icons.social-icons-open .header-social-icons {
     display: flex !important;
@@ -2071,7 +2087,6 @@ body.has-sticky-header {
 .main-navigation .current_page_ancestor > a,
 .main-navigation .current-menu-ancestor > a {
   color: var(--accepta-primary-color, #6F9C50);
-  font-weight: 600;
 }
 .main-navigation .sub-menu::before,
 .main-navigation .children::before {
@@ -4261,7 +4276,7 @@ img.aligncenter,
   text-transform: uppercase;
 }
 .footer-social-icons .social-icon:hover {
-  background-color: #6F9C50;
+  background-color: var(--accepta-primary-color, #6F9C50);
   color: #ffffff;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   text-decoration: none;

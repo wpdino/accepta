@@ -1186,7 +1186,7 @@ function accepta_customize_register( $wp_customize ) {
 			'accepta_link_hover_color',
 			array(
 				'label'       => __( 'Link Hover Color', 'accepta' ),
-				'description' => __( 'Set the color for links when hovered or focused.', 'accepta' ),
+				'description' => __( 'Set the color for links when hovered or focused in content.', 'accepta' ),
 				'section'     => 'colors',
 				'priority'    => 50,
 			)
@@ -3270,7 +3270,8 @@ function accepta_global_colors_css() {
 		$css .= '.social-icon:hover { background-color: ' . esc_attr( $primary_color ) . '; }';
 		$css .= 'blockquote { border-left-color: ' . esc_attr( $primary_color ) . '; }';
 		$css .= '.page-numbers.current, .page-numbers:hover { background-color: ' . esc_attr( $primary_color ) . '; }';
-		$css .= '.footer-widget-area .widget .widget-title:after,.header-search-toggle:hover,.footer-social-icons .social-icon:hover,.header-search-overlay .header-search-overlay-content .header-search-form-wrapper .search-form .search-submit,.footer-widget-area .widget.widget_search .search-form .search-submit { background-color: ' . esc_attr( $primary_color ) . '; }';
+		$css .= '.footer-widget-area .widget .widget-title:after,.header-search-toggle:hover,.header-social-icons .social-icon:hover,.footer-social-icons .social-icon:hover,.header-search-overlay .header-search-overlay-content .header-search-form-wrapper .search-form .search-submit,.footer-widget-area .widget.widget_search .search-form .search-submit { background-color: ' . esc_attr( $primary_color ) . '; }';
+		$css .= '.header-social-icons .social-icon:hover { border-color: ' . esc_attr( $primary_color ) . '; }';
 		$css .= '.header-search-overlay .header-search-overlay-content .header-search-form-wrapper .search-form .search-field:focus {border-color: ' . esc_attr( $primary_color ) . '; }';
 	}
 	
@@ -3298,17 +3299,13 @@ function accepta_global_colors_css() {
 	// Link Color Applications
 	if ( $link_color && $link_color !== '#6f9c50' ) {
 		$css .= ':root { --accepta-link-color: ' . esc_attr( $link_color ) . '; }';
-		$css .= 'a, a:visited { color: ' . esc_attr( $link_color ) . '; }';
-		$css .= '.entry-content a, .entry-summary a, .widget a { color: ' . esc_attr( $link_color ) . '; }';
-		$css .= '.comment-content a { color: ' . esc_attr( $link_color ) . '; }';
+		$css .= '.entry-content a, .entry-content a:visited, .entry-summary a, .entry-summary a:visited, .page-content a, .page-content a:visited, .comment-content a, .comment-content a:visited { color: ' . esc_attr( $link_color ) . '; }';
 	}
 	
 	// Link Hover Color Applications
 	if ( $link_hover_color && $link_hover_color !== '#005a87' ) {
 		$css .= ':root { --accepta-link-hover-color: ' . esc_attr( $link_hover_color ) . '; }';
-		$css .= 'a:hover, a:focus, a:active { color: ' . esc_attr( $link_hover_color ) . '; }';
-		$css .= '.entry-content a:hover, .entry-content a:focus, .entry-summary a:hover, .entry-summary a:focus, .widget a:hover, .widget a:focus { color: ' . esc_attr( $link_hover_color ) . '; }';
-		$css .= '.comment-content a:hover, .comment-content a:focus { color: ' . esc_attr( $link_hover_color ) . '; }';
+		$css .= '.entry-content a:hover, .entry-content a:focus, .entry-content a:active, .entry-summary a:hover, .entry-summary a:focus, .entry-summary a:active, .page-content a:hover, .page-content a:focus, .page-content a:active, .comment-content a:hover, .comment-content a:focus, .comment-content a:active { color: ' . esc_attr( $link_hover_color ) . '; }';
 	}
 	
 	return $css;
