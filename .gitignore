@@ -12,6 +12,8 @@ node_modules/
 package-lock.json
 CLAUDE.md
 
+vendor
+/vendor
 /vendor/
 /.env/
 .vscode/launch.json
