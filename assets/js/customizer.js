@@ -217,9 +217,25 @@
 
 	// Container Width Live Preview
 	wp.customize( 'accepta_container_width', function( value ) {
-		value.bind( function( newval ) {
-			var css = '.container { max-width: ' + parseInt( newval ) + 'px; }';
+		function applyContainerWidthLayout( containerWidth ) {
+			var width = parseInt( containerWidth, 10 ) || 1200;
+			var padding = 20;
+			var breakpoint = width + ( padding * 2 ) - 1;
+			var css = '.container, .site-content { max-width: ' + width + 'px; }';
+			css += '.site-header .site-header-container, .site-footer .site-header-container { max-width: ' + width + 'px; }';
+			css += '.site-header .site-info, .site-footer .site-info { max-width: ' + width + 'px; }';
+			css += '.content-sidebar-wrap { max-width: ' + width + 'px; }';
+			css += '@media (max-width: ' + breakpoint + 'px) {';
+			css += '.container, .site-content { padding-left: ' + padding + 'px; padding-right: ' + padding + 'px; }';
+			css += '}';
+			css += '@media (max-width: 599px) {';
+			css += '.container, .site-content { padding-left: 15px; padding-right: 15px; }';
+			css += '}';
 			updateDynamicCSS( 'container-width', css );
+		}
+
+		value.bind( function( newval ) {
+			applyContainerWidthLayout( newval );
 		} );
 	} );
 

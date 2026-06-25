@@ -3372,10 +3372,19 @@ function accepta_layout_css() {
 	// Container width - apply to all container elements for consistent alignment
 	$container_width = get_theme_mod( 'accepta_container_width', 1200 );
 	if ( $container_width ) {
+		$container_padding = 20;
+		$container_breakpoint = absint( $container_width ) + ( $container_padding * 2 ) - 1;
+
 		$css .= '.container, .site-content { max-width: ' . absint( $container_width ) . 'px; }';
 		$css .= '.site-header .site-header-container, .site-footer .site-header-container { max-width: ' . absint( $container_width ) . 'px; }';
 		$css .= '.site-header .site-info, .site-footer .site-info { max-width: ' . absint( $container_width ) . 'px; }';
 		$css .= '.content-sidebar-wrap { max-width: ' . absint( $container_width ) . 'px; }';
+		$css .= '@media (max-width: ' . $container_breakpoint . 'px) {';
+		$css .= '.container, .site-content { padding-left: ' . $container_padding . 'px; padding-right: ' . $container_padding . 'px; }';
+		$css .= '}';
+		$css .= '@media (max-width: 599px) {';
+		$css .= '.container, .site-content { padding-left: 15px; padding-right: 15px; }';
+		$css .= '}';
 	}
 	
 	// Sidebar layout

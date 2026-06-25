@@ -4,9 +4,15 @@
   width: 100%;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 0;
+  padding-right: 0;
   box-sizing: border-box;
+
+  // Below container width + side padding, inset content from viewport edges.
+  @media (max-width: ($size__site-container-breakpoint - 1px)) {
+    padding-left: $size__site-container-padding;
+    padding-right: $size__site-container-padding;
+  }
 }
 
 // Make sure images and content stay within the container
@@ -56,31 +62,17 @@ img {
 }
 
 // Header/footer container padding follows width layout (see body classes).
-body.accepta-header-boxed {
-  .site-header .container {
-    padding-left: 0;
-    padding-right: 0;
-  }
-}
-
 body.accepta-header-fullwidth {
   .site-header .container {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-}
-
-body.accepta-footer-boxed {
-  .site-footer .container {
-    padding-left: 0;
-    padding-right: 0;
+    padding-left: $size__site-container-padding;
+    padding-right: $size__site-container-padding;
   }
 }
 
 body.accepta-footer-fullwidth {
   .site-footer .container {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: $size__site-container-padding;
+    padding-right: $size__site-container-padding;
   }
 }
 
@@ -192,35 +184,21 @@ body.accepta-footer-fullwidth {
 // Responsive adjustments
 @media screen and (max-width: 599px) {
   .container {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-
-  body.accepta-header-boxed {
-    .site-header .container {
-      padding-left: 0;
-      padding-right: 0;
-    }
+    padding-left: $size__site-container-padding-mobile;
+    padding-right: $size__site-container-padding-mobile;
   }
 
   body.accepta-header-fullwidth {
     .site-header .container {
-      padding-left: 15px;
-      padding-right: 15px;
-    }
-  }
-
-  body.accepta-footer-boxed {
-    .site-footer .container {
-      padding-left: 0;
-      padding-right: 0;
+      padding-left: $size__site-container-padding-mobile;
+      padding-right: $size__site-container-padding-mobile;
     }
   }
 
   body.accepta-footer-fullwidth {
     .site-footer .container {
-      padding-left: 15px;
-      padding-right: 15px;
+      padding-left: $size__site-container-padding-mobile;
+      padding-right: $size__site-container-padding-mobile;
     }
   }
   
@@ -228,15 +206,13 @@ body.accepta-footer-fullwidth {
   .site-footer {
     .site-header-container,
     .site-info {
-      padding-left: 15px;
-      padding-right: 15px;
+      padding-left: $size__site-container-padding-mobile;
+      padding-right: $size__site-container-padding-mobile;
     }
   }
   
   .content-sidebar-wrap {
     flex-direction: column;
-    padding-left: 15px;
-    padding-right: 15px;
   }
   
   #primary, #secondary,

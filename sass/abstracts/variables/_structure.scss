@@ -1,3 +1,6 @@
 $size__site-main: 100%;
 $size__site-sidebar: 25%;
 $size__site-container: 1200px;
+$size__site-container-padding: 20px;
+$size__site-container-padding-mobile: 15px;
+$size__site-container-breakpoint: $size__site-container + ($size__site-container-padding * 2);
