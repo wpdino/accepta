@@ -143,6 +143,12 @@ class Accepta_Layout_Control extends WP_Customize_Control {
 			$header_width_svg = $this->get_header_width_svg( $layout );
 			return $header_width_svg;
 		}
+
+		// Check if this is a footer width control
+		if ( isset( $this->id ) && $this->id === 'accepta_footer_width' ) {
+			$footer_width_svg = $this->get_footer_width_svg( $layout );
+			return $footer_width_svg;
+		}
 		
 		// Check if this is a header layout control
 		if ( isset( $this->id ) && $this->id === 'accepta_header_layout' ) {
@@ -451,6 +457,41 @@ class Accepta_Layout_Control extends WP_Customize_Control {
 				break;
 		}
 		
+		return $svg_content;
+	}
+
+	/**
+	 * Get SVG for footer width layout
+	 *
+	 * @param string $width Width key (boxed, fullwidth)
+	 * @return string SVG markup
+	 */
+	private function get_footer_width_svg( $width ) {
+		$svg_content = '';
+
+		switch ( $width ) {
+			case 'boxed':
+				$svg_content = '<svg width="80" height="60" viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg">
+					<rect x="5" y="43" width="70" height="12" fill="#f0f0f1" stroke="#c3c4c7" stroke-width="1" rx="2"/>
+					<rect x="10" y="46" width="15" height="6" fill="#c3c4c7" rx="1"/>
+					<rect x="28" y="46" width="15" height="6" fill="#c3c4c7" rx="1"/>
+					<rect x="46" y="46" width="15" height="6" fill="#c3c4c7" rx="1"/>
+					<rect x="64" y="46" width="6" height="6" fill="#c3c4c7" rx="1"/>
+					<text x="40" y="35" text-anchor="middle" fill="#0073aa" font-size="8" font-family="Arial, sans-serif" font-weight="bold">Boxed</text>
+				</svg>';
+				break;
+			case 'fullwidth':
+				$svg_content = '<svg width="80" height="60" viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg">
+					<rect x="0" y="43" width="80" height="12" fill="#f0f0f1" stroke="#c3c4c7" stroke-width="1" rx="2"/>
+					<rect x="5" y="46" width="15" height="6" fill="#c3c4c7" rx="1"/>
+					<rect x="23" y="46" width="15" height="6" fill="#c3c4c7" rx="1"/>
+					<rect x="41" y="46" width="15" height="6" fill="#c3c4c7" rx="1"/>
+					<rect x="59" y="46" width="15" height="6" fill="#c3c4c7" rx="1"/>
+					<text x="40" y="35" text-anchor="middle" fill="#0073aa" font-size="8" font-family="Arial, sans-serif" font-weight="bold">Full Width</text>
+				</svg>';
+				break;
+		}
+
 		return $svg_content;
 	}
 }

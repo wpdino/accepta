@@ -55,6 +55,35 @@ img {
   @extend .container;
 }
 
+// Header/footer container padding follows width layout (see body classes).
+body.accepta-header-boxed {
+  .site-header .container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+body.accepta-header-fullwidth {
+  .site-header .container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+body.accepta-footer-boxed {
+  .site-footer .container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+body.accepta-footer-fullwidth {
+  .site-footer .container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
 // Create a content-sidebar wrapper
 .content-sidebar-wrap {
   display: flex;
@@ -165,6 +194,34 @@ img {
   .container {
     padding-left: 15px;
     padding-right: 15px;
+  }
+
+  body.accepta-header-boxed {
+    .site-header .container {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+
+  body.accepta-header-fullwidth {
+    .site-header .container {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+  }
+
+  body.accepta-footer-boxed {
+    .site-footer .container {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+
+  body.accepta-footer-fullwidth {
+    .site-footer .container {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
   }
   
   .site-header,

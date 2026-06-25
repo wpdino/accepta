@@ -1776,38 +1776,58 @@
 
 	// Header Width Live Preview
 	wp.customize( 'accepta_header_width', function( value ) {
-		value.bind( function( newval ) {
-			var containerWidth = wp.customize( 'accepta_container_width' ).get();
+		function applyHeaderWidthLayout( width, containerWidth ) {
 			var css = '';
-			
-			if ( newval === 'fullwidth' ) {
-				css = '.site-header .container { max-width: 100%; padding-left: 20px; padding-right: 20px; }';
+
+			$( 'body' ).removeClass( 'accepta-header-boxed accepta-header-fullwidth' );
+			$( 'body' ).addClass( width === 'fullwidth' ? 'accepta-header-fullwidth' : 'accepta-header-boxed' );
+
+			if ( width === 'fullwidth' ) {
+				css = '.site-header .container { max-width: 100%; }';
 				css += '.site-header { width: 100%; }';
 			} else {
-				// Boxed - use container width setting, keep padding to align with footer
-				css = '.site-header .container { max-width: ' + containerWidth + 'px; padding-left: 20px; padding-right: 20px; }';
+				css = '.site-header .container { max-width: ' + containerWidth + 'px; }';
 				css += '.site-header { width: auto; }';
 			}
-			
+
 			updateDynamicCSS( 'header-width', css );
+		}
+
+		value.bind( function( newval ) {
+			applyHeaderWidthLayout( newval, wp.customize( 'accepta_container_width' ).get() );
 		} );
-		
-		// Also update when container width changes (for boxed header)
+
 		wp.customize( 'accepta_container_width', function( containerValue ) {
 			containerValue.bind( function( containerWidth ) {
-				var currentWidth = value.get();
-				var css = '';
-				
-				if ( currentWidth === 'fullwidth' ) {
-					css = '.site-header .container { max-width: 100%; padding-left: 20px; padding-right: 20px; }';
-					css += '.site-header { width: 100%; }';
-				} else {
-					// Boxed - keep padding to align with footer
-					css = '.site-header .container { max-width: ' + containerWidth + 'px; padding-left: 20px; padding-right: 20px; }';
-					css += '.site-header { width: auto; }';
-				}
-				
-				updateDynamicCSS( 'header-width', css );
+				applyHeaderWidthLayout( value.get(), containerWidth );
+			} );
+		} );
+	} );
+
+	// Footer Width Live Preview
+	wp.customize( 'accepta_footer_width', function( value ) {
+		function applyFooterWidthLayout( width, containerWidth ) {
+			var css = '';
+
+			$( 'body' ).removeClass( 'accepta-footer-boxed accepta-footer-fullwidth' );
+			$( 'body' ).addClass( width === 'fullwidth' ? 'accepta-footer-fullwidth' : 'accepta-footer-boxed' );
+
+			if ( width === 'fullwidth' ) {
+				css = '.site-footer .container { max-width: 100%; }';
+			} else {
+				css = '.site-footer .container { max-width: ' + containerWidth + 'px; }';
+			}
+
+			updateDynamicCSS( 'footer-width', css );
+		}
+
+		value.bind( function( newval ) {
+			applyFooterWidthLayout( newval, wp.customize( 'accepta_container_width' ).get() );
+		} );
+
+		wp.customize( 'accepta_container_width', function( containerValue ) {
+			containerValue.bind( function( containerWidth ) {
+				applyFooterWidthLayout( value.get(), containerWidth );
 			} );
 		} );
 	} );

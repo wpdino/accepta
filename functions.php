@@ -341,7 +341,7 @@ function accepta_enqueue_font_awesome() {
 		'accepta-font-awesome',
 		get_template_directory_uri() . '/assets/fonts/fontawesome/all.min.css',
 		array(),
-		'6.4.0'
+		'6.5.2'
 	);
 }
 add_action( 'wp_enqueue_scripts', 'accepta_enqueue_font_awesome', 100 );

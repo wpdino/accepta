@@ -461,7 +461,8 @@
         var simpleIcons = {
             'Social Media': {
                 'fab fa-facebook-f': 'Facebook',
-                'fab fa-twitter': 'Twitter', 
+                'fab fa-x-twitter': 'X',
+                'fab fa-twitter': 'Twitter',
                 'fab fa-instagram': 'Instagram',
                 'fab fa-linkedin-in': 'LinkedIn',
                 'fab fa-youtube': 'YouTube',

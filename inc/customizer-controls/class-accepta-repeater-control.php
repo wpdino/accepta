@@ -88,7 +88,7 @@ class Accepta_Repeater_Control extends WP_Customize_Control {
 			'accepta-font-awesome',
 			get_template_directory_uri() . '/assets/fonts/fontawesome/all.min.css',
 			array(),
-			'6.4.0'
+			'6.5.2'
 		);
 
 		wp_enqueue_script(

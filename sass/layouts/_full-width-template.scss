@@ -52,3 +52,37 @@ body.accepta-page-template-full-width {
 		max-width: 100vw;
 	}
 }
+
+/*--------------------------------------------------------------
+# Elementor Full Width page template
+--------------------------------------------------------------*/
+/* Only when Elementor sets body.elementor-template-full-width. */
+body.elementor-template-full-width {
+	#content,
+	.site-content {
+		max-width: none;
+		width: 100%;
+		margin-left: 0;
+		margin-right: 0;
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	.content-sidebar-wrap {
+		max-width: none;
+		width: 100%;
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	#content .container,
+	.site-content .container,
+	.site-main .container,
+	.entry-content .container,
+	.content-sidebar-wrap .container {
+		max-width: none;
+		width: 100%;
+		padding-left: 0;
+		padding-right: 0;
+	}
+}

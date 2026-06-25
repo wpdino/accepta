@@ -20,6 +20,7 @@ function accepta_get_fontawesome_icons() {
 		// Social Media
 		'Social Media' => array(
 			'fab fa-facebook-f' => 'Facebook',
+			'fab fa-x-twitter' => 'X',
 			'fab fa-twitter' => 'Twitter',
 			'fab fa-instagram' => 'Instagram',
 			'fab fa-linkedin-in' => 'LinkedIn',

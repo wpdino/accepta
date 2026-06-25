@@ -253,28 +253,28 @@ function accepta_customize_register( $wp_customize ) {
 			'default'           => json_encode( array(
 				array(
 					'label' => 'Facebook',
-					'url'   => 'https://facebook.com/yourpage',
+					'url'   => 'https://www.facebook.com/wpdinocom',
 					'icon_type' => 'fontawesome',
 					'icon'  => 'fab fa-facebook-f',
 					'custom_icon' => '',
 				),
 				array(
-					'label' => 'Twitter',
-					'url'   => 'https://twitter.com/yourusername',
+					'label' => 'X',
+					'url'   => 'https://x.com/wpdinocom',
 					'icon_type' => 'fontawesome',
-					'icon'  => 'fab fa-twitter',
+					'icon'  => 'fab fa-x-twitter',
 					'custom_icon' => '',
 				),
 				array(
 					'label' => 'Instagram',
-					'url'   => 'https://instagram.com/yourusername',
+					'url'   => 'https://www.instagram.com/_wpdino_/',
 					'icon_type' => 'fontawesome',
 					'icon'  => 'fab fa-instagram',
 					'custom_icon' => '',
 				),
 				array(
 					'label' => 'LinkedIn',
-					'url'   => 'https://linkedin.com/in/yourprofile',
+					'url'   => 'https://www.linkedin.com/company/wpdinocom/',
 					'icon_type' => 'fontawesome',
 					'icon'  => 'fab fa-linkedin-in',
 					'custom_icon' => '',
@@ -1787,6 +1787,40 @@ function accepta_customize_register( $wp_customize ) {
 		)
 	);
 
+	// Footer Width Setting
+	$wp_customize->add_setting(
+		'accepta_footer_width',
+		array(
+			'default'           => 'boxed',
+			'sanitize_callback' => function( $input ) {
+				$valid_widths = array( 'boxed', 'fullwidth' );
+				return in_array( $input, $valid_widths, true ) ? $input : 'boxed';
+			},
+			'transport'         => 'postMessage',
+		)
+	);
+
+	$wp_customize->add_control(
+		new Accepta_Layout_Control(
+			$wp_customize,
+			'accepta_footer_width',
+			array(
+				'label'       => __( 'Footer Width', 'accepta' ),
+				'description' => __( 'Choose whether the footer should be boxed (within container) or fullwidth.', 'accepta' ),
+				'section'     => 'accepta_footer_layouts',
+				'priority'    => 5,
+				'layouts'     => array(
+					'boxed'     => array(
+						'label' => __( 'Boxed', 'accepta' ),
+					),
+					'fullwidth' => array(
+						'label' => __( 'Full Width', 'accepta' ),
+					),
+				),
+			)
+		)
+	);
+
 	// Footer Columns Setting
 	$wp_customize->add_setting(
 		'accepta_footer_columns',
@@ -2021,28 +2055,28 @@ function accepta_customize_register( $wp_customize ) {
 			'default'           => json_encode( array(
 				array(
 					'label' => 'Facebook',
-					'url'   => 'https://facebook.com/yourpage',
+					'url'   => 'https://www.facebook.com/wpdinocom',
 					'icon_type' => 'fontawesome',
 					'icon'  => 'fab fa-facebook-f',
 					'custom_icon' => '',
 				),
 				array(
-					'label' => 'Twitter',
-					'url'   => 'https://twitter.com/yourusername',
+					'label' => 'X',
+					'url'   => 'https://x.com/wpdinocom',
 					'icon_type' => 'fontawesome',
-					'icon'  => 'fab fa-twitter',
+					'icon'  => 'fab fa-x-twitter',
 					'custom_icon' => '',
 				),
 				array(
 					'label' => 'Instagram',
-					'url'   => 'https://instagram.com/yourusername',
+					'url'   => 'https://www.instagram.com/_wpdino_/',
 					'icon_type' => 'fontawesome',
 					'icon'  => 'fab fa-instagram',
 					'custom_icon' => '',
 				),
 				array(
 					'label' => 'LinkedIn',
-					'url'   => 'https://linkedin.com/in/yourprofile',
+					'url'   => 'https://www.linkedin.com/company/wpdinocom/',
 					'icon_type' => 'fontawesome',
 					'icon'  => 'fab fa-linkedin-in',
 					'custom_icon' => '',
@@ -2837,12 +2871,12 @@ function accepta_sticky_header_css() {
 	
 	// Header width CSS
 	if ( $header_width === 'fullwidth' ) {
-		$css .= '.site-header .container { max-width: 100%; padding-left: 20px; padding-right: 20px; }';
+		$css .= '.site-header .container { max-width: 100%; }';
 		$css .= '.site-header { width: 100%; }';
 	} else {
-		// Boxed (default) - use container max-width from layout settings, keep padding to align with footer
+		// Boxed (default) - use container max-width from layout settings.
 		$container_width = get_theme_mod( 'accepta_container_width', 1200 );
-		$css .= '.site-header .container { max-width: ' . absint( $container_width ) . 'px; padding-left: 20px; padding-right: 20px; }';
+		$css .= '.site-header .container { max-width: ' . absint( $container_width ) . 'px; }';
 		$css .= '.site-header { width: auto; }';
 	}
 	
@@ -3187,19 +3221,37 @@ function accepta_hero_section_css() {
 }
 
 /**
+ * Generate footer width CSS
+ */
+function accepta_footer_width_css() {
+	$footer_width = get_theme_mod( 'accepta_footer_width', 'boxed' );
+	$css          = '';
+
+	if ( 'fullwidth' === $footer_width ) {
+		$css .= '.site-footer .container { max-width: 100%; }';
+	} else {
+		$container_width = get_theme_mod( 'accepta_container_width', 1200 );
+		$css            .= '.site-footer .container { max-width: ' . absint( $container_width ) . 'px; }';
+	}
+
+	return $css;
+}
+
+/**
  * Output dynamic CSS in head
  */
 function accepta_footer_styles() {
 	$spacing_css = accepta_footer_spacing_css();
 	$column_css = accepta_footer_column_css();
 	$footer_styling_css = accepta_footer_styling_css();
+	$footer_width_css = accepta_footer_width_css();
 	$layout_css = accepta_layout_css();
 	$colors_css = accepta_global_colors_css();
 	$typography_css = accepta_typography_css();
 	$sticky_header_css = accepta_sticky_header_css();
 	$hero_section_css = accepta_hero_section_css();
 	
-	$css = $colors_css . $typography_css . $spacing_css . $column_css . $footer_styling_css . $layout_css . $sticky_header_css . $hero_section_css;
+	$css = $colors_css . $typography_css . $spacing_css . $column_css . $footer_styling_css . $footer_width_css . $layout_css . $sticky_header_css . $hero_section_css;
 	
 	if ( ! empty( $css ) ) {
 		echo '<style type="text/css" id="accepta-dynamic-css">' . $css . '</style>';

@@ -41,6 +41,14 @@ function accepta_body_classes( $classes ) {
 		$classes[] = 'accepta-has-sidebar';
 	}
 
+	// Header width (boxed vs fullwidth).
+	$header_width = get_theme_mod( 'accepta_header_width', 'boxed' );
+	$classes[]    = ( 'fullwidth' === $header_width ) ? 'accepta-header-fullwidth' : 'accepta-header-boxed';
+
+	// Footer width (boxed vs fullwidth).
+	$footer_width = get_theme_mod( 'accepta_footer_width', 'boxed' );
+	$classes[]    = ( 'fullwidth' === $footer_width ) ? 'accepta-footer-fullwidth' : 'accepta-footer-boxed';
+
 	return $classes;
 }
 add_filter( 'body_class', 'accepta_body_classes' );
