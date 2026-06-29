@@ -162,18 +162,37 @@ function accepta_get_starter_content() {
 	$starter_content = array(
 
 		'widgets'     => array(
+			'accepta-footer-about' => array(
+				'text',
+				array(
+					'title'  => esc_html_x( 'About Accepta', 'Theme starter content', 'accepta' ),
+					'text'   => esc_html_x( 'Accepta is a modern, responsive WordPress theme designed for businesses, portfolios, and blogs.', 'Theme starter content', 'accepta' ),
+					'filter' => false,
+				),
+			),
+			'accepta-footer-wpdino' => array(
+				'text',
+				array(
+					'title'  => esc_html_x( 'About WPDINO', 'Theme starter content', 'accepta' ),
+					'text'   => esc_html_x( 'WPDINO is a WordPress development company. We create beautiful, functional themes that help businesses grow online.', 'Theme starter content', 'accepta' ),
+					'filter' => false,
+				),
+			),
 			'sidebar-1' => array(
 				'search',
 				'recent-posts',
 				'archives',
 			),
 			'footer-1'  => array(
-				'text_business_info',
+				'accepta-footer-about',
 			),
 			'footer-2'  => array(
-				'recent-posts',
+				'accepta-footer-wpdino',
 			),
 			'footer-3'  => array(
+				'categories',
+			),
+			'footer-4'  => array(
 				'search',
 			),
 		),
@@ -192,24 +211,118 @@ function accepta_get_starter_content() {
 				'post_type'    => 'page',
 				'post_title'   => esc_html_x( 'About', 'Theme starter content', 'accepta' ),
 				'post_content' => '
-					<!-- wp:heading -->
-					<h2 class="wp-block-heading">' . esc_html_x( 'About Us', 'Theme starter content', 'accepta' ) . '</h2>
-					<!-- /wp:heading -->
-
 					<!-- wp:paragraph -->
-					<p>' . esc_html_x( 'This is a sample About page. Replace this text with your own story.', 'Theme starter content', 'accepta' ) . '</p>
-					<!-- /wp:paragraph -->
+				<p>Accepta is a modern WordPress theme created for businesses, agencies, freelancers, and online brands that need a clean, flexible, and professional website. Built with Elementor support and Gutenberg compatibility, Accepta helps users create polished pages without starting from scratch.</p>
+				<!-- /wp:paragraph -->
+
+				<!-- wp:heading -->
+				<h2 class="wp-block-heading">'. esc_html_x( 'Our Mission', 'Theme starter content', 'accepta' ) .'</h2>
+				<!-- /wp:heading -->
+
+				<!-- wp:paragraph -->
+				<p>'. esc_html_x( 'Our goal is simple: make website building faster, easier, and more enjoyable. Accepta gives you a solid design foundation, flexible layout options, and carefully crafted starter pages that can be adapted to many types of websites.', 'Theme starter content', 'accepta' ) .'</p>
+				<!-- /wp:paragraph -->
+
+				<!-- wp:heading -->
+				<h2 class="wp-block-heading">'. esc_html_x( 'Why Choose Accepta?', 'Theme starter content', 'accepta' ) .'</h2>
+				<!-- /wp:heading -->
+
+				<!-- wp:paragraph -->
+				<p>'. esc_html_x( 'Accepta combines clean design, responsive layouts, fast performance, and practical customization options. Whether you are building a company website, service landing page, portfolio, or small online shop, Accepta gives you the structure you need to launch with confidence.', 'Theme starter content', 'accepta' ) .'</p>
+				<!-- /wp:paragraph -->
+
+				<!-- wp:spacer {"height":"10px"} -->
+				<div style="height:10px" aria-hidden="true" class="wp-block-spacer"></div>
+				<!-- /wp:spacer -->
+
+				<!-- wp:columns -->
+				<div class="wp-block-columns"><!-- wp:column -->
+				<div class="wp-block-column"><!-- wp:heading {"level":3,"textColor":"primary"} -->
+				<h3 class="wp-block-heading has-primary-color has-text-color">'. esc_html_x( 'Flexible Design', 'Theme starter content', 'accepta' ) .'</h3>
+				<!-- /wp:heading -->
+
+				<!-- wp:paragraph -->
+				<p>'. esc_html_x( 'Customize your website layout, colors, typography, header, footer, and page sections.', 'Theme starter content', 'accepta' ) .'</p>
+				<!-- /wp:paragraph --></div>
+				<!-- /wp:column -->
+
+				<!-- wp:column -->
+				<div class="wp-block-column"><!-- wp:heading {"level":3,"textColor":"primary"} -->
+				<h3 class="wp-block-heading has-primary-color has-text-color">'. esc_html_x( 'Elementor Ready', 'Theme starter content', 'accepta' ) .'</h3>
+				<!-- /wp:heading -->
+
+				<!-- wp:paragraph -->
+				<p>'. esc_html_x( 'Build pages visually using Elementor and reusable content sections.', 'Theme starter content', 'accepta' ) .'</p>
+				<!-- /wp:paragraph --></div>
+				<!-- /wp:column -->
+
+				<!-- wp:column -->
+				<div class="wp-block-column"><!-- wp:heading {"level":3,"textColor":"primary"} -->
+				<h3 class="wp-block-heading has-primary-color has-text-color">'. esc_html_x( 'Performance Focused', 'Theme starter content', 'accepta' ) .'</h3>
+				<!-- /wp:heading -->
+
+				<!-- wp:paragraph -->
+				<p>'. esc_html_x( 'Lightweight structure and clean code help your site load faster.', 'Theme starter content', 'accepta' ) .'</p>
+				<!-- /wp:paragraph --></div>
+				<!-- /wp:column -->
+
+				<!-- wp:column -->
+				<div class="wp-block-column"><!-- wp:heading {"level":3,"textColor":"primary"} -->
+				<h3 class="wp-block-heading has-primary-color has-text-color">'. esc_html_x( 'Business Friendly', 'Theme starter content', 'accepta' ) .'</h3>
+				<!-- /wp:heading -->
+
+				<!-- wp:paragraph -->
+				<p>'. esc_html_x( 'Perfect for agencies, startups, consultants, creatives, and service-based companies.', 'Theme starter content', 'accepta' ) .'</p>
+				<!-- /wp:paragraph --></div>
+				<!-- /wp:column --></div>
+				<!-- /wp:columns -->
+
+				<!-- wp:paragraph -->
+				<p>'. esc_html_x( '', 'Theme starter content', 'accepta' ) .'</p>
+				<!-- /wp:paragraph -->
 				',
 			),
 			'contact' => array(
 				'post_type'    => 'page',
 				'post_title'   => esc_html_x( 'Contact', 'Theme starter content', 'accepta' ),
 				'post_content' => '
-					<!-- wp:heading -->
-					<h2 class="wp-block-heading">' . esc_html_x( 'Contact', 'Theme starter content', 'accepta' ) . '</h2>
+					<!-- wp:paragraph -->
+					<p>'. esc_html_x( 'Have a question, need help, or want to discuss your next project? Send us a message and our team will get back to you as soon as possible.', 'Theme starter content', 'accepta' ) .'</p>
+					<!-- /wp:paragraph -->
+
+					<!-- wp:spacer {"height":"20px"} -->
+					<div style="height:20px" aria-hidden="true" class="wp-block-spacer"></div>
+					<!-- /wp:spacer -->
+
+					<!-- wp:columns -->
+					<div class="wp-block-columns"><!-- wp:column -->
+					<div class="wp-block-column"><!-- wp:heading -->
+					<h2 class="wp-block-heading">'. esc_html_x( 'Contact Info', 'Theme starter content', 'accepta' ) .'</h2>
 					<!-- /wp:heading -->
 
+					<!-- wp:paragraph -->
+					<p><strong>Email:</strong> <a>'. esc_html_x( 'hello@example.com', 'Theme starter content', 'accepta' ) .'</a><br><strong>Phone:</strong> '. esc_html_x( '+1 234 567 890', 'Theme starter content', 'accepta' ) .'<br><strong>Location:</strong> '. esc_html_x( '123 Business Street, Creative City', 'Theme starter content', 'accepta' ) .'</p>
+					<!-- /wp:paragraph --></div>
+					<!-- /wp:column -->
+
+					<!-- wp:column -->
+					<div class="wp-block-column"><!-- wp:heading -->
+					<h2 class="wp-block-heading">'. esc_html_x( 'Need support?', 'Theme starter content', 'accepta' ) .'</h2>
+					<!-- /wp:heading -->
+
+					<!-- wp:paragraph -->
+					<p>'. esc_html_x( 'If you are already using Accepta, please include your website URL and a short description of the issue so we can help you faster.', 'Theme starter content', 'accepta' ) .'</p>
+					<!-- /wp:paragraph --></div>
+					<!-- /wp:column --></div>
+					<!-- /wp:columns -->
+
+					<!-- wp:shortcode -->
 					[contact-form-7 id="f9f4471" title="Contact form 1"]
+					<!-- /wp:shortcode -->
+
+					<!-- wp:paragraph -->
+					<p>'. esc_html_x( '', 'Theme starter content', 'accepta' ) .'</p>
+					<!-- /wp:paragraph -->
 				',
 			),
 		),

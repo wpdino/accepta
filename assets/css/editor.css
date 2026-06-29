@@ -1,0 +1,124 @@
+@charset "UTF-8";
+/*!
+ * Block editor styles
+ *
+ * Mirrors key frontend block appearance inside Gutenberg.
+ */
+:root {
+  --accepta-primary-color: var(--wp--preset--color--primary, #6F9C50);
+}
+
+p {
+  margin-bottom: 1.5em;
+  font-weight: 300;
+}
+
+dfn,
+cite,
+em,
+i {
+  font-style: italic;
+}
+
+blockquote,
+.wp-block-quote {
+  position: relative;
+  margin: 2em 0;
+  padding: 4em 2em 2em 3em;
+  border: none;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--accepta-primary-color, #6F9C50) 6%, transparent) 0%, color-mix(in srgb, var(--accepta-primary-color, #6F9C50) 18%, white) 100%);
+  border-radius: 0 10px 10px 0;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  font-family: "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  font-size: 1.125em;
+  line-height: 1.7;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: #333;
+}
+blockquote::before,
+.wp-block-quote::before {
+  content: "“";
+  position: absolute;
+  left: 3rem;
+  top: 20px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 6em;
+  line-height: 1;
+  color: var(--accepta-primary-color, #6F9C50);
+  opacity: 0.2;
+}
+blockquote p,
+.wp-block-quote p {
+  margin: 0 0 0.5em 0;
+  position: relative;
+  z-index: 1;
+}
+blockquote p:last-child,
+.wp-block-quote p:last-child {
+  margin-bottom: 0;
+}
+blockquote cite,
+.wp-block-quote cite {
+  display: block;
+  margin-top: 1em;
+  padding-top: 1em;
+  font-size: 0.875em;
+  font-style: italic;
+  font-weight: 500;
+  color: #34495e;
+  opacity: 0.9;
+  border-top: 1px solid color-mix(in srgb, var(--accepta-primary-color, #6F9C50) 20%, transparent);
+  position: relative;
+  z-index: 1;
+}
+
+/* Remove black border from quote wrapper in starter content (overrides inline style) */
+.wp-block-group:has(> .wp-block-quote),
+.wp-block-group:has(> blockquote) {
+  border: none !important;
+}
+
+address {
+  margin: 0 0 1.5em;
+}
+
+pre {
+  background: #f9f9f9;
+  font-family: "Courier 10 Pitch", courier, monospace;
+  line-height: 1.6;
+  margin-bottom: 1.6em;
+  max-width: 100%;
+  overflow: auto;
+  padding: 1.6em;
+}
+
+code,
+kbd,
+tt,
+var {
+  font-family: monaco, consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+}
+
+abbr,
+acronym {
+  border-bottom: 1px dotted #666;
+  cursor: help;
+}
+
+mark,
+ins {
+  background: #fff9c0;
+  text-decoration: none;
+}
+
+big {
+  font-size: 125%;
+}
+
+/* Override default block editor quote border (theme uses card-style quotes). */
+.editor-styles-wrapper blockquote,
+.editor-styles-wrapper .wp-block-quote {
+  border: none !important;
+  border-left: none !important;
+}

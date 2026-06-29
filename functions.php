@@ -108,6 +108,7 @@ function accepta_setup() {
 	add_theme_support( 'align-wide' );
 	add_theme_support( 'responsive-embeds' );
 	add_theme_support( 'editor-styles' );
+	add_editor_style( 'assets/css/editor.css' );
 
 	// Block patterns are loaded from /patterns (see inc/block-patterns.php).
 }
@@ -565,6 +566,11 @@ require get_template_directory() . '/inc/template-tags.php';
  * Functions which enhance the theme by hooking into WordPress.
  */
 require get_template_directory() . '/inc/template-functions.php';
+
+/**
+ * DinoFolio portfolio single layout.
+ */
+require get_template_directory() . '/inc/dinofolio-portfolio.php';
 
 /**
  * Customizer additions.

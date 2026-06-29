@@ -15,6 +15,168 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
+ * Build block markup for a footer block widget (heading + paragraph).
+ *
+ * @param string $title Widget heading text.
+ * @param string $text  Widget body text.
+ * @return string Block editor markup.
+ */
+function accepta_get_footer_block_widget_content( $title, $text ) {
+	$title = wp_strip_all_tags( $title );
+	$text  = wp_strip_all_tags( $text );
+
+	return '<!-- wp:heading {"level":2} -->' . "\n"
+		. '<h2 class="wp-block-heading">' . esc_html( $title ) . '</h2>' . "\n"
+		. '<!-- /wp:heading -->' . "\n\n"
+		. '<!-- wp:paragraph -->' . "\n"
+		. '<p>' . esc_html( $text ) . '</p>' . "\n"
+		. '<!-- /wp:paragraph -->';
+}
+
+/**
+ * Get the next available numeric instance ID for a widget option.
+ *
+ * @param string     $option_name Widget option name (e.g. widget_block).
+ * @param array|null $widgets     Optional in-memory widget instances.
+ * @return int Next widget instance ID.
+ */
+function accepta_get_next_widget_instance_id( $option_name, $widgets = null ) {
+	if ( null === $widgets ) {
+		$widgets = get_option( $option_name, array() );
+	}
+
+	$widget_id = 1;
+
+	if ( ! empty( $widgets ) && is_array( $widgets ) ) {
+		$numeric_keys = array_filter( array_keys( $widgets ), 'is_numeric' );
+		if ( ! empty( $numeric_keys ) ) {
+			$max_id = max( $numeric_keys );
+			if ( $max_id ) {
+				$widget_id = (int) $max_id + 1;
+			}
+		}
+	}
+
+	return $widget_id;
+}
+
+/**
+ * Sample footer widget configuration (activation + Customizer preview).
+ *
+ * @return array Footer sidebar ID => widget config.
+ */
+function accepta_get_sample_footer_widgets_config() {
+	return array(
+		'footer-1' => array(
+			'type'    => 'block',
+			'title'   => esc_html__( 'About Accepta', 'accepta' ),
+			'content' => esc_html__( 'Accepta is a modern, responsive WordPress theme designed for businesses, portfolios, and blogs.', 'accepta' ),
+		),
+		'footer-2' => array(
+			'type'    => 'block',
+			'title'   => esc_html__( 'About WPDINO', 'accepta' ),
+			'content' => esc_html__( 'WPDINO is a WordPress development company. We create beautiful, functional themes that help businesses grow online.', 'accepta' ),
+		),
+		'footer-3' => array(
+			'type'  => 'nav_menu_or_pages',
+			'title' => esc_html__( 'Quick Links', 'accepta' ),
+		),
+		'footer-4' => array(
+			'type'  => 'search',
+			'title' => esc_html__( 'Search', 'accepta' ),
+		),
+	);
+}
+
+/**
+ * Quick link labels and URLs for the sample footer menu / preview.
+ *
+ * @return array Title => URL.
+ */
+function accepta_get_sample_footer_quick_links() {
+	return array(
+		esc_html__( 'Home', 'accepta' )           => home_url( '/' ),
+		esc_html__( 'About', 'accepta' )          => '#',
+		esc_html__( 'Services', 'accepta' )       => '#',
+		esc_html__( 'Contact', 'accepta' )        => '#',
+		esc_html__( 'Privacy Policy', 'accepta' ) => '#',
+	);
+}
+
+/**
+ * Whether to render hardcoded sample footer widgets in the Customizer preview.
+ *
+ * Used before theme activation when real footer sidebars are still empty.
+ *
+ * @return bool
+ */
+function accepta_should_show_footer_widgets_preview() {
+	if ( ! is_customize_preview() ) {
+		return false;
+	}
+
+	// Before first activation, always show the sample footer in the Customizer preview.
+	if ( ! get_option( 'accepta_sample_widgets_added' ) ) {
+		return true;
+	}
+
+	// After activation, only fall back to samples when all footer areas are empty.
+	for ( $i = 1; $i <= 4; $i++ ) {
+		if ( is_active_sidebar( 'footer-' . $i ) ) {
+			return false;
+		}
+	}
+
+	return true;
+}
+
+/**
+ * Render a single sample footer widget column for Customizer preview.
+ *
+ * @param int $column Footer column number (1–4).
+ */
+function accepta_render_footer_widget_preview( $column ) {
+	$config = accepta_get_sample_footer_widgets_config();
+	$key    = 'footer-' . absint( $column );
+
+	if ( empty( $config[ $key ] ) ) {
+		return;
+	}
+
+	$widget = $config[ $key ];
+
+	switch ( $widget['type'] ) {
+		case 'block':
+			echo '<section class="widget widget_block accepta-footer-widget-preview">';
+			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Built from escaped block markup.
+			echo do_blocks( accepta_get_footer_block_widget_content( $widget['title'], $widget['content'] ) );
+			echo '</section>';
+			break;
+
+		case 'nav_menu':
+		case 'nav_menu_or_pages':
+			echo '<section class="widget widget_nav_menu accepta-footer-widget-preview">';
+			echo '<h2 class="widget-title">' . esc_html( $widget['title'] ) . '</h2>';
+			echo '<nav aria-label="' . esc_attr( $widget['title'] ) . '">';
+			echo '<ul class="menu">';
+			foreach ( accepta_get_sample_footer_quick_links() as $label => $url ) {
+				echo '<li><a href="' . esc_url( $url ) . '">' . esc_html( $label ) . '</a></li>';
+			}
+			echo '</ul>';
+			echo '</nav>';
+			echo '</section>';
+			break;
+
+		case 'search':
+			echo '<section class="widget widget_search accepta-footer-widget-preview">';
+			echo '<h2 class="widget-title">' . esc_html( $widget['title'] ) . '</h2>';
+			get_search_form();
+			echo '</section>';
+			break;
+	}
+}
+
+/**
  * Add sample widgets to footer areas on theme activation
  *
  * This is a custom Accepta theme feature that automatically populates
@@ -27,27 +189,7 @@ function accepta_add_sample_footer_widgets() {
 	}
 
 	// Sample widget content
-	$sample_widgets = array(
-		'footer-1' => array(
-			'type' => 'text',
-			'title' => esc_html__( 'About Accepta', 'accepta' ),
-			'content' => esc_html__( 'Accepta is a modern, responsive WordPress theme designed for businesses, portfolios, and blogs.', 'accepta' ),
-		),
-		'footer-2' => array(
-			'type' => 'text',
-			'title' => esc_html__( 'About WPDINO', 'accepta' ),
-			'content' => esc_html__( 'WPDINO is a WordPress development company. We create beautiful, functional themes that help businesses grow online.', 'accepta' ),
-		),
-		'footer-3' => array(
-			'type' => 'nav_menu_or_pages',
-			'title' => esc_html__( 'Quick Links', 'accepta' ),
-			'menu' => 'sample-footer-menu',
-		),
-		'footer-4' => array(
-			'type' => 'search',
-			'title' => esc_html__( 'Search', 'accepta' ),
-		),
-	);
+	$sample_widgets = accepta_get_sample_footer_widgets_config();
 
 	// Create or get sample menu for footer-3
 	$menu_name = esc_html__( 'Sample Footer Menu', 'accepta' );
@@ -75,13 +217,7 @@ function accepta_add_sample_footer_widgets() {
 		// Check if menu already has items to avoid duplicates
 		$menu_items = wp_get_nav_menu_items( $menu_id );
 		if ( empty( $menu_items ) ) {
-			$sample_pages = array(
-				esc_html__( 'Home', 'accepta' ) => home_url(),
-				esc_html__( 'About', 'accepta' ) => '#',
-				esc_html__( 'Services', 'accepta' ) => '#',
-				esc_html__( 'Contact', 'accepta' ) => '#',
-				esc_html__( 'Privacy Policy', 'accepta' ) => '#',
-			);
+			$sample_pages = accepta_get_sample_footer_quick_links();
 
 			foreach ( $sample_pages as $title => $url ) {
 				wp_update_nav_menu_item( $menu_id, 0, array(
@@ -109,6 +245,17 @@ function accepta_add_sample_footer_widgets() {
 		}
 
 		switch ( $widget_data['type'] ) {
+			case 'block':
+				$block_widgets    = get_option( 'widget_block', array() );
+				$block_widget_id  = accepta_get_next_widget_instance_id( 'widget_block' );
+				$widget_id        = 'block-' . $block_widget_id;
+				$block_widgets[ $block_widget_id ] = array(
+					'content' => accepta_get_footer_block_widget_content( $widget_data['title'], $widget_data['content'] ),
+				);
+				update_option( 'widget_block', $block_widgets );
+				$sidebar_widgets[ $sidebar_id ][] = $widget_id;
+				break;
+
 			case 'text':
 				// Get existing text widgets to find next available ID
 				$text_widgets = get_option( 'widget_text', array() );
@@ -236,6 +383,69 @@ function accepta_add_sample_footer_widgets() {
 	update_option( 'accepta_sample_widgets_added', true );
 }
 add_action( 'after_switch_theme', 'accepta_add_sample_footer_widgets' );
+
+/**
+ * Convert legacy text widgets in footer 1 and 2 to block widgets (one-time).
+ */
+function accepta_maybe_convert_footer_text_widgets_to_blocks() {
+	if ( get_option( 'accepta_footer_block_widgets_converted' ) ) {
+		return;
+	}
+
+	if ( ! get_option( 'accepta_sample_widgets_added' ) ) {
+		update_option( 'accepta_footer_block_widgets_converted', true );
+		return;
+	}
+
+	$sidebar_widgets = get_option( 'sidebars_widgets', array() );
+	$text_widgets    = get_option( 'widget_text', array() );
+	$block_widgets   = get_option( 'widget_block', array() );
+	$updated         = false;
+
+	foreach ( array( 'footer-1', 'footer-2' ) as $sidebar_id ) {
+		if ( empty( $sidebar_widgets[ $sidebar_id ] ) || ! is_array( $sidebar_widgets[ $sidebar_id ] ) ) {
+			continue;
+		}
+
+		$new_sidebar_widgets = array();
+
+		foreach ( $sidebar_widgets[ $sidebar_id ] as $widget_reference ) {
+			if ( ! is_string( $widget_reference ) || 0 !== strpos( $widget_reference, 'text-' ) ) {
+				$new_sidebar_widgets[] = $widget_reference;
+				continue;
+			}
+
+			$text_widget_id = (int) str_replace( 'text-', '', $widget_reference );
+			if ( empty( $text_widgets[ $text_widget_id ] ) || ! is_array( $text_widgets[ $text_widget_id ] ) ) {
+				$new_sidebar_widgets[] = $widget_reference;
+				continue;
+			}
+
+			$title = isset( $text_widgets[ $text_widget_id ]['title'] ) ? $text_widgets[ $text_widget_id ]['title'] : '';
+			$text  = isset( $text_widgets[ $text_widget_id ]['text'] ) ? $text_widgets[ $text_widget_id ]['text'] : '';
+
+			$block_widget_id = accepta_get_next_widget_instance_id( 'widget_block', $block_widgets );
+			$block_widgets[ $block_widget_id ] = array(
+				'content' => accepta_get_footer_block_widget_content( $title, $text ),
+			);
+
+			$new_sidebar_widgets[] = 'block-' . $block_widget_id;
+			unset( $text_widgets[ $text_widget_id ] );
+			$updated = true;
+		}
+
+		$sidebar_widgets[ $sidebar_id ] = $new_sidebar_widgets;
+	}
+
+	if ( $updated ) {
+		update_option( 'widget_block', $block_widgets );
+		update_option( 'widget_text', $text_widgets );
+		update_option( 'sidebars_widgets', $sidebar_widgets );
+	}
+
+	update_option( 'accepta_footer_block_widgets_converted', true );
+}
+add_action( 'init', 'accepta_maybe_convert_footer_text_widgets_to_blocks', 6 );
 
 /**
  * Return default social media items for header/footer (same structure).

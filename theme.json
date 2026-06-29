@@ -311,20 +311,6 @@
 					}
 				}
 			},
-			"core/quote": {
-				"border": {
-					"left": {
-						"color": "var(--wp--preset--color--primary)",
-						"style": "solid",
-						"width": "4px"
-					}
-				},
-				"spacing": {
-					"padding": {
-						"left": "1.5rem"
-					}
-				}
-			},
 			"core/pullquote": {
 				"border": {
 					"top": {

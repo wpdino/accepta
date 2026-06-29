@@ -16,6 +16,7 @@
 	<footer id="colophon" class="site-footer">
 		<?php
 		$footer_columns = get_theme_mod( 'accepta_footer_columns', '4' );
+		$show_footer_widgets_preview = function_exists( 'accepta_should_show_footer_widgets_preview' ) && accepta_should_show_footer_widgets_preview();
 
 		// Check if any footer widget areas are active (check all 4, not just up to selected count).
 		$has_active_widgets = false;
@@ -26,7 +27,7 @@
 			}
 		}
 
-		if ( 0 != $footer_columns && $has_active_widgets ) : ?>
+		if ( 0 != $footer_columns && ( $show_footer_widgets_preview || $has_active_widgets ) ) : ?>
 			<div class="footer-widgets-container">
 				<div class="container">
 					<div class="footer-widgets">
@@ -34,9 +35,15 @@
 						// Always render all widget areas (up to 4) for live preview support.
 						// CSS controls visibility based on the column setting.
 						for ( $i = 1; $i <= 4; $i++ ) {
-							if ( is_active_sidebar( 'footer-' . $i ) ) : ?>
+							if ( $show_footer_widgets_preview || is_active_sidebar( 'footer-' . $i ) ) : ?>
 								<div class="footer-widget-area footer-widget-<?php echo esc_attr( $i ); ?>">
-									<?php dynamic_sidebar( 'footer-' . $i ); ?>
+									<?php
+									if ( $show_footer_widgets_preview ) {
+										accepta_render_footer_widget_preview( $i );
+									} else {
+										dynamic_sidebar( 'footer-' . $i );
+									}
+									?>
 								</div>
 							<?php endif;
 						}

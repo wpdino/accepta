@@ -1,0 +1,114 @@
+/**
+ * DinoFolio portfolio taxonomy archives for Accepta.
+ */
+
+body.accepta-portfolio-taxonomy-archive .site-content {
+	padding-top: clamp(1.5rem, 3vw, 2.25rem);
+	padding-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+body.accepta-portfolio-taxonomy-archive .accepta-portfolio-taxonomy-wrap {
+	width: 100%;
+	max-width: none;
+	padding: 0;
+	margin: 0;
+}
+
+body.accepta-portfolio-taxonomy-archive .accepta-portfolio-taxonomy-main {
+	width: 100%;
+	max-width: none;
+}
+
+body.accepta-portfolio-taxonomy-archive .dinofolio-taxonomy-archive {
+	margin: 0;
+}
+
+.accepta-portfolio-taxonomy-header {
+	margin: 0 0 clamp(1.5rem, 3vw, 2rem);
+	padding: 0 0 clamp(1.25rem, 2.5vw, 1.5rem);
+	border-bottom: 1px solid #e8ecef;
+}
+
+.accepta-portfolio-taxonomy-eyebrow {
+	margin: 0 0 0.5rem;
+	font-size: 0.75rem;
+	font-weight: 600;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: #6b7280;
+}
+
+.accepta-portfolio-taxonomy-title-row {
+	display: flex;
+	align-items: center;
+	gap: 0.85rem;
+	flex-wrap: wrap;
+}
+
+.accepta-portfolio-taxonomy-title-row .accepta-portfolio-taxonomy-title {
+	margin: 0;
+	padding: 0;
+	font-size: clamp(1.75rem, 3.2vw, 2.35rem);
+	font-weight: 500;
+	line-height: 1.2;
+	color: #111827;
+}
+
+.accepta-portfolio-taxonomy-title-row .accepta-portfolio-taxonomy-term-icon,
+.accepta-portfolio-taxonomy-title-row .dinofolio-category-icon.accepta-portfolio-taxonomy-term-icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	flex: 0 0 auto;
+	width: 2.75rem;
+	height: 2.75rem;
+	border-radius: 50%;
+	background: #f3f4f6;
+	color: var(--dinofolio-accent, #1a8960);
+}
+
+.accepta-portfolio-taxonomy-title-row .accepta-portfolio-taxonomy-term-icon svg,
+.accepta-portfolio-taxonomy-title-row .dinofolio-category-icon.accepta-portfolio-taxonomy-term-icon svg {
+	width: 1.35rem;
+	height: 1.35rem;
+	display: block;
+}
+
+.accepta-portfolio-taxonomy-title-row .accepta-portfolio-taxonomy-term-icon img,
+.accepta-portfolio-taxonomy-title-row .dinofolio-category-icon.accepta-portfolio-taxonomy-term-icon img {
+	width: 1.35rem;
+	height: 1.35rem;
+	object-fit: contain;
+	display: block;
+}
+
+.accepta-portfolio-taxonomy-description {
+	margin: 0.85rem 0 0;
+	max-width: 42rem;
+	color: #6b7280;
+	font-size: 1rem;
+	line-height: 1.65;
+}
+
+.accepta-portfolio-taxonomy-description p {
+	margin: 0 0 0.75rem;
+}
+
+.accepta-portfolio-taxonomy-description p:last-child {
+	margin-bottom: 0;
+}
+
+body.accepta-portfolio-taxonomy-archive .dinofolio-taxonomy-listing {
+	margin: 0;
+}
+
+body.accepta-portfolio-taxonomy-archive .dinofolio-taxonomy-listing > .dinofolio {
+	margin-bottom: 0;
+}
+
+@media screen and (max-width: 599px) {
+	body.accepta-portfolio-taxonomy-archive .site-content {
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+}

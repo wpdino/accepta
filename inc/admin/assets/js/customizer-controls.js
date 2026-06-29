@@ -125,7 +125,8 @@
         wp.customize( 'accepta_sticky_header', function( setting ) {
             var scrolledControls = [
                 'accepta_scrolled_header_bg',
-                'accepta_scrolled_header_text_color'
+                'accepta_scrolled_header_text_color',
+                'accepta_scrolled_header_logo'
             ];
             
             $.each( scrolledControls, function( index, controlId ) {

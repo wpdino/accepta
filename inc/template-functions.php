@@ -103,6 +103,88 @@ function accepta_has_sidebar() {
 }
 
 /**
+ * Build a single site logo link markup.
+ *
+ * @param int    $attachment_id Attachment ID.
+ * @param string $link_class    Extra classes for the anchor element.
+ * @return string
+ */
+function accepta_get_logo_link_html( $attachment_id, $link_class = '' ) {
+	$attachment_id = absint( $attachment_id );
+
+	if ( ! $attachment_id ) {
+		return '';
+	}
+
+	$image = wp_get_attachment_image(
+		$attachment_id,
+		'full',
+		false,
+		array(
+			'class'   => 'custom-logo',
+			'alt'     => get_bloginfo( 'name', 'display' ),
+			'loading' => false,
+		)
+	);
+
+	if ( ! $image ) {
+		return '';
+	}
+
+	$classes = trim( 'custom-logo-link ' . $link_class );
+	$attrs   = array(
+		'class' => $classes,
+		'rel'   => 'home',
+	);
+
+	if ( is_front_page() && ! is_paged() ) {
+		$attrs['aria-current'] = 'page';
+	}
+
+	$attr_string = '';
+
+	foreach ( $attrs as $attr => $value ) {
+		$attr_string .= sprintf( ' %s="%s"', esc_attr( $attr ), esc_attr( $value ) );
+	}
+
+	return sprintf(
+		'<a href="%1$s"%2$s>%3$s</a>',
+		esc_url( home_url( '/' ) ),
+		$attr_string,
+		$image
+	);
+}
+
+/**
+ * Output the site logo, with an optional alternate logo for the scrolled header.
+ *
+ * @return void
+ */
+function accepta_render_site_logo() {
+	$default_logo_id = absint( get_theme_mod( 'custom_logo', 0 ) );
+	$scrolled_logo_id = absint( get_theme_mod( 'accepta_scrolled_header_logo', 0 ) );
+
+	if ( ! $default_logo_id && ! $scrolled_logo_id ) {
+		return;
+	}
+
+	$has_alt_logo = $default_logo_id && $scrolled_logo_id;
+	$wrapper_class = 'site-logo' . ( $has_alt_logo ? ' site-logo--has-alt' : '' );
+
+	echo '<div class="' . esc_attr( $wrapper_class ) . '">';
+
+	if ( $default_logo_id ) {
+		echo accepta_get_logo_link_html( $default_logo_id, $has_alt_logo ? 'site-logo__default' : '' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	}
+
+	if ( $scrolled_logo_id ) {
+		echo accepta_get_logo_link_html( $scrolled_logo_id, $has_alt_logo ? 'site-logo__scrolled' : 'site-logo__default' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	}
+
+	echo '</div>';
+}
+
+/**
  * Add a pingback url auto-discovery header for single posts, pages, and attachments.
  */
 function accepta_pingback_header() {

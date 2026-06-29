@@ -268,16 +268,72 @@ h1 .accepta-theme-version {
     text-decoration: underline;
 }
 
+.accepta-feature-section p {
+    margin-top: 0;
+    margin-bottom: var(--spacing-sm);
+}
+
+.accepta-button-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
+
+.accepta-admin-wrap .button.accepta-button-with-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    line-height: 1.2;
+    vertical-align: middle;
+}
+
+.accepta-button-with-icon .accepta-button-label {
+    display: inline-block;
+    line-height: 1.2;
+}
+
+.accepta-button-with-icon .dashicons {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 17px;
+    height: 17px;
+    font-size: 17px;
+    line-height: 1;
+    margin: 0;
+    flex-shrink: 0;
+    color: inherit;
+}
+
+.accepta-button-with-icon .dashicons::before {
+    display: block;
+    width: 17px;
+    height: 17px;
+    line-height: 17px;
+    text-align: center;
+    color: inherit;
+}
+
+.accepta-admin-wrap .button-primary.accepta-button-with-icon .dashicons {
+    color: #fff;
+}
+
+.accepta-admin-wrap .button.accepta-button-with-icon:not(.button-primary) .dashicons {
+    color: var(--primary-color);
+}
+
+.accepta-admin-wrap .button.accepta-button-with-icon:hover .dashicons,
+.accepta-admin-wrap .button.accepta-button-with-icon:focus .dashicons {
+    color: #fff;
+}
+
 .accepta-feature-section h3 {
     margin-top: 0;
     margin-bottom: var(--spacing-xs);
     color: var(--text-color);
     font-size: 18px;
-}
-
-.accepta-feature-section p {
-    margin-top: 0;
-    margin-bottom: var(--spacing-sm);
 }
 
 .accepta-welcome-features {

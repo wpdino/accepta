@@ -51,7 +51,16 @@ $menus = $admin->get_module('menus');
                 <div class="accepta-feature-section">
                     <h3><?php esc_html_e( 'Theme Customization', 'accepta' ); ?></h3>
                     <p><?php esc_html_e( 'Customize your site\'s appearance through the WordPress Customizer. Change colors, layouts, and more to match your brand.', 'accepta' ); ?></p>
-                    <a href="<?php echo esc_url( admin_url( 'customize.php' ) ); ?>" class="button button-primary"><?php esc_html_e( 'Customize Your Site', 'accepta' ); ?></a>
+                    <div class="accepta-button-group">
+                        <a href="<?php echo esc_url( admin_url( 'customize.php' ) ); ?>" class="button button-primary accepta-button-with-icon">
+                            <span class="accepta-button-label"><?php esc_html_e( 'Customize Your Site', 'accepta' ); ?></span>
+                            <span class="dashicons dashicons-admin-customizer" aria-hidden="true"></span>
+                        </a>
+                        <a href="<?php echo esc_url( $admin->add_utm_params( 'https://wpdino.com/accepta-lite/customizer-help-guide/', 'customizer_help_guide' ) ); ?>" class="button accepta-button-with-icon" target="_blank" rel="noopener noreferrer">
+                            <span class="accepta-button-label"><?php esc_html_e( 'Customizer Help Guide', 'accepta' ); ?></span>
+                            <span class="dashicons dashicons-book-alt" aria-hidden="true"></span>
+                        </a>
+                    </div>
                 </div>
 
                 <div class="accepta-feature-section accepta-pro-promo">

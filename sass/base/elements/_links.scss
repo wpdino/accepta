@@ -17,6 +17,22 @@
 	}
 }
 
+.entry-content {
+	a.wp-element-button,
+	a.wp-block-button__link,
+	a.has-primary-background-color,
+	.has-primary-background-color a {
+		color: #fff;
+
+		&:visited,
+		&:hover,
+		&:focus,
+		&:active {
+			color: #fff;
+		}
+	}
+}
+
 a {
 	&:focus {
 		outline: thin dotted;

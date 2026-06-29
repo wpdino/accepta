@@ -37,7 +37,13 @@
 			?>
 			<div class="header-content <?php echo esc_attr( $header_layout_class . $header_extra_classes ); ?>">
 				<div class="site-branding">
-					<?php the_custom_logo(); ?>
+					<?php
+					if ( function_exists( 'accepta_render_site_logo' ) ) {
+						accepta_render_site_logo();
+					} else {
+						the_custom_logo();
+					}
+					?>
 					<div class="branding-text">
 						<?php
 						if ( is_front_page() && is_home() ) :

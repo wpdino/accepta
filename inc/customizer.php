@@ -50,7 +50,7 @@ function accepta_customize_register( $wp_customize ) {
 		'accepta_layout_section',
 		array(
 			'title'       => __( 'Layout', 'accepta' ),
-			'description' => __( 'Configure site layout, container width, sidebar position, and content spacing.', 'accepta' ),
+			'description' => __( 'Configure site layout, sidebar position, and content spacing.', 'accepta' ),
 			'priority'    => 30,
 		)
 	);
@@ -447,6 +447,33 @@ function accepta_customize_register( $wp_customize ) {
 				'description' => __( 'Text color for header content when scrolled (only applies if sticky header is enabled).', 'accepta' ),
 				'section'     => 'accepta_header_section',
 				'priority'    => 30,
+				'active_callback' => function() {
+					return get_theme_mod( 'accepta_sticky_header', true );
+				},
+			)
+		)
+	);
+
+	// Scrolled header logo (alternate color/version for scrolled state).
+	$wp_customize->add_setting(
+		'accepta_scrolled_header_logo',
+		array(
+			'default'           => 0,
+			'sanitize_callback' => 'absint',
+			'transport'         => 'postMessage',
+		)
+	);
+
+	$wp_customize->add_control(
+		new WP_Customize_Media_Control(
+			$wp_customize,
+			'accepta_scrolled_header_logo',
+			array(
+				'label'           => __( 'Scrolled Header Logo', 'accepta' ),
+				'description'     => __( 'Optional alternate logo shown when the header is scrolled (for example, a dark logo on the white scrolled background). The Site Identity logo is used when this is not set.', 'accepta' ),
+				'section'         => 'accepta_header_section',
+				'mime_type'       => 'image',
+				'priority'        => 31,
 				'active_callback' => function() {
 					return get_theme_mod( 'accepta_sticky_header', true );
 				},
@@ -927,33 +954,6 @@ function accepta_customize_register( $wp_customize ) {
 					'flex-end' => array( 'label' => __( 'End', 'accepta' ) ),
 				),
 				'priority'    => 20,
-			)
-		)
-	);
-
-	// Container Width Setting
-	$wp_customize->add_setting(
-		'accepta_container_width',
-		array(
-			'default'           => 1200,
-			'sanitize_callback' => 'absint',
-			'transport'         => 'postMessage',
-		)
-	);
-
-	$wp_customize->add_control(
-		new Accepta_Range_Control(
-			$wp_customize,
-			'accepta_container_width',
-			array(
-				'label'       => __( 'Container Width', 'accepta' ),
-				'description' => __( 'Set the maximum width of the site container. Range: 800px - 1600px.', 'accepta' ),
-				'section'     => 'accepta_layout_section',
-				'priority'    => 10,
-				'min'         => 800,
-				'max'         => 1600,
-				'step'        => 10,
-				'unit'        => 'px',
 			)
 		)
 	);
@@ -1649,6 +1649,22 @@ function accepta_customize_register( $wp_customize ) {
 				'render_callback' => 'accepta_customize_partial_blogdescription',
 			)
 		);
+
+		$wp_customize->selective_refresh->add_partial(
+			'accepta_scrolled_header_logo',
+			array(
+				'selector'            => '.site-logo',
+				'render_callback'     => 'accepta_render_site_logo',
+				'container_inclusive' => true,
+			)
+		);
+
+		$custom_logo_partial = $wp_customize->selective_refresh->get_partial( 'custom_logo' );
+		if ( $custom_logo_partial ) {
+			$custom_logo_partial->selector            = '.site-logo';
+			$custom_logo_partial->render_callback     = 'accepta_render_site_logo';
+			$custom_logo_partial->container_inclusive = true;
+		}
 	}
 
 	// WooCommerce Panel (only when WooCommerce is active)

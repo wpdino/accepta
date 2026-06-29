@@ -25,6 +25,27 @@
 		return fallback;
 	}
 
+	function getContainerWidth() {
+		return 1200;
+	}
+
+	function applyContainerWidthLayout( containerWidth ) {
+		var width = parseInt( containerWidth, 10 ) || 1200;
+		var padding = 20;
+		var breakpoint = width + ( padding * 2 ) - 1;
+		var css = '.container, .site-content { max-width: ' + width + 'px; }';
+		css += '.site-header .site-header-container, .site-footer .site-header-container { max-width: ' + width + 'px; }';
+		css += '.site-header .site-info, .site-footer .site-info { max-width: ' + width + 'px; }';
+		css += '.content-sidebar-wrap { max-width: ' + width + 'px; }';
+		css += '@media (max-width: ' + breakpoint + 'px) {';
+		css += '.container, .site-content { padding-left: ' + padding + 'px; padding-right: ' + padding + 'px; }';
+		css += '}';
+		css += '@media (max-width: 599px) {';
+		css += '.container, .site-content { padding-left: 15px; padding-right: 15px; }';
+		css += '}';
+		updateDynamicCSS( 'container-width', css );
+	}
+
 	/**
 	 * Mimic PHP `accepta_process_copyright_tags()` in the preview.
 	 * This ensures `{site-title}`, `{site-url}`, etc. render immediately without refresh.
@@ -215,29 +236,8 @@
 		} );
 	} );
 
-	// Container Width Live Preview
-	wp.customize( 'accepta_container_width', function( value ) {
-		function applyContainerWidthLayout( containerWidth ) {
-			var width = parseInt( containerWidth, 10 ) || 1200;
-			var padding = 20;
-			var breakpoint = width + ( padding * 2 ) - 1;
-			var css = '.container, .site-content { max-width: ' + width + 'px; }';
-			css += '.site-header .site-header-container, .site-footer .site-header-container { max-width: ' + width + 'px; }';
-			css += '.site-header .site-info, .site-footer .site-info { max-width: ' + width + 'px; }';
-			css += '.content-sidebar-wrap { max-width: ' + width + 'px; }';
-			css += '@media (max-width: ' + breakpoint + 'px) {';
-			css += '.container, .site-content { padding-left: ' + padding + 'px; padding-right: ' + padding + 'px; }';
-			css += '}';
-			css += '@media (max-width: 599px) {';
-			css += '.container, .site-content { padding-left: 15px; padding-right: 15px; }';
-			css += '}';
-			updateDynamicCSS( 'container-width', css );
-		}
-
-		value.bind( function( newval ) {
-			applyContainerWidthLayout( newval );
-		} );
-	} );
+	// Fixed container width for Accepta Lite live preview (1200px).
+	applyContainerWidthLayout( getContainerWidth() );
 
 	// Sidebar Layout Live Preview
 	wp.customize( 'accepta_sidebar_layout', function( value ) {
@@ -294,7 +294,7 @@
 					css = 'body.accepta-content-box-shadow-none .site-main > article:not(.sticky) { box-shadow: none !important; background: transparent !important; border-radius: 0 !important; padding: 1.75em 0 !important; }';
 					break;
 			}
-			
+
 			updateDynamicCSS( 'content-box-shadow', css );
 		} );
 	} );
@@ -905,25 +905,12 @@
 				css = '.accepta-hero-section.accepta-hero-fullwidth { width: 100vw; max-width: 100vw; margin-left: calc(-50vw + 50%); position: relative; left: 0; }';
 				css += '.accepta-hero-section.accepta-hero-fullwidth .accepta-hero-content-wrapper { width: 100%; }';
 			} else {
-				var containerWidth = wp.customize( 'accepta_container_width' ) ? wp.customize( 'accepta_container_width' ).get() : 1200;
+				var containerWidth = getContainerWidth();
 				$hero.addClass( 'accepta-hero-boxed' );
-				css = '.accepta-hero-section.accepta-hero-boxed { width: 100%; max-width: ' + ( parseInt( containerWidth ) || 1200 ) + 'px; margin-left: auto; margin-right: auto; }';
+				css = '.accepta-hero-section.accepta-hero-boxed { width: 100%; max-width: ' + ( parseInt( containerWidth, 10 ) || 1200 ) + 'px; margin-left: auto; margin-right: auto; }';
 			}
 			
 			updateDynamicCSS( 'hero-width', css );
-		} );
-		
-		// When container width changes, update boxed hero preview
-		wp.customize( 'accepta_container_width', function( containerValue ) {
-			containerValue.bind( function() {
-				var heroWidth = value.get();
-				if ( heroWidth === 'boxed' ) {
-					var containerWidth = parseInt( containerValue.get() ) || 1200;
-					var $hero = $( '.accepta-hero-section' );
-					$hero.removeClass( 'accepta-hero-fullwidth' ).addClass( 'accepta-hero-boxed' );
-					updateDynamicCSS( 'hero-width', '.accepta-hero-section.accepta-hero-boxed { width: 100%; max-width: ' + containerWidth + 'px; margin-left: auto; margin-right: auto; }' );
-				}
-			} );
 		} );
 	} );
 	
@@ -1810,13 +1797,7 @@
 		}
 
 		value.bind( function( newval ) {
-			applyHeaderWidthLayout( newval, wp.customize( 'accepta_container_width' ).get() );
-		} );
-
-		wp.customize( 'accepta_container_width', function( containerValue ) {
-			containerValue.bind( function( containerWidth ) {
-				applyHeaderWidthLayout( value.get(), containerWidth );
-			} );
+			applyHeaderWidthLayout( newval, getContainerWidth() );
 		} );
 	} );
 
@@ -1838,13 +1819,7 @@
 		}
 
 		value.bind( function( newval ) {
-			applyFooterWidthLayout( newval, wp.customize( 'accepta_container_width' ).get() );
-		} );
-
-		wp.customize( 'accepta_container_width', function( containerValue ) {
-			containerValue.bind( function( containerWidth ) {
-				applyFooterWidthLayout( value.get(), containerWidth );
-			} );
+			applyFooterWidthLayout( newval, getContainerWidth() );
 		} );
 	} );
 

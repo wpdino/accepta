@@ -11,3 +11,8 @@
 .custom-logo-link {
 	display: inline-block;
 }
+
+// Remove default left padding from Media & Text block content.
+.wp-block-media-text > .wp-block-media-text__content {
+	padding-left: 0;
+}

@@ -345,6 +345,28 @@ body.has-sticky-header {
   }
 }
 
+.site-logo {
+  display: inline-flex;
+  align-items: center;
+
+  &--has-alt {
+    .site-logo__scrolled {
+      display: none;
+    }
+  }
+}
+
+.site-header.scrolled .site-logo--has-alt {
+  .site-logo__default {
+    display: none;
+  }
+
+  .site-logo__scrolled {
+    display: inline-flex;
+  }
+}
+
+.site-logo + .branding-text,
 .custom-logo-link + .branding-text {
   margin-left: 1.25rem;
 }
@@ -381,6 +403,7 @@ body.has-sticky-header {
     margin-top: 0;
   }
 
+  .site-logo + .branding-text,
   .custom-logo-link + .branding-text {
     margin-left: 0.75rem;
   }
@@ -397,6 +420,7 @@ body.has-sticky-header {
     font-size: 0.8em;
   }
   
+  .site-logo,
   .custom-logo-link {
     max-width: 180px; /* Smaller logo container on mobile */
     
