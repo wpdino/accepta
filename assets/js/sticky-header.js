@@ -7,11 +7,22 @@
 (function() {
     'use strict';
 
+    const header = document.querySelector('.site-header');
+    const body = document.body;
+
+    /**
+     * Always expose measured header height for overlay-hero spacing CSS.
+     */
+    function acceptaSetHeaderHeightVar() {
+        if (!header) {
+            return;
+        }
+        document.documentElement.style.setProperty('--header-height', `${header.offsetHeight}px`);
+    }
+
     // Check if sticky header is enabled
     if (typeof acceptaStickyHeader === 'undefined' || !acceptaStickyHeader.enabled) {
         // Clean up any sticky header classes if they exist
-        const header = document.querySelector('.site-header');
-        const body = document.body;
         if (header) {
             header.classList.remove('scrolled');
             header.style.top = '';
@@ -20,13 +31,13 @@
             body.classList.remove('has-sticky-header');
             body.style.paddingTop = '';
         }
-        // Remove CSS variable
-        document.documentElement.style.removeProperty('--header-height');
-        return; // Exit if sticky header is disabled
+        // Still set height var for transparent/overlay hero clearance.
+        acceptaSetHeaderHeightVar();
+        window.addEventListener('resize', acceptaSetHeaderHeightVar);
+        return; // Exit sticky behavior if sticky header is disabled
     }
 
     // Variables
-    const header = document.querySelector('.site-header');
     let headerHeight = header ? header.offsetHeight : 0;
     let scrollPosition = 0;
     let ticking = false;

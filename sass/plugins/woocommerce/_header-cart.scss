@@ -94,30 +94,30 @@
 	.header-content .header-cart-link {
 		position: absolute;
 		top: 50%;
-		right: 12px;
+		right: 0;
 		transform: translateY(-50%);
 		margin: 0 !important;
 		z-index: 100002;
 	}
 
 	.header-content .header-search-toggle {
-		right: 52px !important;
+		right: 40px !important;
 	}
 
 	#site-navigation.main-navigation .menu-toggle {
-		right: 92px !important;
+		right: 80px !important;
 	}
 
 	.header-content.has-header-social-icons .header-social-toggle {
-		right: 92px !important;
+		right: 80px !important;
 	}
 
 	.header-content.has-header-social-icons .header-search-toggle {
-		right: 52px !important;
+		right: 40px !important;
 	}
 
 	.header-content.has-header-social-icons #site-navigation.main-navigation .menu-toggle {
-		right: 132px !important;
+		right: 120px !important;
 	}
 
 	// Hide cart icon while the search overlay is open.

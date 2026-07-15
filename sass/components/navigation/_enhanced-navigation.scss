@@ -284,7 +284,8 @@ body.accepta-mobile-menu-open {
 		box-shadow: none !important;
 		position: absolute;
 		top: 50%;
-		right: 52px; // Keep hamburger before the search icon.
+		// Align with container edge (same inset as logo); sit before search.
+		right: 40px;
 		transform: translateY(-50%);
 		z-index: 100002;
 	}
@@ -292,7 +293,8 @@ body.accepta-mobile-menu-open {
 	.header-content .header-search-toggle {
 		position: absolute;
 		top: 50%;
-		right: 12px;
+		// Match left branding inset — do not add extra offset inside padded container.
+		right: 0;
 		transform: translateY(-50%);
 		margin: 0 !important;
 		z-index: 100002;

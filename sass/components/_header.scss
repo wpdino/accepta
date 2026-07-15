@@ -798,25 +798,25 @@ body.has-sticky-header {
       display: inline-flex !important;
       position: absolute;
       top: 50%;
-      right: 52px;
+      right: 40px;
       transform: translateY(-50%);
       margin: 0 !important;
       z-index: 100002;
     }
 
     .header-search-toggle {
-      right: 12px !important;
+      right: 0 !important;
     }
 
     #site-navigation.main-navigation .menu-toggle {
-      right: 92px !important;
+      right: 80px !important;
     }
 
     .header-social-icons {
       display: none !important;
       position: absolute;
       top: calc(100% + 10px);
-      right: 12px;
+      right: 0;
       z-index: 100003;
       margin: 0;
       padding: 10px;

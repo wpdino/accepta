@@ -243,6 +243,12 @@
 				},
 				"color": {
 					"text": "var(--wp--preset--color--foreground)"
+				},
+				"spacing": {
+					"margin": {
+						"top": "0",
+						"bottom": "0"
+					}
 				}
 			},
 			"h1": {
@@ -298,6 +304,14 @@
 			}
 		},
 		"blocks": {
+			"core/heading": {
+				"spacing": {
+					"margin": {
+						"top": "0",
+						"bottom": "0"
+					}
+				}
+			},
 			"core/button": {
 				"variations": {
 					"outline": {

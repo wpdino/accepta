@@ -3025,9 +3025,9 @@ function accepta_sticky_header_css() {
 		$css .= $overlay_prefix . '.site-header:not(.scrolled) .header-social-toggle { border-color: ' . esc_attr( $transparent_border_color ) . '; }';
 		$css .= $overlay_prefix . '.site-header:not(.scrolled) .header-cart-link { border-color: ' . esc_attr( $transparent_border_color ) . '; }';
 
-		// On hero page only: remove top padding and let hero sit under header
+		// On hero page only: header overlays hero; offset section so content clears the header.
 		$css .= 'body.accepta-has-hero:not(.has-sticky-header) { padding-top: 0; }';
-		$css .= 'body.accepta-has-hero .accepta-hero-section { margin-top: 0; padding-top: 0; }';
+		$css .= 'body.accepta-has-hero .accepta-hero-section { margin-top: 0; padding-top: var(--header-height, 5.5rem); box-sizing: border-box; }';
 		$css .= 'body.accepta-has-hero .site-content { margin-top: 0; }';
 
 		// When overlay is enabled but we're NOT on a hero page: use normal header (sticky or relative) so content isn't under the header

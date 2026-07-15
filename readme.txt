@@ -2,8 +2,8 @@
 Contributors: wpdino
 Requires at least: 5.0
 Tested up to: 6.9
-Stable tag: 1.0.9
-Version: 1.0.9
+Stable tag: 1.1.0
+Version: 1.1.0
 Requires PHP: 7.4
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -58,6 +58,21 @@ Yes, Accepta is translation ready and includes .pot file for translations.
 Accepta includes standard WordPress widgets and is compatible with all WordPress widgets and plugins.
 
 == Changelog ==
+
+= 1.1.0 - 2026-07-15 =
+* Added Scrolled Header Logo option in the Customizer for a separate logo when the sticky header is scrolled.
+* Added DinoFolio portfolio integration with archive, single, taxonomy templates, hero layout, and dedicated styles.
+* Added sample footer widgets as block widgets on theme activation (About Accepta, About WPDINO, Quick Links, Search).
+* Added footer widget preview in the Customizer before theme activation so all four footer columns display sample content.
+* Added block editor stylesheet so blockquotes match the frontend card-style design inside Gutenberg.
+* Added Customizer Help Guide link on the Accepta dashboard welcome page.
+* Updated default social icons to X (fab fa-x-twitter) and refreshed Font Awesome brands webfont assets.
+* Footer widget heading underlines and accents now follow the Global Primary Color from the Customizer.
+* Fixed entry content button links so .wp-block-button__link and .wp-element-button keep white text on primary backgrounds.
+* Fixed blockquote styling mismatch between the block editor and the live site.
+* Fixed container side padding so horizontal spacing appears below the combined container width breakpoint.
+* Improved Media & Text block content alignment by removing default left padding.
+* Fixed mobile header social links display.
 
 = 1.0.8 - 2026-06-18 =
 * Added theme.json with a brand color palette, Outfit typography, spacing scale, layout widths, and block editor styles for buttons, links, headings, quotes, and separators.
@@ -138,6 +153,9 @@ For support, feature requests, and bug reports, please visit:
 https://wpdino.com
 
 == Upgrade Notice ==
+
+= 1.1.0 =
+Accepta Lite 1.1.0 adds DinoFolio portfolio support, scrolled header logo, improved footer widgets, block editor quote styling, and Customizer/dashboard enhancements.
 
 = 1.0.0 =
 Initial release of Accepta theme. Enjoy building beautiful websites!

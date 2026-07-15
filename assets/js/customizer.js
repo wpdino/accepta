@@ -1647,9 +1647,9 @@
 				css += '.site-header:not(.scrolled) .header-social-icons .social-icon .social-icon-svg { filter: brightness(0) invert(1); }';
 				css += '.site-header:not(.scrolled) .header-search-toggle { border-color: ' + transparentBorderColor + '; }';
 				
-				// Remove body padding when overlay is enabled
+				// Overlay header: clear body offset, keep hero content below absolute header
 				css += 'body:not(.has-sticky-header) { padding-top: 0; }';
-				css += '.accepta-hero-section { margin-top: 0; padding-top: 0; }';
+				css += '.accepta-hero-section { margin-top: 0; padding-top: var(--header-height, 5.5rem); box-sizing: border-box; }';
 				css += '.site-content { margin-top: 0; }';
 			} else {
 				// Reset overlay styles. Use body.accepta-has-hero prefix when on hero page so we override PHP-generated overlay CSS (same specificity, our style comes later).

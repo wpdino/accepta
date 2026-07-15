@@ -259,3 +259,18 @@
 	}
 }
 
+// Overlay header: keep hero content clear of absolute header (esp. mobile / top alignment).
+body.accepta-has-hero {
+	.accepta-hero-section {
+		padding-top: var(--header-height, 5.5rem);
+		box-sizing: border-box;
+	}
+
+	@media screen and (max-width: 768px) {
+		.accepta-hero-content-wrapper {
+			padding-top: 28px;
+			padding-bottom: 48px;
+		}
+	}
+}
+

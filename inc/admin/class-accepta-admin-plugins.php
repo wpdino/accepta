@@ -79,6 +79,13 @@ class Accepta_Admin_Plugins {
                 'icon' => '',
                 'required' => false,
             ),
+            'dinofolio' => array(
+                'name' => 'DinoFolio',
+                'slug' => 'dinofolio',
+                'description' => esc_html__( 'Add a portfolio custom post type with grid, masonry, and list layouts. Works with the block editor, Elementor, WPBakery, and shortcodes.', 'accepta' ),
+                'icon' => '',
+                'required' => false,
+            ),
             'contact-form-7' => array(
                 'name' => 'Contact Form 7',
                 'slug' => 'contact-form-7',

@@ -1887,22 +1887,22 @@ body.has-sticky-header {
     display: inline-flex !important;
     position: absolute;
     top: 50%;
-    right: 52px;
+    right: 40px;
     transform: translateY(-50%);
     margin: 0 !important;
     z-index: 100002;
   }
   .header-content.has-header-social-icons .header-search-toggle {
-    right: 12px !important;
+    right: 0 !important;
   }
   .header-content.has-header-social-icons #site-navigation.main-navigation .menu-toggle {
-    right: 92px !important;
+    right: 80px !important;
   }
   .header-content.has-header-social-icons .header-social-icons {
     display: none !important;
     position: absolute;
     top: calc(100% + 10px);
-    right: 12px;
+    right: 0;
     z-index: 100003;
     margin: 0;
     padding: 10px;
@@ -2300,14 +2300,14 @@ body.accepta-mobile-menu-open {
     box-shadow: none !important;
     position: absolute;
     top: 50%;
-    right: 52px;
+    right: 40px;
     transform: translateY(-50%);
     z-index: 100002;
   }
   .header-content .header-search-toggle {
     position: absolute;
     top: 50%;
-    right: 12px;
+    right: 0;
     transform: translateY(-50%);
     margin: 0 !important;
     z-index: 100002;
@@ -4654,6 +4654,17 @@ img.aligncenter,
   .accepta-hero-section .accepta-hero-content-wrapper .accepta-hero-content .accepta-hero-button {
     padding: 8px 20px;
     font-size: 13px;
+  }
+}
+
+body.accepta-has-hero .accepta-hero-section {
+  padding-top: var(--header-height, 5.5rem);
+  box-sizing: border-box;
+}
+@media screen and (max-width: 768px) {
+  body.accepta-has-hero .accepta-hero-content-wrapper {
+    padding-top: 28px;
+    padding-bottom: 48px;
   }
 }
 
