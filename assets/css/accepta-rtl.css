@@ -395,6 +395,14 @@ h5,
 h6 {
   clear: both;
   font-weight: 400;
+  overflow-wrap: break-word;
+}
+
+.entry-content > :first-child,
+.wp-block-group > :first-child,
+.wp-block-column > :first-child,
+.wp-block-media-text__content > :first-child {
+  margin-top: 0;
 }
 
 p {
@@ -413,7 +421,7 @@ blockquote,
 .wp-block-quote {
   position: relative;
   margin: 2em 0;
-  padding: 2em 3em 2em 2em;
+  padding: 4em 3em 2em 2em;
   border: none;
   background: linear-gradient(-135deg, color-mix(in srgb, var(--accepta-primary-color, #6F9C50) 6%, transparent) 0%, color-mix(in srgb, var(--accepta-primary-color, #6F9C50) 18%, white) 100%);
   border-radius: 10px 0 0 10px;
@@ -429,8 +437,8 @@ blockquote::before,
 .wp-block-quote::before {
   content: "“";
   position: absolute;
-  right: 0.35em;
-  top: -0.05em;
+  right: 3rem;
+  top: 20px;
   font-family: Georgia, "Times New Roman", serif;
   font-size: 6em;
   line-height: 1;
@@ -591,6 +599,28 @@ table {
 .comment-content a:focus,
 .comment-content a:active {
   color: var(--accepta-link-hover-color, color-mix(in srgb, var(--accepta-primary-color, #6F9C50) 80%, black));
+}
+
+.entry-content a.wp-element-button,
+.entry-content a.wp-block-button__link,
+.entry-content a.has-primary-background-color,
+.entry-content .has-primary-background-color a {
+  color: #fff;
+}
+.entry-content a.wp-element-button:visited, .entry-content a.wp-element-button:hover, .entry-content a.wp-element-button:focus, .entry-content a.wp-element-button:active,
+.entry-content a.wp-block-button__link:visited,
+.entry-content a.wp-block-button__link:hover,
+.entry-content a.wp-block-button__link:focus,
+.entry-content a.wp-block-button__link:active,
+.entry-content a.has-primary-background-color:visited,
+.entry-content a.has-primary-background-color:hover,
+.entry-content a.has-primary-background-color:focus,
+.entry-content a.has-primary-background-color:active,
+.entry-content .has-primary-background-color a:visited,
+.entry-content .has-primary-background-color a:hover,
+.entry-content .has-primary-background-color a:focus,
+.entry-content .has-primary-background-color a:active {
+  color: #fff;
 }
 
 a:focus {
@@ -1865,22 +1895,22 @@ body.has-sticky-header {
     display: inline-flex !important;
     position: absolute;
     top: 50%;
-    left: 52px;
+    left: 40px;
     transform: translateY(-50%);
     margin: 0 !important;
     z-index: 100002;
   }
   .header-content.has-header-social-icons .header-search-toggle {
-    left: 12px !important;
+    left: 0 !important;
   }
   .header-content.has-header-social-icons #site-navigation.main-navigation .menu-toggle {
-    left: 92px !important;
+    left: 80px !important;
   }
   .header-content.has-header-social-icons .header-social-icons {
     display: none !important;
     position: absolute;
     top: calc(100% + 10px);
-    left: 12px;
+    left: 0;
     z-index: 100003;
     margin: 0;
     padding: 10px;
@@ -2278,14 +2308,14 @@ body.accepta-mobile-menu-open {
     box-shadow: none !important;
     position: absolute;
     top: 50%;
-    left: 52px;
+    left: 40px;
     transform: translateY(-50%);
     z-index: 100002;
   }
   .header-content .header-search-toggle {
     position: absolute;
     top: 50%;
-    left: 12px;
+    left: 0;
     transform: translateY(-50%);
     margin: 0 !important;
     z-index: 100002;
@@ -2806,9 +2836,12 @@ body:not(.accepta-page-template-full-width):not(.accepta-front-page-full-width).
   opacity: 0.7;
 }
 
-/* Front page icon boxes (starter content) */
+/* Front page icon boxes and feature cards (starter content).
+ * Shared by the frontend bundle and the block editor stylesheet so the
+ * editor preview matches what visitors see.
+ */
 .accepta-icon-box-icon {
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
   font-size: 2rem;
   line-height: 1;
   color: var(--accepta-primary-color, #6F9C50);
@@ -2817,6 +2850,66 @@ body:not(.accepta-page-template-full-width):not(.accepta-front-page-full-width).
   display: inline-block;
 }
 
+.accepta-icon-box-svg {
+  display: block;
+  width: 2.5rem;
+  height: 2.5rem;
+  max-width: 2.5rem;
+}
+
+.accepta-icon-box-svg > * {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+
+.accepta-feature-card {
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1.75rem;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.accepta-feature-card:hover, .accepta-feature-card:focus-within {
+  border-color: #cbd5e1;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+.accepta-feature-card:hover .accepta-icon-box-svg > *, .accepta-feature-card:focus-within .accepta-icon-box-svg > * {
+  animation: accepta-icon-draw 0.7s ease both;
+}
+.accepta-feature-card:hover .accepta-icon-box-svg > :nth-child(2), .accepta-feature-card:focus-within .accepta-icon-box-svg > :nth-child(2) {
+  animation-delay: 0.08s;
+}
+.accepta-feature-card:hover .accepta-icon-box-svg > :nth-child(3), .accepta-feature-card:focus-within .accepta-icon-box-svg > :nth-child(3) {
+  animation-delay: 0.16s;
+}
+.accepta-feature-card:hover .accepta-icon-box-svg > :nth-child(4), .accepta-feature-card:focus-within .accepta-icon-box-svg > :nth-child(4) {
+  animation-delay: 0.24s;
+}
+.accepta-feature-card h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+.accepta-feature-card p {
+  font-size: 0.9375rem;
+  color: #64748b;
+}
+.accepta-feature-card p:last-child {
+  margin-bottom: 0;
+}
+
+@keyframes accepta-icon-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .accepta-feature-card:hover .accepta-icon-box-svg > *,
+  .accepta-feature-card:focus-within .accepta-icon-box-svg > * {
+    animation: none;
+  }
+}
 /*--------------------------------------------------------------
 # 404 Page
 --------------------------------------------------------------*/
@@ -3757,6 +3850,10 @@ body.search .no-results.not-found .search-form {
   display: inline-block;
 }
 
+.wp-block-media-text > .wp-block-media-text__content {
+  padding-right: 0;
+}
+
 /* Captions
 --------------------------------------------- */
 .wp-caption {
@@ -4038,7 +4135,7 @@ img.aligncenter,
   right: 0;
   width: 25%;
   height: 2px;
-  background-color: #6F9C50;
+  background-color: var(--accepta-primary-color, #6F9C50);
 }
 .footer-widget-area .widget .wp-block-heading {
   color: #ffffff;
@@ -4046,7 +4143,7 @@ img.aligncenter,
   margin-bottom: 20px;
   padding-bottom: 10px;
   font-size: 1.2em;
-  font-weight: 600;
+  font-weight: 400;
   position: relative;
 }
 .footer-widget-area .widget .wp-block-heading::after {
@@ -4056,7 +4153,7 @@ img.aligncenter,
   right: 0;
   width: 25%;
   height: 2px;
-  background-color: #6F9C50;
+  background-color: var(--accepta-primary-color, #6F9C50);
 }
 .footer-widget-area .widget ul {
   padding-right: 0;
@@ -4079,7 +4176,7 @@ img.aligncenter,
   font-weight: 300;
 }
 .footer-widget-area .widget ul li a:hover {
-  color: #6F9C50;
+  color: var(--accepta-primary-color, #6F9C50);
   padding-right: 5px;
 }
 .footer-widget-area .widget ul li a::before {
@@ -4088,7 +4185,7 @@ img.aligncenter,
   font-weight: 900;
   margin-left: 8px;
   font-size: 0.85em;
-  color: #6F9C50;
+  color: var(--accepta-primary-color, #6F9C50);
   opacity: 0.7;
 }
 .footer-widget-area .widget p {
@@ -4164,7 +4261,7 @@ img.aligncenter,
   font-size: 0.95em;
 }
 .footer-widget-area .widget .recent-posts-widget li .post-info .post-title:hover {
-  color: #6F9C50;
+  color: var(--accepta-primary-color, #6F9C50);
 }
 .footer-widget-area .widget .recent-posts-widget li .post-info .post-date {
   font-size: 0.8em;
@@ -4175,7 +4272,7 @@ img.aligncenter,
 .footer-widget-area .widget .recent-posts-widget li .post-info .post-date i {
   margin-left: 5px;
   font-size: 0.9em;
-  color: #6F9C50;
+  color: var(--accepta-primary-color, #6F9C50);
 }
 .footer-widget-area .widget .tagcloud a {
   display: inline-block;
@@ -4188,7 +4285,7 @@ img.aligncenter,
   transition: all 0.3s ease;
 }
 .footer-widget-area .widget .tagcloud a:hover {
-  background-color: #6F9C50;
+  background-color: var(--accepta-primary-color, #6F9C50);
   color: white;
   transform: translateY(-2px);
 }
@@ -4210,13 +4307,13 @@ img.aligncenter,
   background-color: rgba(0, 0, 0, 0.2);
 }
 .footer-widget-area .widget .calendar_wrap table td a {
-  background-color: #6F9C50;
+  background-color: var(--accepta-primary-color, #6F9C50);
   color: white;
   display: block;
   border-radius: 2px;
 }
 .footer-widget-area .widget .calendar_wrap table td a:hover {
-  background-color: rgb(136.8855932203, 179.406779661, 107.593220339);
+  background-color: color-mix(in srgb, var(--accepta-primary-color, #6F9C50) 85%, white);
 }
 .footer-widget-area .widget.widget_search .wp-block-search .wp-block-search__label {
   color: #ffffff;
@@ -4234,7 +4331,7 @@ img.aligncenter,
   right: 0;
   width: 25%;
   height: 2px;
-  background-color: #6F9C50;
+  background-color: var(--accepta-primary-color, #6F9C50);
 }
 .footer-widget-area .widget.widget_search .search-form {
   display: flex;
@@ -4371,13 +4468,13 @@ img.aligncenter,
   color: rgba(255, 255, 255, 0.7);
 }
 .site-info a {
-  color: #6F9C50;
+  color: var(--accepta-primary-color, #6F9C50);
   text-decoration: none;
   transition: all 0.3s ease;
 }
 .site-info a:hover {
   text-decoration: underline;
-  color: rgb(136.8855932203, 179.406779661, 107.593220339);
+  color: color-mix(in srgb, var(--accepta-primary-color, #6F9C50) 85%, white);
 }
 .site-info .sep {
   padding: 0 10px;
@@ -4393,13 +4490,13 @@ img.aligncenter,
   padding: 5px 0;
 }
 .footer-copyright a {
-  color: #6F9C50;
+  color: var(--accepta-primary-color, #6F9C50);
   text-decoration: none;
   transition: all 0.3s ease;
 }
 .footer-copyright a:hover {
   text-decoration: underline;
-  color: rgb(136.8855932203, 179.406779661, 107.593220339);
+  color: color-mix(in srgb, var(--accepta-primary-color, #6F9C50) 85%, white);
 }
 .footer-copyright:empty::before {
   content: " ";
@@ -4628,6 +4725,17 @@ img.aligncenter,
   .accepta-hero-section .accepta-hero-content-wrapper .accepta-hero-content .accepta-hero-button {
     padding: 8px 20px;
     font-size: 13px;
+  }
+}
+
+body.accepta-has-hero .accepta-hero-section {
+  padding-top: var(--header-height, 5.5rem);
+  box-sizing: border-box;
+}
+@media screen and (max-width: 768px) {
+  body.accepta-has-hero .accepta-hero-content-wrapper {
+    padding-top: 28px;
+    padding-bottom: 48px;
   }
 }
 

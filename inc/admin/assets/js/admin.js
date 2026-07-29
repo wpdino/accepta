@@ -6,6 +6,32 @@
 
     // Initialize when the DOM is ready
     $(document).ready(function() {
+        function acceptaMarkPluginActive($item) {
+            var activeLabel = (typeof accepta_plugins_vars !== 'undefined' && accepta_plugins_vars.active)
+                ? accepta_plugins_vars.active
+                : 'Active';
+            $item
+                .removeClass('accepta-plugin-item--missing accepta-plugin-item--installed')
+                .addClass('accepta-plugin-item--active');
+            $item.find('.accepta-plugin-checkbox-label').replaceWith(
+                '<span class="accepta-plugin-checkbox-label accepta-plugin-checkbox-label--disabled" aria-hidden="true">' +
+                '<span class="accepta-plugin-checkbox-box accepta-plugin-checkbox-box--checked"></span>' +
+                '</span>'
+            );
+            $item.find('.accepta-plugin-state')
+                .removeClass('accepta-plugin-state--missing accepta-plugin-state--installed')
+                .addClass('accepta-plugin-state--active')
+                .find('.accepta-plugin-state-label')
+                .text(activeLabel);
+            var $actions = $item.find('.accepta-plugin-actions');
+            if ($actions.find('.accepta-plugin-status.required').length) {
+                $actions.find('.js-accepta-plugin-btn, .accepta-plugin-loading-state').remove();
+            } else {
+                $actions.remove();
+            }
+            updateInstallSelectedButtonState();
+        }
+
         // Install/Activate plugin via AJAX (plugins page)
         $(document).on('click', '.js-accepta-plugin-btn', function(e) {
             var $button = $(this);
@@ -41,14 +67,10 @@
             }).done(function(response) {
                 $item.removeClass('accepta-plugin-item--loading');
                 $item.find('.accepta-plugin-loading-state').hide().attr('aria-hidden', 'true');
-                $button.show().prop('disabled', false);
                 if (response.success) {
-                    $item.addClass('accepta-plugin-item--active');
-                    $button.text(accepta_plugins_vars.active).addClass('button-disabled accepta-plugin-btn--active').prop('disabled', true);
-                    $item.find('.accepta-plugin-checkbox-label').remove();
-                    updateInstallSelectedButtonState();
+                    acceptaMarkPluginActive($item);
                 } else {
-                    $button.text(initialText);
+                    $button.show().prop('disabled', false).text(initialText);
                     $error.html('<p class="accepta-plugin-error">' + (response.data || '') + '</p>');
                 }
             }).fail(function(xhr, status, err) {
@@ -106,13 +128,10 @@
             }).done(function(response) {
                 $item.removeClass('accepta-plugin-item--loading');
                 $item.find('.accepta-plugin-loading-state').hide().attr('aria-hidden', 'true');
-                $button.show().prop('disabled', false);
                 if (response.success) {
-                    $item.addClass('accepta-plugin-item--active');
-                    $button.text(accepta_plugins_vars.active).addClass('button-disabled accepta-plugin-btn--active').prop('disabled', true);
-                    $item.find('.accepta-plugin-checkbox-label').remove();
+                    acceptaMarkPluginActive($item);
                 } else {
-                    $button.text(initialText);
+                    $button.show().prop('disabled', false).text(initialText);
                     $error.html('<p class="accepta-plugin-error">' + (response.data || '') + '</p>');
                 }
                 acceptaInstallPluginsBulk(slugs, index + 1, $allButton);

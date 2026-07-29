@@ -79,6 +79,15 @@ $menus = $admin->get_module('menus');
                     </p>
                 </div>
 
+                <div class="accepta-feature-section accepta-plugins-promo">
+                    <h3><?php esc_html_e( 'Recommended Plugins', 'accepta' ); ?></h3>
+                    <p><?php esc_html_e( 'Add Elementor, DinoFolio, Contact Form 7, WooCommerce, and more to extend Accepta.', 'accepta' ); ?></p>
+                    <a href="<?php echo esc_url( admin_url( 'admin.php?page=accepta-plugins' ) ); ?>" class="button button-primary accepta-button-with-icon">
+                        <span class="accepta-button-label"><?php esc_html_e( 'Install Recommended Plugins', 'accepta' ); ?></span>
+                        <span class="dashicons dashicons-admin-plugins" aria-hidden="true"></span>
+                    </a>
+                </div>
+
             </div>
             
             <div class="accepta-welcome-column">
@@ -152,41 +161,37 @@ $menus = $admin->get_module('menus');
             </div>
         </div>
         
-        <div class="accepta-welcome-actions">
-            <a href="<?php echo esc_url( admin_url( 'admin.php?page=accepta-plugins' ) ); ?>" class="button button-primary"><?php esc_html_e( 'Install Recommended Plugins', 'accepta' ); ?></a>
-        </div>
-        
         <div class="accepta-next-steps">
             <h2><?php esc_html_e( 'Next Steps', 'accepta' ); ?></h2>
             <p><?php esc_html_e( 'Follow these steps to get the most out of your new Accepta theme:', 'accepta' ); ?></p>
             
             <div class="accepta-steps-grid">
                 <div class="accepta-step-item">
-                    <span class="step-number">1</span>
+                    <span class="step-label"><?php esc_html_e( 'Step 01', 'accepta' ); ?></span>
                     <h3><?php esc_html_e( 'Essential Setup', 'accepta' ); ?></h3>
                     <p><?php esc_html_e( 'Configure your site logo, colors, and basic settings to match your brand.', 'accepta' ); ?></p>
                     <a href="<?php echo esc_url( admin_url( 'customize.php?autofocus[section]=title_tagline' ) ); ?>" class="button"><?php esc_html_e( 'Site Identity', 'accepta' ); ?></a>
                 </div>
                 
                 <div class="accepta-step-item">
-                    <span class="step-number">2</span>
+                    <span class="step-label"><?php esc_html_e( 'Step 02', 'accepta' ); ?></span>
                     <h3><?php esc_html_e( 'Navigation Setup', 'accepta' ); ?></h3>
                     <p><?php esc_html_e( 'Create and configure your site\'s navigation menus for optimal user experience.', 'accepta' ); ?></p>
                     <a href="<?php echo esc_url( admin_url( 'nav-menus.php' ) ); ?>" class="button"><?php esc_html_e( 'Manage Menus', 'accepta' ); ?></a>
                 </div>
                 
                 <div class="accepta-step-item">
-                    <span class="step-number">3</span>
+                    <span class="step-label"><?php esc_html_e( 'Step 03', 'accepta' ); ?></span>
                     <h3><?php esc_html_e( 'Widget Areas', 'accepta' ); ?></h3>
                     <p><?php esc_html_e( 'Add content to your sidebar and footer areas through the Widgets screen.', 'accepta' ); ?></p>
                     <a href="<?php echo esc_url( admin_url( 'widgets.php' ) ); ?>" class="button"><?php esc_html_e( 'Add Widgets', 'accepta' ); ?></a>
                 </div>
                 
                 <div class="accepta-step-item">
-                    <span class="step-number">4</span>
+                    <span class="step-label"><?php esc_html_e( 'Step 04', 'accepta' ); ?></span>
                     <h3><?php esc_html_e( 'Advanced Options', 'accepta' ); ?></h3>
                     <p><?php esc_html_e( 'Explore all customization options to fine-tune your site to perfection.', 'accepta' ); ?></p>
-                    <a href="<?php echo esc_url( admin_url( 'customize.php' ) ); ?>" class="button button-primary button-hero"><?php esc_html_e( 'Customize Your Site', 'accepta' ); ?></a>
+                    <a href="<?php echo esc_url( admin_url( 'customize.php' ) ); ?>" class="button button-primary"><?php esc_html_e( 'Customize Your Site', 'accepta' ); ?></a>
                 </div>
             </div>
         </div>

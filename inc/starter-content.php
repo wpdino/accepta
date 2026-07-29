@@ -14,6 +14,31 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
+ * Return an inline stroke-based SVG icon for the starter content feature boxes.
+ *
+ * Every shape carries pathLength="1" so a single stroke-dashoffset animation
+ * can redraw icons of differing path lengths at the same rate.
+ *
+ * @param string $name Icon key: grid, layers or sliders.
+ * @return string Inline SVG markup, or an empty string for unknown keys.
+ */
+function accepta_get_starter_icon_svg( $name ) {
+	$shapes = array(
+		'grid'    => '<rect x="3" y="3" width="7.5" height="7.5" rx="1.5" pathLength="1"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5" pathLength="1"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5" pathLength="1"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.5" pathLength="1"/>',
+		'layers'  => '<path d="M12 2.5 2.5 7.25 12 12l9.5-4.75L12 2.5Z" pathLength="1"/><path d="m2.5 12.75 9.5 4.75 9.5-4.75" pathLength="1"/><path d="m2.5 17.5 9.5 4.75 9.5-4.75" pathLength="1"/>',
+		'sliders' => '<path d="M4 6h9M17 6h3M4 12h3M11 12h9M4 18h9M17 18h3" pathLength="1"/><circle cx="15" cy="6" r="2" pathLength="1"/><circle cx="9" cy="12" r="2" pathLength="1"/><circle cx="15" cy="18" r="2" pathLength="1"/>',
+	);
+
+	if ( ! isset( $shapes[ $name ] ) ) {
+		return '';
+	}
+
+	// width/height are set as attributes as well as in CSS: an SVG with only a
+	// viewBox stretches to fill its container wherever the stylesheet is absent.
+	return '<svg class="accepta-icon-box-svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">' . $shapes[ $name ] . '</svg>';
+}
+
+/**
  * Return the front page starter content (block markup).
  * Uses theme hero image (accepta-hero-bg.jpg – free to use, from https://pxhere.com/en/photo/306 ).
  * Add assets/images/accepta-hero-bg-portrait.jpg for a portrait crop in the media-text section.
@@ -29,8 +54,8 @@ function accepta_get_front_page_starter_content() {
 					<!-- wp:group {"layout":{"type":"constrained"}} -->
 					<div class="wp-block-group">
 
-					<!-- wp:heading {"textAlign":"center","fontSize":"large"} -->
-					<h2 class="wp-block-heading has-text-align-center has-large-font-size">' . esc_html_x( 'Build Bold. Build Beautiful.', 'Theme starter content', 'accepta' ) . '</h2>
+					<!-- wp:heading {"textAlign":"center"} -->
+					<h2 class="wp-block-heading has-text-align-center">' . esc_html_x( 'Build Bold. Build Beautiful.', 'Theme starter content', 'accepta' ) . '</h2>
 					<!-- /wp:heading -->
 
 					<!-- wp:paragraph {"align":"center"} -->
@@ -41,8 +66,8 @@ function accepta_get_front_page_starter_content() {
 					<div style="height:30px" aria-hidden="true" class="wp-block-spacer"></div>
 					<!-- /wp:spacer -->
 
-					<!-- wp:heading {"level":3,"fontSize":"medium"} -->
-					<h3 class="wp-block-heading has-medium-font-size">' . esc_html_x( 'Get started', 'Theme starter content', 'accepta' ) . '</h3>
+					<!-- wp:heading {"level":3} -->
+					<h3 class="wp-block-heading">' . esc_html_x( 'Get started', 'Theme starter content', 'accepta' ) . '</h3>
 					<!-- /wp:heading -->
 
 					<!-- wp:paragraph -->
@@ -53,59 +78,59 @@ function accepta_get_front_page_starter_content() {
 					<div style="height:50px" aria-hidden="true" class="wp-block-spacer"></div>
 					<!-- /wp:spacer -->
 
-					<!-- wp:heading {"textAlign":"center","level":2,"fontSize":"large"} -->
-					<h2 class="wp-block-heading has-text-align-center has-large-font-size">' . esc_html_x( 'Why Choose Accepta', 'Theme starter content', 'accepta' ) . '</h2>
+					<!-- wp:heading {"textAlign":"center","level":2} -->
+					<h2 class="wp-block-heading has-text-align-center">' . esc_html_x( 'Why Choose Accepta', 'Theme starter content', 'accepta' ) . '</h2>
 					<!-- /wp:heading -->
 
 					<!-- wp:spacer {"height":"24px"} -->
 					<div style="height:24px" aria-hidden="true" class="wp-block-spacer"></div>
 					<!-- /wp:spacer -->
 
-					<!-- wp:columns {"style":{"spacing":{"blockGap":{"left":"2rem"}}}} -->
-					<div class="wp-block-columns">
-					<!-- wp:column -->
-					<div class="wp-block-column">
-					<!-- wp:html -->
-					<div class="accepta-icon-box-icon"><i class="fas fa-th-large" aria-hidden="true"></i></div>
-					<!-- /wp:html -->
-					<!-- wp:heading {"level":3,"fontSize":"medium"} -->
-					<h3 class="wp-block-heading has-medium-font-size">' . esc_html_x( 'Flexible &amp; Modern', 'Theme starter content', 'accepta' ) . '</h3>
-					<!-- /wp:heading -->
-					<!-- wp:paragraph -->
-					<p>' . esc_html_x( 'Clean layout and responsive design that works on any device. Built with the block editor so you can rearrange and style content easily.', 'Theme starter content', 'accepta' ) . '</p>
-					<!-- /wp:paragraph -->
-					</div>
-					<!-- /wp:column -->
+				<!-- wp:columns {"style":{"spacing":{"blockGap":{"left":"1.5rem"}}}} -->
+				<div class="wp-block-columns">
+				<!-- wp:column {"className":"accepta-feature-card"} -->
+				<div class="wp-block-column accepta-feature-card">
+				<!-- wp:html -->
+				<div class="accepta-icon-box-icon">' . accepta_get_starter_icon_svg( 'grid' ) . '</div>
+				<!-- /wp:html -->
+				<!-- wp:heading {"level":3} -->
+				<h3 class="wp-block-heading">' . esc_html_x( 'Flexible &amp; Modern', 'Theme starter content', 'accepta' ) . '</h3>
+				<!-- /wp:heading -->
+				<!-- wp:paragraph -->
+				<p>' . esc_html_x( 'Clean layout and responsive design that works on any device. Built with the block editor so you can rearrange and style content easily.', 'Theme starter content', 'accepta' ) . '</p>
+				<!-- /wp:paragraph -->
+				</div>
+				<!-- /wp:column -->
 
-					<!-- wp:column -->
-					<div class="wp-block-column">
-					<!-- wp:html -->
-					<div class="accepta-icon-box-icon"><i class="fas fa-cubes" aria-hidden="true"></i></div>
-					<!-- /wp:html -->
-					<!-- wp:heading {"level":3,"fontSize":"medium"} -->
-					<h3 class="wp-block-heading has-medium-font-size">' . esc_html_x( 'Elementor Ready', 'Theme starter content', 'accepta' ) . '</h3>
-					<!-- /wp:heading -->
-					<!-- wp:paragraph -->
-					<p>' . esc_html_x( 'Use Elementor for drag-and-drop page building. The theme integrates with popular page builders so you can create custom layouts without code.', 'Theme starter content', 'accepta' ) . '</p>
-					<!-- /wp:paragraph -->
-					</div>
-					<!-- /wp:column -->
+				<!-- wp:column {"className":"accepta-feature-card"} -->
+				<div class="wp-block-column accepta-feature-card">
+				<!-- wp:html -->
+				<div class="accepta-icon-box-icon">' . accepta_get_starter_icon_svg( 'layers' ) . '</div>
+				<!-- /wp:html -->
+				<!-- wp:heading {"level":3} -->
+				<h3 class="wp-block-heading">' . esc_html_x( 'Elementor Ready', 'Theme starter content', 'accepta' ) . '</h3>
+				<!-- /wp:heading -->
+				<!-- wp:paragraph -->
+				<p>' . esc_html_x( 'Use Elementor for drag-and-drop page building. The theme integrates with popular page builders so you can create custom layouts without code.', 'Theme starter content', 'accepta' ) . '</p>
+				<!-- /wp:paragraph -->
+				</div>
+				<!-- /wp:column -->
 
-					<!-- wp:column -->
-					<div class="wp-block-column">
-					<!-- wp:html -->
-					<div class="accepta-icon-box-icon"><i class="fas fa-sliders-h" aria-hidden="true"></i></div>
-					<!-- /wp:html -->
-					<!-- wp:heading {"level":3,"fontSize":"medium"} -->
-					<h3 class="wp-block-heading has-medium-font-size">' . esc_html_x( 'Fully Customizable', 'Theme starter content', 'accepta' ) . '</h3>
-					<!-- /wp:heading -->
-					<!-- wp:paragraph -->
-					<p>' . esc_html_x( 'Control hero, header, colors, and typography from the Theme Customizer. No coding required to match your brand.', 'Theme starter content', 'accepta' ) . '</p>
-					<!-- /wp:paragraph -->
-					</div>
-					<!-- /wp:column -->
-					</div>
-					<!-- /wp:columns -->
+				<!-- wp:column {"className":"accepta-feature-card"} -->
+				<div class="wp-block-column accepta-feature-card">
+				<!-- wp:html -->
+				<div class="accepta-icon-box-icon">' . accepta_get_starter_icon_svg( 'sliders' ) . '</div>
+				<!-- /wp:html -->
+				<!-- wp:heading {"level":3} -->
+				<h3 class="wp-block-heading">' . esc_html_x( 'Fully Customizable', 'Theme starter content', 'accepta' ) . '</h3>
+				<!-- /wp:heading -->
+				<!-- wp:paragraph -->
+				<p>' . esc_html_x( 'Control hero, header, colors, and typography from the Theme Customizer. No coding required to match your brand.', 'Theme starter content', 'accepta' ) . '</p>
+				<!-- /wp:paragraph -->
+				</div>
+				<!-- /wp:column -->
+				</div>
+				<!-- /wp:columns -->
 
 					<!-- wp:spacer {"height":"50px"} -->
 					<div style="height:50px" aria-hidden="true" class="wp-block-spacer"></div>
@@ -114,8 +139,8 @@ function accepta_get_front_page_starter_content() {
 					<!-- wp:media-text {"mediaPosition":"right","mediaLink":"' . esc_url( $media_img ) . '","mediaType":"image","mediaWidth":45} -->
 					<div class="wp-block-media-text has-media-on-the-right is-stacked-on-mobile" style="grid-template-columns:auto 45%">
 					<div class="wp-block-media-text__content">
-					<!-- wp:heading {"level":2,"fontSize":"large"} -->
-					<h2 class="wp-block-heading has-large-font-size">' . esc_html_x( 'Designed for Your Success', 'Theme starter content', 'accepta' ) . '</h2>
+					<!-- wp:heading {"level":2} -->
+					<h2 class="wp-block-heading">' . esc_html_x( 'Designed for Your Success', 'Theme starter content', 'accepta' ) . '</h2>
 					<!-- /wp:heading -->
 					<!-- wp:paragraph -->
 					<p>' . esc_html_x( 'Accepta gives you a professional starting point for your website. Customize the hero image, add your own content, and launch with confidence. The theme is built for clarity and performance.', 'Theme starter content', 'accepta' ) . '</p>
@@ -129,22 +154,34 @@ function accepta_get_front_page_starter_content() {
 					<div style="height:50px" aria-hidden="true" class="wp-block-spacer"></div>
 					<!-- /wp:spacer -->
 
-					<!-- wp:group {"style":{"spacing":{"padding":{"top":"2rem","bottom":"2rem","left":"2rem","right":"2rem"}}},"layout":{"type":"constrained"}} -->
-					<div class="wp-block-group" style="padding-top:2rem;padding-right:2rem;padding-bottom:2rem;padding-left:2rem">
-					<!-- wp:quote {"className":"is-style-default"} -->
-					<blockquote class="wp-block-quote is-style-default">
-					<!-- wp:paragraph -->
-					<p>' . esc_html_x( 'Accepta made it easy to launch our site. Clean design, easy to customize, and it looks great on every device.', 'Theme starter content', 'accepta' ) . '</p>
-					<!-- /wp:paragraph -->
-					<cite>' . esc_html_x( '— Happy Customer', 'Theme starter content testimonial citation', 'accepta' ) . '</cite>
-					</blockquote>
-					<!-- /wp:quote -->
-					</div>
-					<!-- /wp:group -->
+				<!-- wp:group {"style":{"spacing":{"padding":{"top":"2rem","bottom":"2rem","left":"2rem","right":"2rem"}}},"layout":{"type":"constrained"}} -->
+				<div class="wp-block-group" style="padding-top:2rem;padding-right:2rem;padding-bottom:2rem;padding-left:2rem">
+				<!-- wp:quote {"className":"is-style-default"} -->
+				<blockquote class="wp-block-quote is-style-default">
+				<!-- wp:paragraph -->
+				<p>' . esc_html_x( 'Accepta made it easy to launch our site. Clean design, easy to customize, and it looks great on every device.', 'Theme starter content', 'accepta' ) . '</p>
+				<!-- /wp:paragraph -->
+				<cite>' . esc_html_x( '— Happy Customer', 'Theme starter content testimonial citation', 'accepta' ) . '</cite>
+				</blockquote>
+				<!-- /wp:quote -->
+				</div>
+				<!-- /wp:group -->
 
-					<!-- wp:spacer {"height":"40px"} -->
-					<div style="height:40px" aria-hidden="true" class="wp-block-spacer"></div>
-					<!-- /wp:spacer -->
+				<!-- wp:spacer {"height":"40px"} -->
+				<div style="height:40px" aria-hidden="true" class="wp-block-spacer"></div>
+				<!-- /wp:spacer -->
+
+				<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
+				<div class="wp-block-buttons">
+				<!-- wp:button {"style":{"border":{"radius":"8px"},"spacing":{"padding":{"top":"0.875rem","bottom":"0.875rem","left":"2rem","right":"2rem"}}}} -->
+				<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" style="border-radius:8px;padding-top:0.875rem;padding-right:2rem;padding-bottom:0.875rem;padding-left:2rem">' . esc_html_x( 'Get Started Today', 'Theme starter content', 'accepta' ) . '</a></div>
+				<!-- /wp:button -->
+				</div>
+				<!-- /wp:buttons -->
+
+				<!-- wp:spacer {"height":"30px"} -->
+				<div style="height:30px" aria-hidden="true" class="wp-block-spacer"></div>
+				<!-- /wp:spacer -->
 					</div>
 					<!-- /wp:group -->
 				';

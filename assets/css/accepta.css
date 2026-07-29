@@ -395,6 +395,14 @@ h5,
 h6 {
   clear: both;
   font-weight: 400;
+  overflow-wrap: break-word;
+}
+
+.entry-content > :first-child,
+.wp-block-group > :first-child,
+.wp-block-column > :first-child,
+.wp-block-media-text__content > :first-child {
+  margin-top: 0;
 }
 
 p {
@@ -2828,9 +2836,12 @@ body:not(.accepta-page-template-full-width):not(.accepta-front-page-full-width).
   opacity: 0.7;
 }
 
-/* Front page icon boxes (starter content) */
+/* Front page icon boxes and feature cards (starter content).
+ * Shared by the frontend bundle and the block editor stylesheet so the
+ * editor preview matches what visitors see.
+ */
 .accepta-icon-box-icon {
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
   font-size: 2rem;
   line-height: 1;
   color: var(--accepta-primary-color, #6F9C50);
@@ -2839,6 +2850,66 @@ body:not(.accepta-page-template-full-width):not(.accepta-front-page-full-width).
   display: inline-block;
 }
 
+.accepta-icon-box-svg {
+  display: block;
+  width: 2.5rem;
+  height: 2.5rem;
+  max-width: 2.5rem;
+}
+
+.accepta-icon-box-svg > * {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+
+.accepta-feature-card {
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1.75rem;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.accepta-feature-card:hover, .accepta-feature-card:focus-within {
+  border-color: #cbd5e1;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+.accepta-feature-card:hover .accepta-icon-box-svg > *, .accepta-feature-card:focus-within .accepta-icon-box-svg > * {
+  animation: accepta-icon-draw 0.7s ease both;
+}
+.accepta-feature-card:hover .accepta-icon-box-svg > :nth-child(2), .accepta-feature-card:focus-within .accepta-icon-box-svg > :nth-child(2) {
+  animation-delay: 0.08s;
+}
+.accepta-feature-card:hover .accepta-icon-box-svg > :nth-child(3), .accepta-feature-card:focus-within .accepta-icon-box-svg > :nth-child(3) {
+  animation-delay: 0.16s;
+}
+.accepta-feature-card:hover .accepta-icon-box-svg > :nth-child(4), .accepta-feature-card:focus-within .accepta-icon-box-svg > :nth-child(4) {
+  animation-delay: 0.24s;
+}
+.accepta-feature-card h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+.accepta-feature-card p {
+  font-size: 0.9375rem;
+  color: #64748b;
+}
+.accepta-feature-card p:last-child {
+  margin-bottom: 0;
+}
+
+@keyframes accepta-icon-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .accepta-feature-card:hover .accepta-icon-box-svg > *,
+  .accepta-feature-card:focus-within .accepta-icon-box-svg > * {
+    animation: none;
+  }
+}
 /*--------------------------------------------------------------
 # 404 Page
 --------------------------------------------------------------*/
