@@ -93,14 +93,6 @@ function accepta_get_portfolio_hero_image_id( $post_id = 0 ) {
 		return 0;
 	}
 
-	if ( class_exists( 'DinoFolio\Util' ) && \DinoFolio\Util::is_portfolio_gallery_format( $post_id ) ) {
-		$gallery_ids = \DinoFolio\Util::get_portfolio_gallery_image_ids( $post_id );
-
-		if ( ! empty( $gallery_ids ) ) {
-			return (int) $gallery_ids[0];
-		}
-	}
-
 	$featured_display = get_post_meta( $post_id, '_wpdino_featured_image_display', true );
 
 	if ( 'off' === $featured_display ) {
@@ -109,7 +101,19 @@ function accepta_get_portfolio_hero_image_id( $post_id = 0 ) {
 
 	$thumbnail_id = get_post_thumbnail_id( $post_id );
 
-	return $thumbnail_id ? (int) $thumbnail_id : 0;
+	if ( $thumbnail_id ) {
+		return (int) $thumbnail_id;
+	}
+
+	if ( class_exists( 'DinoFolio\Util' ) && \DinoFolio\Util::is_portfolio_gallery_format( $post_id ) ) {
+		$gallery_ids = \DinoFolio\Util::get_portfolio_gallery_image_ids( $post_id );
+
+		if ( ! empty( $gallery_ids ) ) {
+			return (int) $gallery_ids[0];
+		}
+	}
+
+	return 0;
 }
 
 /**
