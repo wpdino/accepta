@@ -1688,6 +1688,13 @@ h1 .accepta-theme-version {
     height: 18px;
 }
 
+.accepta-admin-footer-social .accepta-admin-social-svg {
+    display: block;
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+}
+
 .accepta-admin-footer-left p {
     color: #fff;
     font-size: 14px;

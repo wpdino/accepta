@@ -1,0 +1,301 @@
+/**
+ * Single product style: Shopline
+ *
+ * Opt-in alternative to the default product layout, applied via the
+ * `accepta-product-style-shopline` body class from the Customizer.
+ *
+ * Inspired by the Accepta Shopline demo: portrait gallery on a mist ground,
+ * no frame/shadow, ink-bordered thumbs, confident product title, full-width
+ * primary Add to cart, hairline meta, and underline tabs. Theme primary
+ * replaces the demo's black/rust accents.
+ *
+ * Rules are rooted at `body.accepta-product-style-shopline` so they outrank
+ * the default single-product selectors without !important.
+ */
+
+$wc-sl__text: #2c3e50;
+$wc-sl__muted: #6b7280;
+$wc-sl__hairline: #e5e5e5;
+$wc-sl__mist: #f5f5f5;
+
+body.accepta-product-style-shopline {
+
+	.woocommerce-breadcrumb {
+		margin-bottom: 1.25rem;
+		font-size: 0.85rem;
+		color: $wc-sl__muted;
+	}
+
+	/* Gallery ----------------------------------------------------------- */
+
+	div.product .woocommerce-product-gallery {
+		margin-bottom: 1.5rem;
+	}
+
+	div.product .woocommerce-product-gallery .flex-viewport {
+		margin-bottom: 0.875rem;
+		aspect-ratio: 4 / 5;
+		border: 0;
+		border-radius: 0;
+		background: transparent;
+		box-shadow: none;
+		overflow: hidden;
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+
+	div.product .woocommerce-product-gallery .flex-control-thumbs {
+		gap: 0.625rem;
+
+		li img {
+			border-radius: 0;
+			border: 1px solid transparent;
+			opacity: 1;
+			background: transparent;
+			transition: border-color 0.2s ease;
+
+			&.flex-active {
+				border-color: $wc-sl__text;
+				opacity: 1;
+			}
+		}
+
+		li:hover img {
+			border-color: $wc-sl__hairline;
+		}
+	}
+
+	/* Summary ----------------------------------------------------------- */
+
+	div.product .product_title {
+		margin: 0 0 0.75rem;
+		font-size: clamp(1.8rem, 3vw, 2.3rem);
+		font-weight: 600;
+		letter-spacing: -0.01em;
+		line-height: 1.15;
+		color: $wc-sl__text;
+	}
+
+	div.product .price {
+		margin: 0 0 0.35rem;
+		font-size: 1.5rem;
+		font-weight: 600;
+		color: $wc-sl__text;
+
+		del {
+			font-size: 0.85em;
+			font-weight: 500;
+			color: $wc-sl__muted;
+		}
+
+		ins {
+			text-decoration: none;
+		}
+
+		ins .amount {
+			color: $color__primary;
+		}
+	}
+
+	div.product .woocommerce-product-rating {
+		margin-bottom: 1rem;
+	}
+
+	div.product .woocommerce-product-details__short-description {
+		margin: 1.125rem 0 0;
+		padding: 0;
+		border: 0;
+		font-size: 1rem;
+		line-height: 1.65;
+		color: $wc-sl__muted;
+	}
+
+	div.product .onsale {
+		padding: 0;
+		margin: 0 0 0.75rem;
+		font-size: 0.6875rem;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: $color__primary;
+		background: transparent;
+		border: 0;
+		border-radius: 0;
+	}
+
+	/* Buy row ----------------------------------------------------------- */
+
+	div.product .cart {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: stretch;
+		gap: 0.75rem;
+		margin-top: 1.75rem;
+		margin-bottom: 0;
+	}
+
+	div.product .quantity input {
+		min-height: 2.875rem;
+		width: 4.25rem;
+		border: 1px solid $wc-sl__hairline;
+		border-radius: 0;
+		background: #fff;
+	}
+
+	div.product .single_add_to_cart_button {
+		flex: 1 1 12rem;
+		min-height: 2.875rem;
+		padding: 0.85rem 1.75rem;
+		font-size: 0.8125rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		border-radius: 0;
+		background: $color__primary;
+		color: #fff;
+		transition: background 0.2s ease;
+
+		&:hover {
+			background: $color__green-dark;
+			color: #fff;
+			transform: none;
+		}
+	}
+
+	div.product table.variations {
+		margin-top: 1.5rem;
+
+		.label {
+			font-size: 0.85rem;
+			font-weight: 700;
+		}
+
+		.value select {
+			border-radius: 0;
+			border-color: $wc-sl__hairline;
+			min-height: 2.75rem;
+		}
+	}
+
+	div.product .product_meta {
+		display: grid;
+		gap: 0.625rem;
+		margin-top: 1.875rem;
+		padding-top: 1.375rem;
+		border-top: 1px solid $wc-sl__hairline;
+		font-size: 0.85rem;
+		color: $wc-sl__muted;
+
+		> span {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.5rem;
+			margin: 0;
+		}
+
+		a {
+			color: $wc-sl__text;
+
+			&:hover {
+				color: $color__primary;
+			}
+		}
+	}
+
+	/* Tabs -------------------------------------------------------------- */
+
+	div.product .woocommerce-tabs {
+		margin-top: 3.5rem;
+		padding-top: 0;
+		border-top: 0;
+	}
+
+	div.product .woocommerce-tabs ul.tabs {
+		gap: 0 2rem;
+		margin-bottom: 0;
+		border-bottom: 1px solid $wc-sl__hairline;
+	}
+
+	div.product .woocommerce-tabs ul.tabs li {
+		padding: 0;
+		margin: 0;
+		background: none;
+		border: 0;
+	}
+
+	div.product .woocommerce-tabs ul.tabs li a {
+		position: relative;
+		padding: 0.25rem 0 1rem;
+		margin: 0;
+		font-size: 0.95rem;
+		font-weight: 700;
+		letter-spacing: 0;
+		text-transform: none;
+		color: $wc-sl__muted;
+		border-bottom: 0;
+
+		&::after {
+			content: "";
+			position: absolute;
+			left: 0;
+			right: 0;
+			bottom: -1px;
+			height: 2px;
+			background: $color__primary;
+			transform: scaleX(0);
+			transition: transform 0.3s ease;
+		}
+
+		&:hover {
+			color: $wc-sl__text;
+		}
+	}
+
+	div.product .woocommerce-tabs ul.tabs li.active {
+		background: none;
+	}
+
+	div.product .woocommerce-tabs ul.tabs li.active a {
+		color: $wc-sl__text;
+		border-bottom: 0;
+
+		&::after {
+			transform: scaleX(1);
+		}
+	}
+
+	div.product .woocommerce-tabs .panel {
+		padding: 2rem 0;
+		max-width: 68ch;
+		color: $wc-sl__muted;
+	}
+}
+
+@media screen and (min-width: 768px) {
+
+	body.accepta-product-style-shopline div.product {
+		grid-template-columns: 1.05fr 0.95fr;
+		gap: 3.5rem;
+	}
+
+	body.accepta-product-style-shopline div.product .summary {
+		position: sticky;
+		top: 2rem;
+		padding-top: 0.25rem;
+	}
+
+	body.accepta-product-style-shopline div.product .woocommerce-product-gallery {
+		position: static;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+	body.accepta-product-style-shopline div.product .woocommerce-tabs ul.tabs li a::after {
+		transition: none;
+	}
+}

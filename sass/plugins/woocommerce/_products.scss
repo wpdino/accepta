@@ -86,36 +86,107 @@ $wc__star-yellow: #e6a800;
 
 /**
  * Products loop – card layout (card box), theme styling
+ *
+ * WooCommerce's layout stylesheet floats products and injects ::before/::after
+ * clearfix pseudos. Those pseudos become flex/grid items and leave an empty
+ * first column, so they are disabled here and widths are reset.
  */
 .woocommerce ul.products {
 	margin: 0 0 2rem 0;
 	padding: 0;
 	list-style: none;
-	display: flex;
-	flex-wrap: wrap;
-	gap: 0 0;
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 2rem 1.5rem;
 	clear: both;
+
+	&::before,
+	&::after {
+		content: none !important;
+		display: none !important;
+	}
 }
 
-ul.products::after {
-	content: "";
-	display: table;
-	clear: both;
+@media screen and (min-width: 768px) {
+	.woocommerce ul.products {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 2.25rem 1.75rem;
+	}
+
+	.woocommerce ul.products.columns-2 {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
 }
 
-ul.products li.product {
+@media screen and (min-width: 1024px) {
+	.woocommerce ul.products,
+	.woocommerce ul.products.columns-4 {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: 2.5rem 2rem;
+	}
+
+	.woocommerce ul.products.columns-1 {
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.woocommerce ul.products.columns-2 {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.woocommerce ul.products.columns-3 {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
+	.woocommerce ul.products.columns-5 {
+		grid-template-columns: repeat(5, minmax(0, 1fr));
+	}
+
+	.woocommerce ul.products.columns-6 {
+		grid-template-columns: repeat(6, minmax(0, 1fr));
+	}
+}
+
+/*
+ * Beat WooCommerce layout.css column widths (.columns-3 → 30.75%, etc.).
+ * Those percentages leave related/upsell cards only partially filling each grid cell.
+ */
+ul.products li.product,
+.woocommerce ul.products li.product,
+.woocommerce-page ul.products li.product,
+.woocommerce ul.products[class*="columns-"] li.product,
+.woocommerce-page ul.products[class*="columns-"] li.product,
+.woocommerce.columns-2 ul.products li.product,
+.woocommerce.columns-3 ul.products li.product,
+.woocommerce.columns-4 ul.products li.product,
+.woocommerce.columns-5 ul.products li.product,
+.woocommerce.columns-6 ul.products li.product,
+.woocommerce .related ul.products li.product,
+.woocommerce .upsells ul.products li.product,
+.woocommerce-page .related ul.products li.product,
+.woocommerce-page .upsells ul.products li.product {
 	list-style: none;
 	position: relative;
+	float: none !important;
+	clear: none !important;
+	width: 100% !important;
+	max-width: 100%;
+	margin: 0 !important;
 	padding: 0;
 	box-sizing: border-box;
-	background: #fff;
+	background: transparent;
+
+	&.first,
+	&.last {
+		clear: none !important;
+		margin: 0 !important;
+	}
 
 	img {
 		display: block;
 		width: 100%;
 		height: auto;
 		margin: 0;
-		background: #f8f9fa;
+		background: transparent;
 		border: none;
 	}
 
@@ -123,6 +194,7 @@ ul.products li.product {
 	.woocommerce-loop-product__image-wrap {
 		position: relative;
 		overflow: hidden;
+		background: transparent;
 	}
 
 	.woocommerce-loop-product__link {
@@ -187,14 +259,15 @@ ul.products li.product {
 		}
 	}
 
-	/* Add to cart – overlay at bottom of image, centered, not full width, slide up + fade in on hover */
+	/* Add to cart – overlay at bottom of image, slide up + fade in on hover */
 	.woocommerce-loop-product__image-wrap .button,
 	.woocommerce-loop-product__image-wrap .add-to-cart-overlay {
 		position: absolute;
-		bottom: 7px;
-		left: 17px;
-		right: 17px;
-		transform: translateY(100%);
+		bottom: 0.75rem;
+		left: 0.75rem;
+		right: 0.75rem;
+		z-index: 2;
+		transform: translateY(0.5rem);
 		display: inline-block;
 		text-align: center;
 		padding: 0.65rem 1.5rem;
@@ -210,7 +283,7 @@ ul.products li.product {
 		cursor: pointer;
 		box-sizing: border-box;
 		opacity: 0;
-		transition: opacity 0.45s ease, transform 0.45s ease, background 0.2s ease;
+		transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s ease;
 
 		&:hover {
 			background: $color__green-dark;
@@ -223,14 +296,15 @@ ul.products li.product {
 	.woocommerce-loop-product__image-wrap .button:focus,
 	.woocommerce-loop-product__image-wrap .add-to-cart-overlay:focus {
 		opacity: 1;
-		transform: translateY(-2em);
+		transform: translateY(0);
 	}
 
-	/* View cart – overlay on image, black button (replaces Add to cart when product in cart) */
+	/* View cart – overlay on image when product is already in the cart */
 	.woocommerce-loop-product__image-wrap .added_to_cart {
 		position: absolute;
 		top: 50%;
 		left: 50%;
+		z-index: 2;
 		display: inline-block;
 		width: auto;
 		min-width: 10rem;
@@ -242,8 +316,8 @@ ul.products li.product {
 		letter-spacing: 0.03em;
 		background: #2c3e50;
 		color: #fff;
-		border: none;		
-		border-radius: 6px;		
+		border: none;
+		border-radius: 6px;
 		text-decoration: none;
 		cursor: pointer;
 		box-sizing: border-box;
@@ -263,6 +337,54 @@ ul.products li.product {
 	.price {
 		padding-left: 0;
 		padding-right: 0;
+	}
+}
+
+/* Related / upsells share the catalog grid; keep them full-bleed under the product. */
+.woocommerce .related,
+.woocommerce .upsells,
+.woocommerce-page .related,
+.woocommerce-page .upsells {
+	clear: both;
+	width: 100%;
+	max-width: 100%;
+
+	> h2 {
+		margin: 0 0 1.25rem;
+	}
+
+	ul.products {
+		width: 100%;
+		max-width: 100%;
+		margin-bottom: 0;
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 2rem 1.5rem;
+
+		&::before,
+		&::after {
+			content: none !important;
+			display: none !important;
+		}
+
+		li.product {
+			width: 100% !important;
+			max-width: 100%;
+			float: none !important;
+			margin: 0 !important;
+		}
+	}
+}
+
+@media screen and (min-width: 768px) {
+	.woocommerce .related ul.products,
+	.woocommerce .upsells ul.products,
+	.woocommerce-page .related ul.products,
+	.woocommerce-page .upsells ul.products,
+	.woocommerce .related ul.products.columns-3,
+	.woocommerce .upsells ul.products.columns-3 {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 2.25rem 1.75rem;
 	}
 }
 

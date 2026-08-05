@@ -2,8 +2,8 @@
 Contributors: wpdino
 Requires at least: 5.0
 Tested up to: 6.9
-Stable tag: 1.1.0
-Version: 1.1.0
+Stable tag: 1.1.1
+Version: 1.1.1
 Requires PHP: 7.4
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -59,7 +59,12 @@ Accepta includes standard WordPress widgets and is compatible with all WordPress
 
 == Changelog ==
 
-= 1.1.0 - 2026-07-15 =
+= 1.1.1 - 2026-08-05 =
+* Added a WooCommerce Shop style option (Default and Shopline) for the catalog and single product pages.
+* Added header cart icon choices (cart, bag, basket, tote) in the Customizer.
+* Improved Shopline product cards with tighter image-to-meta spacing and a clearer price and Add to cart layout.
+
+= 1.1.0 - 2026-06-29 =
 * Added Scrolled Header Logo option in the Customizer for a separate logo when the sticky header is scrolled.
 * Added DinoFolio portfolio integration with archive, single, taxonomy templates, hero layout, and dedicated styles.
 * Added sample footer widgets as block widgets on theme activation (About Accepta, About WPDINO, Quick Links, Search).
@@ -153,6 +158,9 @@ For support, feature requests, and bug reports, please visit:
 https://wpdino.com
 
 == Upgrade Notice ==
+
+= 1.1.1 =
+Accepta Lite 1.1.1 adds WooCommerce Shop styles (Default and Shopline) and header cart icon choices.
 
 = 1.1.0 =
 Accepta Lite 1.1.0 adds DinoFolio portfolio support, scrolled header logo, improved footer widgets, block editor quote styling, and Customizer/dashboard enhancements.

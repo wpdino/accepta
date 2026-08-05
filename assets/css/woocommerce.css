@@ -132,58 +132,261 @@ table.shop_table_responsive tr td.download-actions .button {
 
 /**
  * Products loop – card layout (card box), theme styling
+ *
+ * WooCommerce's layout stylesheet floats products and injects ::before/::after
+ * clearfix pseudos. Those pseudos become flex/grid items and leave an empty
+ * first column, so they are disabled here and widths are reset.
  */
 .woocommerce ul.products {
   margin: 0 0 2rem 0;
   padding: 0;
   list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem 1.5rem;
   clear: both;
 }
-
-ul.products::after {
-  content: "";
-  display: table;
-  clear: both;
+.woocommerce ul.products::before, .woocommerce ul.products::after {
+  content: none !important;
+  display: none !important;
 }
 
-ul.products li.product {
+@media screen and (min-width: 768px) {
+  .woocommerce ul.products {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2.25rem 1.75rem;
+  }
+  .woocommerce ul.products.columns-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media screen and (min-width: 1024px) {
+  .woocommerce ul.products,
+  .woocommerce ul.products.columns-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 2.5rem 2rem;
+  }
+  .woocommerce ul.products.columns-1 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .woocommerce ul.products.columns-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .woocommerce ul.products.columns-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .woocommerce ul.products.columns-5 {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+  .woocommerce ul.products.columns-6 {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+}
+/*
+ * Beat WooCommerce layout.css column widths (.columns-3 → 30.75%, etc.).
+ * Those percentages leave related/upsell cards only partially filling each grid cell.
+ */
+ul.products li.product,
+.woocommerce ul.products li.product,
+.woocommerce-page ul.products li.product,
+.woocommerce ul.products[class*=columns-] li.product,
+.woocommerce-page ul.products[class*=columns-] li.product,
+.woocommerce.columns-2 ul.products li.product,
+.woocommerce.columns-3 ul.products li.product,
+.woocommerce.columns-4 ul.products li.product,
+.woocommerce.columns-5 ul.products li.product,
+.woocommerce.columns-6 ul.products li.product,
+.woocommerce .related ul.products li.product,
+.woocommerce .upsells ul.products li.product,
+.woocommerce-page .related ul.products li.product,
+.woocommerce-page .upsells ul.products li.product {
   list-style: none;
   position: relative;
+  float: none !important;
+  clear: none !important;
+  width: 100% !important;
+  max-width: 100%;
+  margin: 0 !important;
   padding: 0;
   box-sizing: border-box;
-  background: #fff;
+  background: transparent;
 }
-ul.products li.product img {
+ul.products li.product.first, ul.products li.product.last,
+.woocommerce ul.products li.product.first,
+.woocommerce ul.products li.product.last,
+.woocommerce-page ul.products li.product.first,
+.woocommerce-page ul.products li.product.last,
+.woocommerce ul.products[class*=columns-] li.product.first,
+.woocommerce ul.products[class*=columns-] li.product.last,
+.woocommerce-page ul.products[class*=columns-] li.product.first,
+.woocommerce-page ul.products[class*=columns-] li.product.last,
+.woocommerce.columns-2 ul.products li.product.first,
+.woocommerce.columns-2 ul.products li.product.last,
+.woocommerce.columns-3 ul.products li.product.first,
+.woocommerce.columns-3 ul.products li.product.last,
+.woocommerce.columns-4 ul.products li.product.first,
+.woocommerce.columns-4 ul.products li.product.last,
+.woocommerce.columns-5 ul.products li.product.first,
+.woocommerce.columns-5 ul.products li.product.last,
+.woocommerce.columns-6 ul.products li.product.first,
+.woocommerce.columns-6 ul.products li.product.last,
+.woocommerce .related ul.products li.product.first,
+.woocommerce .related ul.products li.product.last,
+.woocommerce .upsells ul.products li.product.first,
+.woocommerce .upsells ul.products li.product.last,
+.woocommerce-page .related ul.products li.product.first,
+.woocommerce-page .related ul.products li.product.last,
+.woocommerce-page .upsells ul.products li.product.first,
+.woocommerce-page .upsells ul.products li.product.last {
+  clear: none !important;
+  margin: 0 !important;
+}
+ul.products li.product img,
+.woocommerce ul.products li.product img,
+.woocommerce-page ul.products li.product img,
+.woocommerce ul.products[class*=columns-] li.product img,
+.woocommerce-page ul.products[class*=columns-] li.product img,
+.woocommerce.columns-2 ul.products li.product img,
+.woocommerce.columns-3 ul.products li.product img,
+.woocommerce.columns-4 ul.products li.product img,
+.woocommerce.columns-5 ul.products li.product img,
+.woocommerce.columns-6 ul.products li.product img,
+.woocommerce .related ul.products li.product img,
+.woocommerce .upsells ul.products li.product img,
+.woocommerce-page .related ul.products li.product img,
+.woocommerce-page .upsells ul.products li.product img {
   display: block;
   width: 100%;
   height: auto;
   margin: 0;
-  background: #f8f9fa;
+  background: transparent;
   border: none;
 }
-ul.products li.product {
+ul.products li.product,
+.woocommerce ul.products li.product,
+.woocommerce-page ul.products li.product,
+.woocommerce ul.products[class*=columns-] li.product,
+.woocommerce-page ul.products[class*=columns-] li.product,
+.woocommerce.columns-2 ul.products li.product,
+.woocommerce.columns-3 ul.products li.product,
+.woocommerce.columns-4 ul.products li.product,
+.woocommerce.columns-5 ul.products li.product,
+.woocommerce.columns-6 ul.products li.product,
+.woocommerce .related ul.products li.product,
+.woocommerce .upsells ul.products li.product,
+.woocommerce-page .related ul.products li.product,
+.woocommerce-page .upsells ul.products li.product {
   /* Image wrap – container for overlay Add to cart */
 }
-ul.products li.product .woocommerce-loop-product__image-wrap {
+ul.products li.product .woocommerce-loop-product__image-wrap,
+.woocommerce ul.products li.product .woocommerce-loop-product__image-wrap,
+.woocommerce-page ul.products li.product .woocommerce-loop-product__image-wrap,
+.woocommerce ul.products[class*=columns-] li.product .woocommerce-loop-product__image-wrap,
+.woocommerce-page ul.products[class*=columns-] li.product .woocommerce-loop-product__image-wrap,
+.woocommerce.columns-2 ul.products li.product .woocommerce-loop-product__image-wrap,
+.woocommerce.columns-3 ul.products li.product .woocommerce-loop-product__image-wrap,
+.woocommerce.columns-4 ul.products li.product .woocommerce-loop-product__image-wrap,
+.woocommerce.columns-5 ul.products li.product .woocommerce-loop-product__image-wrap,
+.woocommerce.columns-6 ul.products li.product .woocommerce-loop-product__image-wrap,
+.woocommerce .related ul.products li.product .woocommerce-loop-product__image-wrap,
+.woocommerce .upsells ul.products li.product .woocommerce-loop-product__image-wrap,
+.woocommerce-page .related ul.products li.product .woocommerce-loop-product__image-wrap,
+.woocommerce-page .upsells ul.products li.product .woocommerce-loop-product__image-wrap {
   position: relative;
   overflow: hidden;
+  background: transparent;
 }
-ul.products li.product .woocommerce-loop-product__link {
+ul.products li.product .woocommerce-loop-product__link,
+.woocommerce ul.products li.product .woocommerce-loop-product__link,
+.woocommerce-page ul.products li.product .woocommerce-loop-product__link,
+.woocommerce ul.products[class*=columns-] li.product .woocommerce-loop-product__link,
+.woocommerce-page ul.products[class*=columns-] li.product .woocommerce-loop-product__link,
+.woocommerce.columns-2 ul.products li.product .woocommerce-loop-product__link,
+.woocommerce.columns-3 ul.products li.product .woocommerce-loop-product__link,
+.woocommerce.columns-4 ul.products li.product .woocommerce-loop-product__link,
+.woocommerce.columns-5 ul.products li.product .woocommerce-loop-product__link,
+.woocommerce.columns-6 ul.products li.product .woocommerce-loop-product__link,
+.woocommerce .related ul.products li.product .woocommerce-loop-product__link,
+.woocommerce .upsells ul.products li.product .woocommerce-loop-product__link,
+.woocommerce-page .related ul.products li.product .woocommerce-loop-product__link,
+.woocommerce-page .upsells ul.products li.product .woocommerce-loop-product__link {
   display: block;
   text-decoration: none;
   color: inherit;
   padding: 0;
 }
-ul.products li.product .woocommerce-loop-product__link:hover {
+ul.products li.product .woocommerce-loop-product__link:hover,
+.woocommerce ul.products li.product .woocommerce-loop-product__link:hover,
+.woocommerce-page ul.products li.product .woocommerce-loop-product__link:hover,
+.woocommerce ul.products[class*=columns-] li.product .woocommerce-loop-product__link:hover,
+.woocommerce-page ul.products[class*=columns-] li.product .woocommerce-loop-product__link:hover,
+.woocommerce.columns-2 ul.products li.product .woocommerce-loop-product__link:hover,
+.woocommerce.columns-3 ul.products li.product .woocommerce-loop-product__link:hover,
+.woocommerce.columns-4 ul.products li.product .woocommerce-loop-product__link:hover,
+.woocommerce.columns-5 ul.products li.product .woocommerce-loop-product__link:hover,
+.woocommerce.columns-6 ul.products li.product .woocommerce-loop-product__link:hover,
+.woocommerce .related ul.products li.product .woocommerce-loop-product__link:hover,
+.woocommerce .upsells ul.products li.product .woocommerce-loop-product__link:hover,
+.woocommerce-page .related ul.products li.product .woocommerce-loop-product__link:hover,
+.woocommerce-page .upsells ul.products li.product .woocommerce-loop-product__link:hover {
   color: inherit;
 }
 ul.products li.product .woocommerce-loop-category__title,
 ul.products li.product .woocommerce-loop-product__title,
 ul.products li.product h2,
-ul.products li.product h3 {
+ul.products li.product h3,
+.woocommerce ul.products li.product .woocommerce-loop-category__title,
+.woocommerce ul.products li.product .woocommerce-loop-product__title,
+.woocommerce ul.products li.product h2,
+.woocommerce ul.products li.product h3,
+.woocommerce-page ul.products li.product .woocommerce-loop-category__title,
+.woocommerce-page ul.products li.product .woocommerce-loop-product__title,
+.woocommerce-page ul.products li.product h2,
+.woocommerce-page ul.products li.product h3,
+.woocommerce ul.products[class*=columns-] li.product .woocommerce-loop-category__title,
+.woocommerce ul.products[class*=columns-] li.product .woocommerce-loop-product__title,
+.woocommerce ul.products[class*=columns-] li.product h2,
+.woocommerce ul.products[class*=columns-] li.product h3,
+.woocommerce-page ul.products[class*=columns-] li.product .woocommerce-loop-category__title,
+.woocommerce-page ul.products[class*=columns-] li.product .woocommerce-loop-product__title,
+.woocommerce-page ul.products[class*=columns-] li.product h2,
+.woocommerce-page ul.products[class*=columns-] li.product h3,
+.woocommerce.columns-2 ul.products li.product .woocommerce-loop-category__title,
+.woocommerce.columns-2 ul.products li.product .woocommerce-loop-product__title,
+.woocommerce.columns-2 ul.products li.product h2,
+.woocommerce.columns-2 ul.products li.product h3,
+.woocommerce.columns-3 ul.products li.product .woocommerce-loop-category__title,
+.woocommerce.columns-3 ul.products li.product .woocommerce-loop-product__title,
+.woocommerce.columns-3 ul.products li.product h2,
+.woocommerce.columns-3 ul.products li.product h3,
+.woocommerce.columns-4 ul.products li.product .woocommerce-loop-category__title,
+.woocommerce.columns-4 ul.products li.product .woocommerce-loop-product__title,
+.woocommerce.columns-4 ul.products li.product h2,
+.woocommerce.columns-4 ul.products li.product h3,
+.woocommerce.columns-5 ul.products li.product .woocommerce-loop-category__title,
+.woocommerce.columns-5 ul.products li.product .woocommerce-loop-product__title,
+.woocommerce.columns-5 ul.products li.product h2,
+.woocommerce.columns-5 ul.products li.product h3,
+.woocommerce.columns-6 ul.products li.product .woocommerce-loop-category__title,
+.woocommerce.columns-6 ul.products li.product .woocommerce-loop-product__title,
+.woocommerce.columns-6 ul.products li.product h2,
+.woocommerce.columns-6 ul.products li.product h3,
+.woocommerce .related ul.products li.product .woocommerce-loop-category__title,
+.woocommerce .related ul.products li.product .woocommerce-loop-product__title,
+.woocommerce .related ul.products li.product h2,
+.woocommerce .related ul.products li.product h3,
+.woocommerce .upsells ul.products li.product .woocommerce-loop-category__title,
+.woocommerce .upsells ul.products li.product .woocommerce-loop-product__title,
+.woocommerce .upsells ul.products li.product h2,
+.woocommerce .upsells ul.products li.product h3,
+.woocommerce-page .related ul.products li.product .woocommerce-loop-category__title,
+.woocommerce-page .related ul.products li.product .woocommerce-loop-product__title,
+.woocommerce-page .related ul.products li.product h2,
+.woocommerce-page .related ul.products li.product h3,
+.woocommerce-page .upsells ul.products li.product .woocommerce-loop-category__title,
+.woocommerce-page .upsells ul.products li.product .woocommerce-loop-product__title,
+.woocommerce-page .upsells ul.products li.product h2,
+.woocommerce-page .upsells ul.products li.product h3 {
   margin: 1rem 0 0.35rem 0;
   padding: 0;
   font-size: 1rem;
@@ -193,20 +396,124 @@ ul.products li.product h3 {
 }
 ul.products li.product .woocommerce-loop-product__title a,
 ul.products li.product h2 a,
-ul.products li.product h3 a {
+ul.products li.product h3 a,
+.woocommerce ul.products li.product .woocommerce-loop-product__title a,
+.woocommerce ul.products li.product h2 a,
+.woocommerce ul.products li.product h3 a,
+.woocommerce-page ul.products li.product .woocommerce-loop-product__title a,
+.woocommerce-page ul.products li.product h2 a,
+.woocommerce-page ul.products li.product h3 a,
+.woocommerce ul.products[class*=columns-] li.product .woocommerce-loop-product__title a,
+.woocommerce ul.products[class*=columns-] li.product h2 a,
+.woocommerce ul.products[class*=columns-] li.product h3 a,
+.woocommerce-page ul.products[class*=columns-] li.product .woocommerce-loop-product__title a,
+.woocommerce-page ul.products[class*=columns-] li.product h2 a,
+.woocommerce-page ul.products[class*=columns-] li.product h3 a,
+.woocommerce.columns-2 ul.products li.product .woocommerce-loop-product__title a,
+.woocommerce.columns-2 ul.products li.product h2 a,
+.woocommerce.columns-2 ul.products li.product h3 a,
+.woocommerce.columns-3 ul.products li.product .woocommerce-loop-product__title a,
+.woocommerce.columns-3 ul.products li.product h2 a,
+.woocommerce.columns-3 ul.products li.product h3 a,
+.woocommerce.columns-4 ul.products li.product .woocommerce-loop-product__title a,
+.woocommerce.columns-4 ul.products li.product h2 a,
+.woocommerce.columns-4 ul.products li.product h3 a,
+.woocommerce.columns-5 ul.products li.product .woocommerce-loop-product__title a,
+.woocommerce.columns-5 ul.products li.product h2 a,
+.woocommerce.columns-5 ul.products li.product h3 a,
+.woocommerce.columns-6 ul.products li.product .woocommerce-loop-product__title a,
+.woocommerce.columns-6 ul.products li.product h2 a,
+.woocommerce.columns-6 ul.products li.product h3 a,
+.woocommerce .related ul.products li.product .woocommerce-loop-product__title a,
+.woocommerce .related ul.products li.product h2 a,
+.woocommerce .related ul.products li.product h3 a,
+.woocommerce .upsells ul.products li.product .woocommerce-loop-product__title a,
+.woocommerce .upsells ul.products li.product h2 a,
+.woocommerce .upsells ul.products li.product h3 a,
+.woocommerce-page .related ul.products li.product .woocommerce-loop-product__title a,
+.woocommerce-page .related ul.products li.product h2 a,
+.woocommerce-page .related ul.products li.product h3 a,
+.woocommerce-page .upsells ul.products li.product .woocommerce-loop-product__title a,
+.woocommerce-page .upsells ul.products li.product h2 a,
+.woocommerce-page .upsells ul.products li.product h3 a {
   color: #2c3e50;
   text-decoration: none;
 }
 ul.products li.product .woocommerce-loop-product__title a:hover,
 ul.products li.product h2 a:hover,
-ul.products li.product h3 a:hover {
+ul.products li.product h3 a:hover,
+.woocommerce ul.products li.product .woocommerce-loop-product__title a:hover,
+.woocommerce ul.products li.product h2 a:hover,
+.woocommerce ul.products li.product h3 a:hover,
+.woocommerce-page ul.products li.product .woocommerce-loop-product__title a:hover,
+.woocommerce-page ul.products li.product h2 a:hover,
+.woocommerce-page ul.products li.product h3 a:hover,
+.woocommerce ul.products[class*=columns-] li.product .woocommerce-loop-product__title a:hover,
+.woocommerce ul.products[class*=columns-] li.product h2 a:hover,
+.woocommerce ul.products[class*=columns-] li.product h3 a:hover,
+.woocommerce-page ul.products[class*=columns-] li.product .woocommerce-loop-product__title a:hover,
+.woocommerce-page ul.products[class*=columns-] li.product h2 a:hover,
+.woocommerce-page ul.products[class*=columns-] li.product h3 a:hover,
+.woocommerce.columns-2 ul.products li.product .woocommerce-loop-product__title a:hover,
+.woocommerce.columns-2 ul.products li.product h2 a:hover,
+.woocommerce.columns-2 ul.products li.product h3 a:hover,
+.woocommerce.columns-3 ul.products li.product .woocommerce-loop-product__title a:hover,
+.woocommerce.columns-3 ul.products li.product h2 a:hover,
+.woocommerce.columns-3 ul.products li.product h3 a:hover,
+.woocommerce.columns-4 ul.products li.product .woocommerce-loop-product__title a:hover,
+.woocommerce.columns-4 ul.products li.product h2 a:hover,
+.woocommerce.columns-4 ul.products li.product h3 a:hover,
+.woocommerce.columns-5 ul.products li.product .woocommerce-loop-product__title a:hover,
+.woocommerce.columns-5 ul.products li.product h2 a:hover,
+.woocommerce.columns-5 ul.products li.product h3 a:hover,
+.woocommerce.columns-6 ul.products li.product .woocommerce-loop-product__title a:hover,
+.woocommerce.columns-6 ul.products li.product h2 a:hover,
+.woocommerce.columns-6 ul.products li.product h3 a:hover,
+.woocommerce .related ul.products li.product .woocommerce-loop-product__title a:hover,
+.woocommerce .related ul.products li.product h2 a:hover,
+.woocommerce .related ul.products li.product h3 a:hover,
+.woocommerce .upsells ul.products li.product .woocommerce-loop-product__title a:hover,
+.woocommerce .upsells ul.products li.product h2 a:hover,
+.woocommerce .upsells ul.products li.product h3 a:hover,
+.woocommerce-page .related ul.products li.product .woocommerce-loop-product__title a:hover,
+.woocommerce-page .related ul.products li.product h2 a:hover,
+.woocommerce-page .related ul.products li.product h3 a:hover,
+.woocommerce-page .upsells ul.products li.product .woocommerce-loop-product__title a:hover,
+.woocommerce-page .upsells ul.products li.product h2 a:hover,
+.woocommerce-page .upsells ul.products li.product h3 a:hover {
   color: #6F9C50;
 }
-ul.products li.product .star-rating {
+ul.products li.product .star-rating,
+.woocommerce ul.products li.product .star-rating,
+.woocommerce-page ul.products li.product .star-rating,
+.woocommerce ul.products[class*=columns-] li.product .star-rating,
+.woocommerce-page ul.products[class*=columns-] li.product .star-rating,
+.woocommerce.columns-2 ul.products li.product .star-rating,
+.woocommerce.columns-3 ul.products li.product .star-rating,
+.woocommerce.columns-4 ul.products li.product .star-rating,
+.woocommerce.columns-5 ul.products li.product .star-rating,
+.woocommerce.columns-6 ul.products li.product .star-rating,
+.woocommerce .related ul.products li.product .star-rating,
+.woocommerce .upsells ul.products li.product .star-rating,
+.woocommerce-page .related ul.products li.product .star-rating,
+.woocommerce-page .upsells ul.products li.product .star-rating {
   margin: 0.5rem 0 0 0;
   text-align: left;
 }
-ul.products li.product .price {
+ul.products li.product .price,
+.woocommerce ul.products li.product .price,
+.woocommerce-page ul.products li.product .price,
+.woocommerce ul.products[class*=columns-] li.product .price,
+.woocommerce-page ul.products[class*=columns-] li.product .price,
+.woocommerce.columns-2 ul.products li.product .price,
+.woocommerce.columns-3 ul.products li.product .price,
+.woocommerce.columns-4 ul.products li.product .price,
+.woocommerce.columns-5 ul.products li.product .price,
+.woocommerce.columns-6 ul.products li.product .price,
+.woocommerce .related ul.products li.product .price,
+.woocommerce .upsells ul.products li.product .price,
+.woocommerce-page .related ul.products li.product .price,
+.woocommerce-page .upsells ul.products li.product .price {
   margin: 0.5rem 0 0.75rem 0;
   padding: 0;
   font-size: 1rem;
@@ -214,27 +521,106 @@ ul.products li.product .price {
   color: #2c3e50;
   text-align: left;
 }
-ul.products li.product .price del {
+ul.products li.product .price del,
+.woocommerce ul.products li.product .price del,
+.woocommerce-page ul.products li.product .price del,
+.woocommerce ul.products[class*=columns-] li.product .price del,
+.woocommerce-page ul.products[class*=columns-] li.product .price del,
+.woocommerce.columns-2 ul.products li.product .price del,
+.woocommerce.columns-3 ul.products li.product .price del,
+.woocommerce.columns-4 ul.products li.product .price del,
+.woocommerce.columns-5 ul.products li.product .price del,
+.woocommerce.columns-6 ul.products li.product .price del,
+.woocommerce .related ul.products li.product .price del,
+.woocommerce .upsells ul.products li.product .price del,
+.woocommerce-page .related ul.products li.product .price del,
+.woocommerce-page .upsells ul.products li.product .price del {
   color: #999;
   font-weight: 400;
   margin-right: 0.35rem;
 }
-ul.products li.product .price ins {
+ul.products li.product .price ins,
+.woocommerce ul.products li.product .price ins,
+.woocommerce-page ul.products li.product .price ins,
+.woocommerce ul.products[class*=columns-] li.product .price ins,
+.woocommerce-page ul.products[class*=columns-] li.product .price ins,
+.woocommerce.columns-2 ul.products li.product .price ins,
+.woocommerce.columns-3 ul.products li.product .price ins,
+.woocommerce.columns-4 ul.products li.product .price ins,
+.woocommerce.columns-5 ul.products li.product .price ins,
+.woocommerce.columns-6 ul.products li.product .price ins,
+.woocommerce .related ul.products li.product .price ins,
+.woocommerce .upsells ul.products li.product .price ins,
+.woocommerce-page .related ul.products li.product .price ins,
+.woocommerce-page .upsells ul.products li.product .price ins {
   text-decoration: none;
 }
-ul.products li.product .price .amount {
+ul.products li.product .price .amount,
+.woocommerce ul.products li.product .price .amount,
+.woocommerce-page ul.products li.product .price .amount,
+.woocommerce ul.products[class*=columns-] li.product .price .amount,
+.woocommerce-page ul.products[class*=columns-] li.product .price .amount,
+.woocommerce.columns-2 ul.products li.product .price .amount,
+.woocommerce.columns-3 ul.products li.product .price .amount,
+.woocommerce.columns-4 ul.products li.product .price .amount,
+.woocommerce.columns-5 ul.products li.product .price .amount,
+.woocommerce.columns-6 ul.products li.product .price .amount,
+.woocommerce .related ul.products li.product .price .amount,
+.woocommerce .upsells ul.products li.product .price .amount,
+.woocommerce-page .related ul.products li.product .price .amount,
+.woocommerce-page .upsells ul.products li.product .price .amount {
   color: #6F9C50;
 }
-ul.products li.product {
-  /* Add to cart – overlay at bottom of image, centered, not full width, slide up + fade in on hover */
+ul.products li.product,
+.woocommerce ul.products li.product,
+.woocommerce-page ul.products li.product,
+.woocommerce ul.products[class*=columns-] li.product,
+.woocommerce-page ul.products[class*=columns-] li.product,
+.woocommerce.columns-2 ul.products li.product,
+.woocommerce.columns-3 ul.products li.product,
+.woocommerce.columns-4 ul.products li.product,
+.woocommerce.columns-5 ul.products li.product,
+.woocommerce.columns-6 ul.products li.product,
+.woocommerce .related ul.products li.product,
+.woocommerce .upsells ul.products li.product,
+.woocommerce-page .related ul.products li.product,
+.woocommerce-page .upsells ul.products li.product {
+  /* Add to cart – overlay at bottom of image, slide up + fade in on hover */
 }
 ul.products li.product .woocommerce-loop-product__image-wrap .button,
-ul.products li.product .woocommerce-loop-product__image-wrap .add-to-cart-overlay {
+ul.products li.product .woocommerce-loop-product__image-wrap .add-to-cart-overlay,
+.woocommerce ul.products li.product .woocommerce-loop-product__image-wrap .button,
+.woocommerce ul.products li.product .woocommerce-loop-product__image-wrap .add-to-cart-overlay,
+.woocommerce-page ul.products li.product .woocommerce-loop-product__image-wrap .button,
+.woocommerce-page ul.products li.product .woocommerce-loop-product__image-wrap .add-to-cart-overlay,
+.woocommerce ul.products[class*=columns-] li.product .woocommerce-loop-product__image-wrap .button,
+.woocommerce ul.products[class*=columns-] li.product .woocommerce-loop-product__image-wrap .add-to-cart-overlay,
+.woocommerce-page ul.products[class*=columns-] li.product .woocommerce-loop-product__image-wrap .button,
+.woocommerce-page ul.products[class*=columns-] li.product .woocommerce-loop-product__image-wrap .add-to-cart-overlay,
+.woocommerce.columns-2 ul.products li.product .woocommerce-loop-product__image-wrap .button,
+.woocommerce.columns-2 ul.products li.product .woocommerce-loop-product__image-wrap .add-to-cart-overlay,
+.woocommerce.columns-3 ul.products li.product .woocommerce-loop-product__image-wrap .button,
+.woocommerce.columns-3 ul.products li.product .woocommerce-loop-product__image-wrap .add-to-cart-overlay,
+.woocommerce.columns-4 ul.products li.product .woocommerce-loop-product__image-wrap .button,
+.woocommerce.columns-4 ul.products li.product .woocommerce-loop-product__image-wrap .add-to-cart-overlay,
+.woocommerce.columns-5 ul.products li.product .woocommerce-loop-product__image-wrap .button,
+.woocommerce.columns-5 ul.products li.product .woocommerce-loop-product__image-wrap .add-to-cart-overlay,
+.woocommerce.columns-6 ul.products li.product .woocommerce-loop-product__image-wrap .button,
+.woocommerce.columns-6 ul.products li.product .woocommerce-loop-product__image-wrap .add-to-cart-overlay,
+.woocommerce .related ul.products li.product .woocommerce-loop-product__image-wrap .button,
+.woocommerce .related ul.products li.product .woocommerce-loop-product__image-wrap .add-to-cart-overlay,
+.woocommerce .upsells ul.products li.product .woocommerce-loop-product__image-wrap .button,
+.woocommerce .upsells ul.products li.product .woocommerce-loop-product__image-wrap .add-to-cart-overlay,
+.woocommerce-page .related ul.products li.product .woocommerce-loop-product__image-wrap .button,
+.woocommerce-page .related ul.products li.product .woocommerce-loop-product__image-wrap .add-to-cart-overlay,
+.woocommerce-page .upsells ul.products li.product .woocommerce-loop-product__image-wrap .button,
+.woocommerce-page .upsells ul.products li.product .woocommerce-loop-product__image-wrap .add-to-cart-overlay {
   position: absolute;
-  bottom: 7px;
-  left: 17px;
-  right: 17px;
-  transform: translateY(100%);
+  bottom: 0.75rem;
+  left: 0.75rem;
+  right: 0.75rem;
+  z-index: 2;
+  transform: translateY(0.5rem);
   display: inline-block;
   text-align: center;
   padding: 0.65rem 1.5rem;
@@ -250,26 +636,131 @@ ul.products li.product .woocommerce-loop-product__image-wrap .add-to-cart-overla
   cursor: pointer;
   box-sizing: border-box;
   opacity: 0;
-  transition: opacity 0.45s ease, transform 0.45s ease, background 0.2s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s ease;
 }
 ul.products li.product .woocommerce-loop-product__image-wrap .button:hover,
-ul.products li.product .woocommerce-loop-product__image-wrap .add-to-cart-overlay:hover {
+ul.products li.product .woocommerce-loop-product__image-wrap .add-to-cart-overlay:hover,
+.woocommerce ul.products li.product .woocommerce-loop-product__image-wrap .button:hover,
+.woocommerce ul.products li.product .woocommerce-loop-product__image-wrap .add-to-cart-overlay:hover,
+.woocommerce-page ul.products li.product .woocommerce-loop-product__image-wrap .button:hover,
+.woocommerce-page ul.products li.product .woocommerce-loop-product__image-wrap .add-to-cart-overlay:hover,
+.woocommerce ul.products[class*=columns-] li.product .woocommerce-loop-product__image-wrap .button:hover,
+.woocommerce ul.products[class*=columns-] li.product .woocommerce-loop-product__image-wrap .add-to-cart-overlay:hover,
+.woocommerce-page ul.products[class*=columns-] li.product .woocommerce-loop-product__image-wrap .button:hover,
+.woocommerce-page ul.products[class*=columns-] li.product .woocommerce-loop-product__image-wrap .add-to-cart-overlay:hover,
+.woocommerce.columns-2 ul.products li.product .woocommerce-loop-product__image-wrap .button:hover,
+.woocommerce.columns-2 ul.products li.product .woocommerce-loop-product__image-wrap .add-to-cart-overlay:hover,
+.woocommerce.columns-3 ul.products li.product .woocommerce-loop-product__image-wrap .button:hover,
+.woocommerce.columns-3 ul.products li.product .woocommerce-loop-product__image-wrap .add-to-cart-overlay:hover,
+.woocommerce.columns-4 ul.products li.product .woocommerce-loop-product__image-wrap .button:hover,
+.woocommerce.columns-4 ul.products li.product .woocommerce-loop-product__image-wrap .add-to-cart-overlay:hover,
+.woocommerce.columns-5 ul.products li.product .woocommerce-loop-product__image-wrap .button:hover,
+.woocommerce.columns-5 ul.products li.product .woocommerce-loop-product__image-wrap .add-to-cart-overlay:hover,
+.woocommerce.columns-6 ul.products li.product .woocommerce-loop-product__image-wrap .button:hover,
+.woocommerce.columns-6 ul.products li.product .woocommerce-loop-product__image-wrap .add-to-cart-overlay:hover,
+.woocommerce .related ul.products li.product .woocommerce-loop-product__image-wrap .button:hover,
+.woocommerce .related ul.products li.product .woocommerce-loop-product__image-wrap .add-to-cart-overlay:hover,
+.woocommerce .upsells ul.products li.product .woocommerce-loop-product__image-wrap .button:hover,
+.woocommerce .upsells ul.products li.product .woocommerce-loop-product__image-wrap .add-to-cart-overlay:hover,
+.woocommerce-page .related ul.products li.product .woocommerce-loop-product__image-wrap .button:hover,
+.woocommerce-page .related ul.products li.product .woocommerce-loop-product__image-wrap .add-to-cart-overlay:hover,
+.woocommerce-page .upsells ul.products li.product .woocommerce-loop-product__image-wrap .button:hover,
+.woocommerce-page .upsells ul.products li.product .woocommerce-loop-product__image-wrap .add-to-cart-overlay:hover {
   background: #5a7d3f;
   color: #fff;
 }
 ul.products li.product:hover .woocommerce-loop-product__image-wrap .button, ul.products li.product:hover .woocommerce-loop-product__image-wrap .add-to-cart-overlay,
 ul.products li.product .woocommerce-loop-product__image-wrap .button:focus,
-ul.products li.product .woocommerce-loop-product__image-wrap .add-to-cart-overlay:focus {
+ul.products li.product .woocommerce-loop-product__image-wrap .add-to-cart-overlay:focus,
+.woocommerce ul.products li.product:hover .woocommerce-loop-product__image-wrap .button,
+.woocommerce ul.products li.product:hover .woocommerce-loop-product__image-wrap .add-to-cart-overlay,
+.woocommerce ul.products li.product .woocommerce-loop-product__image-wrap .button:focus,
+.woocommerce ul.products li.product .woocommerce-loop-product__image-wrap .add-to-cart-overlay:focus,
+.woocommerce-page ul.products li.product:hover .woocommerce-loop-product__image-wrap .button,
+.woocommerce-page ul.products li.product:hover .woocommerce-loop-product__image-wrap .add-to-cart-overlay,
+.woocommerce-page ul.products li.product .woocommerce-loop-product__image-wrap .button:focus,
+.woocommerce-page ul.products li.product .woocommerce-loop-product__image-wrap .add-to-cart-overlay:focus,
+.woocommerce ul.products[class*=columns-] li.product:hover .woocommerce-loop-product__image-wrap .button,
+.woocommerce ul.products[class*=columns-] li.product:hover .woocommerce-loop-product__image-wrap .add-to-cart-overlay,
+.woocommerce ul.products[class*=columns-] li.product .woocommerce-loop-product__image-wrap .button:focus,
+.woocommerce ul.products[class*=columns-] li.product .woocommerce-loop-product__image-wrap .add-to-cart-overlay:focus,
+.woocommerce-page ul.products[class*=columns-] li.product:hover .woocommerce-loop-product__image-wrap .button,
+.woocommerce-page ul.products[class*=columns-] li.product:hover .woocommerce-loop-product__image-wrap .add-to-cart-overlay,
+.woocommerce-page ul.products[class*=columns-] li.product .woocommerce-loop-product__image-wrap .button:focus,
+.woocommerce-page ul.products[class*=columns-] li.product .woocommerce-loop-product__image-wrap .add-to-cart-overlay:focus,
+.woocommerce.columns-2 ul.products li.product:hover .woocommerce-loop-product__image-wrap .button,
+.woocommerce.columns-2 ul.products li.product:hover .woocommerce-loop-product__image-wrap .add-to-cart-overlay,
+.woocommerce.columns-2 ul.products li.product .woocommerce-loop-product__image-wrap .button:focus,
+.woocommerce.columns-2 ul.products li.product .woocommerce-loop-product__image-wrap .add-to-cart-overlay:focus,
+.woocommerce.columns-3 ul.products li.product:hover .woocommerce-loop-product__image-wrap .button,
+.woocommerce.columns-3 ul.products li.product:hover .woocommerce-loop-product__image-wrap .add-to-cart-overlay,
+.woocommerce.columns-3 ul.products li.product .woocommerce-loop-product__image-wrap .button:focus,
+.woocommerce.columns-3 ul.products li.product .woocommerce-loop-product__image-wrap .add-to-cart-overlay:focus,
+.woocommerce.columns-4 ul.products li.product:hover .woocommerce-loop-product__image-wrap .button,
+.woocommerce.columns-4 ul.products li.product:hover .woocommerce-loop-product__image-wrap .add-to-cart-overlay,
+.woocommerce.columns-4 ul.products li.product .woocommerce-loop-product__image-wrap .button:focus,
+.woocommerce.columns-4 ul.products li.product .woocommerce-loop-product__image-wrap .add-to-cart-overlay:focus,
+.woocommerce.columns-5 ul.products li.product:hover .woocommerce-loop-product__image-wrap .button,
+.woocommerce.columns-5 ul.products li.product:hover .woocommerce-loop-product__image-wrap .add-to-cart-overlay,
+.woocommerce.columns-5 ul.products li.product .woocommerce-loop-product__image-wrap .button:focus,
+.woocommerce.columns-5 ul.products li.product .woocommerce-loop-product__image-wrap .add-to-cart-overlay:focus,
+.woocommerce.columns-6 ul.products li.product:hover .woocommerce-loop-product__image-wrap .button,
+.woocommerce.columns-6 ul.products li.product:hover .woocommerce-loop-product__image-wrap .add-to-cart-overlay,
+.woocommerce.columns-6 ul.products li.product .woocommerce-loop-product__image-wrap .button:focus,
+.woocommerce.columns-6 ul.products li.product .woocommerce-loop-product__image-wrap .add-to-cart-overlay:focus,
+.woocommerce .related ul.products li.product:hover .woocommerce-loop-product__image-wrap .button,
+.woocommerce .related ul.products li.product:hover .woocommerce-loop-product__image-wrap .add-to-cart-overlay,
+.woocommerce .related ul.products li.product .woocommerce-loop-product__image-wrap .button:focus,
+.woocommerce .related ul.products li.product .woocommerce-loop-product__image-wrap .add-to-cart-overlay:focus,
+.woocommerce .upsells ul.products li.product:hover .woocommerce-loop-product__image-wrap .button,
+.woocommerce .upsells ul.products li.product:hover .woocommerce-loop-product__image-wrap .add-to-cart-overlay,
+.woocommerce .upsells ul.products li.product .woocommerce-loop-product__image-wrap .button:focus,
+.woocommerce .upsells ul.products li.product .woocommerce-loop-product__image-wrap .add-to-cart-overlay:focus,
+.woocommerce-page .related ul.products li.product:hover .woocommerce-loop-product__image-wrap .button,
+.woocommerce-page .related ul.products li.product:hover .woocommerce-loop-product__image-wrap .add-to-cart-overlay,
+.woocommerce-page .related ul.products li.product .woocommerce-loop-product__image-wrap .button:focus,
+.woocommerce-page .related ul.products li.product .woocommerce-loop-product__image-wrap .add-to-cart-overlay:focus,
+.woocommerce-page .upsells ul.products li.product:hover .woocommerce-loop-product__image-wrap .button,
+.woocommerce-page .upsells ul.products li.product:hover .woocommerce-loop-product__image-wrap .add-to-cart-overlay,
+.woocommerce-page .upsells ul.products li.product .woocommerce-loop-product__image-wrap .button:focus,
+.woocommerce-page .upsells ul.products li.product .woocommerce-loop-product__image-wrap .add-to-cart-overlay:focus {
   opacity: 1;
-  transform: translateY(-2em);
+  transform: translateY(0);
 }
-ul.products li.product {
-  /* View cart – overlay on image, black button (replaces Add to cart when product in cart) */
+ul.products li.product,
+.woocommerce ul.products li.product,
+.woocommerce-page ul.products li.product,
+.woocommerce ul.products[class*=columns-] li.product,
+.woocommerce-page ul.products[class*=columns-] li.product,
+.woocommerce.columns-2 ul.products li.product,
+.woocommerce.columns-3 ul.products li.product,
+.woocommerce.columns-4 ul.products li.product,
+.woocommerce.columns-5 ul.products li.product,
+.woocommerce.columns-6 ul.products li.product,
+.woocommerce .related ul.products li.product,
+.woocommerce .upsells ul.products li.product,
+.woocommerce-page .related ul.products li.product,
+.woocommerce-page .upsells ul.products li.product {
+  /* View cart – overlay on image when product is already in the cart */
 }
-ul.products li.product .woocommerce-loop-product__image-wrap .added_to_cart {
+ul.products li.product .woocommerce-loop-product__image-wrap .added_to_cart,
+.woocommerce ul.products li.product .woocommerce-loop-product__image-wrap .added_to_cart,
+.woocommerce-page ul.products li.product .woocommerce-loop-product__image-wrap .added_to_cart,
+.woocommerce ul.products[class*=columns-] li.product .woocommerce-loop-product__image-wrap .added_to_cart,
+.woocommerce-page ul.products[class*=columns-] li.product .woocommerce-loop-product__image-wrap .added_to_cart,
+.woocommerce.columns-2 ul.products li.product .woocommerce-loop-product__image-wrap .added_to_cart,
+.woocommerce.columns-3 ul.products li.product .woocommerce-loop-product__image-wrap .added_to_cart,
+.woocommerce.columns-4 ul.products li.product .woocommerce-loop-product__image-wrap .added_to_cart,
+.woocommerce.columns-5 ul.products li.product .woocommerce-loop-product__image-wrap .added_to_cart,
+.woocommerce.columns-6 ul.products li.product .woocommerce-loop-product__image-wrap .added_to_cart,
+.woocommerce .related ul.products li.product .woocommerce-loop-product__image-wrap .added_to_cart,
+.woocommerce .upsells ul.products li.product .woocommerce-loop-product__image-wrap .added_to_cart,
+.woocommerce-page .related ul.products li.product .woocommerce-loop-product__image-wrap .added_to_cart,
+.woocommerce-page .upsells ul.products li.product .woocommerce-loop-product__image-wrap .added_to_cart {
   position: absolute;
   top: 50%;
   left: 50%;
+  z-index: 2;
   display: inline-block;
   width: auto;
   min-width: 10rem;
@@ -289,7 +780,20 @@ ul.products li.product .woocommerce-loop-product__image-wrap .added_to_cart {
   transform: translate(-50%, -50%);
   transition: background 0.2s ease, color 0.2s ease;
 }
-ul.products li.product .woocommerce-loop-product__image-wrap .added_to_cart:hover {
+ul.products li.product .woocommerce-loop-product__image-wrap .added_to_cart:hover,
+.woocommerce ul.products li.product .woocommerce-loop-product__image-wrap .added_to_cart:hover,
+.woocommerce-page ul.products li.product .woocommerce-loop-product__image-wrap .added_to_cart:hover,
+.woocommerce ul.products[class*=columns-] li.product .woocommerce-loop-product__image-wrap .added_to_cart:hover,
+.woocommerce-page ul.products[class*=columns-] li.product .woocommerce-loop-product__image-wrap .added_to_cart:hover,
+.woocommerce.columns-2 ul.products li.product .woocommerce-loop-product__image-wrap .added_to_cart:hover,
+.woocommerce.columns-3 ul.products li.product .woocommerce-loop-product__image-wrap .added_to_cart:hover,
+.woocommerce.columns-4 ul.products li.product .woocommerce-loop-product__image-wrap .added_to_cart:hover,
+.woocommerce.columns-5 ul.products li.product .woocommerce-loop-product__image-wrap .added_to_cart:hover,
+.woocommerce.columns-6 ul.products li.product .woocommerce-loop-product__image-wrap .added_to_cart:hover,
+.woocommerce .related ul.products li.product .woocommerce-loop-product__image-wrap .added_to_cart:hover,
+.woocommerce .upsells ul.products li.product .woocommerce-loop-product__image-wrap .added_to_cart:hover,
+.woocommerce-page .related ul.products li.product .woocommerce-loop-product__image-wrap .added_to_cart:hover,
+.woocommerce-page .upsells ul.products li.product .woocommerce-loop-product__image-wrap .added_to_cart:hover {
   background: #1a2634;
   color: #fff;
   text-decoration: none;
@@ -297,11 +801,120 @@ ul.products li.product .woocommerce-loop-product__image-wrap .added_to_cart:hove
 ul.products li.product .woocommerce-loop-product__title,
 ul.products li.product h2,
 ul.products li.product h3,
-ul.products li.product .price {
+ul.products li.product .price,
+.woocommerce ul.products li.product .woocommerce-loop-product__title,
+.woocommerce ul.products li.product h2,
+.woocommerce ul.products li.product h3,
+.woocommerce ul.products li.product .price,
+.woocommerce-page ul.products li.product .woocommerce-loop-product__title,
+.woocommerce-page ul.products li.product h2,
+.woocommerce-page ul.products li.product h3,
+.woocommerce-page ul.products li.product .price,
+.woocommerce ul.products[class*=columns-] li.product .woocommerce-loop-product__title,
+.woocommerce ul.products[class*=columns-] li.product h2,
+.woocommerce ul.products[class*=columns-] li.product h3,
+.woocommerce ul.products[class*=columns-] li.product .price,
+.woocommerce-page ul.products[class*=columns-] li.product .woocommerce-loop-product__title,
+.woocommerce-page ul.products[class*=columns-] li.product h2,
+.woocommerce-page ul.products[class*=columns-] li.product h3,
+.woocommerce-page ul.products[class*=columns-] li.product .price,
+.woocommerce.columns-2 ul.products li.product .woocommerce-loop-product__title,
+.woocommerce.columns-2 ul.products li.product h2,
+.woocommerce.columns-2 ul.products li.product h3,
+.woocommerce.columns-2 ul.products li.product .price,
+.woocommerce.columns-3 ul.products li.product .woocommerce-loop-product__title,
+.woocommerce.columns-3 ul.products li.product h2,
+.woocommerce.columns-3 ul.products li.product h3,
+.woocommerce.columns-3 ul.products li.product .price,
+.woocommerce.columns-4 ul.products li.product .woocommerce-loop-product__title,
+.woocommerce.columns-4 ul.products li.product h2,
+.woocommerce.columns-4 ul.products li.product h3,
+.woocommerce.columns-4 ul.products li.product .price,
+.woocommerce.columns-5 ul.products li.product .woocommerce-loop-product__title,
+.woocommerce.columns-5 ul.products li.product h2,
+.woocommerce.columns-5 ul.products li.product h3,
+.woocommerce.columns-5 ul.products li.product .price,
+.woocommerce.columns-6 ul.products li.product .woocommerce-loop-product__title,
+.woocommerce.columns-6 ul.products li.product h2,
+.woocommerce.columns-6 ul.products li.product h3,
+.woocommerce.columns-6 ul.products li.product .price,
+.woocommerce .related ul.products li.product .woocommerce-loop-product__title,
+.woocommerce .related ul.products li.product h2,
+.woocommerce .related ul.products li.product h3,
+.woocommerce .related ul.products li.product .price,
+.woocommerce .upsells ul.products li.product .woocommerce-loop-product__title,
+.woocommerce .upsells ul.products li.product h2,
+.woocommerce .upsells ul.products li.product h3,
+.woocommerce .upsells ul.products li.product .price,
+.woocommerce-page .related ul.products li.product .woocommerce-loop-product__title,
+.woocommerce-page .related ul.products li.product h2,
+.woocommerce-page .related ul.products li.product h3,
+.woocommerce-page .related ul.products li.product .price,
+.woocommerce-page .upsells ul.products li.product .woocommerce-loop-product__title,
+.woocommerce-page .upsells ul.products li.product h2,
+.woocommerce-page .upsells ul.products li.product h3,
+.woocommerce-page .upsells ul.products li.product .price {
   padding-left: 0;
   padding-right: 0;
 }
 
+/* Related / upsells share the catalog grid; keep them full-bleed under the product. */
+.woocommerce .related,
+.woocommerce .upsells,
+.woocommerce-page .related,
+.woocommerce-page .upsells {
+  clear: both;
+  width: 100%;
+  max-width: 100%;
+}
+.woocommerce .related > h2,
+.woocommerce .upsells > h2,
+.woocommerce-page .related > h2,
+.woocommerce-page .upsells > h2 {
+  margin: 0 0 1.25rem;
+}
+.woocommerce .related ul.products,
+.woocommerce .upsells ul.products,
+.woocommerce-page .related ul.products,
+.woocommerce-page .upsells ul.products {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem 1.5rem;
+}
+.woocommerce .related ul.products::before, .woocommerce .related ul.products::after,
+.woocommerce .upsells ul.products::before,
+.woocommerce .upsells ul.products::after,
+.woocommerce-page .related ul.products::before,
+.woocommerce-page .related ul.products::after,
+.woocommerce-page .upsells ul.products::before,
+.woocommerce-page .upsells ul.products::after {
+  content: none !important;
+  display: none !important;
+}
+.woocommerce .related ul.products li.product,
+.woocommerce .upsells ul.products li.product,
+.woocommerce-page .related ul.products li.product,
+.woocommerce-page .upsells ul.products li.product {
+  width: 100% !important;
+  max-width: 100%;
+  float: none !important;
+  margin: 0 !important;
+}
+
+@media screen and (min-width: 768px) {
+  .woocommerce .related ul.products,
+  .woocommerce .upsells ul.products,
+  .woocommerce-page .related ul.products,
+  .woocommerce-page .upsells ul.products,
+  .woocommerce .related ul.products.columns-3,
+  .woocommerce .upsells ul.products.columns-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2.25rem 1.75rem;
+  }
+}
 .woocommerce ul.products li.product .onsale {
   position: absolute;
   top: 1rem;
@@ -810,6 +1423,13 @@ ul.products li.product .price {
   .single-product div.product > .related {
     grid-column: 1/-1;
     width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+  .single-product div.product > .related ul.products,
+  .single-product div.product > .upsells ul.products {
+    width: 100%;
+    max-width: 100%;
   }
 }
 /* Stock status (global) */
@@ -2145,6 +2765,591 @@ p.no-comments a.button:hover {
 }
 .widget_price_filter .ui-slider-horizontal .ui-slider-range {
   height: 100%;
+}
+
+/**
+ * Optional style variants (Customizer). Imported last so they override the
+ * default catalog and single product rules at equal specificity.
+ */
+/**
+ * Catalog style: Shopline
+ *
+ * Opt-in alternative to the default card catalog, applied via the
+ * `accepta-shop-style-shopline` body class from the Customizer.
+ *
+ * Inspired by the Accepta Shopline demo: borderless cards, left-aligned meta,
+ * quiet image zoom on hover, and an always-visible Add to cart under the price
+ * (no hover-reveal overlay). Accent colors use the theme primary.
+ *
+ * Selectors are prefixed with `body.` so they outrank both the theme's own
+ * default catalog rules and WooCommerce's float-based layout stylesheet
+ * without needing !important.
+ */
+body.accepta-shop-style-shopline {
+  /* WooCommerce clearfix pseudos must not become grid items. */
+}
+body.accepta-shop-style-shopline ul.products::before,
+body.accepta-shop-style-shopline ul.products::after {
+  content: none !important;
+  display: none !important;
+}
+body.accepta-shop-style-shopline {
+  /* Toolbar ----------------------------------------------------------- */
+}
+body.accepta-shop-style-shopline .woocommerce-products-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #e5e5e5;
+}
+body.accepta-shop-style-shopline .page-title {
+  margin: 0 0 0.75rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+body.accepta-shop-style-shopline .woocommerce-result-count {
+  margin: 0;
+  font-size: 0.8125rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #6b7280;
+}
+body.accepta-shop-style-shopline .woocommerce-ordering select {
+  min-height: 2.5rem;
+  padding: 0.5rem 2rem 0.5rem 0.875rem;
+  border: 1px solid #e5e5e5;
+  border-radius: 0;
+  background: #fff;
+  font-size: 0.85rem;
+  color: #2c3e50;
+  box-shadow: none;
+}
+body.accepta-shop-style-shopline .woocommerce-ordering select:focus {
+  border-color: #2c3e50;
+  box-shadow: none;
+}
+body.accepta-shop-style-shopline {
+  /* Grid -------------------------------------------------------------- */
+}
+body.accepta-shop-style-shopline ul.products {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2.25rem 1.75rem;
+  margin: 0 0 3rem;
+  padding: 0;
+  align-items: start;
+}
+body.accepta-shop-style-shopline {
+  /*
+   * Card: image → title → price | button.
+   * align-content/items: start keeps meta under the image when the parent
+   * grid would otherwise stretch short cards to match taller neighbours.
+   */
+}
+body.accepta-shop-style-shopline ul.products li.product {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-auto-rows: auto;
+  align-content: start;
+  align-items: start;
+  justify-items: stretch;
+  column-gap: 0.75rem;
+  row-gap: 0;
+  width: 100% !important;
+  max-width: 100%;
+  float: none !important;
+  clear: none !important;
+  margin: 0 !important;
+  padding: 0;
+  text-align: left;
+  background: transparent;
+}
+body.accepta-shop-style-shopline ul.products li.product.first, body.accepta-shop-style-shopline ul.products li.product.last {
+  clear: none !important;
+  margin: 0 !important;
+}
+body.accepta-shop-style-shopline {
+  /* Media – natural image height, no forced portrait crop. */
+}
+body.accepta-shop-style-shopline .woocommerce-loop-product__image-wrap {
+  position: relative;
+  grid-column: 1/-1;
+  margin: 0 0 0.75rem;
+  overflow: hidden;
+  border-radius: 0;
+  background: transparent;
+}
+body.accepta-shop-style-shopline ul.products li.product img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0;
+  background: transparent;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+body.accepta-shop-style-shopline ul.products li.product:hover .woocommerce-loop-product__image-wrap img,
+body.accepta-shop-style-shopline ul.products li.product:focus-within .woocommerce-loop-product__image-wrap img {
+  transform: scale(1.03);
+}
+body.accepta-shop-style-shopline {
+  /* Sale flag: plain uppercase label over the photo. */
+}
+body.accepta-shop-style-shopline ul.products li.product .onsale {
+  top: 0.75rem;
+  right: auto;
+  left: 0.75rem;
+  z-index: 2;
+  padding: 0;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #6F9C50;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  text-shadow: 0 1px 4px rgba(255, 255, 255, 0.7);
+}
+body.accepta-shop-style-shopline {
+  /* Meta -------------------------------------------------------------- */
+}
+body.accepta-shop-style-shopline ul.products li.product .woocommerce-loop-product__title,
+body.accepta-shop-style-shopline ul.products li.product h2,
+body.accepta-shop-style-shopline ul.products li.product h3 {
+  grid-column: 1/-1;
+  margin: 0;
+  padding: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: 0;
+  text-align: left;
+}
+body.accepta-shop-style-shopline ul.products li.product .woocommerce-loop-product__title a,
+body.accepta-shop-style-shopline ul.products li.product h2 a,
+body.accepta-shop-style-shopline ul.products li.product h3 a {
+  color: #2c3e50;
+}
+body.accepta-shop-style-shopline ul.products li.product .woocommerce-loop-product__title a:hover,
+body.accepta-shop-style-shopline ul.products li.product h2 a:hover,
+body.accepta-shop-style-shopline ul.products li.product h3 a:hover {
+  color: #6b7280;
+}
+body.accepta-shop-style-shopline ul.products li.product .star-rating {
+  grid-column: 1/-1;
+  margin: 0.35rem 0 0;
+  float: none;
+}
+body.accepta-shop-style-shopline ul.products li.product .price {
+  grid-column: 1;
+  justify-self: start;
+  align-self: center;
+  display: inline-flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  min-height: 2.25rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-align: left;
+  color: #2c3e50;
+}
+body.accepta-shop-style-shopline ul.products li.product .price del {
+  order: 1;
+  margin: 0;
+  font-size: 0.85em;
+  font-weight: 500;
+  color: #6b7280;
+}
+body.accepta-shop-style-shopline ul.products li.product .price ins {
+  order: 2;
+  text-decoration: none;
+}
+body.accepta-shop-style-shopline ul.products li.product .price .amount {
+  color: inherit;
+}
+body.accepta-shop-style-shopline ul.products li.product .price ins .amount {
+  color: #6F9C50;
+}
+body.accepta-shop-style-shopline {
+  /* Always-visible Add to cart – right edge, same row as price. */
+}
+body.accepta-shop-style-shopline ul.products li.product > .button,
+body.accepta-shop-style-shopline ul.products li.product > .add_to_cart_button,
+body.accepta-shop-style-shopline ul.products li.product > .added_to_cart,
+body.accepta-shop-style-shopline ul.products li.product .button,
+body.accepta-shop-style-shopline ul.products li.product .add_to_cart_button,
+body.accepta-shop-style-shopline ul.products li.product .added_to_cart {
+  grid-column: 2;
+  justify-self: end;
+  align-self: center;
+  position: static;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  min-height: 2.25rem;
+  margin: 0.5rem 0 0;
+  padding: 0.5rem 0.85rem;
+  transform: none;
+  opacity: 1;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  color: #2c3e50;
+  background: transparent;
+  border: 1px solid #e5e5e5;
+  border-radius: 0;
+  box-shadow: none;
+  text-align: center;
+  white-space: nowrap;
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+body.accepta-shop-style-shopline ul.products li.product > .button:hover, body.accepta-shop-style-shopline ul.products li.product > .button:focus,
+body.accepta-shop-style-shopline ul.products li.product > .add_to_cart_button:hover,
+body.accepta-shop-style-shopline ul.products li.product > .add_to_cart_button:focus,
+body.accepta-shop-style-shopline ul.products li.product > .added_to_cart:hover,
+body.accepta-shop-style-shopline ul.products li.product > .added_to_cart:focus,
+body.accepta-shop-style-shopline ul.products li.product .button:hover,
+body.accepta-shop-style-shopline ul.products li.product .button:focus,
+body.accepta-shop-style-shopline ul.products li.product .add_to_cart_button:hover,
+body.accepta-shop-style-shopline ul.products li.product .add_to_cart_button:focus,
+body.accepta-shop-style-shopline ul.products li.product .added_to_cart:hover,
+body.accepta-shop-style-shopline ul.products li.product .added_to_cart:focus {
+  color: #fff;
+  background: #6F9C50;
+  border-color: #6F9C50;
+  transform: none;
+  opacity: 1;
+}
+body.accepta-shop-style-shopline {
+  /* After AJAX add: keep a single action on the right (View cart). */
+}
+body.accepta-shop-style-shopline ul.products li.product .button.added {
+  display: none;
+}
+body.accepta-shop-style-shopline ul.products li.product .added_to_cart {
+  color: #fff;
+  background: #2c3e50;
+  border-color: #2c3e50;
+}
+body.accepta-shop-style-shopline ul.products li.product .added_to_cart:hover, body.accepta-shop-style-shopline ul.products li.product .added_to_cart:focus {
+  color: #fff;
+  background: #6F9C50;
+  border-color: #6F9C50;
+}
+body.accepta-shop-style-shopline ul.products li.product .button.loading {
+  opacity: 0.7;
+}
+body.accepta-shop-style-shopline {
+  /* Never let default overlay rules pull buttons over the image. */
+}
+body.accepta-shop-style-shopline .woocommerce-loop-product__image-wrap .button,
+body.accepta-shop-style-shopline .woocommerce-loop-product__image-wrap .add-to-cart-overlay,
+body.accepta-shop-style-shopline .woocommerce-loop-product__image-wrap .added_to_cart {
+  position: static;
+  left: auto;
+  right: auto;
+  bottom: auto;
+  top: auto;
+  opacity: 1;
+  transform: none;
+  width: auto;
+}
+
+@media screen and (min-width: 768px) {
+  body.accepta-shop-style-shopline ul.products {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2.5rem 2rem;
+  }
+}
+@media screen and (min-width: 1024px) {
+  body.accepta-shop-style-shopline ul.products {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 2.75rem 2.25rem;
+  }
+  body.accepta-shop-style-shopline ul.products.columns-1 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  body.accepta-shop-style-shopline ul.products.columns-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  body.accepta-shop-style-shopline ul.products.columns-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  body.accepta-shop-style-shopline ul.products.columns-5 {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+  body.accepta-shop-style-shopline ul.products.columns-6 {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  body.accepta-shop-style-shopline ul.products li.product img,
+  body.accepta-shop-style-shopline ul.products li.product:hover .woocommerce-loop-product__image-wrap img,
+  body.accepta-shop-style-shopline ul.products li.product:focus-within .woocommerce-loop-product__image-wrap img {
+    transition: none;
+    transform: none;
+  }
+}
+/**
+ * Single product style: Shopline
+ *
+ * Opt-in alternative to the default product layout, applied via the
+ * `accepta-product-style-shopline` body class from the Customizer.
+ *
+ * Inspired by the Accepta Shopline demo: portrait gallery on a mist ground,
+ * no frame/shadow, ink-bordered thumbs, confident product title, full-width
+ * primary Add to cart, hairline meta, and underline tabs. Theme primary
+ * replaces the demo's black/rust accents.
+ *
+ * Rules are rooted at `body.accepta-product-style-shopline` so they outrank
+ * the default single-product selectors without !important.
+ */
+body.accepta-product-style-shopline .woocommerce-breadcrumb {
+  margin-bottom: 1.25rem;
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+body.accepta-product-style-shopline {
+  /* Gallery ----------------------------------------------------------- */
+}
+body.accepta-product-style-shopline div.product .woocommerce-product-gallery {
+  margin-bottom: 1.5rem;
+}
+body.accepta-product-style-shopline div.product .woocommerce-product-gallery .flex-viewport {
+  margin-bottom: 0.875rem;
+  aspect-ratio: 4/5;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  overflow: hidden;
+}
+body.accepta-product-style-shopline div.product .woocommerce-product-gallery .flex-viewport img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+body.accepta-product-style-shopline div.product .woocommerce-product-gallery .flex-control-thumbs {
+  gap: 0.625rem;
+}
+body.accepta-product-style-shopline div.product .woocommerce-product-gallery .flex-control-thumbs li img {
+  border-radius: 0;
+  border: 1px solid transparent;
+  opacity: 1;
+  background: transparent;
+  transition: border-color 0.2s ease;
+}
+body.accepta-product-style-shopline div.product .woocommerce-product-gallery .flex-control-thumbs li img.flex-active {
+  border-color: #2c3e50;
+  opacity: 1;
+}
+body.accepta-product-style-shopline div.product .woocommerce-product-gallery .flex-control-thumbs li:hover img {
+  border-color: #e5e5e5;
+}
+body.accepta-product-style-shopline {
+  /* Summary ----------------------------------------------------------- */
+}
+body.accepta-product-style-shopline div.product .product_title {
+  margin: 0 0 0.75rem;
+  font-size: clamp(1.8rem, 3vw, 2.3rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  color: #2c3e50;
+}
+body.accepta-product-style-shopline div.product .price {
+  margin: 0 0 0.35rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #2c3e50;
+}
+body.accepta-product-style-shopline div.product .price del {
+  font-size: 0.85em;
+  font-weight: 500;
+  color: #6b7280;
+}
+body.accepta-product-style-shopline div.product .price ins {
+  text-decoration: none;
+}
+body.accepta-product-style-shopline div.product .price ins .amount {
+  color: #6F9C50;
+}
+body.accepta-product-style-shopline div.product .woocommerce-product-rating {
+  margin-bottom: 1rem;
+}
+body.accepta-product-style-shopline div.product .woocommerce-product-details__short-description {
+  margin: 1.125rem 0 0;
+  padding: 0;
+  border: 0;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: #6b7280;
+}
+body.accepta-product-style-shopline div.product .onsale {
+  padding: 0;
+  margin: 0 0 0.75rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #6F9C50;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+}
+body.accepta-product-style-shopline {
+  /* Buy row ----------------------------------------------------------- */
+}
+body.accepta-product-style-shopline div.product .cart {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+  margin-bottom: 0;
+}
+body.accepta-product-style-shopline div.product .quantity input {
+  min-height: 2.875rem;
+  width: 4.25rem;
+  border: 1px solid #e5e5e5;
+  border-radius: 0;
+  background: #fff;
+}
+body.accepta-product-style-shopline div.product .single_add_to_cart_button {
+  flex: 1 1 12rem;
+  min-height: 2.875rem;
+  padding: 0.85rem 1.75rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 0;
+  background: #6F9C50;
+  color: #fff;
+  transition: background 0.2s ease;
+}
+body.accepta-product-style-shopline div.product .single_add_to_cart_button:hover {
+  background: #5a7d3f;
+  color: #fff;
+  transform: none;
+}
+body.accepta-product-style-shopline div.product table.variations {
+  margin-top: 1.5rem;
+}
+body.accepta-product-style-shopline div.product table.variations .label {
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+body.accepta-product-style-shopline div.product table.variations .value select {
+  border-radius: 0;
+  border-color: #e5e5e5;
+  min-height: 2.75rem;
+}
+body.accepta-product-style-shopline div.product .product_meta {
+  display: grid;
+  gap: 0.625rem;
+  margin-top: 1.875rem;
+  padding-top: 1.375rem;
+  border-top: 1px solid #e5e5e5;
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+body.accepta-product-style-shopline div.product .product_meta > span {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+}
+body.accepta-product-style-shopline div.product .product_meta a {
+  color: #2c3e50;
+}
+body.accepta-product-style-shopline div.product .product_meta a:hover {
+  color: #6F9C50;
+}
+body.accepta-product-style-shopline {
+  /* Tabs -------------------------------------------------------------- */
+}
+body.accepta-product-style-shopline div.product .woocommerce-tabs {
+  margin-top: 3.5rem;
+  padding-top: 0;
+  border-top: 0;
+}
+body.accepta-product-style-shopline div.product .woocommerce-tabs ul.tabs {
+  gap: 0 2rem;
+  margin-bottom: 0;
+  border-bottom: 1px solid #e5e5e5;
+}
+body.accepta-product-style-shopline div.product .woocommerce-tabs ul.tabs li {
+  padding: 0;
+  margin: 0;
+  background: none;
+  border: 0;
+}
+body.accepta-product-style-shopline div.product .woocommerce-tabs ul.tabs li a {
+  position: relative;
+  padding: 0.25rem 0 1rem;
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: none;
+  color: #6b7280;
+  border-bottom: 0;
+}
+body.accepta-product-style-shopline div.product .woocommerce-tabs ul.tabs li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  background: #6F9C50;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+body.accepta-product-style-shopline div.product .woocommerce-tabs ul.tabs li a:hover {
+  color: #2c3e50;
+}
+body.accepta-product-style-shopline div.product .woocommerce-tabs ul.tabs li.active {
+  background: none;
+}
+body.accepta-product-style-shopline div.product .woocommerce-tabs ul.tabs li.active a {
+  color: #2c3e50;
+  border-bottom: 0;
+}
+body.accepta-product-style-shopline div.product .woocommerce-tabs ul.tabs li.active a::after {
+  transform: scaleX(1);
+}
+body.accepta-product-style-shopline div.product .woocommerce-tabs .panel {
+  padding: 2rem 0;
+  max-width: 68ch;
+  color: #6b7280;
+}
+
+@media screen and (min-width: 768px) {
+  body.accepta-product-style-shopline div.product {
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 3.5rem;
+  }
+  body.accepta-product-style-shopline div.product .summary {
+    position: sticky;
+    top: 2rem;
+    padding-top: 0.25rem;
+  }
+  body.accepta-product-style-shopline div.product .woocommerce-product-gallery {
+    position: static;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  body.accepta-product-style-shopline div.product .woocommerce-tabs ul.tabs li a::after {
+    transition: none;
+  }
 }
 
 /*# sourceMappingURL=woocommerce.css.map */

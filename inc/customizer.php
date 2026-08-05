@@ -1673,18 +1673,38 @@ function accepta_customize_register( $wp_customize ) {
 			'accepta_woocommerce_panel',
 			array(
 				'title'       => __( 'WooCommerce', 'accepta' ),
-				'description' => __( 'Customize how WooCommerce is displayed in the theme: header minicart, shop, and single product.', 'accepta' ),
+				'description' => __( 'Customize how WooCommerce is displayed in the theme: general styles, shop, and single product.', 'accepta' ),
 				'priority'    => 125,
 			)
 		);
 
-		// Header Minicart Section
+		// General Section – shared styles and header cart.
 		$wp_customize->add_section(
-			'accepta_woo_header_minicart',
+			'accepta_woo_general',
 			array(
-				'title'       => __( 'Header Minicart', 'accepta' ),
-				'description' => __( 'Settings for the cart icon and minicart in the header.', 'accepta' ),
+				'title'       => __( 'General', 'accepta' ),
+				'description' => __( 'Shared WooCommerce settings: shop style, and the header cart icon.', 'accepta' ),
 				'panel'       => 'accepta_woocommerce_panel',
+				'priority'    => 5,
+			)
+		);
+
+		$wp_customize->add_setting(
+			'accepta_woo_style',
+			array(
+				'default'           => 'default',
+				'sanitize_callback' => 'accepta_sanitize_woocommerce_style',
+				'transport'         => 'refresh',
+			)
+		);
+		$wp_customize->add_control(
+			'accepta_woo_style',
+			array(
+				'label'       => __( 'Shop style', 'accepta' ),
+				'description' => __( 'Applies to both the product catalog and the single product page. Default uses compact cards with a full-width Add to cart bar over the image. Shopline uses a product-first grid with image zoom, a quick-add chip, and a quieter single product layout.', 'accepta' ),
+				'section'     => 'accepta_woo_general',
+				'type'        => 'select',
+				'choices'     => accepta_get_woocommerce_style_choices(),
 				'priority'    => 10,
 			)
 		);
@@ -1702,11 +1722,64 @@ function accepta_customize_register( $wp_customize ) {
 			array(
 				'label'       => __( 'Display cart icon in header', 'accepta' ),
 				'description' => __( 'Show the WooCommerce cart icon and item count in the header.', 'accepta' ),
-				'section'     => 'accepta_woo_header_minicart',
+				'section'     => 'accepta_woo_general',
 				'type'        => 'checkbox',
-				'priority'    => 10,
+				'priority'    => 30,
 			)
 		);
+
+		$wp_customize->add_setting(
+			'accepta_woo_cart_icon',
+			array(
+				'default'           => 'cart',
+				'sanitize_callback' => 'accepta_sanitize_cart_icon',
+				'transport'         => 'postMessage',
+			)
+		);
+		$wp_customize->add_control(
+			new Accepta_Layout_Control(
+				$wp_customize,
+				'accepta_woo_cart_icon',
+				array(
+					'label'           => __( 'Cart icon', 'accepta' ),
+					'description'     => __( 'Choose the icon used for the header cart.', 'accepta' ),
+					'section'         => 'accepta_woo_general',
+					'priority'        => 40,
+					'active_callback' => function( $control ) {
+						return (bool) $control->manager->get_setting( 'accepta_woo_display_header_cart' )->value();
+					},
+					'layouts'         => array(
+						'cart'   => array(
+							'label' => __( 'Cart', 'accepta' ),
+						),
+						'bag'    => array(
+							'label' => __( 'Bag', 'accepta' ),
+						),
+						'basket' => array(
+							'label' => __( 'Basket', 'accepta' ),
+						),
+						'tote'   => array(
+							'label' => __( 'Tote', 'accepta' ),
+						),
+					),
+				)
+			)
+		);
+
+		if ( isset( $wp_customize->selective_refresh ) ) {
+			$wp_customize->selective_refresh->add_partial(
+				'accepta_woo_cart_icon',
+				array(
+					'selector'            => 'a.header-cart-link.cart-contents',
+					'container_inclusive' => true,
+					'render_callback'     => function() {
+						if ( function_exists( 'accepta_woocommerce_cart_link' ) ) {
+							accepta_woocommerce_cart_link( true );
+						}
+					},
+				)
+			);
+		}
 
 		// Shop Section
 		$wp_customize->add_section(

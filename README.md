@@ -38,7 +38,13 @@ For theme support and documentation, visit [WPDINO](https://wpdino.com).
 
 ## Changelog
 
-### 1.1.0 (2026-07-15)
+### 1.1.1 (2026-08-05)
+
+* Added a WooCommerce Shop style option (Default and Shopline) for the catalog and single product pages.
+* Added header cart icon choices (cart, bag, basket, tote) in the Customizer.
+* Improved Shopline product cards with tighter image-to-meta spacing and a clearer price and Add to cart layout.
+
+### 1.1.0 (2026-06-29)
 
 * Added Scrolled Header Logo option in the Customizer for a separate logo when the sticky header is scrolled.
 * Added DinoFolio portfolio integration with archive, single, taxonomy templates, hero layout, and dedicated styles.

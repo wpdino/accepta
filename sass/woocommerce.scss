@@ -46,3 +46,10 @@ $woocommerce__color-info: #3d9cd2;
  * WooCommerce widgets
  */
 @import "plugins/woocommerce/widgets";
+
+/**
+ * Optional style variants (Customizer). Imported last so they override the
+ * default catalog and single product rules at equal specificity.
+ */
+@import "plugins/woocommerce/shop-shopline";
+@import "plugins/woocommerce/single-product-shopline";

@@ -90,8 +90,10 @@ class Accepta_Layout_Control extends WP_Customize_Control {
 		$description_id = '_customize-description-' . $this->id;
 		$describedby_attr = ( ! empty( $this->description ) ) ? ' aria-describedby="' . esc_attr( $description_id ) . '"' : '';
 		$value = $this->value();
+		$is_icon_picker = ( isset( $this->id ) && $this->id === 'accepta_woo_cart_icon' );
+		$wrapper_class  = 'accepta-layout-control-wrapper' . ( $is_icon_picker ? ' accepta-layout-control-wrapper--icons' : '' );
 		?>
-		<div class="accepta-layout-control-wrapper">
+		<div class="<?php echo esc_attr( $wrapper_class ); ?>">
 			<?php if ( ! empty( $this->label ) ) : ?>
 				<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
 			<?php endif; ?>
@@ -155,6 +157,11 @@ class Accepta_Layout_Control extends WP_Customize_Control {
 			$header_svg = $this->get_header_layout_svg( $layout );
 			return $header_svg;
 		}
+
+		// Header cart icon presets – show the actual icon centered in the tile.
+		if ( isset( $this->id ) && $this->id === 'accepta_woo_cart_icon' ) {
+			return $this->get_cart_icon_svg( $layout );
+		}
 		
 		// Check if this is a footer columns control
 		// Footer columns use numeric keys (0-4), sidebar layouts use text keys (none, left, right)
@@ -217,6 +224,30 @@ class Accepta_Layout_Control extends WP_Customize_Control {
 		}
 
 		return $svg_content;
+	}
+
+	/**
+	 * Get SVG preview for a header cart icon preset.
+	 *
+	 * Prefers the frontend helper when WooCommerce is active so Customizer
+	 * tiles stay in sync with the header markup.
+	 *
+	 * @param string $icon Icon slug.
+	 * @return string SVG markup.
+	 */
+	private function get_cart_icon_svg( $icon ) {
+		if ( function_exists( 'accepta_get_cart_icon_svg' ) ) {
+			$icon_svg = accepta_get_cart_icon_svg( $icon );
+			// Upsize for the layout control tile while keeping the same paths.
+			$icon_svg = str_replace(
+				array( 'width="18"', 'height="18"' ),
+				array( 'width="28"', 'height="28"' ),
+				$icon_svg
+			);
+			return $icon_svg;
+		}
+
+		return '';
 	}
 
 	/**

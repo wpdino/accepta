@@ -1,0 +1,346 @@
+/**
+ * Catalog style: Shopline
+ *
+ * Opt-in alternative to the default card catalog, applied via the
+ * `accepta-shop-style-shopline` body class from the Customizer.
+ *
+ * Inspired by the Accepta Shopline demo: borderless cards, left-aligned meta,
+ * quiet image zoom on hover, and an always-visible Add to cart under the price
+ * (no hover-reveal overlay). Accent colors use the theme primary.
+ *
+ * Selectors are prefixed with `body.` so they outrank both the theme's own
+ * default catalog rules and WooCommerce's float-based layout stylesheet
+ * without needing !important.
+ */
+
+$wc-sl__text: #2c3e50;
+$wc-sl__muted: #6b7280;
+$wc-sl__hairline: #e5e5e5;
+$wc-sl__ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+body.accepta-shop-style-shopline {
+
+	/* WooCommerce clearfix pseudos must not become grid items. */
+	ul.products::before,
+	ul.products::after {
+		content: none !important;
+		display: none !important;
+	}
+
+	/* Toolbar ----------------------------------------------------------- */
+
+	.woocommerce-products-header {
+		margin-bottom: 2rem;
+		padding-bottom: 1.5rem;
+		border-bottom: 1px solid $wc-sl__hairline;
+	}
+
+	.page-title {
+		margin: 0 0 0.75rem;
+		font-weight: 600;
+		letter-spacing: -0.01em;
+	}
+
+	.woocommerce-result-count {
+		margin: 0;
+		font-size: 0.8125rem;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		color: $wc-sl__muted;
+	}
+
+	.woocommerce-ordering select {
+		min-height: 2.5rem;
+		padding: 0.5rem 2rem 0.5rem 0.875rem;
+		border: 1px solid $wc-sl__hairline;
+		border-radius: 0;
+		background: #fff;
+		font-size: 0.85rem;
+		color: $wc-sl__text;
+		box-shadow: none;
+
+		&:focus {
+			border-color: $wc-sl__text;
+			box-shadow: none;
+		}
+	}
+
+	/* Grid -------------------------------------------------------------- */
+
+	ul.products {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 2.25rem 1.75rem;
+		margin: 0 0 3rem;
+		padding: 0;
+		align-items: start;
+	}
+
+	/*
+	 * Card: image → title → price | button.
+	 * align-content/items: start keeps meta under the image when the parent
+	 * grid would otherwise stretch short cards to match taller neighbours.
+	 */
+	ul.products li.product {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) auto;
+		grid-auto-rows: auto;
+		align-content: start;
+		align-items: start;
+		justify-items: stretch;
+		column-gap: 0.75rem;
+		row-gap: 0;
+		width: 100% !important;
+		max-width: 100%;
+		float: none !important;
+		clear: none !important;
+		margin: 0 !important;
+		padding: 0;
+		text-align: left;
+		background: transparent;
+
+		&.first,
+		&.last {
+			clear: none !important;
+			margin: 0 !important;
+		}
+	}
+
+	/* Media – natural image height, no forced portrait crop. */
+	.woocommerce-loop-product__image-wrap {
+		position: relative;
+		grid-column: 1 / -1;
+		margin: 0 0 0.75rem;
+		overflow: hidden;
+		border-radius: 0;
+		background: transparent;
+	}
+
+	ul.products li.product img {
+		display: block;
+		width: 100%;
+		height: auto;
+		border-radius: 0;
+		background: transparent;
+		transition: transform 0.6s $wc-sl__ease;
+	}
+
+	ul.products li.product:hover .woocommerce-loop-product__image-wrap img,
+	ul.products li.product:focus-within .woocommerce-loop-product__image-wrap img {
+		transform: scale(1.03);
+	}
+
+	/* Sale flag: plain uppercase label over the photo. */
+	ul.products li.product .onsale {
+		top: 0.75rem;
+		right: auto;
+		left: 0.75rem;
+		z-index: 2;
+		padding: 0;
+		font-size: 0.6875rem;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: $color__primary;
+		background: transparent;
+		border: 0;
+		border-radius: 0;
+		box-shadow: none;
+		text-shadow: 0 1px 4px rgba(255, 255, 255, 0.7);
+	}
+
+	/* Meta -------------------------------------------------------------- */
+
+	ul.products li.product .woocommerce-loop-product__title,
+	ul.products li.product h2,
+	ul.products li.product h3 {
+		grid-column: 1 / -1;
+		margin: 0;
+		padding: 0;
+		font-size: 1rem;
+		font-weight: 600;
+		line-height: 1.35;
+		letter-spacing: 0;
+		text-align: left;
+	}
+
+	ul.products li.product .woocommerce-loop-product__title a,
+	ul.products li.product h2 a,
+	ul.products li.product h3 a {
+		color: $wc-sl__text;
+
+		&:hover {
+			color: $wc-sl__muted;
+		}
+	}
+
+	ul.products li.product .star-rating {
+		grid-column: 1 / -1;
+		margin: 0.35rem 0 0;
+		float: none;
+	}
+
+	ul.products li.product .price {
+		grid-column: 1;
+		justify-self: start;
+		align-self: center;
+		display: inline-flex;
+		align-items: baseline;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		margin: 0.5rem 0 0;
+		padding: 0;
+		min-height: 2.25rem;
+		font-size: 0.95rem;
+		font-weight: 600;
+		text-align: left;
+		color: $wc-sl__text;
+
+		del {
+			order: 1;
+			margin: 0;
+			font-size: 0.85em;
+			font-weight: 500;
+			color: $wc-sl__muted;
+		}
+
+		ins {
+			order: 2;
+			text-decoration: none;
+		}
+
+		.amount {
+			color: inherit;
+		}
+
+		ins .amount {
+			color: $color__primary;
+		}
+	}
+
+	/* Always-visible Add to cart – right edge, same row as price. */
+	ul.products li.product > .button,
+	ul.products li.product > .add_to_cart_button,
+	ul.products li.product > .added_to_cart,
+	ul.products li.product .button,
+	ul.products li.product .add_to_cart_button,
+	ul.products li.product .added_to_cart {
+		grid-column: 2;
+		justify-self: end;
+		align-self: center;
+		position: static;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: auto;
+		min-height: 2.25rem;
+		margin: 0.5rem 0 0;
+		padding: 0.5rem 0.85rem;
+		transform: none;
+		opacity: 1;
+		font-size: 0.75rem;
+		font-weight: 700;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		line-height: 1.2;
+		color: $wc-sl__text;
+		background: transparent;
+		border: 1px solid $wc-sl__hairline;
+		border-radius: 0;
+		box-shadow: none;
+		text-align: center;
+		white-space: nowrap;
+		transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+
+		&:hover,
+		&:focus {
+			color: #fff;
+			background: $color__primary;
+			border-color: $color__primary;
+			transform: none;
+			opacity: 1;
+		}
+	}
+
+	/* After AJAX add: keep a single action on the right (View cart). */
+	ul.products li.product .button.added {
+		display: none;
+	}
+
+	ul.products li.product .added_to_cart {
+		color: #fff;
+		background: $wc-sl__text;
+		border-color: $wc-sl__text;
+
+		&:hover,
+		&:focus {
+			color: #fff;
+			background: $color__primary;
+			border-color: $color__primary;
+		}
+	}
+
+	ul.products li.product .button.loading {
+		opacity: 0.7;
+	}
+
+	/* Never let default overlay rules pull buttons over the image. */
+	.woocommerce-loop-product__image-wrap .button,
+	.woocommerce-loop-product__image-wrap .add-to-cart-overlay,
+	.woocommerce-loop-product__image-wrap .added_to_cart {
+		position: static;
+		left: auto;
+		right: auto;
+		bottom: auto;
+		top: auto;
+		opacity: 1;
+		transform: none;
+		width: auto;
+	}
+}
+
+@media screen and (min-width: 768px) {
+
+	body.accepta-shop-style-shopline ul.products {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 2.5rem 2rem;
+	}
+}
+
+@media screen and (min-width: 1024px) {
+
+	body.accepta-shop-style-shopline ul.products {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: 2.75rem 2.25rem;
+	}
+
+	body.accepta-shop-style-shopline ul.products.columns-1 {
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	body.accepta-shop-style-shopline ul.products.columns-2 {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	body.accepta-shop-style-shopline ul.products.columns-3 {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
+	body.accepta-shop-style-shopline ul.products.columns-5 {
+		grid-template-columns: repeat(5, minmax(0, 1fr));
+	}
+
+	body.accepta-shop-style-shopline ul.products.columns-6 {
+		grid-template-columns: repeat(6, minmax(0, 1fr));
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+	body.accepta-shop-style-shopline ul.products li.product img,
+	body.accepta-shop-style-shopline ul.products li.product:hover .woocommerce-loop-product__image-wrap img,
+	body.accepta-shop-style-shopline ul.products li.product:focus-within .woocommerce-loop-product__image-wrap img {
+		transition: none;
+		transform: none;
+	}
+}

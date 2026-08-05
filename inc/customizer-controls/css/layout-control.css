@@ -71,6 +71,35 @@
     font-weight: 600;
 }
 
+/* Icon preset picker (header cart icons, etc.) */
+.accepta-layout-control-wrapper--icons .accepta-layout-options {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.accepta-layout-control-wrapper--icons .accepta-layout-option {
+    flex: none;
+    min-width: 0;
+    padding: 12px 6px 8px;
+}
+
+.accepta-layout-control-wrapper--icons .accepta-layout-image {
+    margin-bottom: 4px;
+    min-height: 32px;
+}
+
+.accepta-layout-control-wrapper--icons .accepta-layout-image svg {
+    width: 28px;
+    height: 28px;
+    color: #2c3e50;
+    stroke: currentColor;
+}
+
+.accepta-layout-control-wrapper--icons .accepta-layout-option.selected .accepta-layout-image svg {
+    color: #0073aa;
+}
+
 /* Responsive adjustments */
 @media (max-width: 600px) {
     .accepta-layout-options {

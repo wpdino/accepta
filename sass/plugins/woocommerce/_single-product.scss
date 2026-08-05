@@ -376,6 +376,14 @@ $wc__border-light: #e0e0e0;
 	.single-product div.product > .related {
 		grid-column: 1 / -1;
 		width: 100%;
+		max-width: 100%;
+		min-width: 0;
+	}
+
+	.single-product div.product > .related ul.products,
+	.single-product div.product > .upsells ul.products {
+		width: 100%;
+		max-width: 100%;
 	}
 }
 

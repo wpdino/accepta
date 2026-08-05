@@ -63,7 +63,16 @@ $menus = $admin->get_module('menus');
                     </div>
                 </div>
 
-                <div class="accepta-feature-section accepta-pro-promo">
+                <div class="accepta-feature-section accepta-plugins-promo">
+                    <h3><?php esc_html_e( 'Recommended Plugins', 'accepta' ); ?></h3>
+                    <p><?php esc_html_e( 'Add Elementor, DinoPack, DinoFolio, Contact Form 7, WooCommerce, and more to extend Accepta.', 'accepta' ); ?></p>
+                    <a href="<?php echo esc_url( admin_url( 'admin.php?page=accepta-plugins' ) ); ?>" class="button button-primary accepta-button-with-icon">
+                        <span class="accepta-button-label"><?php esc_html_e( 'Install Recommended Plugins', 'accepta' ); ?></span>
+                        <span class="dashicons dashicons-admin-plugins" aria-hidden="true"></span>
+                    </a>
+                </div>
+
+				<div class="accepta-feature-section accepta-pro-promo">
                     <h3><span class="dashicons dashicons-star-filled" aria-hidden="true"></span><?php esc_html_e( 'Accepta PRO — Coming Soon', 'accepta' ); ?></h3>
                     <p><?php esc_html_e( 'More premium features, extra layouts, and dedicated support are on the way. Stay tuned!', 'accepta' ); ?></p>
                     <p class="accepta-pro-newsletter">
@@ -77,15 +86,6 @@ $menus = $admin->get_module('menus');
                         );
                         ?>
                     </p>
-                </div>
-
-                <div class="accepta-feature-section accepta-plugins-promo">
-                    <h3><?php esc_html_e( 'Recommended Plugins', 'accepta' ); ?></h3>
-                    <p><?php esc_html_e( 'Add Elementor, DinoFolio, Contact Form 7, WooCommerce, and more to extend Accepta.', 'accepta' ); ?></p>
-                    <a href="<?php echo esc_url( admin_url( 'admin.php?page=accepta-plugins' ) ); ?>" class="button button-primary accepta-button-with-icon">
-                        <span class="accepta-button-label"><?php esc_html_e( 'Install Recommended Plugins', 'accepta' ); ?></span>
-                        <span class="dashicons dashicons-admin-plugins" aria-hidden="true"></span>
-                    </a>
                 </div>
 
             </div>
