@@ -1413,7 +1413,7 @@
 		var css = ':root { --accepta-primary-color: ' + color + '; }';
 		css += 'button, .button, input[type="button"], input[type="reset"], input[type="submit"], .wp-block-button__link { background-color: ' + color + '; }';
 		css += '.site-title a:hover, .site-title a:focus, .accepta-icon-box-icon, blockquote::before, .wp-block-quote::before { color: ' + color + '; }';
-		css += '.main-navigation a:hover, .main-navigation a:focus, .main-navigation li:hover > a, .main-navigation li.focus > a { color: ' + color + '; }';
+		css += '.main-navigation a:hover, .main-navigation a:focus, .main-navigation li:hover > a, .main-navigation li.focus > a, .main-navigation li:focus-within > a { color: ' + color + '; }';
 		css += '.main-navigation .current_page_item > a, .main-navigation .current-menu-item > a, .main-navigation .current_page_ancestor > a, .main-navigation .current-menu-ancestor > a { color: ' + color + '; }';
 		css += '.footer-widget-area .widget ul li a:before, .footer-widget-area .widget ul li a:hover, .entry-title a:hover, .entry-title a:focus { color: ' + color + '; }';
 		css += '.entry-content .read-more-link .more-link, .entry-footer .cat-links a, .entry-footer .comments-link a:hover, .entry-footer .edit-link a:hover, .sticky .entry-title a { color: ' + color + '; }';

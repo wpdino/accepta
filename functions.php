@@ -247,14 +247,6 @@ function accepta_scripts() {
     }
 
 	wp_enqueue_script( 
-		'accepta-navigation', 
-		accepta_get_asset_uri( 'assets/js/navigation.js' ), 
-		array(), 
-		_ACCEPTA_VERSION, 
-		true 
-	);
-
-	wp_enqueue_script( 
 		'accepta-mobile-menu', 
 		accepta_get_asset_uri( 'assets/js/mobile-menu.js' ), 
 		array(), 

@@ -38,6 +38,10 @@ For theme support and documentation, visit [WPDINO](https://wpdino.com).
 
 ## Changelog
 
+### 1.1.2 (2026-08-07)
+
+* Fixed top-level menu links not working on touch devices by removing a conflicting leftover navigation script.
+
 ### 1.1.1 (2026-08-05)
 
 * Added a WooCommerce Shop style option (Default and Shopline) for the catalog and single product pages.

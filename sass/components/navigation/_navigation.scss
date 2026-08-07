@@ -24,7 +24,8 @@
 			li {
 
 				&:hover > ul,
-				&.focus > ul {
+				&.focus > ul,
+				&:focus-within > ul {
 					display: block;
 					left: auto;
 				}
@@ -44,7 +45,8 @@
 		}
 
 		li:hover > ul,
-		li.focus > ul {
+		li.focus > ul,
+		li:focus-within > ul {
 			left: auto;
 		}
 	}
@@ -53,7 +55,8 @@
 		position: relative;
 
 		&:hover > a,
-		&.focus > a {
+		&.focus > a,
+		&:focus-within > a {
 		}
 	}
 

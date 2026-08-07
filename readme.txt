@@ -2,8 +2,8 @@
 Contributors: wpdino
 Requires at least: 5.0
 Tested up to: 6.9
-Stable tag: 1.1.1
-Version: 1.1.1
+Stable tag: 1.1.2
+Version: 1.1.2
 Requires PHP: 7.4
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -58,6 +58,9 @@ Yes, Accepta is translation ready and includes .pot file for translations.
 Accepta includes standard WordPress widgets and is compatible with all WordPress widgets and plugins.
 
 == Changelog ==
+
+= 1.1.2 - 2026-08-07 =
+* Fixed top-level menu links not working on touch devices by removing a conflicting leftover navigation script.
 
 = 1.1.1 - 2026-08-05 =
 * Added a WooCommerce Shop style option (Default and Shopline) for the catalog and single product pages.
@@ -158,6 +161,9 @@ For support, feature requests, and bug reports, please visit:
 https://wpdino.com
 
 == Upgrade Notice ==
+
+= 1.1.2 =
+Accepta Lite 1.1.2 fixes top-level menu links on touch devices.
 
 = 1.1.1 =
 Accepta Lite 1.1.1 adds WooCommerce Shop styles (Default and Shopline) and header cart icon choices.
