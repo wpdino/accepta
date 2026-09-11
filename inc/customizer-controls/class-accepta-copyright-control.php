@@ -50,7 +50,7 @@ class Accepta_Copyright_Control extends WP_Customize_Control {
 			'{site-url}' => __( 'Site URL', 'accepta' ),
 			'{theme-name}' => __( 'Theme Name', 'accepta' ),
 			'{theme-author}' => __( 'Theme Author', 'accepta' ),
-			'{wordpress}' => __( 'WordPress Link', 'accepta' ),
+			'{wp}' => __( 'WordPress Link', 'accepta' ),
 		);
 	}
 
@@ -141,13 +141,13 @@ class Accepta_Copyright_Control extends WP_Customize_Control {
 	 */
 	private function process_tags( $text ) {
 		$replacements = array(
-			'{copyright}' => '©',
+			'{copyright}'    => '©',
 			'{current-year}' => date( 'Y' ),
-			'{site-title}' => get_bloginfo( 'name' ),
-			'{site-url}' => '<a href="' . esc_url( home_url() ) . '">' . get_bloginfo( 'name' ) . '</a>',
-			'{theme-name}' => wp_get_theme()->get( 'Name' ),
+			'{site-title}'   => get_bloginfo( 'name' ),
+			'{site-url}'     => '<a href="' . esc_url( home_url() ) . '">' . get_bloginfo( 'name' ) . '</a>',
+			'{theme-name}'   => wp_get_theme()->get( 'Name' ),
 			'{theme-author}' => '<a href="' . esc_url( wp_get_theme()->get( 'AuthorURI' ) ) . '" target="_blank">' . wp_get_theme()->get( 'Author' ) . '</a>',
-			'{wordpress}' => '<a href="https://wordpress.org/" target="_blank">WordPress</a>',
+			'{wp}'           => '<a href="https://wordpress.org/" target="_blank">WordPress</a>',
 		);
 
 		return str_replace( array_keys( $replacements ), array_values( $replacements ), $text );

@@ -2156,7 +2156,7 @@ function accepta_customize_register( $wp_customize ) {
 	$wp_customize->add_setting(
 		'accepta_footer_copyright',
 		array(
-			'default'           => __( '{copyright} {current-year} {site-title}. Powered by {wordpress}.', 'accepta' ),
+			'default'           => __( '{copyright} {current-year} {site-title}. Powered by {wp}.', 'accepta' ),
 			'sanitize_callback' => 'wp_kses_post',
 			'transport'         => 'postMessage',
 		)
@@ -2699,13 +2699,13 @@ function accepta_sanitize_spacing( $input ) {
  */
 function accepta_process_copyright_tags( $text ) {
 	$replacements = array(
-		'{copyright}' => '©',
+		'{copyright}'    => '©',
 		'{current-year}' => date( 'Y' ),
-		'{site-title}' => get_bloginfo( 'name' ),
-		'{site-url}' => '<a href="' . esc_url( home_url() ) . '">' . get_bloginfo( 'name' ) . '</a>',
-		'{theme-name}' => wp_get_theme()->get( 'Name' ),
+		'{site-title}'   => get_bloginfo( 'name' ),
+		'{site-url}'     => '<a href="' . esc_url( home_url() ) . '">' . get_bloginfo( 'name' ) . '</a>',
+		'{theme-name}'   => wp_get_theme()->get( 'Name' ),
 		'{theme-author}' => '<a href="' . esc_url( wp_get_theme()->get( 'AuthorURI' ) ) . '" target="_blank">' . wp_get_theme()->get( 'Author' ) . '</a>',
-		'{wordpress}' => '<a href="https://wordpress.org/" target="_blank">WordPress</a>',
+		'{wp}'           => '<a href="https://wordpress.org/" target="_blank">WordPress</a>',
 	);
 
 	return str_replace( array_keys( $replacements ), array_values( $replacements ), $text );

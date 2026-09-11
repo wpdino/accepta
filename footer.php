@@ -54,7 +54,7 @@
 		<?php endif;
 
 		$show_social_icons = function_exists( 'accepta_should_display_social_icons' ) && accepta_should_display_social_icons();
-		$copyright_text    = get_theme_mod( 'accepta_footer_copyright', __( '{copyright} {current-year} {site-title}. Powered by {wordpress}.', 'accepta' ) );
+		$copyright_text    = get_theme_mod( 'accepta_footer_copyright', __( '{copyright} {current-year} {site-title}. Powered by {wp}.', 'accepta' ) );
 		$has_copyright     = ! empty( trim( (string) $copyright_text ) );
 
 		if ( $show_social_icons || $has_copyright ) : ?>

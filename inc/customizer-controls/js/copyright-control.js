@@ -102,7 +102,7 @@
             '{site-url}': '<a href="#" onclick="return false;">' + siteTitle + '</a>',
             '{theme-name}': 'Accepta',
             '{theme-author}': '<a href="#" onclick="return false;">WPDINO</a>',
-            '{wordpress}': '<a href="#" onclick="return false;">WordPress</a>'
+            '{wp}': '<a href="#" onclick="return false;">WordPress</a>'
         };
 
         var processedText = text;

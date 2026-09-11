@@ -75,7 +75,7 @@ msgstr ""
 
 #: footer.php:64
 #: inc/customizer.php:1977
-msgid "{copyright} {current-year} {site-title}. Powered by {wordpress}."
+msgid "{copyright} {current-year} {site-title}. Powered by {wp}."
 msgstr ""
 
 #: functions.php:45

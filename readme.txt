@@ -2,8 +2,8 @@
 Contributors: wpdino
 Requires at least: 5.0
 Tested up to: 6.9
-Stable tag: 1.1.2
-Version: 1.1.2
+Stable tag: 1.1.3
+Version: 1.1.3
 Requires PHP: 7.4
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -58,6 +58,11 @@ Yes, Accepta is translation ready and includes .pot file for translations.
 Accepta includes standard WordPress widgets and is compatible with all WordPress widgets and plugins.
 
 == Changelog ==
+
+= 1.1.3 - 2026-09-11 =
+* Added a sticky Add to cart bar on single product pages that appears after the main buy button scrolls out of view.
+* Added a Customizer option under WooCommerce → Single Product to enable or disable the sticky Add to cart bar.
+* Sticky Add to cart now adds the product with AJAX and opens the cart panel when the item is added.
 
 = 1.1.2 - 2026-08-07 =
 * Fixed top-level menu links not working on touch devices by removing a conflicting leftover navigation script.
@@ -161,6 +166,9 @@ For support, feature requests, and bug reports, please visit:
 https://wpdino.com
 
 == Upgrade Notice ==
+
+= 1.1.3 =
+Accepta Lite 1.1.3 adds a sticky Add to cart bar on single products, with a Customizer toggle and AJAX add that opens the cart panel.
 
 = 1.1.2 =
 Accepta Lite 1.1.2 fixes top-level menu links on touch devices.

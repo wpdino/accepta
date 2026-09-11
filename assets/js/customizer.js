@@ -66,7 +66,7 @@
 			'{site-url}': '<a href="' + homeUrl + '">' + escapeHtml( siteTitle ) + '</a>',
 			'{theme-name}': 'Accepta',
 			'{theme-author}': '<a href="https://wpdino.com/" target="_blank" rel="noopener noreferrer">WPDINO</a>',
-			'{wordpress}': '<a href="https://wordpress.org/" target="_blank" rel="noopener noreferrer">WordPress</a>'
+			'{wp}': '<a href="https://wordpress.org/" target="_blank" rel="noopener noreferrer">WordPress</a>'
 		};
 
 		var processed = String( text );
