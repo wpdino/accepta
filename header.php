@@ -107,6 +107,9 @@
 					</button>
 				<?php endif; ?>
 				<?php
+				if ( class_exists( 'WooCommerce' ) && get_theme_mod( 'accepta_woo_display_header_account', true ) && function_exists( 'accepta_woocommerce_account_link' ) ) {
+					accepta_woocommerce_account_link();
+				}
 				if ( class_exists( 'WooCommerce' ) && get_theme_mod( 'accepta_woo_display_header_cart', true ) && function_exists( 'accepta_woocommerce_cart_link' ) ) {
 					accepta_woocommerce_cart_link( true );
 				}
@@ -133,8 +136,8 @@
 	</header><!-- #masthead -->
 
 	<?php
-	// Offcanvas minicart panel (slide from right) when WooCommerce and header cart are enabled.
-	if ( class_exists( 'WooCommerce' ) && get_theme_mod( 'accepta_woo_display_header_cart', true ) ) :
+	// Offcanvas minicart panel when header cart and/or sticky ATC needs it.
+	if ( function_exists( 'accepta_woocommerce_needs_minicart' ) && accepta_woocommerce_needs_minicart() ) :
 		?>
 		<div id="accepta-minicart-offcanvas" class="accepta-minicart-offcanvas" aria-hidden="true">
 			<div class="accepta-minicart-offcanvas-overlay" data-accepta-minicart-close aria-label="<?php esc_attr_e( 'Close cart', 'accepta' ); ?>"></div>

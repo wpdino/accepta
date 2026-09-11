@@ -2110,7 +2110,7 @@ ul.products li.product .price,
   margin-top: 1.5rem;
 }
 
-.woocommerce-account p:first-of-type {
+.woocommerce-account .woocommerce-MyAccount-content > p:first-of-type {
   margin-bottom: 1.5rem;
   color: #555;
   font-size: 0.9375rem;
@@ -2293,7 +2293,7 @@ p.no-comments a.button:focus {
 .woocommerce-message .button:hover,
 .woocommerce-message a.button:hover {
   background: rgba(255, 255, 255, 0.95);
-  color: rgb(91.8101694915, 129.0305084746, 66.1694915254) !important;
+  color: rgb(36.0039880359%, 50.6001994018%, 25.948820206%) !important;
 }
 
 .woocommerce-info,
@@ -2312,7 +2312,7 @@ p.no-comments a.button {
 p.no-comments .button:hover,
 p.no-comments a.button:hover {
   background: rgba(255, 255, 255, 0.95);
-  color: rgb(34.8451327434, 94.4690265487, 140.1548672566) !important;
+  color: rgb(13.6647579386%, 37.0466770779%, 54.9626930418%) !important;
 }
 
 .woocommerce-error {
@@ -2326,7 +2326,7 @@ p.no-comments a.button:hover {
 .woocommerce-error .button:hover,
 .woocommerce-error a.button:hover {
   background: rgba(255, 255, 255, 0.95);
-  color: rgb(159.6509090909, 43.1709090909, 19.5490909091) !important;
+  color: rgb(62.6081996435%, 16.9297682709%, 7.6663101604%) !important;
 }
 
 .woocommerce-noreviews {
@@ -2352,7 +2352,7 @@ p.no-comments a.button:hover {
  * Header cart icon and minicart offcanvas (loads only when WooCommerce is active)
  */
 /**
- * Header cart icon and minicart offcanvas (WooCommerce only).
+ * Header cart icon, account icon, and minicart offcanvas (WooCommerce only).
  * Loaded with woocommerce.css only when WooCommerce is active.
  *
  * After editing, run: npm run compile:woo-header-cart
@@ -2376,8 +2376,9 @@ p.no-comments a.button:hover {
   visibility: visible !important;
 }
 
-/* Header cart link – same style as search and social icons */
-.header-cart-link {
+/* Shared header action icon styles (cart + account). */
+.header-cart-link,
+.header-account-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -2394,28 +2395,33 @@ p.no-comments a.button:hover {
   flex-shrink: 0;
   position: relative;
 }
-.header-cart-link svg {
+.header-cart-link svg,
+.header-account-link svg {
   width: 18px;
   height: 18px;
   transition: all 0.3s ease;
   display: block;
 }
-.header-cart-link:hover {
+.header-cart-link:hover,
+.header-account-link:hover {
   background-color: #6F9C50;
   color: #fff;
   border-color: #6F9C50;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
   text-decoration: none;
 }
-.header-cart-link:hover svg {
+.header-cart-link:hover svg,
+.header-account-link:hover svg {
   color: #fff;
   stroke: #fff;
 }
-.header-cart-link:hover .header-cart-count {
+.header-cart-link:hover .header-cart-count,
+.header-account-link:hover .header-cart-count {
   background-color: #fff;
   color: #6F9C50;
 }
-.header-cart-link:focus {
+.header-cart-link:focus,
+.header-account-link:focus {
   outline: 2px solid #6F9C50;
   outline-offset: 2px;
 }
@@ -2436,7 +2442,7 @@ p.no-comments a.button:hover {
   border-radius: 9px;
 }
 
-/* Mobile header icon order: menu, search, cart (right side) */
+/* Mobile header icon order: menu, search, account, cart (right side) */
 @media (max-width: 767px) {
   .header-content .header-cart-link {
     position: absolute;
@@ -2446,22 +2452,53 @@ p.no-comments a.button:hover {
     margin: 0 !important;
     z-index: 100002;
   }
+  .header-content .header-account-link {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    margin: 0 !important;
+    z-index: 100002;
+  }
+  .header-content:has(.header-cart-link) .header-account-link {
+    right: 40px;
+  }
   .header-content .header-search-toggle {
     right: 40px !important;
+  }
+  .header-content:has(.header-account-link):not(:has(.header-cart-link)) .header-search-toggle,
+  .header-content:has(.header-cart-link):not(:has(.header-account-link)) .header-search-toggle {
+    right: 40px !important;
+  }
+  .header-content:has(.header-account-link):has(.header-cart-link) .header-search-toggle {
+    right: 80px !important;
   }
   #site-navigation.main-navigation .menu-toggle {
     right: 80px !important;
   }
+  .header-content:has(.header-account-link):has(.header-cart-link) #site-navigation.main-navigation .menu-toggle {
+    right: 120px !important;
+  }
   .header-content.has-header-social-icons .header-social-toggle {
     right: 80px !important;
+  }
+  .header-content.has-header-social-icons:has(.header-account-link):has(.header-cart-link) .header-social-toggle {
+    right: 120px !important;
   }
   .header-content.has-header-social-icons .header-search-toggle {
     right: 40px !important;
   }
+  .header-content.has-header-social-icons:has(.header-account-link):has(.header-cart-link) .header-search-toggle {
+    right: 80px !important;
+  }
   .header-content.has-header-social-icons #site-navigation.main-navigation .menu-toggle {
     right: 120px !important;
   }
-  body.accepta-search-open .header-content .header-cart-link {
+  .header-content.has-header-social-icons:has(.header-account-link):has(.header-cart-link) #site-navigation.main-navigation .menu-toggle {
+    right: 160px !important;
+  }
+  body.accepta-search-open .header-content .header-cart-link,
+  body.accepta-search-open .header-content .header-account-link {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
@@ -2712,6 +2749,187 @@ p.no-comments a.button:hover {
   text-align: center;
 }
 
+/**
+ * Sticky Add to cart bar (single product)
+ */
+/**
+ * Sticky Add to cart bar – single product.
+ *
+ * Fixed bottom bar inspired by luxury PDP sticky ATC patterns, using Accepta
+ * colors. Shown via JS when the main Add to cart leaves the viewport.
+ */
+.accepta-sticky-atc {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100010;
+  background: #f7f7f7;
+  border-top: 1px solid #e5e5e5;
+  box-shadow: 0 -6px 24px rgba(0, 0, 0, 0.06);
+  transform: translateY(110%);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: transform 0.28s ease, opacity 0.28s ease, visibility 0.28s ease;
+}
+.accepta-sticky-atc.is-visible {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.accepta-sticky-atc__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.75rem 0;
+  box-sizing: border-box;
+}
+
+.accepta-sticky-atc__product {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  min-width: 0;
+  flex: 1 1 auto;
+  text-decoration: none;
+  color: inherit;
+}
+.accepta-sticky-atc__product:hover, .accepta-sticky-atc__product:focus {
+  text-decoration: none;
+  color: inherit;
+}
+
+.accepta-sticky-atc__thumb {
+  flex: 0 0 auto;
+  width: 52px;
+  height: 52px;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #e5e5e5;
+}
+.accepta-sticky-atc__thumb img,
+.accepta-sticky-atc__thumb .accepta-sticky-atc__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.accepta-sticky-atc__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.accepta-sticky-atc__title {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1.3;
+  color: #2c3e50;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.accepta-sticky-atc__price {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: #2c3e50;
+}
+.accepta-sticky-atc__price del {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #8a8a8a;
+  text-decoration: line-through;
+}
+.accepta-sticky-atc__price ins {
+  text-decoration: none;
+  color: #6F9C50;
+}
+.accepta-sticky-atc__price .amount {
+  color: inherit;
+}
+
+.accepta-sticky-atc__button {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0.7rem 1.35rem;
+  border: 0;
+  border-radius: 0;
+  background: #2c3e50;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  line-height: 1.2;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.accepta-sticky-atc__button:hover, .accepta-sticky-atc__button:focus {
+  background: #6F9C50;
+  color: #fff;
+  text-decoration: none;
+}
+.accepta-sticky-atc__button.is-loading {
+  opacity: 0.7;
+  pointer-events: none;
+  cursor: wait;
+}
+
+@media screen and (max-width: 600px) {
+  .accepta-sticky-atc__inner {
+    padding: 0.65rem 15px;
+    gap: 0.65rem;
+  }
+  .accepta-sticky-atc__thumb {
+    width: 44px;
+    height: 44px;
+  }
+  .accepta-sticky-atc__title {
+    font-size: 0.7rem;
+    letter-spacing: 0.03em;
+  }
+  .accepta-sticky-atc__price {
+    font-size: 0.8125rem;
+  }
+  .accepta-sticky-atc__button {
+    min-height: 2.5rem;
+    padding: 0.6rem 0.9rem;
+    font-size: 0.6875rem;
+  }
+}
+/* Keep page content clear of the fixed bar when visible. */
+body.accepta-sticky-atc-visible {
+  padding-bottom: 5.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .accepta-sticky-atc {
+    transition: none;
+  }
+}
 /**
  * WooCommerce widgets
  */

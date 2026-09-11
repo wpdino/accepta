@@ -301,7 +301,10 @@ function accepta_scripts() {
         );
     }
 
-	if ( class_exists( 'WooCommerce' ) && get_theme_mod( 'accepta_woo_display_header_cart', true ) ) {
+	if ( class_exists( 'WooCommerce' ) && (
+		get_theme_mod( 'accepta_woo_display_header_cart', true )
+		|| ( function_exists( 'is_product' ) && is_product() && get_theme_mod( 'accepta_woo_sticky_atc', true ) )
+	) ) {
         wp_enqueue_script( 'wc-cart-fragments' );
         wp_enqueue_script(
             'accepta-woocommerce-cart-refresh',

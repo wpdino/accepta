@@ -1,0 +1,198 @@
+/**
+ * Sticky Add to cart bar – single product.
+ *
+ * Fixed bottom bar inspired by luxury PDP sticky ATC patterns, using Accepta
+ * colors. Shown via JS when the main Add to cart leaves the viewport.
+ */
+
+$wc-sticky__bg: #f7f7f7;
+$wc-sticky__border: #e5e5e5;
+$wc-sticky__text: #2c3e50;
+
+.accepta-sticky-atc {
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 100010;
+	background: $wc-sticky__bg;
+	border-top: 1px solid $wc-sticky__border;
+	box-shadow: 0 -6px 24px rgba(0, 0, 0, 0.06);
+	transform: translateY(110%);
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+	transition: transform 0.28s ease, opacity 0.28s ease, visibility 0.28s ease;
+
+	&.is-visible {
+		transform: translateY(0);
+		opacity: 1;
+		visibility: visible;
+		pointer-events: auto;
+	}
+}
+
+.accepta-sticky-atc__inner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+	width: 100%;
+	max-width: $size__site-container;
+	margin: 0 auto;
+	padding: 0.75rem 0;
+	box-sizing: border-box;
+}
+
+.accepta-sticky-atc__product {
+	display: flex;
+	align-items: center;
+	gap: 0.85rem;
+	min-width: 0;
+	flex: 1 1 auto;
+	text-decoration: none;
+	color: inherit;
+
+	&:hover,
+	&:focus {
+		text-decoration: none;
+		color: inherit;
+	}
+}
+
+.accepta-sticky-atc__thumb {
+	flex: 0 0 auto;
+	width: 52px;
+	height: 52px;
+	overflow: hidden;
+	background: #fff;
+	border: 1px solid $wc-sticky__border;
+
+	img,
+	.accepta-sticky-atc__image {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+}
+
+.accepta-sticky-atc__meta {
+	display: flex;
+	flex-direction: column;
+	gap: 0.2rem;
+	min-width: 0;
+}
+
+.accepta-sticky-atc__title {
+	display: block;
+	font-size: 0.8125rem;
+	font-weight: 700;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	line-height: 1.3;
+	color: $wc-sticky__text;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.accepta-sticky-atc__price {
+	display: flex;
+	align-items: baseline;
+	flex-wrap: wrap;
+	gap: 0.45rem;
+	font-size: 0.875rem;
+	font-weight: 600;
+	line-height: 1.3;
+	color: $wc-sticky__text;
+
+	del {
+		font-size: 0.8125rem;
+		font-weight: 500;
+		color: #8a8a8a;
+		text-decoration: line-through;
+	}
+
+	ins {
+		text-decoration: none;
+		color: $color__primary;
+	}
+
+	.amount {
+		color: inherit;
+	}
+}
+
+.accepta-sticky-atc__button {
+	flex: 0 0 auto;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 2.75rem;
+	padding: 0.7rem 1.35rem;
+	border: 0;
+	border-radius: 0;
+	background: $wc-sticky__text;
+	color: #fff;
+	font-size: 0.75rem;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	text-decoration: none;
+	line-height: 1.2;
+	cursor: pointer;
+	white-space: nowrap;
+	transition: background 0.2s ease, color 0.2s ease;
+
+	&:hover,
+	&:focus {
+		background: $color__primary;
+		color: #fff;
+		text-decoration: none;
+	}
+
+	&.is-loading {
+		opacity: 0.7;
+		pointer-events: none;
+		cursor: wait;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.accepta-sticky-atc__inner {
+		padding: 0.65rem $size__site-container-padding-mobile;
+		gap: 0.65rem;
+	}
+
+	.accepta-sticky-atc__thumb {
+		width: 44px;
+		height: 44px;
+	}
+
+	.accepta-sticky-atc__title {
+		font-size: 0.7rem;
+		letter-spacing: 0.03em;
+	}
+
+	.accepta-sticky-atc__price {
+		font-size: 0.8125rem;
+	}
+
+	.accepta-sticky-atc__button {
+		min-height: 2.5rem;
+		padding: 0.6rem 0.9rem;
+		font-size: 0.6875rem;
+	}
+}
+
+/* Keep page content clear of the fixed bar when visible. */
+body.accepta-sticky-atc-visible {
+	padding-bottom: 5.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.accepta-sticky-atc {
+		transition: none;
+	}
+}

@@ -9,7 +9,9 @@
 
 	function acceptaMinicartOffcanvasInit() {
 		var offcanvas = document.getElementById('accepta-minicart-offcanvas');
-		if (!offcanvas) return;
+		if (!offcanvas) {
+			return;
+		}
 
 		function acceptaMinicartOffcanvasOpen() {
 			offcanvas.classList.add('active');
@@ -22,6 +24,9 @@
 			offcanvas.setAttribute('aria-hidden', 'true');
 			document.body.style.overflow = '';
 		}
+
+		window.acceptaOpenMinicart = acceptaMinicartOffcanvasOpen;
+		window.acceptaCloseMinicart = acceptaMinicartOffcanvasClose;
 
 		// Delegation: cart icon may be replaced by WooCommerce cart fragments
 		document.addEventListener('click', function (e) {

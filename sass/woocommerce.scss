@@ -43,6 +43,11 @@ $woocommerce__color-info: #3d9cd2;
 @import "plugins/woocommerce/header-cart";
 
 /**
+ * Sticky Add to cart bar (single product)
+ */
+@import "plugins/woocommerce/sticky-add-to-cart";
+
+/**
  * WooCommerce widgets
  */
 @import "plugins/woocommerce/widgets";

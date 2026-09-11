@@ -150,6 +150,42 @@ function accepta_get_cart_icon_svg( $icon = '' ) {
 }
 
 /**
+ * Return the SVG markup for the header account / My Account icon.
+ *
+ * @return string Inline SVG markup.
+ */
+function accepta_get_account_icon_svg() {
+	return '<svg class="header-account-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>';
+}
+
+/**
+ * Header My Account link (user icon).
+ *
+ * Links to the WooCommerce My Account page. Shows a login-oriented label when
+ * the visitor is logged out.
+ *
+ * @return void
+ */
+function accepta_woocommerce_account_link() {
+	if ( ! function_exists( 'wc_get_page_permalink' ) ) {
+		return;
+	}
+
+	$url   = wc_get_page_permalink( 'myaccount' );
+	$title = is_user_logged_in() ? __( 'My account', 'accepta' ) : __( 'Log in', 'accepta' );
+
+	if ( ! $url ) {
+		return;
+	}
+	?>
+	<a class="header-account-link" href="<?php echo esc_url( $url ); ?>" aria-label="<?php echo esc_attr( $title ); ?>" title="<?php echo esc_attr( $title ); ?>">
+		<?php echo accepta_get_account_icon_svg(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- trusted SVG from theme helper. ?>
+		<span class="screen-reader-text"><?php echo esc_html( $title ); ?></span>
+	</a>
+	<?php
+}
+
+/**
  * Add WooCommerce body classes, including the selected style variants.
  *
  * The catalog class is added site-wide rather than only on the shop, because
@@ -442,3 +478,179 @@ if ( ! function_exists( 'accepta_woocommerce_header_cart' ) ) {
 		<?php
 	}
 }
+
+/**
+ * Whether the sticky single-product Add to cart bar should render.
+ *
+ * @param WC_Product|null $product Product object.
+ * @return bool
+ */
+function accepta_woocommerce_should_show_sticky_atc( $product = null ) {
+	if ( ! get_theme_mod( 'accepta_woo_sticky_atc', true ) ) {
+		return false;
+	}
+
+	if ( ! $product instanceof WC_Product ) {
+		$product = function_exists( 'wc_get_product' ) ? wc_get_product( get_the_ID() ) : null;
+	}
+
+	if ( ! $product ) {
+		return false;
+	}
+
+	// Only products that can currently be bought (excludes OOS, non-purchasable, etc.).
+	if ( ! $product->is_purchasable() || ! $product->is_in_stock() ) {
+		return false;
+	}
+
+	// Grouped products need the form on-page; skip the sticky shortcut.
+	if ( $product->is_type( 'grouped' ) ) {
+		return false;
+	}
+
+	return true;
+}
+
+/**
+ * Whether the minicart offcanvas markup/scripts are needed.
+ *
+ * @return bool
+ */
+function accepta_woocommerce_needs_minicart() {
+	if ( ! class_exists( 'WooCommerce' ) ) {
+		return false;
+	}
+
+	if ( get_theme_mod( 'accepta_woo_display_header_cart', true ) ) {
+		return true;
+	}
+
+	return function_exists( 'is_product' ) && is_product() && get_theme_mod( 'accepta_woo_sticky_atc', true );
+}
+
+/**
+ * Output the sticky Add to cart bar on single product pages.
+ *
+ * Visible only after the main Add to cart control leaves the viewport (JS).
+ *
+ * @return void
+ */
+function accepta_woocommerce_sticky_add_to_cart_bar() {
+	if ( ! function_exists( 'is_product' ) || ! is_product() ) {
+		return;
+	}
+
+	$product = wc_get_product( get_the_ID() );
+	if ( ! accepta_woocommerce_should_show_sticky_atc( $product ) ) {
+		return;
+	}
+
+	$product_id = $product->get_id();
+	$title      = $product->get_name();
+	$permalink  = get_permalink( $product_id );
+	$thumb_html = $product->get_image(
+		'woocommerce_gallery_thumbnail',
+		array(
+			'class'   => 'accepta-sticky-atc__image',
+			'alt'     => $title,
+			'loading' => 'lazy',
+		)
+	);
+
+	$is_variable = $product->is_type( 'variable' );
+	$is_external = $product->is_type( 'external' );
+
+	if ( $is_external ) {
+		$button_label = $product->single_add_to_cart_text();
+		$button_url   = $product->add_to_cart_url();
+	} elseif ( $is_variable ) {
+		$button_label = __( 'Select options', 'accepta' );
+		$button_url   = '';
+	} else {
+		$button_label = $product->single_add_to_cart_text();
+		$button_url   = '';
+	}
+	?>
+	<div
+		class="accepta-sticky-atc"
+		hidden
+		aria-hidden="true"
+		data-accepta-sticky-atc
+		data-product-type="<?php echo esc_attr( $product->get_type() ); ?>"
+		data-product-id="<?php echo esc_attr( (string) $product_id ); ?>"
+	>
+		<div class="accepta-sticky-atc__inner">
+			<a class="accepta-sticky-atc__product" href="<?php echo esc_url( $permalink ); ?>">
+				<span class="accepta-sticky-atc__thumb"><?php echo $thumb_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- WC product image HTML. ?></span>
+				<span class="accepta-sticky-atc__meta">
+					<span class="accepta-sticky-atc__title"><?php echo esc_html( $title ); ?></span>
+					<span class="accepta-sticky-atc__price"><?php echo wp_kses_post( $product->get_price_html() ); ?></span>
+				</span>
+			</a>
+
+			<?php if ( $is_external && $button_url ) : ?>
+				<a class="accepta-sticky-atc__button" href="<?php echo esc_url( $button_url ); ?>" rel="nofollow">
+					<?php echo esc_html( $button_label ); ?>
+				</a>
+			<?php else : ?>
+				<button
+					type="button"
+					class="accepta-sticky-atc__button"
+					data-accepta-sticky-atc-trigger
+					data-label-add="<?php echo esc_attr( $product->single_add_to_cart_text() ); ?>"
+					data-label-select="<?php echo esc_attr__( 'Select options', 'accepta' ); ?>"
+				>
+					<?php echo esc_html( $button_label ); ?>
+				</button>
+			<?php endif; ?>
+		</div>
+	</div>
+	<?php
+}
+add_action( 'wp_footer', 'accepta_woocommerce_sticky_add_to_cart_bar', 20 );
+
+/**
+ * Enqueue sticky Add to cart assets on purchasable single product pages.
+ *
+ * @return void
+ */
+function accepta_woocommerce_sticky_atc_scripts() {
+	if ( ! function_exists( 'is_product' ) || ! is_product() ) {
+		return;
+	}
+
+	$product = wc_get_product( get_the_ID() );
+	if ( ! accepta_woocommerce_should_show_sticky_atc( $product ) ) {
+		return;
+	}
+
+	wp_enqueue_script( 'wc-cart-fragments' );
+	wp_enqueue_script(
+		'accepta-minicart-offcanvas',
+		accepta_get_asset_uri( 'assets/js/minicart-offcanvas.js' ),
+		array(),
+		_ACCEPTA_VERSION,
+		true
+	);
+
+	wp_enqueue_script(
+		'accepta-sticky-add-to-cart',
+		accepta_get_asset_uri( 'assets/js/sticky-add-to-cart.js' ),
+		array( 'jquery', 'wc-cart-fragments', 'accepta-minicart-offcanvas' ),
+		_ACCEPTA_VERSION,
+		true
+	);
+
+	wp_localize_script(
+		'accepta-sticky-add-to-cart',
+		'acceptaStickyAtc',
+		array(
+			'ajaxUrl' => class_exists( 'WC_AJAX' ) ? WC_AJAX::get_endpoint( 'add_to_cart' ) : '',
+			'i18n'    => array(
+				'adding' => __( 'Adding…', 'accepta' ),
+				'error'  => __( 'Could not add to cart. Please try again.', 'accepta' ),
+			),
+		)
+	);
+}
+add_action( 'wp_enqueue_scripts', 'accepta_woocommerce_sticky_atc_scripts', 30 );

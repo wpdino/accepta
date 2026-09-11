@@ -1683,7 +1683,7 @@ function accepta_customize_register( $wp_customize ) {
 			'accepta_woo_general',
 			array(
 				'title'       => __( 'General', 'accepta' ),
-				'description' => __( 'Shared WooCommerce settings: shop style, and the header cart icon.', 'accepta' ),
+				'description' => __( 'Shared WooCommerce settings: shop style, and the header cart and account icons.', 'accepta' ),
 				'panel'       => 'accepta_woocommerce_panel',
 				'priority'    => 5,
 			)
@@ -1725,6 +1725,25 @@ function accepta_customize_register( $wp_customize ) {
 				'section'     => 'accepta_woo_general',
 				'type'        => 'checkbox',
 				'priority'    => 30,
+			)
+		);
+
+		$wp_customize->add_setting(
+			'accepta_woo_display_header_account',
+			array(
+				'default'           => true,
+				'sanitize_callback' => 'wp_validate_boolean',
+				'transport'         => 'refresh',
+			)
+		);
+		$wp_customize->add_control(
+			'accepta_woo_display_header_account',
+			array(
+				'label'       => __( 'Display account icon in header', 'accepta' ),
+				'description' => __( 'Show a user icon in the header that links to the WooCommerce My Account page.', 'accepta' ),
+				'section'     => 'accepta_woo_general',
+				'type'        => 'checkbox',
+				'priority'    => 35,
 			)
 		);
 
@@ -1851,6 +1870,25 @@ function accepta_customize_register( $wp_customize ) {
 					'right' => __( 'Sidebar right', 'accepta' ),
 				),
 				'priority'    => 10,
+			)
+		);
+
+		$wp_customize->add_setting(
+			'accepta_woo_sticky_atc',
+			array(
+				'default'           => true,
+				'sanitize_callback' => 'wp_validate_boolean',
+				'transport'         => 'refresh',
+			)
+		);
+		$wp_customize->add_control(
+			'accepta_woo_sticky_atc',
+			array(
+				'label'       => __( 'Sticky Add to cart bar', 'accepta' ),
+				'description' => __( 'Show a sticky product bar with Add to cart after the main buy button scrolls out of view.', 'accepta' ),
+				'section'     => 'accepta_woo_single_product',
+				'type'        => 'checkbox',
+				'priority'    => 20,
 			)
 		);
 	}
@@ -2980,7 +3018,8 @@ function accepta_sticky_header_css() {
 		$css .= '.header-content.header-layout-1 .main-navigation ul { justify-content: flex-end; margin-left: 0; flex-wrap: wrap; min-width: 0; }';
 		$css .= '.header-content.header-layout-1 .header-social-icons { order: 3; flex: 0 0 auto; min-width: 0; flex-shrink: 0; }';
 		$css .= '.header-content.header-layout-1 .header-search-toggle { order: 4; margin-left: 10px; flex: 0 0 auto; flex-shrink: 0; }';
-		$css .= '.header-content.header-layout-1 .header-cart-link { order: 5; margin-left: 10px; flex: 0 0 auto; flex-shrink: 0; }';
+		$css .= '.header-content.header-layout-1 .header-account-link { order: 5; margin-left: 10px; flex: 0 0 auto; flex-shrink: 0; }';
+		$css .= '.header-content.header-layout-1 .header-cart-link { order: 6; margin-left: 10px; flex: 0 0 auto; flex-shrink: 0; }';
 	}
 	
 	// Layout 2: Menu near logo - LOGO Menu | Social | Search
@@ -2991,7 +3030,8 @@ function accepta_sticky_header_css() {
 		$css .= '.header-content.header-layout-2 .main-navigation ul { justify-content: flex-start; margin-left: 0; flex-wrap: wrap; min-width: 0; }';
 		$css .= '.header-content.header-layout-2 .header-social-icons { order: 2; margin-left: auto; flex: 0 0 auto; min-width: 0; flex-shrink: 0; position: relative; z-index: 2; max-width: 100%; }';
 		$css .= '.header-content.header-layout-2 .header-search-toggle { order: 3; margin-left: 10px; flex: 0 0 auto; flex-shrink: 0; position: relative; z-index: 3; max-width: 100%; }';
-		$css .= '.header-content.header-layout-2 .header-cart-link { order: 4; margin-left: 10px; flex: 0 0 auto; flex-shrink: 0; position: relative; z-index: 3; max-width: 100%; }';
+		$css .= '.header-content.header-layout-2 .header-account-link { order: 4; margin-left: 10px; flex: 0 0 auto; flex-shrink: 0; position: relative; z-index: 3; max-width: 100%; }';
+		$css .= '.header-content.header-layout-2 .header-cart-link { order: 5; margin-left: 10px; flex: 0 0 auto; flex-shrink: 0; position: relative; z-index: 3; max-width: 100%; }';
 	}
 	
 	// Layout 3: Menu centered - LOGO | Menu (center) | Social | Search
@@ -3005,7 +3045,10 @@ function accepta_sticky_header_css() {
 		$css .= '.header-content.header-layout-3 .header-social-icons { order: 3; margin-left: auto; }';
 		$css .= '.header-content.header-layout-3 .header-search-toggle { order: 4; margin-left: 10px; }';
 		$css .= '.header-content.header-layout-3:not(:has(.header-social-icons)) .header-search-toggle { margin-left: auto; }';
-		$css .= '.header-content.header-layout-3 .header-cart-link { order: 5; margin-left: 10px; }';
+		$css .= '.header-content.header-layout-3:not(:has(.header-social-icons)):not(:has(.header-search-toggle)) .header-account-link { margin-left: auto; }';
+		$css .= '.header-content.header-layout-3:not(:has(.header-social-icons)):not(:has(.header-search-toggle)):not(:has(.header-account-link)) .header-cart-link { margin-left: auto; }';
+		$css .= '.header-content.header-layout-3 .header-account-link { order: 5; margin-left: 10px; }';
+		$css .= '.header-content.header-layout-3 .header-cart-link { order: 6; margin-left: 10px; }';
 	}
 	
 	if ( ! $sticky_header ) {
@@ -3091,12 +3134,15 @@ function accepta_sticky_header_css() {
 		$css .= $overlay_prefix . '.site-header:not(.scrolled) .header-social-toggle svg { color: ' . esc_attr( $transparent_text_color ) . '; }';
 		$css .= $overlay_prefix . '.site-header:not(.scrolled) .header-cart-link { color: ' . esc_attr( $transparent_text_color ) . '; }';
 		$css .= $overlay_prefix . '.site-header:not(.scrolled) .header-cart-link svg { color: ' . esc_attr( $transparent_text_color ) . '; stroke: ' . esc_attr( $transparent_text_color ) . '; }';
+		$css .= $overlay_prefix . '.site-header:not(.scrolled) .header-account-link { color: ' . esc_attr( $transparent_text_color ) . '; }';
+		$css .= $overlay_prefix . '.site-header:not(.scrolled) .header-account-link svg { color: ' . esc_attr( $transparent_text_color ) . '; stroke: ' . esc_attr( $transparent_text_color ) . '; }';
 		$css .= $overlay_prefix . '.site-header:not(.scrolled) .header-search-close { color: ' . esc_attr( $transparent_text_color ) . '; }';
 		$css .= $overlay_prefix . '.site-header:not(.scrolled) .header-social-icons .social-icon { border-color: ' . esc_attr( $transparent_border_color ) . '; }';
 		$css .= $overlay_prefix . '.site-header:not(.scrolled) .header-social-icons .social-icon .social-icon-svg { filter: brightness(0) invert(1); }';
 		$css .= $overlay_prefix . '.site-header:not(.scrolled) .header-search-toggle { border-color: ' . esc_attr( $transparent_border_color ) . '; }';
 		$css .= $overlay_prefix . '.site-header:not(.scrolled) .header-social-toggle { border-color: ' . esc_attr( $transparent_border_color ) . '; }';
 		$css .= $overlay_prefix . '.site-header:not(.scrolled) .header-cart-link { border-color: ' . esc_attr( $transparent_border_color ) . '; }';
+		$css .= $overlay_prefix . '.site-header:not(.scrolled) .header-account-link { border-color: ' . esc_attr( $transparent_border_color ) . '; }';
 
 		// On hero page only: header overlays hero; offset section so content clears the header.
 		$css .= 'body.accepta-has-hero:not(.has-sticky-header) { padding-top: 0; }';
@@ -3127,6 +3173,8 @@ function accepta_sticky_header_css() {
 		$css .= '.site-header:not(.transparent-header) .header-social-toggle svg { color: #2c3e50; }';
 		$css .= '.site-header:not(.transparent-header) .header-cart-link { color: #2c3e50; border-color: rgba(44, 62, 80, 0.2); }';
 		$css .= '.site-header:not(.transparent-header) .header-cart-link svg { color: #2c3e50; stroke: #2c3e50; }';
+		$css .= '.site-header:not(.transparent-header) .header-account-link { color: #2c3e50; border-color: rgba(44, 62, 80, 0.2); }';
+		$css .= '.site-header:not(.transparent-header) .header-account-link svg { color: #2c3e50; stroke: #2c3e50; }';
 	}
 	
 	if ( $sticky_header && ! $transparent_header ) {

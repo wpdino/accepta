@@ -1,5 +1,5 @@
 /**
- * Header cart icon and minicart offcanvas (WooCommerce only).
+ * Header cart icon, account icon, and minicart offcanvas (WooCommerce only).
  * Loaded with woocommerce.css only when WooCommerce is active.
  *
  * After editing, run: npm run compile:woo-header-cart
@@ -24,8 +24,9 @@
 	visibility: visible !important;
 }
 
-/* Header cart link – same style as search and social icons */
-.header-cart-link {
+/* Shared header action icon styles (cart + account). */
+.header-cart-link,
+.header-account-link {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
@@ -89,7 +90,7 @@
 	border-radius: 9px;
 }
 
-/* Mobile header icon order: menu, search, cart (right side) */
+/* Mobile header icon order: menu, search, account, cart (right side) */
 @media (max-width: 767px) {
 	.header-content .header-cart-link {
 		position: absolute;
@@ -100,28 +101,67 @@
 		z-index: 100002;
 	}
 
+	.header-content .header-account-link {
+		position: absolute;
+		top: 50%;
+		right: 0;
+		transform: translateY(-50%);
+		margin: 0 !important;
+		z-index: 100002;
+	}
+
+	.header-content:has(.header-cart-link) .header-account-link {
+		right: 40px;
+	}
+
 	.header-content .header-search-toggle {
 		right: 40px !important;
+	}
+
+	.header-content:has(.header-account-link):not(:has(.header-cart-link)) .header-search-toggle,
+	.header-content:has(.header-cart-link):not(:has(.header-account-link)) .header-search-toggle {
+		right: 40px !important;
+	}
+
+	.header-content:has(.header-account-link):has(.header-cart-link) .header-search-toggle {
+		right: 80px !important;
 	}
 
 	#site-navigation.main-navigation .menu-toggle {
 		right: 80px !important;
 	}
 
+	.header-content:has(.header-account-link):has(.header-cart-link) #site-navigation.main-navigation .menu-toggle {
+		right: 120px !important;
+	}
+
 	.header-content.has-header-social-icons .header-social-toggle {
 		right: 80px !important;
+	}
+
+	.header-content.has-header-social-icons:has(.header-account-link):has(.header-cart-link) .header-social-toggle {
+		right: 120px !important;
 	}
 
 	.header-content.has-header-social-icons .header-search-toggle {
 		right: 40px !important;
 	}
 
+	.header-content.has-header-social-icons:has(.header-account-link):has(.header-cart-link) .header-search-toggle {
+		right: 80px !important;
+	}
+
 	.header-content.has-header-social-icons #site-navigation.main-navigation .menu-toggle {
 		right: 120px !important;
 	}
 
-	// Hide cart icon while the search overlay is open.
-	body.accepta-search-open .header-content .header-cart-link {
+	.header-content.has-header-social-icons:has(.header-account-link):has(.header-cart-link) #site-navigation.main-navigation .menu-toggle {
+		right: 160px !important;
+	}
+
+	// Hide cart/account icons while the search overlay is open.
+	body.accepta-search-open .header-content .header-cart-link,
+	body.accepta-search-open .header-content .header-account-link {
 		opacity: 0;
 		visibility: hidden;
 		pointer-events: none;

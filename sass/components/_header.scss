@@ -781,9 +781,16 @@ body.has-sticky-header {
   .header-search-toggle {
     order: 4;
   }
-  
+
+  /* Separate social icons from search / account / cart. */
   .header-social-icons {
-    margin-right: 0; /* Remove margin since search button has its own margin-left */
+    margin-right: 0.35rem;
+  }
+
+  .header-social-icons + .header-search-toggle,
+  .header-social-icons + .header-account-link,
+  .header-social-icons + .header-cart-link {
+    margin-left: 1.25rem;
   }
 } 
 
