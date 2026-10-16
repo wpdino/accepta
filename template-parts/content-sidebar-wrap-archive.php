@@ -8,47 +8,43 @@
 $has_sidebar = accepta_has_sidebar();
 ?>
 <div class="content-sidebar-wrap<?php echo ! $has_sidebar ? ' content-sidebar-wrap--no-sidebar' : ''; ?>">
-    <main id="primary" class="site-main">
-        <?php if ( have_posts() ) : ?>
+	<main id="primary" class="site-main">
+		<?php if ( have_posts() ) : ?>
 
-            <header class="page-header">
-                <?php
-                the_archive_title( '<h1 class="page-title">', '</h1>' );
-                the_archive_description( '<div class="archive-description">', '</div>' );
-                ?>
-            </header><!-- .page-header -->
+			<header class="page-header">
+				<?php
+				the_archive_title( '<h1 class="page-title">', '</h1>' );
+				the_archive_description( '<div class="archive-description">', '</div>' );
+				?>
+			</header><!-- .page-header -->
 
-            <?php
-            /* Start the Loop */
-            while ( have_posts() ) :
-                the_post();
+			<div class="<?php echo esc_attr( accepta_get_posts_loop_classes() ); ?>">
+				<?php
+				while ( have_posts() ) :
+					the_post();
+					get_template_part( 'template-parts/content', get_post_type() );
+				endwhile;
+				?>
+			</div>
 
-                /*
-                 * Include the Post-Type-specific template for the content.
-                 * If you want to override this in a child theme, then include a file
-                 * called content-___.php (where ___ is the Post Type name) and that will be used instead.
-                 */
-                get_template_part( 'template-parts/content', get_post_type() );
+			<?php
+			the_posts_pagination(
+				array(
+					'mid_size'  => 2,
+					'prev_text' => __( '&larr; Previous', 'accepta' ),
+					'next_text' => __( 'Next &rarr;', 'accepta' ),
+				)
+			);
 
-            endwhile;
+		else :
 
-            the_posts_pagination(
-                array(
-                    'mid_size'  => 2,
-                    'prev_text' => __( '&larr; Previous', 'accepta' ),
-                    'next_text' => __( 'Next &rarr;', 'accepta' ),
-                )
-            );
+			get_template_part( 'template-parts/content', 'none' );
 
-        else :
+		endif;
+		?>
+	</main><!-- #primary -->
 
-            get_template_part( 'template-parts/content', 'none' );
-
-        endif;
-        ?>
-    </main><!-- #primary -->
-
-    <?php if ( $has_sidebar ) : ?>
-        <?php get_sidebar(); ?>
-    <?php endif; ?>
-</div><!-- .content-sidebar-wrap --> 
+	<?php if ( $has_sidebar ) : ?>
+		<?php get_sidebar(); ?>
+	<?php endif; ?>
+</div><!-- .content-sidebar-wrap -->

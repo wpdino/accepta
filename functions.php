@@ -563,6 +563,21 @@ require get_template_directory() . '/inc/template-tags.php';
 require get_template_directory() . '/inc/template-functions.php';
 
 /**
+ * Blog archive layout and related posts.
+ */
+require get_template_directory() . '/inc/blog-features.php';
+
+/**
+ * Site-wide breadcrumbs (opt-in via Customizer).
+ */
+require get_template_directory() . '/inc/breadcrumbs.php';
+
+/**
+ * Back to top button (opt-in via Customizer).
+ */
+require get_template_directory() . '/inc/back-to-top.php';
+
+/**
  * DinoFolio portfolio single layout.
  */
 require get_template_directory() . '/inc/dinofolio-portfolio.php';

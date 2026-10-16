@@ -164,3 +164,8 @@
 	<?php get_template_part( 'template-parts/hero-section' ); ?>
 
 	<div id="content" class="site-content">
+		<?php
+		if ( function_exists( 'accepta_breadcrumbs' ) ) {
+			accepta_breadcrumbs();
+		}
+		?>

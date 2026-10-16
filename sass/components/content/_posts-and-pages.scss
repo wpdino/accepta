@@ -1,12 +1,7 @@
-/* Spacing and card-style background for posts (archive, blog index) */
-.site-main > article {
+/* Spacing and card-style background for posts (archive, blog index, single) */
+.site-main > article,
+.accepta-posts-loop > article {
 	margin-bottom: 2em;
-
-	/* Remove bottom margin only when followed by pagination; single-article archive (no pagination) keeps margin above footer */
-	&:has(+ nav.pagination),
-	&:has(+ .pagination) {
-		margin-bottom: 0;
-	}
 
 	/* Card styling: exclude full-width pages */
 	&:not(.sticky) {
@@ -24,6 +19,14 @@
 			padding: 1.75em 0;
 		}
 	}
+}
+
+/* List layout: drop bottom margin on last card when pagination follows the loop */
+.site-main > article:has(+ nav.pagination),
+.site-main > article:has(+ .pagination),
+.accepta-posts-loop--list:has(+ nav.pagination) > article:last-child,
+.accepta-posts-loop--list:has(+ .pagination) > article:last-child {
+	margin-bottom: 0;
 }
 
 /* Meta line under post title – subtle background */
@@ -92,17 +95,20 @@
 }
 
 /* Article (post): padding-top */
-.site-main > article.post {
+.site-main > article.post,
+.accepta-posts-loop > article.post {
 	margin-top: 2em;
 }
 
+.accepta-posts-loop--grid > article.post {
+	margin-top: 0;
+}
 
 /* Article (page): padding top and bottom */
-
 .site-main > article.page {
-		margin-top: 2em;
-		margin-bottom: 2em;
-	}
+	margin-top: 2em;
+	margin-bottom: 2em;
+}
 
 
 /* Continue reading link on archive/blog listing */

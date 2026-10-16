@@ -1,0 +1,53 @@
+/* Back to top (opt-in via Customizer) */
+
+.accepta-back-to-top {
+	position: fixed;
+	right: 1.25rem;
+	bottom: 1.25rem;
+	z-index: 999;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 2.75rem;
+	height: 2.75rem;
+	padding: 0;
+	border: 0;
+	border-radius: 999px;
+	background: $accepta-primary-css;
+	color: #fff;
+	font-size: 1.15rem;
+	line-height: 1;
+	cursor: pointer;
+	box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(0.5rem);
+	transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease, background 0.2s ease;
+
+	&.is-visible {
+		opacity: 1;
+		visibility: visible;
+		transform: translateY(0);
+	}
+
+	&:hover,
+	&:focus {
+		background: $accepta-primary-hover-css;
+		color: #fff;
+	}
+
+	&:focus-visible {
+		outline: 2px solid $accepta-primary-css;
+		outline-offset: 3px;
+	}
+}
+
+body.accepta-sticky-atc-visible .accepta-back-to-top {
+	bottom: 6.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.accepta-back-to-top {
+		transition: none;
+	}
+}

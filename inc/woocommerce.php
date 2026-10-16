@@ -208,6 +208,62 @@ function accepta_woocommerce_active_body_class( $classes ) {
 add_filter( 'body_class', 'accepta_woocommerce_active_body_class' );
 
 /**
+ * Sale badge style: keep WooCommerce "Sale!" text by default, or show % off.
+ *
+ * Default `text` matches previous theme output for existing installs.
+ *
+ * @param string     $html    Sale flash HTML.
+ * @param WP_Post    $post    Post object.
+ * @param WC_Product $product Product object.
+ * @return string
+ */
+function accepta_woocommerce_sale_flash( $html, $post, $product ) {
+	if ( 'percent' !== get_theme_mod( 'accepta_woo_sale_badge', 'text' ) ) {
+		return $html;
+	}
+
+	if ( ! $product instanceof WC_Product || ! $product->is_on_sale() ) {
+		return $html;
+	}
+
+	$percent = 0;
+
+	if ( $product->is_type( 'variable' ) ) {
+		$percentages = array();
+		foreach ( $product->get_children() as $child_id ) {
+			$child = wc_get_product( $child_id );
+			if ( ! $child || ! $child->is_on_sale() ) {
+				continue;
+			}
+			$regular = (float) $child->get_regular_price();
+			$sale    = (float) $child->get_sale_price();
+			if ( $regular > 0 && $sale < $regular ) {
+				$percentages[] = round( ( ( $regular - $sale ) / $regular ) * 100 );
+			}
+		}
+		if ( ! empty( $percentages ) ) {
+			$percent = max( $percentages );
+		}
+	} else {
+		$regular = (float) $product->get_regular_price();
+		$sale    = (float) $product->get_sale_price();
+		if ( $regular > 0 && $sale < $regular ) {
+			$percent = round( ( ( $regular - $sale ) / $regular ) * 100 );
+		}
+	}
+
+	if ( $percent < 1 ) {
+		return $html;
+	}
+
+	/* translators: %s: discount percentage */
+	$label = sprintf( __( '-%s%%', 'accepta' ), $percent );
+
+	return '<span class="onsale accepta-onsale-percent">' . esc_html( $label ) . '</span>';
+}
+add_filter( 'woocommerce_sale_flash', 'accepta_woocommerce_sale_flash', 10, 3 );
+
+/**
  * Related Products Args.
  *
  * @param array $args related products args.

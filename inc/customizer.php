@@ -1078,6 +1078,233 @@ function accepta_customize_register( $wp_customize ) {
 		)
 	);
 
+	// Breadcrumbs (off by default – existing sites unchanged).
+	$wp_customize->add_setting(
+		'accepta_breadcrumbs_enable',
+		array(
+			'default'           => false,
+			'sanitize_callback' => 'wp_validate_boolean',
+			'transport'         => 'refresh',
+		)
+	);
+	$wp_customize->add_control(
+		'accepta_breadcrumbs_enable',
+		array(
+			'label'       => __( 'Enable breadcrumbs', 'accepta' ),
+			'description' => __( 'Show a breadcrumb trail below the header on posts, pages, archives, and shop pages. Off by default.', 'accepta' ),
+			'section'     => 'accepta_layout_section',
+			'type'        => 'checkbox',
+			'priority'    => 50,
+		)
+	);
+
+	$wp_customize->add_setting(
+		'accepta_breadcrumbs_home_label',
+		array(
+			'default'           => __( 'Home', 'accepta' ),
+			'sanitize_callback' => 'sanitize_text_field',
+			'transport'         => 'refresh',
+		)
+	);
+	$wp_customize->add_control(
+		'accepta_breadcrumbs_home_label',
+		array(
+			'label'           => __( 'Breadcrumbs home label', 'accepta' ),
+			'section'         => 'accepta_layout_section',
+			'type'            => 'text',
+			'priority'        => 51,
+			'active_callback' => function( $control ) {
+				return (bool) $control->manager->get_setting( 'accepta_breadcrumbs_enable' )->value();
+			},
+		)
+	);
+
+	// Back to top (off by default).
+	$wp_customize->add_setting(
+		'accepta_back_to_top',
+		array(
+			'default'           => false,
+			'sanitize_callback' => 'wp_validate_boolean',
+			'transport'         => 'refresh',
+		)
+	);
+	$wp_customize->add_control(
+		'accepta_back_to_top',
+		array(
+			'label'       => __( 'Enable back to top button', 'accepta' ),
+			'description' => __( 'Show a floating button that scrolls back to the top of the page. Off by default.', 'accepta' ),
+			'section'     => 'accepta_layout_section',
+			'type'        => 'checkbox',
+			'priority'    => 60,
+		)
+	);
+
+	// Blog panel – archive layout + related posts (safe defaults).
+	$wp_customize->add_panel(
+		'accepta_blog_panel',
+		array(
+			'title'       => __( 'Blog', 'accepta' ),
+			'description' => __( 'Blog archive layout and single post extras. Defaults match the previous theme behavior.', 'accepta' ),
+			'priority'    => 35,
+		)
+	);
+
+	$wp_customize->add_section(
+		'accepta_blog_archive',
+		array(
+			'title'       => __( 'Archive Layout', 'accepta' ),
+			'description' => __( 'Choose how posts appear on the blog index, categories, tags, and search results.', 'accepta' ),
+			'panel'       => 'accepta_blog_panel',
+			'priority'    => 10,
+		)
+	);
+
+	$wp_customize->add_setting(
+		'accepta_blog_archive_layout',
+		array(
+			'default'           => 'list',
+			'sanitize_callback' => function( $input ) {
+				return in_array( $input, array( 'list', 'grid' ), true ) ? $input : 'list';
+			},
+			'transport'         => 'refresh',
+		)
+	);
+	$wp_customize->add_control(
+		new Accepta_Layout_Control(
+			$wp_customize,
+			'accepta_blog_archive_layout',
+			array(
+				'label'       => __( 'Archive layout', 'accepta' ),
+				'description' => __( 'List keeps the classic stacked posts. Grid shows posts in columns. Default is list.', 'accepta' ),
+				'section'     => 'accepta_blog_archive',
+				'priority'    => 10,
+				'layouts'     => array(
+					'list' => array(
+						'label' => __( 'List', 'accepta' ),
+					),
+					'grid' => array(
+						'label' => __( 'Grid', 'accepta' ),
+					),
+				),
+			)
+		)
+	);
+
+	$wp_customize->add_setting(
+		'accepta_blog_archive_columns',
+		array(
+			'default'           => '3',
+			'sanitize_callback' => function( $input ) {
+				return in_array( (string) $input, array( '2', '3', '4' ), true ) ? (string) $input : '3';
+			},
+			'transport'         => 'refresh',
+		)
+	);
+	$wp_customize->add_control(
+		new Accepta_Layout_Control(
+			$wp_customize,
+			'accepta_blog_archive_columns',
+			array(
+				'label'           => __( 'Grid columns', 'accepta' ),
+				'section'         => 'accepta_blog_archive',
+				'priority'        => 20,
+				'layouts'         => array(
+					'2' => array(
+						'label' => __( '2 columns', 'accepta' ),
+					),
+					'3' => array(
+						'label' => __( '3 columns', 'accepta' ),
+					),
+					'4' => array(
+						'label' => __( '4 columns', 'accepta' ),
+					),
+				),
+				'active_callback' => function( $control ) {
+					return 'grid' === $control->manager->get_setting( 'accepta_blog_archive_layout' )->value();
+				},
+			)
+		)
+	);
+
+	$wp_customize->add_section(
+		'accepta_blog_single',
+		array(
+			'title'       => __( 'Single Post', 'accepta' ),
+			'description' => __( 'Options for individual blog posts.', 'accepta' ),
+			'panel'       => 'accepta_blog_panel',
+			'priority'    => 20,
+		)
+	);
+
+	$wp_customize->add_setting(
+		'accepta_related_posts',
+		array(
+			'default'           => false,
+			'sanitize_callback' => 'wp_validate_boolean',
+			'transport'         => 'refresh',
+		)
+	);
+	$wp_customize->add_control(
+		'accepta_related_posts',
+		array(
+			'label'       => __( 'Show related posts', 'accepta' ),
+			'description' => __( 'Display related posts below the content on single posts. Off by default.', 'accepta' ),
+			'section'     => 'accepta_blog_single',
+			'type'        => 'checkbox',
+			'priority'    => 10,
+		)
+	);
+
+	$wp_customize->add_setting(
+		'accepta_related_posts_count',
+		array(
+			'default'           => 3,
+			'sanitize_callback' => function( $input ) {
+				$count = absint( $input );
+				return ( $count >= 1 && $count <= 6 ) ? $count : 3;
+			},
+			'transport'         => 'refresh',
+		)
+	);
+	$wp_customize->add_control(
+		'accepta_related_posts_count',
+		array(
+			'label'           => __( 'Number of related posts', 'accepta' ),
+			'section'         => 'accepta_blog_single',
+			'type'            => 'number',
+			'input_attrs'     => array(
+				'min'  => 1,
+				'max'  => 6,
+				'step' => 1,
+			),
+			'priority'        => 20,
+			'active_callback' => function( $control ) {
+				return (bool) $control->manager->get_setting( 'accepta_related_posts' )->value();
+			},
+		)
+	);
+
+	$wp_customize->add_setting(
+		'accepta_related_posts_title',
+		array(
+			'default'           => __( 'Related posts', 'accepta' ),
+			'sanitize_callback' => 'sanitize_text_field',
+			'transport'         => 'refresh',
+		)
+	);
+	$wp_customize->add_control(
+		'accepta_related_posts_title',
+		array(
+			'label'           => __( 'Related posts heading', 'accepta' ),
+			'section'         => 'accepta_blog_single',
+			'type'            => 'text',
+			'priority'        => 30,
+			'active_callback' => function( $control ) {
+				return (bool) $control->manager->get_setting( 'accepta_related_posts' )->value();
+			},
+		)
+	);
+
 	// Global Primary Color
 	$wp_customize->add_setting(
 		'accepta_primary_color',
@@ -1706,6 +1933,31 @@ function accepta_customize_register( $wp_customize ) {
 				'type'        => 'select',
 				'choices'     => accepta_get_woocommerce_style_choices(),
 				'priority'    => 10,
+			)
+		);
+
+		$wp_customize->add_setting(
+			'accepta_woo_sale_badge',
+			array(
+				'default'           => 'text',
+				'sanitize_callback' => function( $input ) {
+					return in_array( $input, array( 'text', 'percent' ), true ) ? $input : 'text';
+				},
+				'transport'         => 'refresh',
+			)
+		);
+		$wp_customize->add_control(
+			'accepta_woo_sale_badge',
+			array(
+				'label'       => __( 'Sale badge style', 'accepta' ),
+				'description' => __( 'Text keeps the default “Sale!” label. Percent shows the discount (for example −25%). Default is text.', 'accepta' ),
+				'section'     => 'accepta_woo_general',
+				'type'        => 'select',
+				'choices'     => array(
+					'text'    => __( 'Sale! text', 'accepta' ),
+					'percent' => __( 'Percentage off', 'accepta' ),
+				),
+				'priority'    => 20,
 			)
 		);
 

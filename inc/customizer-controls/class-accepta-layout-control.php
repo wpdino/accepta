@@ -162,6 +162,16 @@ class Accepta_Layout_Control extends WP_Customize_Control {
 		if ( isset( $this->id ) && $this->id === 'accepta_woo_cart_icon' ) {
 			return $this->get_cart_icon_svg( $layout );
 		}
+
+		// Blog archive list / grid.
+		if ( isset( $this->id ) && $this->id === 'accepta_blog_archive_layout' ) {
+			return $this->get_blog_archive_layout_svg( $layout );
+		}
+
+		// Blog archive grid columns (must run before the numeric footer-columns fallback).
+		if ( isset( $this->id ) && $this->id === 'accepta_blog_archive_columns' ) {
+			return $this->get_blog_archive_columns_svg( (string) $layout );
+		}
 		
 		// Check if this is a footer columns control
 		// Footer columns use numeric keys (0-4), sidebar layouts use text keys (none, left, right)
@@ -224,6 +234,79 @@ class Accepta_Layout_Control extends WP_Customize_Control {
 		}
 
 		return $svg_content;
+	}
+
+	/**
+	 * SVG for blog archive layout (list vs grid).
+	 *
+	 * @param string $layout list|grid.
+	 * @return string
+	 */
+	private function get_blog_archive_layout_svg( $layout ) {
+		if ( 'grid' === $layout ) {
+			return '<svg width="80" height="60" viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+				<rect x="5" y="5" width="33" height="22" fill="#f0f0f1" stroke="#c3c4c7" stroke-width="1" rx="2"/>
+				<rect x="42" y="5" width="33" height="22" fill="#f0f0f1" stroke="#c3c4c7" stroke-width="1" rx="2"/>
+				<rect x="5" y="33" width="33" height="22" fill="#f0f0f1" stroke="#c3c4c7" stroke-width="1" rx="2"/>
+				<rect x="42" y="33" width="33" height="22" fill="#f0f0f1" stroke="#c3c4c7" stroke-width="1" rx="2"/>
+				<rect x="9" y="9" width="25" height="8" fill="#0073aa" rx="1"/>
+				<rect x="46" y="9" width="25" height="8" fill="#0073aa" rx="1"/>
+				<rect x="9" y="37" width="25" height="8" fill="#0073aa" rx="1"/>
+				<rect x="46" y="37" width="25" height="8" fill="#0073aa" rx="1"/>
+				<rect x="9" y="20" width="18" height="3" fill="#c3c4c7" rx="1"/>
+				<rect x="46" y="20" width="18" height="3" fill="#c3c4c7" rx="1"/>
+				<rect x="9" y="48" width="18" height="3" fill="#c3c4c7" rx="1"/>
+				<rect x="46" y="48" width="18" height="3" fill="#c3c4c7" rx="1"/>
+			</svg>';
+		}
+
+		// list
+		return '<svg width="80" height="60" viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+			<rect x="5" y="4" width="70" height="16" fill="#f0f0f1" stroke="#c3c4c7" stroke-width="1" rx="2"/>
+			<rect x="5" y="22" width="70" height="16" fill="#f0f0f1" stroke="#c3c4c7" stroke-width="1" rx="2"/>
+			<rect x="5" y="40" width="70" height="16" fill="#f0f0f1" stroke="#c3c4c7" stroke-width="1" rx="2"/>
+			<rect x="9" y="7" width="22" height="10" fill="#0073aa" rx="1"/>
+			<rect x="9" y="25" width="22" height="10" fill="#0073aa" rx="1"/>
+			<rect x="9" y="43" width="22" height="10" fill="#0073aa" rx="1"/>
+			<rect x="35" y="8" width="34" height="3" fill="#c3c4c7" rx="1"/>
+			<rect x="35" y="13" width="24" height="3" fill="#c3c4c7" rx="1"/>
+			<rect x="35" y="26" width="34" height="3" fill="#c3c4c7" rx="1"/>
+			<rect x="35" y="31" width="24" height="3" fill="#c3c4c7" rx="1"/>
+			<rect x="35" y="44" width="34" height="3" fill="#c3c4c7" rx="1"/>
+			<rect x="35" y="49" width="24" height="3" fill="#c3c4c7" rx="1"/>
+		</svg>';
+	}
+
+	/**
+	 * SVG for blog archive grid column count.
+	 *
+	 * @param string $columns 2|3|4.
+	 * @return string
+	 */
+	private function get_blog_archive_columns_svg( $columns ) {
+		$card = function( $x, $w ) {
+			return '<rect x="' . $x . '" y="8" width="' . $w . '" height="44" fill="#f0f0f1" stroke="#c3c4c7" stroke-width="1" rx="2"/>'
+				. '<rect x="' . ( $x + 3 ) . '" y="12" width="' . max( 8, $w - 6 ) . '" height="12" fill="#0073aa" rx="1"/>'
+				. '<rect x="' . ( $x + 3 ) . '" y="28" width="' . max( 6, $w - 10 ) . '" height="3" fill="#c3c4c7" rx="1"/>'
+				. '<rect x="' . ( $x + 3 ) . '" y="34" width="' . max( 5, $w - 14 ) . '" height="3" fill="#c3c4c7" rx="1"/>'
+				. '<rect x="' . ( $x + 3 ) . '" y="40" width="' . max( 4, $w - 18 ) . '" height="3" fill="#c3c4c7" rx="1"/>';
+		};
+
+		switch ( $columns ) {
+			case '2':
+				return '<svg width="80" height="60" viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">'
+					. $card( 5, 33 ) . $card( 42, 33 )
+					. '</svg>';
+			case '4':
+				return '<svg width="80" height="60" viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">'
+					. $card( 4, 16 ) . $card( 23, 16 ) . $card( 42, 16 ) . $card( 61, 15 )
+					. '</svg>';
+			case '3':
+			default:
+				return '<svg width="80" height="60" viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">'
+					. $card( 5, 21 ) . $card( 30, 21 ) . $card( 55, 20 )
+					. '</svg>';
+		}
 	}
 
 	/**

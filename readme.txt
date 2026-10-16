@@ -2,8 +2,8 @@
 Contributors: wpdino
 Requires at least: 5.0
 Tested up to: 6.9
-Stable tag: 1.1.3
-Version: 1.1.3
+Stable tag: 1.1.4
+Version: 1.1.4
 Requires PHP: 7.4
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -58,6 +58,14 @@ Yes, Accepta is translation ready and includes .pot file for translations.
 Accepta includes standard WordPress widgets and is compatible with all WordPress widgets and plugins.
 
 == Changelog ==
+
+= 1.1.4 - 2026-10-16 =
+* Added Blog archive layout options in the Customizer (list or grid, with 2–4 column choices and visual layout pickers).
+* Added optional site-wide breadcrumbs (Layout section), including shop and product pages when enabled.
+* Added an optional back to top button in the Layout section.
+* Added a WooCommerce sale badge style option (Sale! text or percentage off).
+* Added optional related posts on single blog posts (Blog → Single Post).
+* Fixed hero text jumping when the sticky header shrinks on scroll.
 
 = 1.1.3 - 2026-09-11 =
 * Added a sticky Add to cart bar on single product pages that appears after the main buy button scrolls out of view.
@@ -166,6 +174,9 @@ For support, feature requests, and bug reports, please visit:
 https://wpdino.com
 
 == Upgrade Notice ==
+
+= 1.1.4 =
+Accepta Lite 1.1.4 adds blog archive layouts, optional breadcrumbs, back to top, related posts, and a WooCommerce sale badge percentage option. New options are off or match previous defaults so existing sites stay unchanged until you enable them.
 
 = 1.1.3 =
 Accepta Lite 1.1.3 adds a sticky Add to cart bar on single products, with a Customizer toggle and AJAX add that opens the cart panel.

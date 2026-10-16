@@ -1,0 +1,54 @@
+/* Site-wide breadcrumbs (opt-in via Customizer) */
+
+.accepta-breadcrumbs {
+	padding: 0.85rem 0;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+	background: transparent;
+	font-size: 0.8125rem;
+	line-height: 1.4;
+}
+
+.accepta-breadcrumbs__list {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.45rem 0.75rem;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.accepta-breadcrumbs__item,
+.accepta-breadcrumbs__sep {
+	margin: 0;
+}
+
+.accepta-breadcrumbs__sep {
+	padding: 0 0.15rem;
+	color: #9ca3af;
+	user-select: none;
+}
+
+.accepta-breadcrumbs a,
+.accepta-breadcrumbs a:visited,
+.woocommerce .accepta-breadcrumbs a,
+.woocommerce .accepta-breadcrumbs a:visited {
+	color: inherit;
+	text-decoration: none;
+
+	&:hover,
+	&:focus {
+		color: $accepta-primary-css;
+		text-decoration: none;
+	}
+}
+
+.accepta-breadcrumbs__current {
+	color: #6b7280;
+	font-weight: 500;
+}
+
+/* Keep Woo crumbs quiet when theme breadcrumbs are used elsewhere */
+body.accepta-has-theme-breadcrumbs .woocommerce-breadcrumb {
+	display: none;
+}

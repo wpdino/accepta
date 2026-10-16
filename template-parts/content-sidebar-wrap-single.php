@@ -15,6 +15,10 @@ $has_sidebar = accepta_has_sidebar();
 
             get_template_part( 'template-parts/content', get_post_type() );
 
+            if ( function_exists( 'accepta_related_posts' ) ) {
+                accepta_related_posts();
+            }
+
             the_post_navigation(
                 array(
                     'prev_text' => '<span class="nav-subtitle">' . esc_html__( 'Previous:', 'accepta' ) . '</span> <span class="nav-title">%title</span>',

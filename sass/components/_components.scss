@@ -10,8 +10,18 @@
 /* Posts and pages
 --------------------------------------------- */
 @import "content/posts-and-pages";
+@import "content/blog-archive";
+@import "content/related-posts";
 @import "content/starter-content";
 @import "content/error-404";
+
+/* Breadcrumbs
+--------------------------------------------- */
+@import "breadcrumbs";
+
+/* Back to top
+--------------------------------------------- */
+@import "back-to-top";
 
 /* Comments
 --------------------------------------------- */

@@ -2518,33 +2518,41 @@ body.accepta-mobile-menu-open .header-content {
 }
 /* Posts and pages
 --------------------------------------------- */
-/* Spacing and card-style background for posts (archive, blog index) */
-.site-main > article {
+/* Spacing and card-style background for posts (archive, blog index, single) */
+.site-main > article,
+.accepta-posts-loop > article {
   margin-bottom: 2em;
-  /* Remove bottom margin only when followed by pagination; single-article archive (no pagination) keeps margin above footer */
-}
-.site-main > article:has(+ nav.pagination), .site-main > article:has(+ .pagination) {
-  margin-bottom: 0;
-}
-.site-main > article {
   /* Card styling: exclude full-width pages */
 }
-.site-main > article:not(.sticky) {
+.site-main > article:not(.sticky),
+.accepta-posts-loop > article:not(.sticky) {
   /* Full padding + box shadow: when "default" OR ("only-with-sidebar" + sidebar active) */
 }
-body:not(.accepta-page-template-full-width):not(.accepta-front-page-full-width):not(.accepta-content-box-shadow-none) .site-main > article:not(.sticky) {
+body:not(.accepta-page-template-full-width):not(.accepta-front-page-full-width):not(.accepta-content-box-shadow-none) .site-main > article:not(.sticky),
+body:not(.accepta-page-template-full-width):not(.accepta-front-page-full-width):not(.accepta-content-box-shadow-none) .accepta-posts-loop > article:not(.sticky) {
   padding: 1.75em 2em;
   border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
 }
-.site-main > article:not(.sticky) {
+.site-main > article:not(.sticky),
+.accepta-posts-loop > article:not(.sticky) {
   /* Vertical-only padding (no left/right): when "none" OR ("only-with-sidebar" + no sidebar) */
 }
-body:not(.accepta-page-template-full-width):not(.accepta-front-page-full-width).accepta-content-box-shadow-none .site-main > article:not(.sticky) {
+body:not(.accepta-page-template-full-width):not(.accepta-front-page-full-width).accepta-content-box-shadow-none .site-main > article:not(.sticky),
+body:not(.accepta-page-template-full-width):not(.accepta-front-page-full-width).accepta-content-box-shadow-none .accepta-posts-loop > article:not(.sticky) {
   padding: 1.75em 0;
 }
-body:not(.accepta-page-template-full-width):not(.accepta-front-page-full-width).accepta-content-box-shadow-only-with-sidebar:not(.accepta-has-sidebar) .site-main > article:not(.sticky) {
+body:not(.accepta-page-template-full-width):not(.accepta-front-page-full-width).accepta-content-box-shadow-only-with-sidebar:not(.accepta-has-sidebar) .site-main > article:not(.sticky),
+body:not(.accepta-page-template-full-width):not(.accepta-front-page-full-width).accepta-content-box-shadow-only-with-sidebar:not(.accepta-has-sidebar) .accepta-posts-loop > article:not(.sticky) {
   padding: 1.75em 0;
+}
+
+/* List layout: drop bottom margin on last card when pagination follows the loop */
+.site-main > article:has(+ nav.pagination),
+.site-main > article:has(+ .pagination),
+.accepta-posts-loop--list:has(+ nav.pagination) > article:last-child,
+.accepta-posts-loop--list:has(+ .pagination) > article:last-child {
+  margin-bottom: 0;
 }
 
 /* Meta line under post title – subtle background */
@@ -2611,8 +2619,13 @@ body:not(.accepta-page-template-full-width):not(.accepta-front-page-full-width).
 }
 
 /* Article (post): padding-top */
-.site-main > article.post {
+.site-main > article.post,
+.accepta-posts-loop > article.post {
   margin-top: 2em;
+}
+
+.accepta-posts-loop--grid > article.post {
+  margin-top: 0;
 }
 
 /* Article (page): padding top and bottom */
@@ -2850,6 +2863,133 @@ body:not(.accepta-page-template-full-width):not(.accepta-front-page-full-width).
   opacity: 0.7;
 }
 
+/* Blog archive grid layout (opt-in via Customizer; default remains list) */
+.accepta-posts-loop--grid {
+  display: grid;
+  gap: 1.5rem;
+  align-items: stretch;
+}
+.accepta-posts-loop--grid > article {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin-bottom: 0;
+  min-width: 0;
+}
+.accepta-posts-loop--grid > article .entry-content {
+  flex: 1 1 auto;
+}
+.accepta-posts-loop--grid > article .entry-footer {
+  margin-top: auto;
+}
+.accepta-posts-loop--grid > article .post-thumbnail,
+.accepta-posts-loop--grid > article .post-thumbnail img {
+  width: 100%;
+}
+.accepta-posts-loop--grid > article .post-thumbnail img {
+  height: auto;
+  aspect-ratio: 16/10;
+  object-fit: cover;
+}
+.accepta-posts-loop--grid.accepta-posts-loop--cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.accepta-posts-loop--grid.accepta-posts-loop--cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.accepta-posts-loop--grid.accepta-posts-loop--cols-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+@media screen and (max-width: 900px) {
+  .accepta-posts-loop--grid.accepta-posts-loop--cols-3,
+  .accepta-posts-loop--grid.accepta-posts-loop--cols-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media screen and (max-width: 600px) {
+  .accepta-posts-loop--grid.accepta-posts-loop--cols-2,
+  .accepta-posts-loop--grid.accepta-posts-loop--cols-3,
+  .accepta-posts-loop--grid.accepta-posts-loop--cols-4 {
+    grid-template-columns: 1fr;
+  }
+}
+/* Related posts (opt-in; hidden unless Customizer enabled) */
+.accepta-related-posts {
+  margin: 2.5em 0 1.5em;
+  padding: 1.75em 0 0;
+  border-top: 1px solid #eee;
+}
+
+.accepta-related-posts__title {
+  margin: 0 0 1.25rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.accepta-related-posts__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.accepta-related-posts__item {
+  margin: 0;
+  min-width: 0;
+}
+
+.accepta-related-posts__thumb {
+  display: block;
+  margin-bottom: 0.75rem;
+  overflow: hidden;
+  border-radius: 6px;
+}
+.accepta-related-posts__thumb img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16/10;
+  object-fit: cover;
+  transition: transform 0.25s ease;
+}
+.accepta-related-posts__thumb:hover img, .accepta-related-posts__thumb:focus img {
+  transform: scale(1.03);
+}
+
+.accepta-related-posts__item-title {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+  line-height: 1.35;
+}
+.accepta-related-posts__item-title a {
+  text-decoration: none;
+  color: inherit;
+}
+.accepta-related-posts__item-title a:hover, .accepta-related-posts__item-title a:focus {
+  color: var(--accepta-primary-color, #6F9C50);
+}
+
+.accepta-related-posts__meta {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: #6b7280;
+}
+
+@media screen and (max-width: 782px) {
+  .accepta-related-posts__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media screen and (max-width: 480px) {
+  .accepta-related-posts__grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .accepta-related-posts__thumb img {
+    transition: none;
+  }
+}
 /* Front page icon boxes and feature cards (starter content).
  * Shared by the frontend bundle and the block editor stylesheet so the
  * editor preview matches what visitors see.
@@ -3055,6 +3195,116 @@ body.search .no-results.not-found .search-form {
   body.search .no-results.not-found {
     padding: 1.25rem;
     border-radius: 10px;
+  }
+}
+/* Breadcrumbs
+--------------------------------------------- */
+/* Site-wide breadcrumbs (opt-in via Customizer) */
+.accepta-breadcrumbs {
+  padding: 0.85rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  background: transparent;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+}
+
+.accepta-breadcrumbs__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.accepta-breadcrumbs__item,
+.accepta-breadcrumbs__sep {
+  margin: 0;
+}
+
+.accepta-breadcrumbs__sep {
+  padding: 0 0.15rem;
+  color: #9ca3af;
+  user-select: none;
+}
+
+.accepta-breadcrumbs a,
+.accepta-breadcrumbs a:visited,
+.woocommerce .accepta-breadcrumbs a,
+.woocommerce .accepta-breadcrumbs a:visited {
+  color: inherit;
+  text-decoration: none;
+}
+.accepta-breadcrumbs a:hover, .accepta-breadcrumbs a:focus,
+.accepta-breadcrumbs a:visited:hover,
+.accepta-breadcrumbs a:visited:focus,
+.woocommerce .accepta-breadcrumbs a:hover,
+.woocommerce .accepta-breadcrumbs a:focus,
+.woocommerce .accepta-breadcrumbs a:visited:hover,
+.woocommerce .accepta-breadcrumbs a:visited:focus {
+  color: var(--accepta-primary-color, #6F9C50);
+  text-decoration: none;
+}
+
+.accepta-breadcrumbs__current {
+  color: #6b7280;
+  font-weight: 500;
+}
+
+/* Keep Woo crumbs quiet when theme breadcrumbs are used elsewhere */
+body.accepta-has-theme-breadcrumbs .woocommerce-breadcrumb {
+  display: none;
+}
+
+/* Back to top
+--------------------------------------------- */
+/* Back to top (opt-in via Customizer) */
+.accepta-back-to-top {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 999;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: var(--accepta-primary-color, #6F9C50);
+  color: #fff;
+  font-size: 1.15rem;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(0.5rem);
+  transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease, background 0.2s ease;
+}
+.accepta-back-to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.accepta-back-to-top:hover, .accepta-back-to-top:focus {
+  background: color-mix(in srgb, var(--accepta-primary-color, #6F9C50) 80%, black);
+  color: #fff;
+}
+.accepta-back-to-top:focus-visible {
+  outline: 2px solid var(--accepta-primary-color, #6F9C50);
+  outline-offset: 3px;
+}
+
+body.accepta-sticky-atc-visible .accepta-back-to-top {
+  bottom: 6.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .accepta-back-to-top {
+    transition: none;
   }
 }
 /* Comments

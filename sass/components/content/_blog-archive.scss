@@ -1,0 +1,61 @@
+/* Blog archive grid layout (opt-in via Customizer; default remains list) */
+
+.accepta-posts-loop--grid {
+	display: grid;
+	gap: 1.5rem;
+	align-items: stretch;
+
+	> article {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		margin-bottom: 0;
+		min-width: 0;
+
+		.entry-content {
+			flex: 1 1 auto;
+		}
+
+		.entry-footer {
+			margin-top: auto;
+		}
+
+		.post-thumbnail,
+		.post-thumbnail img {
+			width: 100%;
+		}
+
+		.post-thumbnail img {
+			height: auto;
+			aspect-ratio: 16 / 10;
+			object-fit: cover;
+		}
+	}
+
+	&.accepta-posts-loop--cols-2 {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	&.accepta-posts-loop--cols-3 {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
+	&.accepta-posts-loop--cols-4 {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+	}
+}
+
+@media screen and (max-width: 900px) {
+	.accepta-posts-loop--grid.accepta-posts-loop--cols-3,
+	.accepta-posts-loop--grid.accepta-posts-loop--cols-4 {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.accepta-posts-loop--grid.accepta-posts-loop--cols-2,
+	.accepta-posts-loop--grid.accepta-posts-loop--cols-3,
+	.accepta-posts-loop--grid.accepta-posts-loop--cols-4 {
+		grid-template-columns: 1fr;
+	}
+}
