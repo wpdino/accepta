@@ -57,7 +57,7 @@ if ( $dinofolio_display ) {
 				</div>
 			<?php else : ?>
 				<div class="dinofolio-no-posts">
-					<?php esc_html_e( 'Portfolio display module is not available.', 'dinofolio' ); ?>
+					<?php esc_html_e( 'Portfolio display module is not available.', 'accepta' ); ?>
 				</div>
 			<?php endif; ?>
 		</div>

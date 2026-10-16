@@ -38,6 +38,21 @@ For theme support and documentation, visit [WPDINO](https://wpdino.com).
 
 ## Changelog
 
+### 1.1.4 (2026-10-16)
+
+* Added Blog archive layout options in the Customizer (list or grid, with 2-4 column choices and visual layout pickers).
+* Added optional site-wide breadcrumbs (Layout section), including shop and product pages when enabled.
+* Added an optional back to top button in the Layout section.
+* Added a WooCommerce sale badge style option (Sale! text or percentage off).
+* Added optional related posts on single blog posts (Blog > Single Post).
+* Fixed hero text jumping when the sticky header shrinks on scroll.
+
+### 1.1.3 (2026-09-11)
+
+* Added a sticky Add to cart bar on single product pages that appears after the main buy button scrolls out of view.
+* Added a Customizer option under WooCommerce > Single Product to enable or disable the sticky Add to cart bar.
+* Sticky Add to cart now adds the product with AJAX and opens the cart panel when the item is added.
+
 ### 1.1.2 (2026-08-07)
 
 * Fixed top-level menu links not working on touch devices by removing a conflicting leftover navigation script.

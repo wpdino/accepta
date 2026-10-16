@@ -548,6 +548,11 @@ require get_template_directory() . '/inc/accepta-theme-functions.php';
 require get_template_directory() . '/inc/block-patterns.php';
 
 /**
+ * Optional block style variations (Gutenberg).
+ */
+require get_template_directory() . '/inc/block-styles.php';
+
+/**
  * Implement the Custom Header feature.
  */
 require get_template_directory() . '/inc/custom-header.php';

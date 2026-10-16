@@ -1,0 +1,51 @@
+/* Optional block styles – only apply when an is-style-* variation is selected */
+
+.wp-block-button.is-style-accepta-outline .wp-block-button__link {
+	background-color: transparent !important;
+	background-image: none !important;
+	color: $accepta-primary-css !important;
+	border: 2px solid $accepta-primary-css;
+	box-shadow: none;
+
+	&:hover,
+	&:focus {
+		background-color: $accepta-primary-css !important;
+		color: #fff !important;
+		filter: none;
+	}
+}
+
+.wp-block-button.is-style-accepta-soft .wp-block-button__link {
+	background-color: $accepta-primary-tint-css !important;
+	background-image: none !important;
+	color: $accepta-primary-css !important;
+	border: 0;
+	box-shadow: none;
+
+	&:hover,
+	&:focus {
+		background-color: $accepta-primary-tint-strong-css !important;
+		color: $accepta-primary-hover-css !important;
+		filter: none;
+	}
+}
+
+.wp-block-quote.is-style-accepta-accent {
+	border: 0 !important;
+	border-left: 4px solid $accepta-primary-css !important;
+	padding: 1.25em 1.5em;
+	background: $accepta-primary-tint-css;
+	border-radius: 0 8px 8px 0;
+
+	&::before {
+		color: $accepta-primary-css;
+	}
+}
+
+.wp-block-separator.is-style-accepta-wide {
+	width: 100%;
+	max-width: 100%;
+	border: 0;
+	border-top: 2px solid $accepta-primary-css;
+	opacity: 0.45;
+}

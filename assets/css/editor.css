@@ -190,9 +190,60 @@ big {
     animation: none;
   }
 }
+/* Optional block styles – only apply when an is-style-* variation is selected */
+.wp-block-button.is-style-accepta-outline .wp-block-button__link {
+  background-color: transparent !important;
+  background-image: none !important;
+  color: var(--accepta-primary-color, #6F9C50) !important;
+  border: 2px solid var(--accepta-primary-color, #6F9C50);
+  box-shadow: none;
+}
+.wp-block-button.is-style-accepta-outline .wp-block-button__link:hover, .wp-block-button.is-style-accepta-outline .wp-block-button__link:focus {
+  background-color: var(--accepta-primary-color, #6F9C50) !important;
+  color: #fff !important;
+  filter: none;
+}
+
+.wp-block-button.is-style-accepta-soft .wp-block-button__link {
+  background-color: color-mix(in srgb, var(--accepta-primary-color, #6F9C50) 12%, transparent) !important;
+  background-image: none !important;
+  color: var(--accepta-primary-color, #6F9C50) !important;
+  border: 0;
+  box-shadow: none;
+}
+.wp-block-button.is-style-accepta-soft .wp-block-button__link:hover, .wp-block-button.is-style-accepta-soft .wp-block-button__link:focus {
+  background-color: color-mix(in srgb, var(--accepta-primary-color, #6F9C50) 20%, transparent) !important;
+  color: color-mix(in srgb, var(--accepta-primary-color, #6F9C50) 80%, black) !important;
+  filter: none;
+}
+
+.wp-block-quote.is-style-accepta-accent {
+  border: 0 !important;
+  border-left: 4px solid var(--accepta-primary-color, #6F9C50) !important;
+  padding: 1.25em 1.5em;
+  background: color-mix(in srgb, var(--accepta-primary-color, #6F9C50) 12%, transparent);
+  border-radius: 0 8px 8px 0;
+}
+.wp-block-quote.is-style-accepta-accent::before {
+  color: var(--accepta-primary-color, #6F9C50);
+}
+
+.wp-block-separator.is-style-accepta-wide {
+  width: 100%;
+  max-width: 100%;
+  border: 0;
+  border-top: 2px solid var(--accepta-primary-color, #6F9C50);
+  opacity: 0.45;
+}
+
 /* Override default block editor quote border (theme uses card-style quotes). */
 .editor-styles-wrapper blockquote,
 .editor-styles-wrapper .wp-block-quote {
   border: none !important;
   border-left: none !important;
+}
+
+/* Keep accent quote border when that style is selected. */
+.editor-styles-wrapper .wp-block-quote.is-style-accepta-accent {
+  border-left: 4px solid var(--accepta-primary-color, #6F9C50) !important;
 }

@@ -12,7 +12,7 @@ get_header();
 $post_type_object = get_post_type_object( 'wpdino_portfolio' );
 $archive_title    = $post_type_object && ! empty( $post_type_object->labels->name )
 	? $post_type_object->labels->name
-	: esc_html__( 'Portfolio', 'dinofolio' );
+	: esc_html__( 'Portfolio', 'accepta' );
 $archive_description = get_the_archive_description();
 $dinofolio_display   = class_exists( 'WPDINO_Portfolio_Display' ) ? \WPDINO_Portfolio_Display::get_instance() : null;
 $dinofolio_listing   = '';
@@ -49,7 +49,7 @@ if ( $dinofolio_display ) {
 				</div>
 			<?php else : ?>
 				<div class="dinofolio-no-posts">
-					<?php esc_html_e( 'Portfolio display module is not available.', 'dinofolio' ); ?>
+					<?php esc_html_e( 'Portfolio display module is not available.', 'accepta' ); ?>
 				</div>
 			<?php endif; ?>
 		</div>

@@ -175,7 +175,7 @@ function accepta_get_portfolio_hero_meta( $post_id = 0 ) {
 		$post_id,
 		'date_label',
 		'portfolio_meta_default_date_label',
-		esc_html__( 'Date', 'dinofolio' )
+		esc_html__( 'Date', 'accepta' )
 	);
 	$date_of_work = accepta_get_portfolio_effective_meta(
 		$post_id,
@@ -193,15 +193,15 @@ function accepta_get_portfolio_hero_meta( $post_id = 0 ) {
 		$post_id,
 		'button_label',
 		'portfolio_meta_default_button_label',
-		esc_html__( 'Launch', 'dinofolio' )
+		esc_html__( 'Launch', 'accepta' )
 	);
 
 	return array(
 		'show_date'    => ( 'off' !== $date_display ),
-		'date_label'   => $date_label ? $date_label : esc_html__( 'Date', 'dinofolio' ),
+		'date_label'   => $date_label ? $date_label : esc_html__( 'Date', 'accepta' ),
 		'date_value'   => $date_of_work ? $date_of_work : get_the_date( '', $post_id ),
 		'external_url' => is_string( $external_url ) ? trim( $external_url ) : '',
-		'button_label' => $button_label ? $button_label : esc_html__( 'Launch', 'dinofolio' ),
+		'button_label' => $button_label ? $button_label : esc_html__( 'Launch', 'accepta' ),
 	);
 }
 

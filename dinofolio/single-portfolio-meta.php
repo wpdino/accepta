@@ -35,7 +35,7 @@ $dinofolio_gallery_slider  = ( 'slider' === $dinofolio_gallery_style );
 			<?php if ( $dinofolio_gallery_slider ) : ?>
 				<div class="dinofolio-gallery-carousel-shell">
 					<div class="dinofolio-gallery-carousel" data-dinofolio-gallery-carousel>
-						<button type="button" class="dinofolio-carousel-nav dinofolio-carousel-prev" aria-label="<?php esc_attr_e( 'Previous image', 'dinofolio' ); ?>">
+						<button type="button" class="dinofolio-carousel-nav dinofolio-carousel-prev" aria-label="<?php esc_attr_e( 'Previous image', 'accepta' ); ?>">
 							<svg class="dinofolio-carousel-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
 								<path d="M15 6L9 12L15 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 							</svg>
@@ -51,7 +51,7 @@ $dinofolio_gallery_slider  = ( 'slider' === $dinofolio_gallery_style );
 								<?php endforeach; ?>
 							</div>
 						</div>
-						<button type="button" class="dinofolio-carousel-nav dinofolio-carousel-next" aria-label="<?php esc_attr_e( 'Next image', 'dinofolio' ); ?>">
+						<button type="button" class="dinofolio-carousel-nav dinofolio-carousel-next" aria-label="<?php esc_attr_e( 'Next image', 'accepta' ); ?>">
 							<svg class="dinofolio-carousel-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
 								<path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 							</svg>
@@ -76,7 +76,7 @@ $dinofolio_gallery_slider  = ( 'slider' === $dinofolio_gallery_style );
 
 	<?php if ( $dinofolio_has_attributes ) : ?>
 	<section class="dinofolio-project-details">
-		<h2 class="dinofolio-section-heading"><?php esc_html_e( 'Project Details', 'dinofolio' ); ?></h2>
+		<h2 class="dinofolio-section-heading"><?php esc_html_e( 'Project Details', 'accepta' ); ?></h2>
 		<div class="dinofolio-project-details-card">
 			<div class="dinofolio-single-meta-grid">
 				<?php foreach ( $dinofolio_data['attributes'] as $dinofolio_attribute ) : ?>
@@ -106,7 +106,7 @@ $dinofolio_gallery_slider  = ( 'slider' === $dinofolio_gallery_style );
 			<?php if ( $dinofolio_is_carousel ) : ?>
 				<div class="dinofolio-related-carousel-shell">
 					<div class="dinofolio-related-carousel" data-dinofolio-carousel data-columns="<?php echo esc_attr( $dinofolio_related_columns ); ?>">
-						<button type="button" class="dinofolio-carousel-nav dinofolio-carousel-prev" aria-label="<?php esc_attr_e( 'Previous projects', 'dinofolio' ); ?>">
+						<button type="button" class="dinofolio-carousel-nav dinofolio-carousel-prev" aria-label="<?php esc_attr_e( 'Previous projects', 'accepta' ); ?>">
 							<svg class="dinofolio-carousel-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
 								<path d="M15 6L9 12L15 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 							</svg>
@@ -118,7 +118,7 @@ $dinofolio_gallery_slider  = ( 'slider' === $dinofolio_gallery_style );
 								<?php endforeach; ?>
 							</ul>
 						</div>
-						<button type="button" class="dinofolio-carousel-nav dinofolio-carousel-next" aria-label="<?php esc_attr_e( 'Next projects', 'dinofolio' ); ?>">
+						<button type="button" class="dinofolio-carousel-nav dinofolio-carousel-next" aria-label="<?php esc_attr_e( 'Next projects', 'accepta' ); ?>">
 							<svg class="dinofolio-carousel-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
 								<path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 							</svg>
