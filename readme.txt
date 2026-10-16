@@ -60,7 +60,7 @@ Accepta includes standard WordPress widgets and is compatible with all WordPress
 == Changelog ==
 
 = 1.1.4 - 2026-10-16 =
-* Added Blog archive layout options in the Customizer (list or grid, with 2-4 column choices and visual layout pickers).
+* Added Blog archive layout options in the Customizer.
 * Added optional site-wide breadcrumbs (Layout section), including shop and product pages when enabled.
 * Added an optional back to top button in the Layout section.
 * Added a WooCommerce sale badge style option (Sale! text or percentage off).
