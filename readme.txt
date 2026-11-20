@@ -2,8 +2,8 @@
 Contributors: wpdino
 Requires at least: 5.0
 Tested up to: 6.9
-Stable tag: 1.1.5
-Version: 1.1.5
+Stable tag: 1.1.6
+Version: 1.1.6
 Requires PHP: 7.4
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -58,6 +58,9 @@ Yes, Accepta is translation ready and includes .pot file for translations.
 Accepta includes standard WordPress widgets and is compatible with all WordPress widgets and plugins.
 
 == Changelog ==
+
+= 1.1.6 - 2026-11-18 =
+* Fixed minor issue
 
 = 1.1.5 - 2026-11-18 =
 * Added optional selective loading for theme WooCommerce CSS (WooCommerce > General; off by default).
