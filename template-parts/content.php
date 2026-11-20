@@ -38,6 +38,7 @@
 				<?php
 			endif;
 		endif;
+		?>
 	</header><!-- .entry-header -->
 
 	<?php accepta_post_thumbnail(); ?>
