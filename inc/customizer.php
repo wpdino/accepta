@@ -1119,6 +1119,28 @@ function accepta_customize_register( $wp_customize ) {
 		)
 	);
 
+	$wp_customize->add_setting(
+		'accepta_breadcrumbs_schema',
+		array(
+			'default'           => false,
+			'sanitize_callback' => 'wp_validate_boolean',
+			'transport'         => 'refresh',
+		)
+	);
+	$wp_customize->add_control(
+		'accepta_breadcrumbs_schema',
+		array(
+			'label'           => __( 'Breadcrumbs structured data', 'accepta' ),
+			'description'     => __( 'Output Schema.org BreadcrumbList JSON-LD when theme breadcrumbs are enabled. Off by default.', 'accepta' ),
+			'section'         => 'accepta_layout_section',
+			'type'            => 'checkbox',
+			'priority'        => 52,
+			'active_callback' => function( $control ) {
+				return (bool) $control->manager->get_setting( 'accepta_breadcrumbs_enable' )->value();
+			},
+		)
+	);
+
 	// Back to top (off by default).
 	$wp_customize->add_setting(
 		'accepta_back_to_top',
@@ -1223,6 +1245,112 @@ function accepta_customize_register( $wp_customize ) {
 					return 'grid' === $control->manager->get_setting( 'accepta_blog_archive_layout' )->value();
 				},
 			)
+		)
+	);
+
+	$wp_customize->add_setting(
+		'accepta_blog_archive_show_date',
+		array(
+			'default'           => true,
+			'sanitize_callback' => 'wp_validate_boolean',
+			'transport'         => 'refresh',
+		)
+	);
+	$wp_customize->add_control(
+		'accepta_blog_archive_show_date',
+		array(
+			'label'       => __( 'Show post date on archives', 'accepta' ),
+			'description' => __( 'On by default to match previous theme behavior.', 'accepta' ),
+			'section'     => 'accepta_blog_archive',
+			'type'        => 'checkbox',
+			'priority'    => 30,
+		)
+	);
+
+	$wp_customize->add_setting(
+		'accepta_blog_archive_show_author',
+		array(
+			'default'           => true,
+			'sanitize_callback' => 'wp_validate_boolean',
+			'transport'         => 'refresh',
+		)
+	);
+	$wp_customize->add_control(
+		'accepta_blog_archive_show_author',
+		array(
+			'label'       => __( 'Show author on archives', 'accepta' ),
+			'description' => __( 'On by default to match previous theme behavior.', 'accepta' ),
+			'section'     => 'accepta_blog_archive',
+			'type'        => 'checkbox',
+			'priority'    => 31,
+		)
+	);
+
+	$wp_customize->add_setting(
+		'accepta_blog_archive_show_categories',
+		array(
+			'default'           => true,
+			'sanitize_callback' => 'wp_validate_boolean',
+			'transport'         => 'refresh',
+		)
+	);
+	$wp_customize->add_control(
+		'accepta_blog_archive_show_categories',
+		array(
+			'label'       => __( 'Show categories on archives', 'accepta' ),
+			'description' => __( 'On by default to match previous theme behavior.', 'accepta' ),
+			'section'     => 'accepta_blog_archive',
+			'type'        => 'checkbox',
+			'priority'    => 32,
+		)
+	);
+
+	$wp_customize->add_setting(
+		'accepta_blog_archive_show_thumbnail',
+		array(
+			'default'           => true,
+			'sanitize_callback' => 'wp_validate_boolean',
+			'transport'         => 'refresh',
+		)
+	);
+	$wp_customize->add_control(
+		'accepta_blog_archive_show_thumbnail',
+		array(
+			'label'       => __( 'Show featured images on archives', 'accepta' ),
+			'description' => __( 'On by default to match previous theme behavior.', 'accepta' ),
+			'section'     => 'accepta_blog_archive',
+			'type'        => 'checkbox',
+			'priority'    => 33,
+		)
+	);
+
+	$wp_customize->add_setting(
+		'accepta_blog_archive_thumbnail_ratio',
+		array(
+			'default'           => 'landscape',
+			'sanitize_callback' => function( $input ) {
+				return in_array( $input, array( 'landscape', 'widescreen', 'square', 'natural' ), true ) ? $input : 'landscape';
+			},
+			'transport'         => 'refresh',
+		)
+	);
+	$wp_customize->add_control(
+		'accepta_blog_archive_thumbnail_ratio',
+		array(
+			'label'           => __( 'Grid image aspect ratio', 'accepta' ),
+			'description'     => __( 'Applies only when archive layout is grid. Landscape (16:10) is the default grid style.', 'accepta' ),
+			'section'         => 'accepta_blog_archive',
+			'type'            => 'select',
+			'choices'         => array(
+				'landscape'   => __( 'Landscape (16:10)', 'accepta' ),
+				'widescreen'  => __( 'Widescreen (16:9)', 'accepta' ),
+				'square'      => __( 'Square (1:1)', 'accepta' ),
+				'natural'     => __( 'Natural (no crop)', 'accepta' ),
+			),
+			'priority'        => 34,
+			'active_callback' => function( $control ) {
+				return 'grid' === $control->manager->get_setting( 'accepta_blog_archive_layout' )->value();
+			},
 		)
 	);
 
@@ -1958,6 +2086,25 @@ function accepta_customize_register( $wp_customize ) {
 					'percent' => __( 'Percentage off', 'accepta' ),
 				),
 				'priority'    => 20,
+			)
+		);
+
+		$wp_customize->add_setting(
+			'accepta_woo_load_assets_selectively',
+			array(
+				'default'           => false,
+				'sanitize_callback' => 'wp_validate_boolean',
+				'transport'         => 'refresh',
+			)
+		);
+		$wp_customize->add_control(
+			'accepta_woo_load_assets_selectively',
+			array(
+				'label'       => __( 'Load WooCommerce styles only on shop pages', 'accepta' ),
+				'description' => __( 'Improves performance by skipping theme WooCommerce CSS on non-shop pages. Off by default so existing sites keep current loading behavior.', 'accepta' ),
+				'section'     => 'accepta_woo_general',
+				'type'        => 'checkbox',
+				'priority'    => 25,
 			)
 		);
 

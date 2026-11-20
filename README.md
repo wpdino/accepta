@@ -38,6 +38,13 @@ For theme support and documentation, visit [WPDINO](https://wpdino.com).
 
 ## Changelog
 
+### 1.1.5 (2026-11-18)
+
+* Added optional selective loading for theme WooCommerce CSS (WooCommerce > General; off by default).
+* Added blog archive display options for date, author, categories, featured images, and grid image aspect ratio (defaults match previous behavior).
+* Added optional BreadcrumbList structured data when theme breadcrumbs are enabled (off by default).
+* Improved minicart offcanvas accessibility (dialog semantics, focus trap, and focus return).
+
 ### 1.1.4 (2026-10-16)
 
 * Added Blog archive layout options in the Customizer (list or grid, with 2-4 column choices and visual layout pickers).

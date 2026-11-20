@@ -45,6 +45,19 @@
 	}
 }
 
+body.accepta-blog-thumb-widescreen .accepta-posts-loop--grid > article .post-thumbnail img {
+	aspect-ratio: 16 / 9;
+}
+
+body.accepta-blog-thumb-square .accepta-posts-loop--grid > article .post-thumbnail img {
+	aspect-ratio: 1 / 1;
+}
+
+body.accepta-blog-thumb-natural .accepta-posts-loop--grid > article .post-thumbnail img {
+	aspect-ratio: auto;
+	object-fit: unset;
+}
+
 @media screen and (max-width: 900px) {
 	.accepta-posts-loop--grid.accepta-posts-loop--cols-3,
 	.accepta-posts-loop--grid.accepta-posts-loop--cols-4 {

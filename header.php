@@ -140,10 +140,17 @@
 	if ( function_exists( 'accepta_woocommerce_needs_minicart' ) && accepta_woocommerce_needs_minicart() ) :
 		?>
 		<div id="accepta-minicart-offcanvas" class="accepta-minicart-offcanvas" aria-hidden="true">
-			<div class="accepta-minicart-offcanvas-overlay" data-accepta-minicart-close aria-label="<?php esc_attr_e( 'Close cart', 'accepta' ); ?>"></div>
-			<div class="accepta-minicart-offcanvas-panel">
+			<div class="accepta-minicart-offcanvas-overlay" data-accepta-minicart-close tabindex="-1" aria-hidden="true"></div>
+			<div
+				id="accepta-minicart-dialog"
+				class="accepta-minicart-offcanvas-panel"
+				role="dialog"
+				aria-modal="true"
+				aria-labelledby="accepta-minicart-title"
+				tabindex="-1"
+			>
 				<div class="accepta-minicart-offcanvas-header">
-					<h2 class="accepta-minicart-offcanvas-title"><?php esc_html_e( 'Cart', 'accepta' ); ?></h2>
+					<h2 id="accepta-minicart-title" class="accepta-minicart-offcanvas-title"><?php esc_html_e( 'Cart', 'accepta' ); ?></h2>
 					<button type="button" class="accepta-minicart-offcanvas-close" data-accepta-minicart-close aria-label="<?php esc_attr_e( 'Close cart', 'accepta' ); ?>">
 						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>

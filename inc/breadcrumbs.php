@@ -267,3 +267,54 @@ function accepta_breadcrumbs_remove_woocommerce() {
 	remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20 );
 }
 add_action( 'wp', 'accepta_breadcrumbs_remove_woocommerce' );
+
+/**
+ * Whether BreadcrumbList structured data should output.
+ *
+ * @return bool
+ */
+function accepta_breadcrumbs_schema_enabled() {
+	if ( ! accepta_breadcrumbs_enabled() ) {
+		return false;
+	}
+
+	return (bool) get_theme_mod( 'accepta_breadcrumbs_schema', false );
+}
+
+/**
+ * Output Schema.org BreadcrumbList JSON-LD when enabled.
+ *
+ * @return void
+ */
+function accepta_breadcrumbs_schema_json_ld() {
+	if ( ! accepta_should_show_breadcrumbs() || ! accepta_breadcrumbs_schema_enabled() ) {
+		return;
+	}
+
+	$items = accepta_get_breadcrumb_items();
+	if ( count( $items ) < 2 ) {
+		return;
+	}
+
+	$list = array();
+	foreach ( $items as $index => $item ) {
+		$entry = array(
+			'@type'    => 'ListItem',
+			'position' => $index + 1,
+			'name'     => wp_strip_all_tags( $item['label'] ),
+		);
+		if ( ! empty( $item['url'] ) ) {
+			$entry['item'] = esc_url( $item['url'] );
+		}
+		$list[] = $entry;
+	}
+
+	$schema = array(
+		'@context'        => 'https://schema.org',
+		'@type'           => 'BreadcrumbList',
+		'itemListElement' => $list,
+	);
+
+	echo '<script type="application/ld+json">' . wp_json_encode( $schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . '</script>' . "\n"; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- JSON-LD.
+}
+add_action( 'wp_head', 'accepta_breadcrumbs_schema_json_ld', 20 );

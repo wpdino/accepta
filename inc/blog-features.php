@@ -92,11 +92,109 @@ function accepta_blog_archive_body_classes( $classes ) {
 
 	if ( 'grid' === $layout ) {
 		$classes[] = 'accepta-blog-cols-' . accepta_get_blog_archive_columns();
+
+		$ratio = accepta_get_blog_archive_thumbnail_ratio();
+		if ( $ratio && 'landscape' !== $ratio ) {
+			$classes[] = 'accepta-blog-thumb-' . sanitize_html_class( $ratio );
+		}
 	}
 
 	return $classes;
 }
 add_filter( 'body_class', 'accepta_blog_archive_body_classes' );
+
+/**
+ * Whether the blog archive should show the post date in entry meta.
+ *
+ * @return bool
+ */
+function accepta_blog_archive_show_date() {
+	return (bool) get_theme_mod( 'accepta_blog_archive_show_date', true );
+}
+
+/**
+ * Whether the blog archive should show the author in entry meta.
+ *
+ * @return bool
+ */
+function accepta_blog_archive_show_author() {
+	return (bool) get_theme_mod( 'accepta_blog_archive_show_author', true );
+}
+
+/**
+ * Whether the blog archive should show categories/tags in the entry footer.
+ *
+ * @return bool
+ */
+function accepta_blog_archive_show_categories() {
+	return (bool) get_theme_mod( 'accepta_blog_archive_show_categories', true );
+}
+
+/**
+ * Whether the blog archive should show featured images.
+ *
+ * @return bool
+ */
+function accepta_blog_archive_show_thumbnail() {
+	return (bool) get_theme_mod( 'accepta_blog_archive_show_thumbnail', true );
+}
+
+/**
+ * Grid thumbnail aspect ratio (landscape matches the default grid style).
+ *
+ * @return string landscape|widescreen|square|natural
+ */
+function accepta_get_blog_archive_thumbnail_ratio() {
+	if ( ! accepta_blog_archive_is_grid() ) {
+		return 'landscape';
+	}
+
+	$ratio = get_theme_mod( 'accepta_blog_archive_thumbnail_ratio', 'landscape' );
+	return in_array( $ratio, array( 'landscape', 'widescreen', 'square', 'natural' ), true ) ? $ratio : 'landscape';
+}
+
+/**
+ * Output entry meta on archives respecting Customizer toggles.
+ *
+ * @return void
+ */
+function accepta_blog_archive_entry_meta() {
+	if ( is_singular() ) {
+		accepta_posted_on();
+		accepta_posted_by();
+		return;
+	}
+
+	$show_date   = accepta_blog_archive_show_date();
+	$show_author = accepta_blog_archive_show_author();
+	if ( ! $show_date && ! $show_author ) {
+		return;
+	}
+
+	if ( $show_date ) {
+		accepta_posted_on();
+	}
+
+	if ( $show_author ) {
+		accepta_posted_by();
+	}
+}
+
+/**
+ * Output entry footer on archives respecting Customizer toggles.
+ *
+ * @return void
+ */
+function accepta_blog_archive_entry_footer() {
+	if ( is_singular() ) {
+		accepta_entry_footer();
+		return;
+	}
+
+	if ( accepta_blog_archive_show_categories() ) {
+		accepta_entry_footer();
+	}
+}
 
 /**
  * Whether related posts should render on the current single post.

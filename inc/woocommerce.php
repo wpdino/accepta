@@ -96,6 +96,59 @@ function accepta_get_single_product_style() {
 }
 
 /**
+ * Whether the current request is a WooCommerce storefront view.
+ *
+ * @return bool
+ */
+function accepta_woocommerce_is_storefront_context() {
+	if ( ! class_exists( 'WooCommerce' ) ) {
+		return false;
+	}
+
+	if ( function_exists( 'is_woocommerce' ) && is_woocommerce() ) {
+		return true;
+	}
+
+	if ( function_exists( 'is_cart' ) && is_cart() ) {
+		return true;
+	}
+
+	if ( function_exists( 'is_checkout' ) && is_checkout() ) {
+		return true;
+	}
+
+	if ( function_exists( 'is_account_page' ) && is_account_page() ) {
+		return true;
+	}
+
+	/**
+	 * Filter whether WooCommerce theme assets should load on this request.
+	 *
+	 * @param bool $is_context Whether this is a storefront context.
+	 */
+	return (bool) apply_filters( 'accepta_woocommerce_is_storefront_context', false );
+}
+
+/**
+ * Whether theme WooCommerce CSS should enqueue.
+ *
+ * Selective loading is opt-in (off by default) so existing sites keep global styles.
+ *
+ * @return bool
+ */
+function accepta_should_enqueue_woocommerce_style() {
+	if ( ! class_exists( 'WooCommerce' ) ) {
+		return false;
+	}
+
+	if ( ! get_theme_mod( 'accepta_woo_load_assets_selectively', false ) ) {
+		return true;
+	}
+
+	return accepta_woocommerce_is_storefront_context();
+}
+
+/**
  * Available header cart icon presets.
  *
  * @return array Icon slug => translated label.

@@ -235,16 +235,16 @@ function accepta_scripts() {
 	);
 	wp_style_add_data( 'accepta-style', 'rtl', 'replace' );
 
-    if ( class_exists( 'WooCommerce' ) ) {
-        wp_enqueue_style( 
-			'accepta-woocommerce-style', 
-			accepta_get_asset_uri( 'assets/css/woocommerce.css' ), 
-			array( 'accepta-style', 'woocommerce-layout' ), 
-			_ACCEPTA_VERSION 
+	if ( function_exists( 'accepta_should_enqueue_woocommerce_style' ) && accepta_should_enqueue_woocommerce_style() ) {
+		wp_enqueue_style(
+			'accepta-woocommerce-style',
+			accepta_get_asset_uri( 'assets/css/woocommerce.css' ),
+			array( 'accepta-style', 'woocommerce-layout' ),
+			_ACCEPTA_VERSION
 		);
-        
+
 		wp_style_add_data( 'accepta-woocommerce-style', 'rtl', 'replace' );
-    }
+	}
 
 	wp_enqueue_script( 
 		'accepta-mobile-menu', 

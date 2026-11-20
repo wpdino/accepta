@@ -2,8 +2,8 @@
 Contributors: wpdino
 Requires at least: 5.0
 Tested up to: 6.9
-Stable tag: 1.1.4
-Version: 1.1.4
+Stable tag: 1.1.5
+Version: 1.1.5
 Requires PHP: 7.4
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -58,6 +58,12 @@ Yes, Accepta is translation ready and includes .pot file for translations.
 Accepta includes standard WordPress widgets and is compatible with all WordPress widgets and plugins.
 
 == Changelog ==
+
+= 1.1.5 - 2026-11-18 =
+* Added optional selective loading for theme WooCommerce CSS (WooCommerce > General; off by default).
+* Added blog archive display options for date, author, categories, featured images, and grid image aspect ratio (defaults match previous behavior).
+* Added optional BreadcrumbList structured data when theme breadcrumbs are enabled (off by default).
+* Improved minicart offcanvas accessibility (dialog semantics, focus trap, and focus return).
 
 = 1.1.4 - 2026-10-16 =
 * Added Blog archive layout options in the Customizer.
@@ -174,6 +180,9 @@ For support, feature requests, and bug reports, please visit:
 https://wpdino.com
 
 == Upgrade Notice ==
+
+= 1.1.5 =
+Accepta Lite 1.1.5 adds blog archive meta controls, optional WooCommerce CSS loading, breadcrumb structured data, and minicart accessibility improvements. New options are off or use the same defaults as before so existing sites stay unchanged until you change them.
 
 = 1.1.4 =
 Accepta Lite 1.1.4 adds blog archive layouts, optional breadcrumbs, back to top, related posts, and a WooCommerce sale badge percentage option. New options are off or match previous defaults so existing sites stay unchanged until you enable them.

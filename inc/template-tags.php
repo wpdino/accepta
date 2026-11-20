@@ -124,6 +124,10 @@ if ( ! function_exists( 'accepta_post_thumbnail' ) ) :
 			return;
 		}
 
+		if ( ! is_singular() && 'post' === get_post_type() && function_exists( 'accepta_blog_archive_show_thumbnail' ) && ! accepta_blog_archive_show_thumbnail() ) {
+			return;
+		}
+
 		if ( is_singular() ) :
 			?>
 
